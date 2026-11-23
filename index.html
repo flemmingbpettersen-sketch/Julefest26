@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#12372a">
-
-  <title>Julefest at the Breviks 2026 🎄</title>
+  <title>Julefest 2026 🎄</title>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -243,14 +241,53 @@
       font-weight: 600;
     }
 
+    /* JULEHJULET */
+
+    .wheel-wrap {
+      position: relative;
+      width: min(100%, 340px);
+      margin: 22px auto 10px;
+    }
+
+    .wheel-pointer {
+      position: absolute;
+      z-index: 5;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 34px solid #f4d06f;
+      filter: drop-shadow(0 3px 2px rgba(0,0,0,0.45));
+    }
+
+    .wheel-canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.35));
+    }
+
+    .wheel-legend {
+      text-align: center;
+      font-size: 12px;
+      color: #cfcfcf;
+      margin: 8px 0 12px;
+    }
+
     #wheelResult {
-      min-height: 40px;
+      min-height: 52px;
       margin-top: 18px;
       text-align: center;
       color: #f4d06f;
       font-size: 20px;
       font-weight: 700;
     }
+
+    /* PAKKELEK */
 
     .dice-area,
     .timer-area,
@@ -285,6 +322,8 @@
       padding: 8px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+
+    /* FESTBILDER */
 
     .photo-count {
       color: #f4d06f;
@@ -377,9 +416,12 @@
   </style>
 </head>
 
+
 <body>
 
 <div class="app">
+
+  <!-- FORSIDE -->
 
   <div class="hero">
 
@@ -422,6 +464,8 @@
   </div>
 
 
+  <!-- MENY -->
+
   <div class="menu">
 
     <div class="card wide-card status-card"
@@ -457,9 +501,9 @@
     <div class="card wide-card wheel-card"
          onclick="showSection('wheel')">
 
-      <div class="icon">🎅</div>
+      <div class="icon">🎡</div>
       <div class="card-title">JULEHJULET</div>
-      <div class="card-text">Trykk hvis du tør...</div>
+      <div class="card-text">Spinn hvis du tør...</div>
 
     </div>
 
@@ -523,7 +567,6 @@
     <select id="personSelect">
 
       <option value="">Velg navn</option>
-
       <option>Anne Grethe</option>
       <option>Henning</option>
       <option>Ronny</option>
@@ -543,46 +586,16 @@
     <select id="statusSelect">
 
       <option value="">Velg status</option>
-
-      <option value="🥐 Frokost">
-        🥐 Frokost
-      </option>
-
-      <option value="🚶 Går tur">
-        🚶 Går tur
-      </option>
-
-      <option value="🏋️ Trener">
-        🏋️ Trener
-      </option>
-
-      <option value="⚽ Ser fotball">
-        ⚽ Ser fotball
-      </option>
-
-      <option value="🏒 Ser hockey">
-        🏒 Ser hockey
-      </option>
-
-      <option value="🏎️ Ser Formel 1">
-        🏎️ Ser Formel 1
-      </option>
-
-      <option value="🚿 Gjør meg klar">
-        🚿 Gjør meg klar
-      </option>
-
-      <option value="🚗 På vei til festen">
-        🚗 På vei til festen
-      </option>
-
-      <option value="👋 På vei hjem">
-        👋 På vei hjem
-      </option>
-
-      <option value="🏠 Hjemme">
-        🏠 Hjemme
-      </option>
+      <option value="🥐 Frokost">🥐 Frokost</option>
+      <option value="🚶 Går tur">🚶 Går tur</option>
+      <option value="🏋️ Trener">🏋️ Trener</option>
+      <option value="⚽ Ser fotball">⚽ Ser fotball</option>
+      <option value="🏒 Ser hockey">🏒 Ser hockey</option>
+      <option value="🏎️ Ser Formel 1">🏎️ Ser Formel 1</option>
+      <option value="🚿 Gjør meg klar">🚿 Gjør meg klar</option>
+      <option value="🚗 På vei til festen">🚗 På vei til festen</option>
+      <option value="👋 På vei hjem">👋 På vei hjem</option>
+      <option value="🏠 Hjemme">🏠 Hjemme</option>
 
     </select>
 
@@ -676,19 +689,43 @@
 
   <div id="wheel" class="content-box">
 
-    <h2>🎅 Julehjulet</h2>
+    <h2>🎡 Julehjulet</h2>
 
     <p>
-      Julehjulet velger tilfeldig person og utfordring.
+      Hjulet velger tilfeldig person. Deretter trekkes sang,
+      tale, vits eller skål.
     </p>
 
+
+    <div class="wheel-wrap">
+
+      <div class="wheel-pointer"></div>
+
+      <canvas
+        id="wheelCanvas"
+        class="wheel-canvas"
+        width="700"
+        height="700"
+        aria-label="Julehjul med navnene på deltakerne">
+      </canvas>
+
+    </div>
+
+
+    <div class="wheel-legend">
+      Pilen øverst viser hvem som blir valgt
+    </div>
+
+
     <button
+      id="spinButton"
       class="game-button"
       onclick="spinWheel()">
 
-      🎄 SPINN JULEHJULET
+      🎡 SPINN HJULET
 
     </button>
+
 
     <div id="wheelResult">
       Hvem blir den heldige? 😈
@@ -930,7 +967,6 @@
   ======================== */
 
   const people = [
-
     "Anne Grethe",
     "Henning",
     "Ronny",
@@ -939,7 +975,6 @@
     "Eilen H",
     "Eilen N",
     "Flemming"
-
   ];
 
 
@@ -950,23 +985,14 @@
   const partyDate =
     new Date(2026, 10, 28, 18, 30, 0);
 
-
   const statusStart =
     new Date(2026, 10, 28, 0, 0, 0);
-
 
   const statusEnd =
     new Date(2026, 10, 29, 0, 0, 0);
 
-
-  /*
-    Bilder kan lastes opp
-    lørdag og søndag.
-  */
-
   const photoStart =
     new Date(2026, 10, 28, 0, 0, 0);
-
 
   const photoEnd =
     new Date(2026, 10, 30, 0, 0, 0);
@@ -1053,6 +1079,7 @@
 
     if (
       id === "photos" &&
+      selected &&
       selected.classList.contains(
         "active"
       )
@@ -1183,7 +1210,7 @@
 
 
   /* ========================
-     JULEHJULET
+     VISUELT JULEHJUL
   ======================== */
 
   const challenges = [
@@ -1199,24 +1226,284 @@
   ];
 
 
+  const wheelColors = [
+
+    "#b51f2e",
+    "#1f7a5c",
+    "#d49b24",
+    "#315c8c",
+    "#9d3d7a",
+    "#287a76",
+    "#c65b2d",
+    "#6f4b9b"
+
+  ];
+
+
+  let wheelRotation = 0;
+
+  let wheelSpinning = false;
+
+
+  function drawWheel(
+    rotation = wheelRotation
+  ) {
+
+    const canvas =
+      document.getElementById(
+        "wheelCanvas"
+      );
+
+
+    if (!canvas) {
+      return;
+    }
+
+
+    const ctx =
+      canvas.getContext(
+        "2d"
+      );
+
+
+    const centerX =
+      canvas.width / 2;
+
+    const centerY =
+      canvas.height / 2;
+
+    const radius =
+      canvas.width * 0.47;
+
+    const segmentAngle =
+      Math.PI * 2 /
+      people.length;
+
+
+    ctx.clearRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+
+    ctx.save();
+
+    ctx.translate(
+      centerX,
+      centerY
+    );
+
+
+    ctx.rotate(
+      rotation
+    );
+
+
+    people.forEach(
+      (name, index) => {
+
+        const startAngle =
+          -Math.PI / 2 +
+          index *
+          segmentAngle;
+
+
+        const endAngle =
+          startAngle +
+          segmentAngle;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+          0,
+          0
+        );
+
+
+        ctx.arc(
+          0,
+          0,
+          radius,
+          startAngle,
+          endAngle
+        );
+
+
+        ctx.closePath();
+
+
+        ctx.fillStyle =
+          wheelColors[index];
+
+
+        ctx.fill();
+
+
+        ctx.strokeStyle =
+          "rgba(255,255,255,0.75)";
+
+
+        ctx.lineWidth =
+          5;
+
+
+        ctx.stroke();
+
+
+        /* NAVN */
+
+        ctx.save();
+
+
+        ctx.rotate(
+          startAngle +
+          segmentAngle / 2
+        );
+
+
+        ctx.translate(
+          radius * 0.64,
+          0
+        );
+
+
+        ctx.rotate(
+          Math.PI / 2
+        );
+
+
+        ctx.fillStyle =
+          "#ffffff";
+
+
+        ctx.font =
+          "700 31px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+
+
+        ctx.textAlign =
+          "center";
+
+
+        ctx.textBaseline =
+          "middle";
+
+
+        const parts =
+          name.split(" ");
+
+
+        if (parts.length > 1) {
+
+          ctx.fillText(
+            parts[0],
+            0,
+            -18
+          );
+
+
+          ctx.fillText(
+            parts
+              .slice(1)
+              .join(" "),
+            0,
+            18
+          );
+
+        } else {
+
+          ctx.fillText(
+            name,
+            0,
+            0
+          );
+
+        }
+
+
+        ctx.restore();
+
+      }
+    );
+
+
+    /* MIDTEN */
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      0,
+      0,
+      radius * 0.16,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      "#f4d06f";
+
+
+    ctx.fill();
+
+
+    ctx.strokeStyle =
+      "#ffffff";
+
+
+    ctx.lineWidth =
+      7;
+
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+      "#12372a";
+
+
+    ctx.font =
+      "700 55px Segoe UI Emoji, sans-serif";
+
+
+    ctx.textAlign =
+      "center";
+
+
+    ctx.textBaseline =
+      "middle";
+
+
+    ctx.fillText(
+      "🎄",
+      0,
+      4
+    );
+
+
+    ctx.restore();
+
+  }
+
+
   function spinWheel() {
 
-    const person =
-      people[
-        Math.floor(
-          Math.random() *
-          people.length
-        )
-      ];
+    if (wheelSpinning) {
+      return;
+    }
 
 
-    const challenge =
-      challenges[
-        Math.floor(
-          Math.random() *
-          challenges.length
-        )
-      ];
+    wheelSpinning =
+      true;
+
+
+    const button =
+      document.getElementById(
+        "spinButton"
+      );
 
 
     const result =
@@ -1225,25 +1512,179 @@
       );
 
 
+    button.disabled =
+      true;
+
+
     result.textContent =
-      "🎅 Julehjulet spinner...";
+      "🎡 Hjulet spinner...";
 
 
-    setTimeout(() => {
+    const winnerIndex =
+      Math.floor(
+        Math.random() *
+        people.length
+      );
 
-      result.textContent =
-        "🎄 " +
-        person +
-        " " +
-        challenge;
 
-    }, 800);
+    const segmentAngle =
+      Math.PI * 2 /
+      people.length;
+
+
+    const currentNormalized =
+      (
+        (
+          wheelRotation %
+          (Math.PI * 2)
+        ) +
+        Math.PI * 2
+      ) %
+      (Math.PI * 2);
+
+
+    /*
+      Midten av vinnerens felt skal
+      stoppe under pilen øverst.
+    */
+
+    const targetNormalized =
+      (
+        -(winnerIndex + 0.5) *
+        segmentAngle +
+        Math.PI * 2
+      ) %
+      (Math.PI * 2);
+
+
+    const delta =
+      (
+        targetNormalized -
+        currentNormalized +
+        Math.PI * 2
+      ) %
+      (Math.PI * 2);
+
+
+    const turns =
+      5 +
+      Math.floor(
+        Math.random() * 3
+      );
+
+
+    const startRotation =
+      wheelRotation;
+
+
+    const endRotation =
+      wheelRotation +
+      turns *
+      Math.PI * 2 +
+      delta;
+
+
+    const startTime =
+      performance.now();
+
+
+    const duration =
+      4200;
+
+
+    function animate(now) {
+
+      const progress =
+        Math.min(
+          (now - startTime)
+          / duration,
+          1
+        );
+
+
+      /*
+        Rolig nedbremsing mot slutten.
+      */
+
+      const eased =
+        1 -
+        Math.pow(
+          1 - progress,
+          4
+        );
+
+
+      wheelRotation =
+        startRotation +
+        (
+          endRotation -
+          startRotation
+        ) *
+        eased;
+
+
+      drawWheel(
+        wheelRotation
+      );
+
+
+      if (progress < 1) {
+
+        requestAnimationFrame(
+          animate
+        );
+
+      } else {
+
+        wheelRotation =
+          targetNormalized;
+
+
+        drawWheel(
+          wheelRotation
+        );
+
+
+        const challenge =
+          challenges[
+            Math.floor(
+              Math.random() *
+              challenges.length
+            )
+          ];
+
+
+        result.textContent =
+          "🎄 " +
+          people[winnerIndex] +
+          " " +
+          challenge;
+
+
+        button.disabled =
+          false;
+
+
+        wheelSpinning =
+          false;
+
+      }
+
+    }
+
+
+    requestAnimationFrame(
+      animate
+    );
 
   }
 
 
+  drawWheel();
+
+
   /* ========================
-     PAKKELEK
+     DIGITAL TERNING
   ======================== */
 
   const diceFaces = {
@@ -1341,9 +1782,16 @@
   }
 
 
-  let packageTime = 600;
+  /* ========================
+     PAKKELEK TIMER
+  ======================== */
 
-  let packageInterval = null;
+  let packageTime =
+    600;
+
+
+  let packageInterval =
+    null;
 
 
   function updatePackageTimer() {
@@ -1362,17 +1810,19 @@
       "packageTimer"
     ).textContent =
 
-      String(min).padStart(
-        2,
-        "0"
-      ) +
+      String(min)
+        .padStart(
+          2,
+          "0"
+        ) +
 
       ":" +
 
-      String(sec).padStart(
-        2,
-        "0"
-      );
+      String(sec)
+        .padStart(
+          2,
+          "0"
+        );
 
   }
 
@@ -1387,7 +1837,9 @@
     packageInterval =
       setInterval(() => {
 
-        if (packageTime > 0) {
+        if (
+          packageTime > 0
+        ) {
 
           packageTime--;
 
@@ -1399,7 +1851,9 @@
             packageInterval
           );
 
-          packageInterval = null;
+
+          packageInterval =
+            null;
 
 
           document.getElementById(
@@ -1421,9 +1875,13 @@
     );
 
 
-    packageInterval = null;
+    packageInterval =
+      null;
 
-    packageTime = 600;
+
+    packageTime =
+      600;
+
 
     updatePackageTimer();
 
@@ -1445,53 +1903,64 @@
       );
 
 
-    list.innerHTML = "";
+    list.innerHTML =
+      "";
 
 
-    people.forEach(person => {
+    people.forEach(
+      person => {
 
-      const row =
-        document.createElement(
-          "div"
+        const row =
+          document.createElement(
+            "div"
+          );
+
+
+        row.className =
+          "status-row";
+
+
+        const name =
+          document.createElement(
+            "span"
+          );
+
+
+        name.textContent =
+          person;
+
+
+        const status =
+          document.createElement(
+            "span"
+          );
+
+
+        status.className =
+          "status-value";
+
+
+        status.textContent =
+          statuses[person] ||
+          "Ikke oppdatert";
+
+
+        row.appendChild(
+          name
         );
 
 
-      row.className =
-        "status-row";
-
-
-      const name =
-        document.createElement(
-          "span"
+        row.appendChild(
+          status
         );
 
 
-      name.textContent =
-        person;
-
-
-      const status =
-        document.createElement(
-          "span"
+        list.appendChild(
+          row
         );
 
-
-      status.className =
-        "status-value";
-
-
-      status.textContent =
-        statuses[person] ||
-        "Ikke oppdatert";
-
-
-      row.appendChild(name);
-
-      row.appendChild(status);
-
-      list.appendChild(row);
-
-    });
+      }
+    );
 
   }
 
@@ -1550,7 +2019,9 @@
 
     }
 
-    else if (now >= statusEnd) {
+    else if (
+      now >= statusEnd
+    ) {
 
       message.textContent =
         "🎄 Statusoppdateringen er avsluttet. Siste status fra lørdag vises under.";
@@ -1595,7 +2066,8 @@
     }
 
 
-    statuses = {};
+    statuses =
+      {};
 
 
     (response.data || [])
@@ -1688,7 +2160,7 @@
 
             updated_at:
               new Date()
-                .toISOString()
+              .toISOString()
 
           },
 
@@ -1760,14 +2232,18 @@
       !open;
 
 
-    if (now < photoStart) {
+    if (
+      now < photoStart
+    ) {
 
       message.textContent =
         "🔒 Bildeopplasting åpner lørdag 28. november kl. 00:00 📸";
 
     }
 
-    else if (now >= photoEnd) {
+    else if (
+      now >= photoEnd
+    ) {
 
       message.textContent =
         "📸 Albumet er åpent for visning, men nye opplastinger er avsluttet.";
@@ -1790,9 +2266,9 @@
 
     let extension =
       originalName
-        .split(".")
-        .pop()
-        .toLowerCase();
+      .split(".")
+      .pop()
+      .toLowerCase();
 
 
     extension =
@@ -1804,7 +2280,8 @@
 
     if (!extension) {
 
-      extension = "jpg";
+      extension =
+        "jpg";
 
     }
 
@@ -1816,8 +2293,8 @@
       "-" +
 
       Math.random()
-        .toString(36)
-        .slice(2, 9) +
+      .toString(36)
+      .slice(2, 9) +
 
       "." +
 
@@ -1888,11 +2365,11 @@
 
     photoFiles =
       (response.data || [])
-      .filter(file =>
-
-        file.name &&
-        !file.name.startsWith(".")
-
+      .filter(
+        file =>
+          file.name &&
+          !file.name
+          .startsWith(".")
       );
 
 
@@ -1922,10 +2399,13 @@
       );
 
 
-    gallery.innerHTML = "";
+    gallery.innerHTML =
+      "";
 
 
-    if (!photoFiles.length) {
+    if (
+      !photoFiles.length
+    ) {
 
       gallery.innerHTML =
         '<div class="empty-gallery">Ingen bilder ennå.</div>';
@@ -1935,10 +2415,11 @@
     }
 
 
-    photoFiles.forEach(file => {
+    photoFiles.forEach(
+      file => {
 
-      const result =
-        db
+        const result =
+          db
           .storage
           .from(
             "festbilder"
@@ -1948,58 +2429,59 @@
           );
 
 
-      const imageUrl =
-        result.data.publicUrl;
+        const imageUrl =
+          result.data.publicUrl;
 
 
-      const item =
-        document.createElement(
-          "div"
-        );
-
-
-      item.className =
-        "gallery-item";
-
-
-      const image =
-        document.createElement(
-          "img"
-        );
-
-
-      image.src =
-        imageUrl;
-
-
-      image.alt =
-        "Festbilde";
-
-
-      image.loading =
-        "lazy";
-
-
-      item.onclick =
-        function() {
-
-          openPhoto(
-            imageUrl
+        const item =
+          document.createElement(
+            "div"
           );
 
-        };
+
+        item.className =
+          "gallery-item";
 
 
-      item.appendChild(
-        image
-      );
+        const image =
+          document.createElement(
+            "img"
+          );
 
 
-      gallery.appendChild(
-        item
-      );
+        image.src =
+          imageUrl;
 
-    });
+
+        image.alt =
+          "Festbilde";
+
+
+        image.loading =
+          "lazy";
+
+
+        item.onclick =
+          function() {
+
+            openPhoto(
+              imageUrl
+            );
+
+          };
+
+
+        item.appendChild(
+          image
+        );
+
+
+        gallery.appendChild(
+          item
+        );
+
+      }
+    );
 
   }
 
@@ -2142,7 +2624,9 @@
         );
 
 
-    if (response.error) {
+    if (
+      response.error
+    ) {
 
       console.error(
         response.error
@@ -2238,7 +2722,8 @@
 
 
     db =
-      window.supabase.createClient(
+      window.supabase
+      .createClient(
 
         SUPABASE_URL,
 
@@ -2266,7 +2751,8 @@
 
           schema: "public",
 
-          table: "party_status"
+          table:
+            "party_status"
 
         },
 
@@ -2281,11 +2767,8 @@
 
 
     setInterval(
-
       loadStatuses,
-
       15000
-
     );
 
 
