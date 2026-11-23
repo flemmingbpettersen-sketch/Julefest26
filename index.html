@@ -1128,7 +1128,21 @@
       document.getElementById(
         "statusMessage"
       );
+const now = new Date();
 
+const statusStart =
+  new Date(2026, 10, 28, 0, 0, 0);
+
+const statusEnd =
+  new Date(2026, 10, 29, 0, 0, 0);
+
+if (now < statusStart || now >= statusEnd) {
+
+  message.textContent =
+    "🔒 Status kan bare oppdateres lørdag 28. november 🎄";
+
+  return;
+}
 
     if (!person || !status) {
 
