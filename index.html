@@ -175,6 +175,19 @@
       justify-content: center;
     }
 
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .score-value {
+      color: #f4d06f;
+      font-weight: 700;
+    }
+
     .game-button {
       width: 100%;
       background: #f4d06f;
@@ -192,8 +205,6 @@
       background: #c32f3c;
       color: white;
     }
-
-    /* PAKKELEK */
 
     .dice-area {
       text-align: center;
@@ -247,7 +258,8 @@
       font-size: 20px;
       font-weight: 700;
       margin-top: 18px;
-      min-height: 30px;
+      min-height: 40px;
+      color: #f4d06f;
     }
 
     footer {
@@ -258,6 +270,7 @@
     }
   </style>
 </head>
+
 
 <body>
 
@@ -316,13 +329,11 @@
       <div class="card-text">De 8 på julefest</div>
     </div>
 
-
     <div class="card" onclick="showSection('score')">
       <div class="icon">🏆</div>
       <div class="card-title">Poengtavle</div>
       <div class="card-text">Hvem leder?</div>
     </div>
-
 
     <div class="card wheel-card" onclick="showSection('wheel')">
       <div class="icon">🎅</div>
@@ -330,13 +341,11 @@
       <div class="card-text">Trykk hvis du tør...</div>
     </div>
 
-
     <div class="card" onclick="showSection('competitions')">
       <div class="icon">🎯</div>
       <div class="card-title">Konkurranser</div>
       <div class="card-text">Quiz og utfordringer</div>
     </div>
-
 
     <div class="card" onclick="showSection('bring')">
       <div class="icon">🍺</div>
@@ -344,13 +353,11 @@
       <div class="card-text">Hvem tar med hva?</div>
     </div>
 
-
     <div class="card" onclick="showSection('packagegame')">
       <div class="icon">🎁</div>
       <div class="card-title">Pakkelek</div>
       <div class="card-text">Terning og pakker</div>
     </div>
-
 
     <div class="card" onclick="showSection('photos')">
       <div class="icon">📸</div>
@@ -368,43 +375,43 @@
     <h2>👥 Gjengen</h2>
 
     <div class="person">
-      <div class="avatar">🎅</div>
-      <span>Flemming</span>
+      <div class="avatar">🎄</div>
+      <span>Anne Grethe</span>
     </div>
 
     <div class="person">
-      <div class="avatar">🎄</div>
-      <span>Venn 2</span>
+      <div class="avatar">🎅</div>
+      <span>Henning</span>
     </div>
 
     <div class="person">
       <div class="avatar">🍺</div>
-      <span>Venn 3</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🎁</div>
-      <span>Venn 4</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">⭐</div>
-      <span>Venn 5</span>
+      <span>Ronny</span>
     </div>
 
     <div class="person">
       <div class="avatar">🥂</div>
-      <span>Venn 6</span>
+      <span>Hanne</span>
     </div>
 
     <div class="person">
       <div class="avatar">🦌</div>
-      <span>Venn 7</span>
+      <span>Martin</span>
+    </div>
+
+    <div class="person">
+      <div class="avatar">⭐</div>
+      <span>Eilen H</span>
     </div>
 
     <div class="person">
       <div class="avatar">☃️</div>
-      <span>Venn 8</span>
+      <span>Eilen N</span>
+    </div>
+
+    <div class="person">
+      <div class="avatar">🎁</div>
+      <span>Flemming</span>
     </div>
 
   </div>
@@ -416,7 +423,45 @@
 
     <h2>🏆 Poengtavle</h2>
 
-    <p>Poengtavlen kommer her.</p>
+    <div class="score-row">
+      <span>Anne Grethe</span>
+      <span class="score-value">0 poeng</span>
+    </div>
+
+    <div class="score-row">
+      <span>Henning</span>
+      <span class="score-value">0 poeng</span>
+    </div>
+
+    <div class="score-row">
+      <span>Ronny</span>
+      <span class="score-value">0 poeng</span>
+    </div>
+
+    <div class="score-row">
+      <span>Hanne</span>
+      <span class="score-value">0 poeng</span>
+    </div>
+
+    <div class="score-row">
+      <span>Martin</span>
+      <span class="score-value">0 poeng</span>
+    </div>
+
+    <div class="score-row">
+      <span>Eilen H</span>
+      <span class="score-value">0 poeng</span>
+    </div>
+
+    <div class="score-row">
+      <span>Eilen N</span>
+      <span class="score-value">0 poeng</span>
+    </div>
+
+    <div class="score-row">
+      <span>Flemming</span>
+      <span class="score-value">0 poeng</span>
+    </div>
 
   </div>
 
@@ -428,14 +473,16 @@
     <h2>🎅 Julehjulet</h2>
 
     <p>
-      Trykk på knappen og la julehjulet bestemme.
+      Julehjulet velger både person og utfordring.
     </p>
 
     <button class="game-button" onclick="spinWheel()">
       🎄 SPINN JULEHJULET
     </button>
 
-    <div id="wheelResult"></div>
+    <div id="wheelResult">
+      Hvem blir den heldige? 😈
+    </div>
 
   </div>
 
@@ -500,8 +547,6 @@
     </div>
 
 
-    <!-- TIMER -->
-
     <div class="timer-area">
 
       <div style="font-size:14px; color:#f4d06f;">
@@ -522,8 +567,6 @@
 
     </div>
 
-
-    <!-- REGLER -->
 
     <div class="rules">
 
@@ -558,7 +601,7 @@
   </div>
 
 
-  <!-- BILDER -->
+  <!-- FESTBILDER -->
 
   <div id="photos" class="content-box">
 
@@ -580,21 +623,32 @@
 
 <script>
 
-  /* ------------------------
-     NEDTELLING TIL FEST
-  ------------------------ */
+  /* FESTDATO */
 
   const partyDate =
     new Date("2026-11-28T18:30:00");
 
 
+  /* DELTAKERNE */
+
+  const people = [
+    "Anne Grethe",
+    "Henning",
+    "Ronny",
+    "Hanne",
+    "Martin",
+    "Eilen H",
+    "Eilen N",
+    "Flemming"
+  ];
+
+
+  /* NEDTELLING */
+
   function updateCountdown() {
 
     const now = new Date();
-
-    const difference =
-      partyDate - now;
-
+    const difference = partyDate - now;
 
     if (difference <= 0) {
 
@@ -603,96 +657,51 @@
       document.getElementById("minutes").innerText = "🥂";
 
       return;
-
     }
 
-
     const days =
-      Math.floor(
-        difference /
-        (1000 * 60 * 60 * 24)
-      );
-
+      Math.floor(difference / (1000 * 60 * 60 * 24));
 
     const hours =
-      Math.floor(
-        (difference /
-        (1000 * 60 * 60)) % 24
-      );
-
+      Math.floor((difference / (1000 * 60 * 60)) % 24);
 
     const minutes =
-      Math.floor(
-        (difference /
-        (1000 * 60)) % 60
-      );
+      Math.floor((difference / (1000 * 60)) % 60);
 
-
-    document.getElementById("days").innerText =
-      days;
-
-    document.getElementById("hours").innerText =
-      hours;
-
-    document.getElementById("minutes").innerText =
-      minutes;
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
 
   }
 
 
   updateCountdown();
-
-  setInterval(
-    updateCountdown,
-    30000
-  );
+  setInterval(updateCountdown, 30000);
 
 
-
-  /* ------------------------
-     MENY
-  ------------------------ */
+  /* MENY */
 
   function showSection(sectionId) {
 
     const sections =
-      document.querySelectorAll(
-        ".content-box"
-      );
-
+      document.querySelectorAll(".content-box");
 
     sections.forEach(section => {
 
       if (section.id === sectionId) {
-
-        section.classList.toggle(
-          "active"
-        );
-
+        section.classList.toggle("active");
       } else {
-
-        section.classList.remove(
-          "active"
-        );
-
+        section.classList.remove("active");
       }
 
     });
 
-
     setTimeout(() => {
 
       const selected =
-        document.getElementById(
-          sectionId
-        );
+        document.getElementById(sectionId);
 
-
-      if (
-        selected.classList.contains(
-          "active"
-        )
-      ) {
+      if (selected.classList.contains("active")) {
 
         selected.scrollIntoView({
           behavior: "smooth",
@@ -706,240 +715,14 @@
   }
 
 
-
-  /* ------------------------
-     JULEHJULET
-  ------------------------ */
+  /* JULEHJULET */
 
   const challenges = [
 
-    "🎤 Velg hvem som må holde en 30 sekunders juletale!",
+    "må holde en 30 sekunders juletale! 🎤",
 
-    "🥂 Alle skåler!",
+    "må velge en julesang som skal spilles nå! 🎵",
 
-    "🎵 Velg en julesang som skal spilles nå!",
+    "må fortelle kveldens dårligste vits! 😂",
 
-    "🎅 Den med mest rødt på seg deler ut neste utfordring.",
-
-    "😂 Fortell kveldens dårligste vits!",
-
-    "🎄 Fortell om ditt beste juleminne.",
-
-    "🦌 Velg en person som får neste utfordring!",
-
-    "🍺 Alle peker på den som mest sannsynlig sovner først!",
-
-    "🎁 Gi et kompliment til personen på høyre side.",
-
-    "⭐ Gruppen bestemmer en utfordring!"
-
-  ];
-
-
-  function spinWheel() {
-
-    const random =
-      Math.floor(
-        Math.random() *
-        challenges.length
-      );
-
-
-    document.getElementById(
-      "wheelResult"
-    ).innerText =
-      "🎅 Julehjulet spinner...";
-
-
-    setTimeout(() => {
-
-      document.getElementById(
-        "wheelResult"
-      ).innerText =
-        challenges[random];
-
-    }, 800);
-
-  }
-
-
-
-  /* ------------------------
-     DIGITAL TERNING
-  ------------------------ */
-
-  const diceFaces = {
-    1: "⚀",
-    2: "⚁",
-    3: "⚂",
-    4: "⚃",
-    5: "⚄",
-    6: "⚅"
-  };
-
-
-  const diceRules = {
-
-    1: "🎁 Ta en pakke!",
-
-    2: "🔄 Bytt pakke med en valgfri person!",
-
-    3: "⬅️ Send en pakke til venstre!",
-
-    4: "➡️ Send en pakke til høyre!",
-
-    5: "😈 Stjel en valgfri pakke!",
-
-    6: "🎲 Kast terningen én gang til!"
-
-  };
-
-
-  function rollDice() {
-
-    const dice =
-      document.getElementById("dice");
-
-    const result =
-      document.getElementById(
-        "diceResult"
-      );
-
-
-    result.innerText =
-      "🎲 Terningen ruller...";
-
-
-    let rolls = 0;
-
-
-    const animation =
-      setInterval(() => {
-
-        const temp =
-          Math.floor(
-            Math.random() * 6
-          ) + 1;
-
-        dice.innerText =
-          diceFaces[temp];
-
-        rolls++;
-
-
-        if (rolls >= 8) {
-
-          clearInterval(animation);
-
-
-          const finalRoll =
-            Math.floor(
-              Math.random() * 6
-            ) + 1;
-
-
-          dice.innerText =
-            diceFaces[finalRoll];
-
-
-          result.innerText =
-            finalRoll +
-            " – " +
-            diceRules[finalRoll];
-
-        }
-
-      }, 90);
-
-  }
-
-
-
-  /* ------------------------
-     PAKKELEK TIMER
-  ------------------------ */
-
-  let packageTime = 600;
-
-  let packageInterval = null;
-
-
-  function updatePackageTimer() {
-
-    const minutes =
-      Math.floor(
-        packageTime / 60
-      );
-
-    const seconds =
-      packageTime % 60;
-
-
-    document.getElementById(
-      "packageTimer"
-    ).innerText =
-      String(minutes).padStart(2, "0") +
-      ":" +
-      String(seconds).padStart(2, "0");
-
-  }
-
-
-  function startPackageTimer() {
-
-    if (packageInterval) {
-      return;
-    }
-
-
-    packageInterval =
-      setInterval(() => {
-
-        if (packageTime > 0) {
-
-          packageTime--;
-
-          updatePackageTimer();
-
-        } else {
-
-          clearInterval(
-            packageInterval
-          );
-
-          packageInterval = null;
-
-
-          document.getElementById(
-            "packageTimer"
-          ).innerText =
-            "🎁 FERDIG!";
-
-        }
-
-      }, 1000);
-
-  }
-
-
-  function resetPackageTimer() {
-
-    clearInterval(
-      packageInterval
-    );
-
-    packageInterval = null;
-
-    packageTime = 600;
-
-    updatePackageTimer();
-
-  }
-
-
-  updatePackageTimer();
-
-</script>
-
-</body>
-</html>
+    "må fortelle om sitt
