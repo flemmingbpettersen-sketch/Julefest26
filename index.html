@@ -276,8 +276,6 @@
 
 <div class="app">
 
-  <!-- FORSIDE -->
-
   <div class="hero">
 
     <div class="tree">🎄</div>
@@ -319,8 +317,6 @@
   </div>
 
 
-  <!-- MENY -->
-
   <div class="menu">
 
     <div class="card" onclick="showSection('friends')">
@@ -329,11 +325,13 @@
       <div class="card-text">De 8 på julefest</div>
     </div>
 
+
     <div class="card" onclick="showSection('score')">
       <div class="icon">🏆</div>
       <div class="card-title">Poengtavle</div>
       <div class="card-text">Hvem leder?</div>
     </div>
+
 
     <div class="card wheel-card" onclick="showSection('wheel')">
       <div class="icon">🎅</div>
@@ -341,11 +339,13 @@
       <div class="card-text">Trykk hvis du tør...</div>
     </div>
 
+
     <div class="card" onclick="showSection('competitions')">
       <div class="icon">🎯</div>
       <div class="card-title">Konkurranser</div>
       <div class="card-text">Quiz og utfordringer</div>
     </div>
+
 
     <div class="card" onclick="showSection('bring')">
       <div class="icon">🍺</div>
@@ -353,11 +353,13 @@
       <div class="card-text">Hvem tar med hva?</div>
     </div>
 
+
     <div class="card" onclick="showSection('packagegame')">
       <div class="icon">🎁</div>
       <div class="card-title">Pakkelek</div>
       <div class="card-text">Terning og pakker</div>
     </div>
+
 
     <div class="card" onclick="showSection('photos')">
       <div class="icon">📸</div>
@@ -473,7 +475,7 @@
     <h2>🎅 Julehjulet</h2>
 
     <p>
-      Julehjulet velger både person og utfordring.
+      Julehjulet velger tilfeldig person og utfordring.
     </p>
 
     <button class="game-button" onclick="spinWheel()">
@@ -629,7 +631,7 @@
     new Date("2026-11-28T18:30:00");
 
 
-  /* DELTAKERNE */
+  /* DELTAKERE */
 
   const people = [
     "Anne Grethe",
@@ -673,7 +675,6 @@
     document.getElementById("minutes").innerText = minutes;
 
   }
-
 
   updateCountdown();
   setInterval(updateCountdown, 30000);
@@ -719,25 +720,13 @@
 
   const challenges = [
 
-    "må holde en 30 sekunders juletale! 🎤",
+    "må velge neste sang! 🎵",
 
-    "må velge en julesang som skal spilles nå! 🎵",
+    "må holde en 30 sekunders tale! 🎤",
 
-    "må fortelle kveldens dårligste vits! 😂",
+    "må fortelle en vits! 😂",
 
-    "må fortelle om sitt beste juleminne! 🎄",
-
-    "bestemmer hvem som tar neste utfordring! 😈",
-
-    "må gi et kompliment til personen på høyre side! 🎁",
-
-    "må starte en felles skål! 🥂",
-
-    "må velge hvem som mest sannsynlig sovner først! 😴",
-
-    "får bestemme neste sang! 🎶",
-
-    "får gi gruppen en valgfri utfordring! ⭐"
+    "må starte en skål! 🥂"
 
   ];
 
@@ -759,7 +748,6 @@
 
     result.innerText =
       "🎅 Julehjulet spinner...";
-
 
     setTimeout(() => {
 
@@ -813,7 +801,6 @@
 
     let rolls = 0;
 
-
     const animation =
       setInterval(() => {
 
@@ -824,7 +811,6 @@
           diceFaces[temp];
 
         rolls++;
-
 
         if (rolls >= 8) {
 
@@ -880,13 +866,11 @@
         if (packageTime > 0) {
 
           packageTime--;
-
           updatePackageTimer();
 
         } else {
 
           clearInterval(packageInterval);
-
           packageInterval = null;
 
           document.getElementById("packageTimer").innerText =
