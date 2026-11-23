@@ -725,4 +725,195 @@
 
     "må fortelle kveldens dårligste vits! 😂",
 
-    "må fortelle om sitt
+    "må fortelle om sitt beste juleminne! 🎄",
+
+    "bestemmer hvem som tar neste utfordring! 😈",
+
+    "må gi et kompliment til personen på høyre side! 🎁",
+
+    "må starte en felles skål! 🥂",
+
+    "må velge hvem som mest sannsynlig sovner først! 😴",
+
+    "får bestemme neste sang! 🎶",
+
+    "får gi gruppen en valgfri utfordring! ⭐"
+
+  ];
+
+
+  function spinWheel() {
+
+    const person =
+      people[
+        Math.floor(Math.random() * people.length)
+      ];
+
+    const challenge =
+      challenges[
+        Math.floor(Math.random() * challenges.length)
+      ];
+
+    const result =
+      document.getElementById("wheelResult");
+
+    result.innerText =
+      "🎅 Julehjulet spinner...";
+
+
+    setTimeout(() => {
+
+      result.innerText =
+        "🎄 " + person + " " + challenge;
+
+    }, 900);
+
+  }
+
+
+  /* DIGITAL TERNING */
+
+  const diceFaces = {
+    1: "⚀",
+    2: "⚁",
+    3: "⚂",
+    4: "⚃",
+    5: "⚄",
+    6: "⚅"
+  };
+
+
+  const diceRules = {
+
+    1: "🎁 Ta en pakke!",
+
+    2: "🔄 Bytt pakke med en valgfri person!",
+
+    3: "⬅️ Send en pakke til venstre!",
+
+    4: "➡️ Send en pakke til høyre!",
+
+    5: "😈 Stjel en valgfri pakke!",
+
+    6: "🎲 Kast terningen én gang til!"
+
+  };
+
+
+  function rollDice() {
+
+    const dice =
+      document.getElementById("dice");
+
+    const result =
+      document.getElementById("diceResult");
+
+    result.innerText =
+      "🎲 Terningen ruller...";
+
+    let rolls = 0;
+
+
+    const animation =
+      setInterval(() => {
+
+        const temp =
+          Math.floor(Math.random() * 6) + 1;
+
+        dice.innerText =
+          diceFaces[temp];
+
+        rolls++;
+
+
+        if (rolls >= 8) {
+
+          clearInterval(animation);
+
+          const finalRoll =
+            Math.floor(Math.random() * 6) + 1;
+
+          dice.innerText =
+            diceFaces[finalRoll];
+
+          result.innerText =
+            finalRoll + " – " + diceRules[finalRoll];
+
+        }
+
+      }, 90);
+
+  }
+
+
+  /* PAKKELEK-TIMER */
+
+  let packageTime = 600;
+  let packageInterval = null;
+
+
+  function updatePackageTimer() {
+
+    const minutes =
+      Math.floor(packageTime / 60);
+
+    const seconds =
+      packageTime % 60;
+
+    document.getElementById("packageTimer").innerText =
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(seconds).padStart(2, "0");
+
+  }
+
+
+  function startPackageTimer() {
+
+    if (packageInterval) {
+      return;
+    }
+
+    packageInterval =
+      setInterval(() => {
+
+        if (packageTime > 0) {
+
+          packageTime--;
+
+          updatePackageTimer();
+
+        } else {
+
+          clearInterval(packageInterval);
+
+          packageInterval = null;
+
+          document.getElementById("packageTimer").innerText =
+            "🎁 FERDIG!";
+
+        }
+
+      }, 1000);
+
+  }
+
+
+  function resetPackageTimer() {
+
+    clearInterval(packageInterval);
+
+    packageInterval = null;
+    packageTime = 600;
+
+    updatePackageTimer();
+
+  }
+
+
+  updatePackageTimer();
+
+</script>
+
+</body>
+</html>
