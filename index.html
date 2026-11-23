@@ -4,15 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#12372a">
+
   <title>Julefest 2026 🎄</title>
 
   <style>
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b241b 0%, #12372a 100%);
+      background: linear-gradient(180deg, #0b241b, #12372a);
       color: white;
       min-height: 100vh;
     }
@@ -100,6 +104,7 @@
       border-radius: 18px;
       text-align: center;
       cursor: pointer;
+      user-select: none;
     }
 
     .card:active {
@@ -219,12 +224,18 @@
       cursor: pointer;
     }
 
+    .game-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .red-button {
       background: #c32f3c;
       color: white;
     }
 
-    .status-message {
+    .status-message,
+    .photo-message {
       min-height: 25px;
       margin-top: 12px;
       text-align: center;
@@ -242,7 +253,8 @@
     }
 
     .dice-area,
-    .timer-area {
+    .timer-area,
+    .upload-area {
       margin-top: 18px;
       padding: 20px;
       background: rgba(255,255,255,0.07);
@@ -274,12 +286,94 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
+    .photo-count {
+      color: #f4d06f;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .photo-help {
+      font-size: 12px;
+      color: #cfcfcf;
+      line-height: 1.5;
+    }
+
+    .photo-input {
+      display: none;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .empty-gallery {
+      grid-column: span 2;
+      text-align: center;
+      color: #cfcfcf;
+      padding: 24px 0;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(0,0,0,0.92);
+      padding: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal img {
+      max-width: 100%;
+      max-height: 86vh;
+      border-radius: 14px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: white;
+      color: #12372a;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
     footer {
       margin-top: 35px;
       text-align: center;
       font-size: 12px;
       color: #aeb8b2;
     }
+
   </style>
 </head>
 
@@ -288,1042 +382,7 @@
 <div class="app">
 
   <div class="hero">
+
     <div class="tree">🎄</div>
 
-    <h1>Julefest 2026</h1>
-
-    <div class="date">
-      28. november • 18:30
-    </div>
-
-    <div class="countdown-title">
-      Nedtelling til festen
-    </div>
-
-    <div class="countdown">
-      <div class="countdown-box">
-        <div id="days" class="number">0</div>
-        <div class="label">Dager</div>
-      </div>
-
-      <div class="countdown-box">
-        <div id="hours" class="number">0</div>
-        <div class="label">Timer</div>
-      </div>
-
-      <div class="countdown-box">
-        <div id="minutes" class="number">0</div>
-        <div class="label">Min</div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="section-title">Festen</div>
-
-
-  <div class="menu">
-
-    <div class="card wide-card status-card"
-         onclick="showSection('where')">
-      <div class="icon">📍</div>
-      <div class="card-title">Hvor er gjengen?</div>
-      <div class="card-text">Følg gjengen gjennom lørdagen</div>
-    </div>
-
-    <div class="card" onclick="showSection('friends')">
-      <div class="icon">👥</div>
-      <div class="card-title">Gjengen</div>
-      <div class="card-text">De 8 på julefest</div>
-    </div>
-
-    <div class="card" onclick="showSection('score')">
-      <div class="icon">🏆</div>
-      <div class="card-title">Poengtavle</div>
-      <div class="card-text">Hvem leder?</div>
-    </div>
-
-    <div class="card wide-card wheel-card"
-         onclick="showSection('wheel')">
-      <div class="icon">🎅</div>
-      <div class="card-title">JULEHJULET</div>
-      <div class="card-text">Trykk hvis du tør...</div>
-    </div>
-
-    <div class="card" onclick="showSection('competitions')">
-      <div class="icon">🎯</div>
-      <div class="card-title">Konkurranser</div>
-      <div class="card-text">Quiz og utfordringer</div>
-    </div>
-
-    <div class="card" onclick="showSection('bring')">
-      <div class="icon">🍺</div>
-      <div class="card-title">Ta med</div>
-      <div class="card-text">Hvem tar med hva?</div>
-    </div>
-
-    <div class="card" onclick="showSection('packagegame')">
-      <div class="icon">🎁</div>
-      <div class="card-title">Pakkelek</div>
-      <div class="card-text">Terning og pakker</div>
-    </div>
-
-    <div class="card" onclick="showSection('photos')">
-      <div class="icon">📸</div>
-      <div class="card-title">Festbilder</div>
-      <div class="card-text">Bilder fra kvelden</div>
-    </div>
-
-  </div>
-
-
-  <!-- HVOR ER GJENGEN -->
-
-  <div id="where" class="content-box">
-    <h2>📍 Hvor er gjengen?</h2>
-
-    <p>Velg navnet ditt og hva du gjør akkurat nå.</p>
-
-    <span class="select-label">HVEM ER DU?</span>
-
-    <select id="personSelect">
-      <option value="">Velg navn</option>
-      <option>Anne Grethe</option>
-      <option>Henning</option>
-      <option>Ronny</option>
-      <option>Hanne</option>
-      <option>Martin</option>
-      <option>Eilen H</option>
-      <option>Eilen N</option>
-      <option>Flemming</option>
-    </select>
-
-    <span class="select-label">HVA GJØR DU?</span>
-
-    <select id="statusSelect">
-<option value="">Velg status</option>
-
-<option value="🥐 Frokost">🥐 Frokost</option>
-
-<option value="🚶 Går tur">🚶 Går tur</option>
-
-<option value="🏋️ Trener">🏋️ Trener</option>
-
-<option value="⚽ Ser fotball">⚽ Ser fotball</option>
-
-<option value="🏒 Ser hockey">🏒 Ser hockey</option>
-
-<option value="🏎️ Ser Formel 1">🏎️ Ser Formel 1</option>
-
-<option value="🚿 Gjør meg klar">🚿 Gjør meg klar</option>
-
-<option value="🚗 På vei til festen">🚗 På vei til festen</option>
-
-<option value="👋 På vei hjem">👋 På vei hjem</option>
-
-<option value="🏠 Hjemme">🏠 Hjemme</option>
-    </select>
-
-    <button class="game-button" onclick="saveStatus()">
-      📍 OPPDATER STATUS
-    </button>
-
-    <div id="statusMessage" class="status-message"></div>
-
-    <h3 style="color:#f4d06f; margin-top:25px;">
-      🎄 Gjengen akkurat nå
-    </h3>
-
-    <div id="statusList"></div>
-  </div>
-
-
-  <!-- GJENGEN -->
-
-  <div id="friends" class="content-box">
-    <h2>👥 Gjengen</h2>
-
-    <div class="person"><div class="avatar">🎄</div><span>Anne Grethe</span></div>
-    <div class="person"><div class="avatar">🎅</div><span>Henning</span></div>
-    <div class="person"><div class="avatar">🍺</div><span>Ronny</span></div>
-    <div class="person"><div class="avatar">🥂</div><span>Hanne</span></div>
-    <div class="person"><div class="avatar">🦌</div><span>Martin</span></div>
-    <div class="person"><div class="avatar">⭐</div><span>Eilen H</span></div>
-    <div class="person"><div class="avatar">☃️</div><span>Eilen N</span></div>
-    <div class="person"><div class="avatar">🎁</div><span>Flemming</span></div>
-  </div>
-
-
-  <!-- POENGTAVLE -->
-
-  <div id="score" class="content-box">
-    <h2>🏆 Poengtavle</h2>
-
-    <div class="score-row"><span>Anne Grethe</span><span class="score-value">0 poeng</span></div>
-    <div class="score-row"><span>Henning</span><span class="score-value">0 poeng</span></div>
-    <div class="score-row"><span>Ronny</span><span class="score-value">0 poeng</span></div>
-    <div class="score-row"><span>Hanne</span><span class="score-value">0 poeng</span></div>
-    <div class="score-row"><span>Martin</span><span class="score-value">0 poeng</span></div>
-    <div class="score-row"><span>Eilen H</span><span class="score-value">0 poeng</span></div>
-    <div class="score-row"><span>Eilen N</span><span class="score-value">0 poeng</span></div>
-    <div class="score-row"><span>Flemming</span><span class="score-value">0 poeng</span></div>
-  </div>
-
-
-  <!-- JULEHJULET -->
-
-  <div id="wheel" class="content-box">
-    <h2>🎅 Julehjulet</h2>
-
-    <p>Julehjulet velger tilfeldig person og utfordring.</p>
-
-    <button class="game-button" onclick="spinWheel()">
-      🎄 SPINN JULEHJULET
-    </button>
-
-    <div id="wheelResult">
-      Hvem blir den heldige? 😈
-    </div>
-  </div>
-
-
-  <!-- KONKURRANSER -->
-
-  <div id="competitions" class="content-box">
-    <h2>🎯 Konkurranser</h2>
-
-    <p>🎵 Musikkquiz</p>
-    <p>🎄 Julequiz</p>
-    <p>👕 Beste juleantrekk</p>
-    <p>🥇 Kveldens utfordringer</p>
-  </div>
-
-
-  <!-- TA MED -->
-
-  <div id="bring" class="content-box">
-    <h2>🍺 Hvem tar med hva?</h2>
-
-    <p>
-      Her kan vi legge inn mat, drikke og annet som skal tas med.
-    </p>
-  </div>
-
-
-  <!-- PAKKELEK -->
-
-  <div id="packagegame" class="content-box">
-    <h2>🎁 Pakkelek</h2>
-
-    <p>
-      Alle tar med én innpakket gave.
-      Legg alle pakkene samlet før leken starter.
-    </p>
-
-    <div class="dice-area">
-      <div style="color:#f4d06f;">DIGITAL TERNING</div>
-
-      <div id="dice">🎲</div>
-
-      <button class="game-button" onclick="rollDice()">
-        🎲 KAST TERNINGEN
-      </button>
-
-      <div id="diceResult">
-        Trykk for å kaste
-      </div>
-    </div>
-
-    <div class="timer-area">
-
-      <div style="color:#f4d06f;">PAKKELEK-TIMER</div>
-
-      <div id="packageTimer">10:00</div>
-
-      <button class="game-button" onclick="startPackageTimer()">
-        ⏱️ START 10 MINUTTER
-      </button>
-
-      <button class="game-button red-button"
-              onclick="resetPackageTimer()">
-        ↻ NULLSTILL
-      </button>
-    </div>
-
-    <h3 style="color:#f4d06f;">
-      🎄 Terningregler
-    </h3>
-
-    <div class="rule">🎲 <strong>1</strong> – Ta en pakke</div>
-    <div class="rule">🎲 <strong>2</strong> – Bytt med en valgfri person</div>
-    <div class="rule">🎲 <strong>3</strong> – Send en pakke til venstre</div>
-    <div class="rule">🎲 <strong>4</strong> – Send en pakke til høyre</div>
-    <div class="rule">🎲 <strong>5</strong> – Stjel en valgfri pakke</div>
-    <div class="rule">🎲 <strong>6</strong> – Kast én gang til</div>
-  </div>
-
-
-  <!-- BILDER -->
-
-  <div id="photos" class="content-box">
-    <h2>📸 Festbilder</h2>
-    <p>Her kommer bilder fra julefesten.</p>
-  </div>
-
-
-  <footer>
-    🎄 Julefest 2026 • 28. november 🎄
-  </footer>
-
-</div>
-
-
-<!-- SUPABASE LIBRARY -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<script>
-
-  /*
-   * DELTAKERE
-   */
-
-  const people = [
-    "Anne Grethe",
-    "Henning",
-    "Ronny",
-    "Hanne",
-    "Martin",
-    "Eilen H",
-    "Eilen N",
-    "Flemming"
-  ];
-
-
-  /*
-   * MENY
-   */
-
-  function showSection(id) {
-
-    const boxes =
-      document.querySelectorAll(".content-box");
-
-    boxes.forEach(box => {
-
-      if (box.id === id) {
-        box.classList.toggle("active");
-      } else {
-        box.classList.remove("active");
-      }
-
-    });
-
-    const selected =
-      document.getElementById(id);
-
-    if (
-      selected &&
-      selected.classList.contains("active")
-    ) {
-
-      setTimeout(() => {
-        selected.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest"
-        });
-      }, 100);
-
-    }
-
-  }
-
-
-  /*
-   * NEDTELLING
-   * JavaScript bruker 0=jan, 10=nov.
-   * Derfor betyr dette:
-   * 28. november 2026 kl. 18:30
-   */
-
-  const partyDate =
-    new Date(2026, 10, 28, 18, 30, 0);
-
-
-  function updateCountdown() {
-
-    const now =
-      new Date();
-
-    const diff =
-      partyDate.getTime() -
-      now.getTime();
-
-
-    if (diff <= 0) {
-
-      document.getElementById("days").textContent = "🎉";
-      document.getElementById("hours").textContent = "🎄";
-      document.getElementById("minutes").textContent = "🥂";
-
-      return;
-    }
-
-
-    const days =
-      Math.floor(diff / 86400000);
-
-    const hours =
-      Math.floor(
-        (diff % 86400000) /
-        3600000
-      );
-
-    const minutes =
-      Math.floor(
-        (diff % 3600000) /
-        60000
-      );
-
-
-    document.getElementById("days").textContent =
-      days;
-
-    document.getElementById("hours").textContent =
-      hours;
-
-    document.getElementById("minutes").textContent =
-      minutes;
-
-  }
-
-
-  updateCountdown();
-
-  setInterval(
-    updateCountdown,
-    30000
-  );
-
-
-  /*
-   * JULEHJULET
-   */
-
-  const challenges = [
-    "må velge neste sang! 🎵",
-    "må holde en 30 sekunders tale! 🎤",
-    "må fortelle en vits! 😂",
-    "må starte en skål! 🥂"
-  ];
-
-
-  function spinWheel() {
-
-    const person =
-      people[
-        Math.floor(
-          Math.random() *
-          people.length
-        )
-      ];
-
-    const challenge =
-      challenges[
-        Math.floor(
-          Math.random() *
-          challenges.length
-        )
-      ];
-
-    const result =
-      document.getElementById(
-        "wheelResult"
-      );
-
-    result.textContent =
-      "🎅 Julehjulet spinner...";
-
-    setTimeout(() => {
-
-      result.textContent =
-        "🎄 " +
-        person +
-        " " +
-        challenge;
-
-    }, 800);
-
-  }
-
-
-  /*
-   * DIGITAL TERNING
-   */
-
-  const diceFaces = {
-    1: "⚀",
-    2: "⚁",
-    3: "⚂",
-    4: "⚃",
-    5: "⚄",
-    6: "⚅"
-  };
-
-
-  const diceRules = {
-    1: "🎁 Ta en pakke!",
-    2: "🔄 Bytt med en valgfri person!",
-    3: "⬅️ Send en pakke til venstre!",
-    4: "➡️ Send en pakke til høyre!",
-    5: "😈 Stjel en valgfri pakke!",
-    6: "🎲 Kast terningen én gang til!"
-  };
-
-
-  function rollDice() {
-
-    const dice =
-      document.getElementById("dice");
-
-    const result =
-      document.getElementById(
-        "diceResult"
-      );
-
-    result.textContent =
-      "🎲 Terningen ruller...";
-
-    let count = 0;
-
-
-    const animation =
-      setInterval(() => {
-
-        const temporary =
-          Math.floor(
-            Math.random() * 6
-          ) + 1;
-
-        dice.textContent =
-          diceFaces[temporary];
-
-        count++;
-
-
-        if (count >= 8) {
-
-          clearInterval(animation);
-
-          const finalRoll =
-            Math.floor(
-              Math.random() * 6
-            ) + 1;
-
-          dice.textContent =
-            diceFaces[finalRoll];
-
-          result.textContent =
-            finalRoll +
-            " – " +
-            diceRules[finalRoll];
-
-        }
-
-      }, 90);
-
-  }
-
-
-  /*
-   * PAKKELEK TIMER
-   */
-
-  let packageTime = 600;
-
-  let packageInterval = null;
-
-
-  function updatePackageTimer() {
-
-    const min =
-      Math.floor(
-        packageTime / 60
-      );
-
-    const sec =
-      packageTime % 60;
-
-    document.getElementById(
-      "packageTimer"
-    ).textContent =
-      String(min).padStart(2, "0") +
-      ":" +
-      String(sec).padStart(2, "0");
-
-  }
-
-
-  function startPackageTimer() {
-
-    if (packageInterval !== null) {
-      return;
-    }
-
-
-    packageInterval =
-      setInterval(() => {
-
-        if (packageTime > 0) {
-
-          packageTime--;
-
-          updatePackageTimer();
-
-        } else {
-
-          clearInterval(
-            packageInterval
-          );
-
-          packageInterval = null;
-
-          document.getElementById(
-            "packageTimer"
-          ).textContent =
-            "🎁 FERDIG!";
-
-        }
-
-      }, 1000);
-
-  }
-
-
-  function resetPackageTimer() {
-
-    if (packageInterval !== null) {
-
-      clearInterval(
-        packageInterval
-      );
-
-    }
-
-    packageInterval = null;
-
-    packageTime = 600;
-
-    updatePackageTimer();
-
-  }
-
-
-  updatePackageTimer();
-
-
-  /*
-   * SUPABASE
-   */
-
-  const SUPABASE_URL =
-    "https://icvpfwwkrvmlfaxzukdl.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
-
-
-  let db = null;
-
-  let statuses = {};
-
-
-  /*
-   * VIS STATUSLISTE
-   */
-
-  function renderStatuses() {
-
-    const statusList =
-      document.getElementById(
-        "statusList"
-      );
-
-    statusList.innerHTML = "";
-
-
-    people.forEach(person => {
-
-      const row =
-        document.createElement(
-          "div"
-        );
-
-      row.className =
-        "status-row";
-
-
-      const name =
-        document.createElement(
-          "span"
-        );
-
-      name.textContent =
-        person;
-
-
-      const status =
-        document.createElement(
-          "span"
-        );
-
-      status.className =
-        "status-value";
-
-      status.textContent =
-        statuses[person] ||
-        "Ikke oppdatert";
-
-
-      row.appendChild(name);
-
-      row.appendChild(status);
-
-      statusList.appendChild(row);
-
-    });
-
-  }
-
-
-  /* Vis navn med en gang */
-  renderStatuses();
-
-
-  /*
-   * START SUPABASE
-   */
-/*
- * STATUS KAN KUN ENDRES PÅ FESTLØRDAGEN
- */
-
-function updateStatusAvailability() {
-
-  const now = new Date();
-
-  const start =
-    new Date(2026, 10, 28, 0, 0, 0);
-
-  const end =
-    new Date(2026, 10, 29, 0, 0, 0);
-
-  const personSelect =
-    document.getElementById("personSelect");
-
-  const statusSelect =
-    document.getElementById("statusSelect");
-
-  const statusButton =
-    document.querySelector(
-      '#where button[onclick="saveStatus()"]'
-    );
-
-  const message =
-    document.getElementById("statusMessage");
-
-
-  if (now < start) {
-
-    personSelect.disabled = true;
-    statusSelect.disabled = true;
-    statusButton.disabled = true;
-
-    statusButton.style.opacity = "0.5";
-
-    message.textContent =
-      "🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
-
-  } else if (now >= end) {
-
-    personSelect.disabled = true;
-    statusSelect.disabled = true;
-    statusButton.disabled = true;
-
-    statusButton.style.opacity = "0.5";
-
-    message.textContent =
-      "🎄 Statusoppdateringen er avsluttet. Siste status fra lørdag vises under.";
-
-  } else {
-
-    personSelect.disabled = false;
-    statusSelect.disabled = false;
-    statusButton.disabled = false;
-
-    statusButton.style.opacity = "1";
-
-    message.textContent =
-      "🎄 Status er åpen! Hva gjør du akkurat nå?";
-
-  }
-
-}
-
-updateStatusAvailability();
-  function initSupabase() {
-
-    try {
-
-      if (
-        typeof window.supabase ===
-        "undefined"
-      ) {
-
-        console.log(
-          "Supabase ble ikke lastet."
-        );
-
-        return;
-      }
-
-
-      db =
-        window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_KEY
-        );
-
-
-      loadStatuses();
-
-
-      db
-        .channel(
-          "julefest-status"
-        )
-        .on(
-          "postgres_changes",
-          {
-            event: "*",
-            schema: "public",
-            table: "party_status"
-          },
-          function () {
-            loadStatuses();
-          }
-        )
-        .subscribe();
-
-
-    } catch (error) {
-
-      console.error(
-        "Supabase-feil:",
-        error
-      );
-
-    }
-
-  }
-
-
-  /*
-   * HENT FELLES STATUSER
-   */
-
-  async function loadStatuses() {
-
-    if (!db) {
-      return;
-    }
-
-
-    try {
-
-      const response =
-        await db
-          .from("party_status")
-          .select("name,status");
-
-
-      if (response.error) {
-
-        console.error(
-          response.error
-        );
-
-        return;
-      }
-
-
-      statuses = {};
-
-
-      const rows =
-        response.data || [];
-
-
-      rows.forEach(row => {
-
-        statuses[row.name] =
-          row.status;
-
-      });
-
-
-      renderStatuses();
-
-
-    } catch (error) {
-
-      console.error(
-        "Kunne ikke hente status:",
-        error
-      );
-
-    }
-
-  }
-
-
-  /*
-   * OPPDATER STATUS
-   */
-
-  async function saveStatus() {
-
-    const person =
-      document.getElementById(
-        "personSelect"
-      ).value;
-
-    const status =
-      document.getElementById(
-        "statusSelect"
-      ).value;
-
-    const message =
-      document.getElementById(
-        "statusMessage"
-      );
-const now = new Date();
-
-const statusStart =
-  new Date(2026, 10, 28, 0, 0, 0);
-
-const statusEnd =
-  new Date(2026, 10, 29, 0, 0, 0);
-
-if (now < statusStart || now >= statusEnd) {
-
-  message.textContent =
-    "🔒 Status kan bare oppdateres lørdag 28. november 🎄";
-
-  return;
-}
-
-    if (!person || !status) {
-
-      message.textContent =
-        "Velg både navn og status 😊";
-
-      return;
-    }
-
-
-    if (!db) {
-
-      message.textContent =
-        "⚠️ Felles status er ikke koblet til.";
-
-      return;
-    }
-
-
-    message.textContent =
-      "Lagrer...";
-
-
-    try {
-
-      const response =
-        await db
-          .from("party_status")
-          .upsert(
-            {
-              name: person,
-              status: status,
-              updated_at:
-                new Date().toISOString()
-            },
-            {
-              onConflict: "name"
-            }
-          );
-
-
-      if (response.error) {
-
-        console.error(
-          response.error
-        );
-
-        message.textContent =
-          "❌ Kunne ikke lagre status.";
-
-        return;
-      }
-
-
-      message.textContent =
-        "✅ " +
-        person +
-        ": " +
-        status;
-
-
-      statuses[person] =
-        status;
-
-      renderStatuses();
-
-      await loadStatuses();
-
-
-    } catch (error) {
-
-      console.error(error);
-
-      message.textContent =
-        "❌ Kunne ikke lagre status.";
-
-    }
-
-  }
-
-
-  /*
-   * Start Supabase helt til slutt.
-   * Hvis Supabase feiler, fungerer resten
-   * av appen fortsatt.
-   */
-
-  initSupabase();
-
-
-  /*
-   * Hent også status hvert 15. sekund.
-   */
-
-  setInterval(() => {
-
-    if (db) {
-      loadStatuses();
-    }
-
-  }, 15000);
-
-</script>
-
-</body>
-</html>
+    <h1>Julefest 2026</h1
