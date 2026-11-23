@@ -8,7 +8,9 @@
   <title>Julefest 2026 🎄</title>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -160,8 +162,8 @@
 
     .person {
       display: flex;
-      gap: 10px;
       align-items: center;
+      gap: 10px;
       padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
@@ -201,8 +203,8 @@
       width: 100%;
       padding: 14px;
       margin: 6px 0 10px;
-      border-radius: 12px;
       border: none;
+      border-radius: 12px;
       font-size: 16px;
       background: white;
       color: #12372a;
@@ -218,6 +220,8 @@
 
     .game-button {
       width: 100%;
+      background: #f4d06f;
+      color: #12372a;
       border: none;
       border-radius: 14px;
       padding: 15px;
@@ -225,8 +229,6 @@
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
-      background: #f4d06f;
-      color: #12372a;
     }
 
     .red-button {
@@ -297,10 +299,7 @@
 
 <div class="app">
 
-  <!-- FORSIDE -->
-
   <div class="hero">
-
     <div class="tree">🎄</div>
 
     <h1>Julefest 2026</h1>
@@ -331,14 +330,13 @@
       </div>
 
     </div>
-
   </div>
 
 
-  <div class="section-title">Festen</div>
+  <div class="section-title">
+    Festen
+  </div>
 
-
-  <!-- MENY -->
 
   <div class="menu">
 
@@ -409,8 +407,7 @@
     <h2>📍 Hvor er gjengen?</h2>
 
     <p>
-      Velg navnet ditt og hva du gjør akkurat nå.
-      Statusen deles med hele gjengen.
+      Velg navn og hva du gjør akkurat nå.
     </p>
 
     <span class="select-label">HVEM ER DU?</span>
@@ -431,41 +428,15 @@
     <span class="select-label">HVA GJØR DU?</span>
 
     <select id="statusSelect">
-
       <option value="">Velg status</option>
-
-      <option value="🥐 Vi spiser frokost">
-        🥐 Vi spiser frokost
-      </option>
-
-      <option value="☕ På kafé">
-        ☕ På kafé
-      </option>
-
-      <option value="🏋️ Trener">
-        🏋️ Trener
-      </option>
-
-      <option value="🚿 Gjør oss klare til fest">
-        🚿 Gjør oss klare til fest
-      </option>
-
-      <option value="🚗 På vei">
-        🚗 På vei
-      </option>
-
-      <option value="🎄 Fremme på festen">
-        🎄 Fremme på festen
-      </option>
-
-      <option value="👋 Drar fra festen">
-        👋 Drar fra festen
-      </option>
-
-      <option value="🏠 Hjemme">
-        🏠 Hjemme
-      </option>
-
+      <option value="🥐 Vi spiser frokost">🥐 Vi spiser frokost</option>
+      <option value="☕ På kafé">☕ På kafé</option>
+      <option value="🏋️ Trener">🏋️ Trener</option>
+      <option value="🚿 Gjør oss klare til fest">🚿 Gjør oss klare til fest</option>
+      <option value="🚗 På vei">🚗 På vei</option>
+      <option value="🎄 Fremme på festen">🎄 Fremme på festen</option>
+      <option value="👋 Drar fra festen">👋 Drar fra festen</option>
+      <option value="🏠 Hjemme">🏠 Hjemme</option>
     </select>
 
 
@@ -582,7 +553,6 @@
       Legg alle pakkene samlet før leken starter.
     </p>
 
-
     <div class="dice-area">
 
       <div style="color:#f4d06f;">
@@ -608,9 +578,7 @@
         PAKKELEK-TIMER
       </div>
 
-      <div id="packageTimer">
-        10:00
-      </div>
+      <div id="packageTimer">10:00</div>
 
       <button class="game-button" onclick="startPackageTimer()">
         ⏱️ START 10 MINUTTER
@@ -629,26 +597,11 @@
     </h3>
 
     <div class="rule">🎲 <strong>1</strong> – Ta en pakke</div>
-
-    <div class="rule">
-      🎲 <strong>2</strong> – Bytt med en valgfri person
-    </div>
-
-    <div class="rule">
-      🎲 <strong>3</strong> – Send en pakke til venstre
-    </div>
-
-    <div class="rule">
-      🎲 <strong>4</strong> – Send en pakke til høyre
-    </div>
-
-    <div class="rule">
-      🎲 <strong>5</strong> – Stjel en valgfri pakke
-    </div>
-
-    <div class="rule">
-      🎲 <strong>6</strong> – Kast terningen én gang til
-    </div>
+    <div class="rule">🎲 <strong>2</strong> – Bytt med en valgfri person</div>
+    <div class="rule">🎲 <strong>3</strong> – Send en pakke til venstre</div>
+    <div class="rule">🎲 <strong>4</strong> – Send en pakke til høyre</div>
+    <div class="rule">🎲 <strong>5</strong> – Stjel en valgfri pakke</div>
+    <div class="rule">🎲 <strong>6</strong> – Kast terningen én gang til</div>
 
   </div>
 
@@ -659,7 +612,9 @@
 
     <h2>📸 Festbilder</h2>
 
-    <p>Her kommer bilder fra julefesten.</p>
+    <p>
+      Her kommer bilder fra julefesten.
+    </p>
 
   </div>
 
@@ -671,33 +626,17 @@
 </div>
 
 
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+<!--
+  VIKTIG:
+  Hovedfunksjonene ligger i scriptet under og fungerer
+  uavhengig av Supabase.
+-->
 
 <script>
 
-  /* ==============================
-     SUPABASE
-  ============================== */
-
-  const SUPABASE_URL =
-    "https://icvpfwwkrvmlfaxzukdl.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-
-  /* ==============================
+  /* =========================
      DELTAKERE
-  ============================== */
+  ========================= */
 
   const people = [
     "Anne Grethe",
@@ -711,18 +650,21 @@
   ];
 
 
-  /* ==============================
+  /* =========================
      NEDTELLING
-  ============================== */
+  ========================= */
 
   const partyDate =
-    new Date("2026-11-28T18:30:00");
+    new Date(2026, 10, 28, 18, 30, 0);
 
 
   function updateCountdown() {
 
+    const now = new Date();
+
     const difference =
-      partyDate - new Date();
+      partyDate.getTime() - now.getTime();
+
 
     if (difference <= 0) {
 
@@ -733,24 +675,33 @@
       return;
     }
 
+
     const days =
       Math.floor(
-        difference / (1000 * 60 * 60 * 24)
+        difference / 86400000
       );
+
 
     const hours =
       Math.floor(
-        (difference / (1000 * 60 * 60)) % 24
+        (difference % 86400000) / 3600000
       );
+
 
     const minutes =
       Math.floor(
-        (difference / (1000 * 60)) % 60
+        (difference % 3600000) / 60000
       );
 
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
+
+    document.getElementById("days").innerText =
+      days;
+
+    document.getElementById("hours").innerText =
+      hours;
+
+    document.getElementById("minutes").innerText =
+      minutes;
 
   }
 
@@ -763,21 +714,26 @@
   );
 
 
-  /* ==============================
+  /* =========================
      MENY
-  ============================== */
+  ========================= */
 
   function showSection(sectionId) {
 
     const sections =
       document.querySelectorAll(".content-box");
 
+
     sections.forEach(section => {
 
       if (section.id === sectionId) {
+
         section.classList.toggle("active");
+
       } else {
+
         section.classList.remove("active");
+
       }
 
     });
@@ -785,6 +741,7 @@
 
     const selected =
       document.getElementById(sectionId);
+
 
     if (
       selected &&
@@ -805,57 +762,243 @@
   }
 
 
-  /* ==============================
-     FELLES STATUS VIA SUPABASE
-  ============================== */
+  /* =========================
+     JULEHJULET
+  ========================= */
 
-  let statuses = {};
+  const challenges = [
+
+    "må velge neste sang! 🎵",
+
+    "må holde en 30 sekunders tale! 🎤",
+
+    "må fortelle en vits! 😂",
+
+    "må starte en skål! 🥂"
+
+  ];
 
 
-  async function loadStatuses() {
+  function spinWheel() {
 
-    const { data, error } =
-      await supabaseClient
-        .from("party_status")
-        .select("name,status,updated_at");
+    const person =
+      people[
+        Math.floor(
+          Math.random() * people.length
+        )
+      ];
 
 
-    if (error) {
+    const challenge =
+      challenges[
+        Math.floor(
+          Math.random() * challenges.length
+        )
+      ];
 
-      console.error(error);
 
-      document.getElementById(
-        "statusList"
-      ).innerHTML =
-        '<div class="status-message">Kunne ikke hente statusene.</div>';
+    const result =
+      document.getElementById("wheelResult");
 
+
+    result.innerText =
+      "🎅 Julehjulet spinner...";
+
+
+    setTimeout(() => {
+
+      result.innerText =
+        "🎄 " +
+        person +
+        " " +
+        challenge;
+
+    }, 900);
+
+  }
+
+
+  /* =========================
+     DIGITAL TERNING
+  ========================= */
+
+  const diceFaces = {
+    1: "⚀",
+    2: "⚁",
+    3: "⚂",
+    4: "⚃",
+    5: "⚄",
+    6: "⚅"
+  };
+
+
+  const diceRules = {
+
+    1: "🎁 Ta en pakke!",
+
+    2: "🔄 Bytt med en valgfri person!",
+
+    3: "⬅️ Send en pakke til venstre!",
+
+    4: "➡️ Send en pakke til høyre!",
+
+    5: "😈 Stjel en valgfri pakke!",
+
+    6: "🎲 Kast terningen én gang til!"
+
+  };
+
+
+  function rollDice() {
+
+    const dice =
+      document.getElementById("dice");
+
+    const result =
+      document.getElementById("diceResult");
+
+
+    result.innerText =
+      "🎲 Terningen ruller...";
+
+
+    let rolls = 0;
+
+
+    const animation =
+      setInterval(() => {
+
+        const temp =
+          Math.floor(
+            Math.random() * 6
+          ) + 1;
+
+
+        dice.innerText =
+          diceFaces[temp];
+
+        rolls++;
+
+
+        if (rolls >= 8) {
+
+          clearInterval(animation);
+
+
+          const finalRoll =
+            Math.floor(
+              Math.random() * 6
+            ) + 1;
+
+
+          dice.innerText =
+            diceFaces[finalRoll];
+
+
+          result.innerText =
+            finalRoll +
+            " – " +
+            diceRules[finalRoll];
+
+        }
+
+      }, 90);
+
+  }
+
+
+  /* =========================
+     PAKKELEK-TIMER
+  ========================= */
+
+  let packageTime = 600;
+
+  let packageInterval = null;
+
+
+  function updatePackageTimer() {
+
+    const minutes =
+      Math.floor(packageTime / 60);
+
+    const seconds =
+      packageTime % 60;
+
+
+    document.getElementById(
+      "packageTimer"
+    ).innerText =
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(seconds).padStart(2, "0");
+
+  }
+
+
+  function startPackageTimer() {
+
+    if (packageInterval) {
       return;
-
     }
 
 
-    statuses = {};
+    packageInterval =
+      setInterval(() => {
+
+        if (packageTime > 0) {
+
+          packageTime--;
+
+          updatePackageTimer();
+
+        } else {
+
+          clearInterval(packageInterval);
+
+          packageInterval = null;
 
 
-    data.forEach(item => {
+          document.getElementById(
+            "packageTimer"
+          ).innerText =
+            "🎁 FERDIG!";
 
-      statuses[item.name] =
-        item.status;
+        }
 
-    });
-
-
-    renderStatuses();
+      }, 1000);
 
   }
+
+
+  function resetPackageTimer() {
+
+    clearInterval(packageInterval);
+
+    packageInterval = null;
+
+    packageTime = 600;
+
+    updatePackageTimer();
+
+  }
+
+
+  updatePackageTimer();
+
+
+  /* =========================
+     SUPABASE STATUS
+  ========================= */
+
+  let supabaseClient = null;
+
+  let statuses = {};
 
 
   function renderStatuses() {
 
     const list =
-      document.getElementById(
-        "statusList"
-      );
+      document.getElementById("statusList");
 
     list.innerHTML = "";
 
@@ -888,11 +1031,66 @@
 
 
       row.appendChild(name);
+
       row.appendChild(status);
 
       list.appendChild(row);
 
     });
+
+  }
+
+
+  renderStatuses();
+
+
+  async function loadStatuses() {
+
+    if (!supabaseClient) {
+      return;
+    }
+
+
+    try {
+
+      const { data, error } =
+        await supabaseClient
+          .from("party_status")
+          .select("name,status");
+
+
+      if (error) {
+
+        console.error(
+          "Supabase lesefeil:",
+          error
+        );
+
+        return;
+      }
+
+
+      statuses = {};
+
+
+      (data || []).forEach(item => {
+
+        statuses[item.name] =
+          item.status;
+
+      });
+
+
+      renderStatuses();
+
+    } catch (error) {
+
+      console.error(
+        "Feil ved henting av status:",
+        error
+      );
+
+    }
 
   }
 
@@ -904,10 +1102,12 @@
         "personSelect"
       ).value;
 
+
     const status =
       document.getElementById(
         "statusSelect"
       ).value;
+
 
     const message =
       document.getElementById(
@@ -921,7 +1121,15 @@
         "Velg både navn og status 😊";
 
       return;
+    }
 
+
+    if (!supabaseClient) {
+
+      message.innerText =
+        "⚠️ Statuskoblingen er ikke klar ennå.";
+
+      return;
     }
 
 
@@ -929,29 +1137,166 @@
       "Lagrer...";
 
 
-    const { error } =
-      await supabaseClient
-        .from("party_status")
-        .upsert(
-          {
-            name: person,
-            status: status,
-            updated_at:
-              new Date().toISOString()
-          },
-          {
-            onConflict: "name"
-          }
+    try {
+
+      const { error } =
+        await supabaseClient
+          .from("party_status")
+          .upsert(
+            {
+              name: person,
+              status: status,
+              updated_at:
+                new Date().toISOString()
+            },
+            {
+              onConflict: "name"
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          "Supabase lagringsfeil:",
+          error
         );
 
+        message.innerText =
+          "❌ Kunne ikke lagre status.";
 
-    if (error) {
+        return;
+      }
 
-      console.error(error);
+
+      message.innerText =
+        "✅ " +
+        person +
+        ": " +
+        status;
+
+
+      await loadStatuses();
+
+    } catch (error) {
+
+      console.error(
+        "Feil ved lagring:",
+        error
+      );
 
       message.innerText =
         "❌ Kunne ikke lagre status.";
 
-      return;
+    }
 
-   
+  }
+
+</script>
+
+
+<!-- SUPABASE LASTES ETTER AT RESTEN AV APPEN FUNGERER -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  onload="startSupabase()"
+  onerror="supabaseFailed()">
+</script>
+
+
+<script>
+
+  function startSupabase() {
+
+    try {
+
+      if (!window.supabase) {
+
+        supabaseFailed();
+
+        return;
+      }
+
+
+      supabaseClient =
+        window.supabase.createClient(
+
+          "https://icvpfwwkrvmlfaxzukdl.supabase.co",
+
+          "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB"
+
+        );
+
+
+      loadStatuses();
+
+
+      supabaseClient
+        .channel("party-status-live")
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "party_status"
+          },
+          function () {
+
+            loadStatuses();
+
+          }
+        )
+        .subscribe();
+
+
+      setInterval(
+        loadStatuses,
+        10000
+      );
+
+
+      console.log(
+        "Supabase er koblet til."
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Supabase oppstartsfeil:",
+        error
+      );
+
+      supabaseFailed();
+
+    }
+
+  }
+
+
+  function supabaseFailed() {
+
+    console.warn(
+      "Supabase kunne ikke lastes."
+    );
+
+
+    const message =
+      document.getElementById(
+        "statusMessage"
+      );
+
+
+    if (message) {
+
+      message.innerText =
+        "⚠️ Felles status er midlertidig utilgjengelig.";
+
+    }
+
+  }
+
+</script>
+
+
+</body>
+</html>
