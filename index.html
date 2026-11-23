@@ -201,10 +201,8 @@
       font-size: 12px;
       color: #aeb8b2;
     }
-
   </style>
 </head>
-
 
 <body>
 
@@ -217,7 +215,7 @@
     <h1>Julefest 2026</h1>
 
     <div class="date">
-      28. desember • 18:30
+      28. november • 18:30
     </div>
 
     <div class="countdown-title">
@@ -288,10 +286,10 @@
     </div>
 
 
-    <div class="card" onclick="showSection('santa')">
+    <div class="card" onclick="showSection('packagegame')">
       <div class="icon">🎁</div>
-      <div class="card-title">Secret Santa</div>
-      <div class="card-text">Hvem kjøper du til?</div>
+      <div class="card-title">Pakkelek</div>
+      <div class="card-text">Regler og pakker</div>
     </div>
 
 
@@ -359,9 +357,7 @@
 
     <h2>🎅 Julehjulet</h2>
 
-    <p>
-      Trykk på knappen og la julehjulet bestemme.
-    </p>
+    <p>Trykk på knappen og la julehjulet bestemme.</p>
 
     <button class="wheel-button" onclick="spinWheel()">
       🎄 SPINN JULEHJULET
@@ -403,25 +399,39 @@
 
     <h2>🍺 Hvem tar med hva?</h2>
 
-    <p>Her kan vi senere legge inn mat, drikke og annet som skal tas med.</p>
-
-  </div>
-
-
-  <!-- SECRET SANTA -->
-
-  <div id="santa" class="content-box">
-
-    <h2>🎁 Secret Santa</h2>
-
     <p>
-      Secret Santa aktiveres senere slik at hver person bare ser sin egen trekning.
+      Her kan vi legge inn mat, drikke og annet som skal tas med.
     </p>
 
   </div>
 
 
-  <!-- BILDER -->
+  <!-- PAKKELEK -->
+
+  <div id="packagegame" class="content-box">
+
+    <h2>🎁 Pakkelek</h2>
+
+    <p>
+      Alle tar med én innpakket gave til pakkeleken.
+    </p>
+
+    <p>
+      🎁 Legg alle pakkene på bordet.
+    </p>
+
+    <p>
+      🎲 Vi kan bruke terning for å avgjøre hvem som får velge eller stjele en pakke.
+    </p>
+
+    <p>
+      ⏱️ Når tiden er ute, beholder alle pakkene de sitter med.
+    </p>
+
+  </div>
+
+
+  <!-- FESTBILDER -->
 
   <div id="photos" class="content-box">
 
@@ -435,7 +445,7 @@
 
 
   <footer>
-    🎄 Julefest 2026 • 28. desember 🎄
+    🎄 Julefest 2026 • 28. november 🎄
   </footer>
 
 </div>
@@ -443,19 +453,14 @@
 
 <script>
 
-  // -----------------------------
   // NEDTELLING
-  // -----------------------------
 
-  const partyDate = new Date("2026-12-28T18:30:00");
-
+  const partyDate = new Date("2026-11-28T18:30:00");
 
   function updateCountdown() {
 
     const now = new Date();
-
     const difference = partyDate - now;
-
 
     if (difference <= 0) {
 
@@ -466,7 +471,6 @@
       return;
     }
 
-
     const days =
       Math.floor(difference / (1000 * 60 * 60 * 24));
 
@@ -476,44 +480,32 @@
     const minutes =
       Math.floor((difference / (1000 * 60)) % 60);
 
-
     document.getElementById("days").innerText = days;
     document.getElementById("hours").innerText = hours;
     document.getElementById("minutes").innerText = minutes;
-
   }
 
-
   updateCountdown();
-
   setInterval(updateCountdown, 30000);
 
 
 
-  // -----------------------------
   // MENY
-  // -----------------------------
 
   function showSection(sectionId) {
 
     const sections =
       document.querySelectorAll(".content-box");
 
-
     sections.forEach(section => {
 
       if (section.id === sectionId) {
-
         section.classList.toggle("active");
-
       } else {
-
         section.classList.remove("active");
-
       }
 
     });
-
 
     setTimeout(() => {
 
@@ -535,9 +527,7 @@
 
 
 
-  // -----------------------------
   // JULEHJULET
-  // -----------------------------
 
   const challenges = [
 
@@ -572,10 +562,8 @@
     const result =
       challenges[random];
 
-
     document.getElementById("wheelResult").innerText =
       "🎅 Julehjulet spinner...";
-
 
     setTimeout(() => {
 
@@ -587,7 +575,6 @@
   }
 
 </script>
-
 
 </body>
 </html>
