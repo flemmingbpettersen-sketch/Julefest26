@@ -175,7 +175,7 @@
       justify-content: center;
     }
 
-    .wheel-button {
+    .game-button {
       width: 100%;
       background: #f4d06f;
       color: #12372a;
@@ -185,6 +185,61 @@
       font-weight: 700;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .red-button {
+      background: #c32f3c;
+      color: white;
+    }
+
+    /* PAKKELEK */
+
+    .dice-area {
+      text-align: center;
+      background: rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+
+    #dice {
+      font-size: 78px;
+      line-height: 1;
+      margin: 10px 0 15px;
+    }
+
+    #diceResult {
+      font-size: 17px;
+      font-weight: 600;
+      min-height: 45px;
+      margin-top: 15px;
+      color: #f4d06f;
+    }
+
+    .timer-area {
+      text-align: center;
+      margin-top: 25px;
+      padding: 18px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 18px;
+    }
+
+    #packageTimer {
+      font-size: 42px;
+      font-weight: 700;
+      color: #f4d06f;
+      margin: 10px 0;
+    }
+
+    .rules {
+      margin-top: 22px;
+      line-height: 1.7;
+    }
+
+    .rule {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     #wheelResult {
@@ -207,6 +262,8 @@
 <body>
 
 <div class="app">
+
+  <!-- FORSIDE -->
 
   <div class="hero">
 
@@ -249,6 +306,8 @@
   </div>
 
 
+  <!-- MENY -->
+
   <div class="menu">
 
     <div class="card" onclick="showSection('friends')">
@@ -289,7 +348,7 @@
     <div class="card" onclick="showSection('packagegame')">
       <div class="icon">🎁</div>
       <div class="card-title">Pakkelek</div>
-      <div class="card-text">Regler og pakker</div>
+      <div class="card-text">Terning og pakker</div>
     </div>
 
 
@@ -351,30 +410,32 @@
   </div>
 
 
-  <!-- JULEHJULET -->
-
-  <div id="wheel" class="content-box">
-
-    <h2>🎅 Julehjulet</h2>
-
-    <p>Trykk på knappen og la julehjulet bestemme.</p>
-
-    <button class="wheel-button" onclick="spinWheel()">
-      🎄 SPINN JULEHJULET
-    </button>
-
-    <div id="wheelResult"></div>
-
-  </div>
-
-
-  <!-- POENG -->
+  <!-- POENGTAVLE -->
 
   <div id="score" class="content-box">
 
     <h2>🏆 Poengtavle</h2>
 
     <p>Poengtavlen kommer her.</p>
+
+  </div>
+
+
+  <!-- JULEHJULET -->
+
+  <div id="wheel" class="content-box">
+
+    <h2>🎅 Julehjulet</h2>
+
+    <p>
+      Trykk på knappen og la julehjulet bestemme.
+    </p>
+
+    <button class="game-button" onclick="spinWheel()">
+      🎄 SPINN JULEHJULET
+    </button>
+
+    <div id="wheelResult"></div>
 
   </div>
 
@@ -413,25 +474,91 @@
     <h2>🎁 Pakkelek</h2>
 
     <p>
-      Alle tar med én innpakket gave til pakkeleken.
+      Alle tar med én innpakket gave.
+      Legg alle pakkene samlet før leken starter.
     </p>
 
-    <p>
-      🎁 Legg alle pakkene på bordet.
-    </p>
 
-    <p>
-      🎲 Vi kan bruke terning for å avgjøre hvem som får velge eller stjele en pakke.
-    </p>
+    <div class="dice-area">
 
-    <p>
-      ⏱️ Når tiden er ute, beholder alle pakkene de sitter med.
-    </p>
+      <div style="font-size:14px; color:#f4d06f;">
+        DIGITAL TERNING
+      </div>
+
+      <div id="dice">
+        🎲
+      </div>
+
+      <button class="game-button" onclick="rollDice()">
+        🎲 KAST TERNINGEN
+      </button>
+
+      <div id="diceResult">
+        Trykk for å kaste
+      </div>
+
+    </div>
+
+
+    <!-- TIMER -->
+
+    <div class="timer-area">
+
+      <div style="font-size:14px; color:#f4d06f;">
+        PAKKELEK-TIMER
+      </div>
+
+      <div id="packageTimer">
+        10:00
+      </div>
+
+      <button class="game-button" onclick="startPackageTimer()">
+        ⏱️ START 10 MINUTTER
+      </button>
+
+      <button class="game-button red-button" onclick="resetPackageTimer()">
+        ↻ NULLSTILL
+      </button>
+
+    </div>
+
+
+    <!-- REGLER -->
+
+    <div class="rules">
+
+      <h3>🎄 Terningregler</h3>
+
+      <div class="rule">
+        🎲 <strong>1</strong> – Ta en pakke
+      </div>
+
+      <div class="rule">
+        🎲 <strong>2</strong> – Bytt pakke med en valgfri person
+      </div>
+
+      <div class="rule">
+        🎲 <strong>3</strong> – Send en pakke til venstre
+      </div>
+
+      <div class="rule">
+        🎲 <strong>4</strong> – Send en pakke til høyre
+      </div>
+
+      <div class="rule">
+        🎲 <strong>5</strong> – Stjel en valgfri pakke
+      </div>
+
+      <div class="rule">
+        🎲 <strong>6</strong> – Kast terningen én gang til
+      </div>
+
+    </div>
 
   </div>
 
 
-  <!-- FESTBILDER -->
+  <!-- BILDER -->
 
   <div id="photos" class="content-box">
 
@@ -453,14 +580,21 @@
 
 <script>
 
-  // NEDTELLING
+  /* ------------------------
+     NEDTELLING TIL FEST
+  ------------------------ */
 
-  const partyDate = new Date("2026-11-28T18:30:00");
+  const partyDate =
+    new Date("2026-11-28T18:30:00");
+
 
   function updateCountdown() {
 
     const now = new Date();
-    const difference = partyDate - now;
+
+    const difference =
+      partyDate - now;
+
 
     if (difference <= 0) {
 
@@ -469,50 +603,96 @@
       document.getElementById("minutes").innerText = "🥂";
 
       return;
+
     }
 
+
     const days =
-      Math.floor(difference / (1000 * 60 * 60 * 24));
+      Math.floor(
+        difference /
+        (1000 * 60 * 60 * 24)
+      );
+
 
     const hours =
-      Math.floor((difference / (1000 * 60 * 60)) % 24);
+      Math.floor(
+        (difference /
+        (1000 * 60 * 60)) % 24
+      );
+
 
     const minutes =
-      Math.floor((difference / (1000 * 60)) % 60);
+      Math.floor(
+        (difference /
+        (1000 * 60)) % 60
+      );
 
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
+
+    document.getElementById("days").innerText =
+      days;
+
+    document.getElementById("hours").innerText =
+      hours;
+
+    document.getElementById("minutes").innerText =
+      minutes;
+
   }
 
+
   updateCountdown();
-  setInterval(updateCountdown, 30000);
+
+  setInterval(
+    updateCountdown,
+    30000
+  );
 
 
 
-  // MENY
+  /* ------------------------
+     MENY
+  ------------------------ */
 
   function showSection(sectionId) {
 
     const sections =
-      document.querySelectorAll(".content-box");
+      document.querySelectorAll(
+        ".content-box"
+      );
+
 
     sections.forEach(section => {
 
       if (section.id === sectionId) {
-        section.classList.toggle("active");
+
+        section.classList.toggle(
+          "active"
+        );
+
       } else {
-        section.classList.remove("active");
+
+        section.classList.remove(
+          "active"
+        );
+
       }
 
     });
 
+
     setTimeout(() => {
 
       const selected =
-        document.getElementById(sectionId);
+        document.getElementById(
+          sectionId
+        );
 
-      if (selected.classList.contains("active")) {
+
+      if (
+        selected.classList.contains(
+          "active"
+        )
+      ) {
 
         selected.scrollIntoView({
           behavior: "smooth",
@@ -527,7 +707,9 @@
 
 
 
-  // JULEHJULET
+  /* ------------------------
+     JULEHJULET
+  ------------------------ */
 
   const challenges = [
 
@@ -557,22 +739,205 @@
   function spinWheel() {
 
     const random =
-      Math.floor(Math.random() * challenges.length);
+      Math.floor(
+        Math.random() *
+        challenges.length
+      );
 
-    const result =
-      challenges[random];
 
-    document.getElementById("wheelResult").innerText =
+    document.getElementById(
+      "wheelResult"
+    ).innerText =
       "🎅 Julehjulet spinner...";
+
 
     setTimeout(() => {
 
-      document.getElementById("wheelResult").innerText =
-        result;
+      document.getElementById(
+        "wheelResult"
+      ).innerText =
+        challenges[random];
 
     }, 800);
 
   }
+
+
+
+  /* ------------------------
+     DIGITAL TERNING
+  ------------------------ */
+
+  const diceFaces = {
+    1: "⚀",
+    2: "⚁",
+    3: "⚂",
+    4: "⚃",
+    5: "⚄",
+    6: "⚅"
+  };
+
+
+  const diceRules = {
+
+    1: "🎁 Ta en pakke!",
+
+    2: "🔄 Bytt pakke med en valgfri person!",
+
+    3: "⬅️ Send en pakke til venstre!",
+
+    4: "➡️ Send en pakke til høyre!",
+
+    5: "😈 Stjel en valgfri pakke!",
+
+    6: "🎲 Kast terningen én gang til!"
+
+  };
+
+
+  function rollDice() {
+
+    const dice =
+      document.getElementById("dice");
+
+    const result =
+      document.getElementById(
+        "diceResult"
+      );
+
+
+    result.innerText =
+      "🎲 Terningen ruller...";
+
+
+    let rolls = 0;
+
+
+    const animation =
+      setInterval(() => {
+
+        const temp =
+          Math.floor(
+            Math.random() * 6
+          ) + 1;
+
+        dice.innerText =
+          diceFaces[temp];
+
+        rolls++;
+
+
+        if (rolls >= 8) {
+
+          clearInterval(animation);
+
+
+          const finalRoll =
+            Math.floor(
+              Math.random() * 6
+            ) + 1;
+
+
+          dice.innerText =
+            diceFaces[finalRoll];
+
+
+          result.innerText =
+            finalRoll +
+            " – " +
+            diceRules[finalRoll];
+
+        }
+
+      }, 90);
+
+  }
+
+
+
+  /* ------------------------
+     PAKKELEK TIMER
+  ------------------------ */
+
+  let packageTime = 600;
+
+  let packageInterval = null;
+
+
+  function updatePackageTimer() {
+
+    const minutes =
+      Math.floor(
+        packageTime / 60
+      );
+
+    const seconds =
+      packageTime % 60;
+
+
+    document.getElementById(
+      "packageTimer"
+    ).innerText =
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(seconds).padStart(2, "0");
+
+  }
+
+
+  function startPackageTimer() {
+
+    if (packageInterval) {
+      return;
+    }
+
+
+    packageInterval =
+      setInterval(() => {
+
+        if (packageTime > 0) {
+
+          packageTime--;
+
+          updatePackageTimer();
+
+        } else {
+
+          clearInterval(
+            packageInterval
+          );
+
+          packageInterval = null;
+
+
+          document.getElementById(
+            "packageTimer"
+          ).innerText =
+            "🎁 FERDIG!";
+
+        }
+
+      }, 1000);
+
+  }
+
+
+  function resetPackageTimer() {
+
+    clearInterval(
+      packageInterval
+    );
+
+    packageInterval = null;
+
+    packageTime = 600;
+
+    updatePackageTimer();
+
+  }
+
+
+  updatePackageTimer();
 
 </script>
 
