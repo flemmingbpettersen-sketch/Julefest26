@@ -8,9 +8,7 @@
   <title>Julefest 2026 🎄</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -110,7 +108,20 @@
 
     .card:active {
       transform: scale(0.97);
-      background: rgba(255,255,255,0.14);
+    }
+
+    .wide-card {
+      grid-column: span 2;
+    }
+
+    .status-card {
+      background: linear-gradient(135deg, #155d46, #1f7a5c);
+      border: 1px solid rgba(244,208,111,0.35);
+    }
+
+    .wheel-card {
+      background: linear-gradient(135deg, #9d1b24, #c32f3c);
+      border: none;
     }
 
     .icon {
@@ -129,16 +140,6 @@
       color: #cfcfcf;
     }
 
-    .wheel-card {
-      grid-column: span 2;
-      background: linear-gradient(135deg, #9d1b24, #c32f3c);
-      border: none;
-    }
-
-    .wheel-card .card-title {
-      font-size: 18px;
-    }
-
     .content-box {
       display: none;
       margin-top: 15px;
@@ -153,14 +154,14 @@
 
     .content-box h2 {
       margin-top: 0;
-      font-size: 20px;
       color: #f4d06f;
+      font-size: 20px;
     }
 
     .person {
       display: flex;
-      align-items: center;
       gap: 10px;
+      align-items: center;
       padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
@@ -175,30 +176,57 @@
       justify-content: center;
     }
 
-    .score-row {
+    .score-row,
+    .status-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
       padding: 11px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .score-value {
+    .score-value,
+    .status-value {
       color: #f4d06f;
-      font-weight: 700;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .status-value {
+      font-size: 13px;
+    }
+
+    select {
+      width: 100%;
+      padding: 14px;
+      margin: 6px 0 10px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      background: white;
+      color: #12372a;
+    }
+
+    .select-label {
+      display: block;
+      margin-top: 12px;
+      color: #f4d06f;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .game-button {
       width: 100%;
-      background: #f4d06f;
-      color: #12372a;
       border: none;
       border-radius: 14px;
       padding: 15px;
-      font-weight: 700;
-      font-size: 16px;
-      cursor: pointer;
       margin-top: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #f4d06f;
+      color: #12372a;
     }
 
     .red-button {
@@ -206,34 +234,42 @@
       color: white;
     }
 
-    .dice-area {
+    .status-message {
+      min-height: 25px;
+      margin-top: 12px;
+      text-align: center;
+      color: #f4d06f;
+      font-weight: 600;
+    }
+
+    #wheelResult {
+      margin-top: 18px;
+      min-height: 40px;
+      text-align: center;
+      color: #f4d06f;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .dice-area,
+    .timer-area {
       text-align: center;
       background: rgba(255,255,255,0.07);
       border-radius: 18px;
       padding: 20px;
-      margin: 18px 0;
+      margin-top: 18px;
     }
 
     #dice {
       font-size: 78px;
-      line-height: 1;
-      margin: 10px 0 15px;
+      margin: 10px 0;
     }
 
     #diceResult {
-      font-size: 17px;
-      font-weight: 600;
       min-height: 45px;
       margin-top: 15px;
       color: #f4d06f;
-    }
-
-    .timer-area {
-      text-align: center;
-      margin-top: 25px;
-      padding: 18px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 18px;
+      font-weight: 600;
     }
 
     #packageTimer {
@@ -243,23 +279,9 @@
       margin: 10px 0;
     }
 
-    .rules {
-      margin-top: 22px;
-      line-height: 1.7;
-    }
-
     .rule {
       padding: 8px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    #wheelResult {
-      text-align: center;
-      font-size: 20px;
-      font-weight: 700;
-      margin-top: 18px;
-      min-height: 40px;
-      color: #f4d06f;
     }
 
     footer {
@@ -271,10 +293,11 @@
   </style>
 </head>
 
-
 <body>
 
 <div class="app">
+
+  <!-- FORSIDE -->
 
   <div class="hero">
 
@@ -312,12 +335,20 @@
   </div>
 
 
-  <div class="section-title">
-    Festen
-  </div>
+  <div class="section-title">Festen</div>
 
+
+  <!-- MENY -->
 
   <div class="menu">
+
+    <div class="card wide-card status-card"
+         onclick="showSection('where')">
+      <div class="icon">📍</div>
+      <div class="card-title">Hvor er gjengen?</div>
+      <div class="card-text">Følg gjengen gjennom lørdagen</div>
+    </div>
+
 
     <div class="card" onclick="showSection('friends')">
       <div class="icon">👥</div>
@@ -333,7 +364,8 @@
     </div>
 
 
-    <div class="card wheel-card" onclick="showSection('wheel')">
+    <div class="card wide-card wheel-card"
+         onclick="showSection('wheel')">
       <div class="icon">🎅</div>
       <div class="card-title">JULEHJULET</div>
       <div class="card-text">Trykk hvis du tør...</div>
@@ -370,100 +402,123 @@
   </div>
 
 
+  <!-- HVOR ER GJENGEN -->
+
+  <div id="where" class="content-box">
+
+    <h2>📍 Hvor er gjengen?</h2>
+
+    <p>
+      Velg navnet ditt og hva du gjør akkurat nå.
+      Statusen deles med hele gjengen.
+    </p>
+
+    <span class="select-label">HVEM ER DU?</span>
+
+    <select id="personSelect">
+      <option value="">Velg navn</option>
+      <option>Anne Grethe</option>
+      <option>Henning</option>
+      <option>Ronny</option>
+      <option>Hanne</option>
+      <option>Martin</option>
+      <option>Eilen H</option>
+      <option>Eilen N</option>
+      <option>Flemming</option>
+    </select>
+
+
+    <span class="select-label">HVA GJØR DU?</span>
+
+    <select id="statusSelect">
+
+      <option value="">Velg status</option>
+
+      <option value="🥐 Vi spiser frokost">
+        🥐 Vi spiser frokost
+      </option>
+
+      <option value="☕ På kafé">
+        ☕ På kafé
+      </option>
+
+      <option value="🏋️ Trener">
+        🏋️ Trener
+      </option>
+
+      <option value="🚿 Gjør oss klare til fest">
+        🚿 Gjør oss klare til fest
+      </option>
+
+      <option value="🚗 På vei">
+        🚗 På vei
+      </option>
+
+      <option value="🎄 Fremme på festen">
+        🎄 Fremme på festen
+      </option>
+
+      <option value="👋 Drar fra festen">
+        👋 Drar fra festen
+      </option>
+
+      <option value="🏠 Hjemme">
+        🏠 Hjemme
+      </option>
+
+    </select>
+
+
+    <button class="game-button" onclick="saveStatus()">
+      📍 OPPDATER STATUS
+    </button>
+
+    <div id="statusMessage" class="status-message"></div>
+
+
+    <h3 style="color:#f4d06f; margin-top:25px;">
+      🎄 Gjengen akkurat nå
+    </h3>
+
+    <div id="statusList">
+      Henter statusene...
+    </div>
+
+  </div>
+
+
   <!-- GJENGEN -->
 
   <div id="friends" class="content-box">
 
     <h2>👥 Gjengen</h2>
 
-    <div class="person">
-      <div class="avatar">🎄</div>
-      <span>Anne Grethe</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🎅</div>
-      <span>Henning</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🍺</div>
-      <span>Ronny</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🥂</div>
-      <span>Hanne</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🦌</div>
-      <span>Martin</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">⭐</div>
-      <span>Eilen H</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">☃️</div>
-      <span>Eilen N</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🎁</div>
-      <span>Flemming</span>
-    </div>
+    <div class="person"><div class="avatar">🎄</div>Anne Grethe</div>
+    <div class="person"><div class="avatar">🎅</div>Henning</div>
+    <div class="person"><div class="avatar">🍺</div>Ronny</div>
+    <div class="person"><div class="avatar">🥂</div>Hanne</div>
+    <div class="person"><div class="avatar">🦌</div>Martin</div>
+    <div class="person"><div class="avatar">⭐</div>Eilen H</div>
+    <div class="person"><div class="avatar">☃️</div>Eilen N</div>
+    <div class="person"><div class="avatar">🎁</div>Flemming</div>
 
   </div>
 
 
-  <!-- POENGTAVLE -->
+  <!-- POENG -->
 
   <div id="score" class="content-box">
 
     <h2>🏆 Poengtavle</h2>
 
-    <div class="score-row">
-      <span>Anne Grethe</span>
-      <span class="score-value">0 poeng</span>
-    </div>
-
-    <div class="score-row">
-      <span>Henning</span>
-      <span class="score-value">0 poeng</span>
-    </div>
-
-    <div class="score-row">
-      <span>Ronny</span>
-      <span class="score-value">0 poeng</span>
-    </div>
-
-    <div class="score-row">
-      <span>Hanne</span>
-      <span class="score-value">0 poeng</span>
-    </div>
-
-    <div class="score-row">
-      <span>Martin</span>
-      <span class="score-value">0 poeng</span>
-    </div>
-
-    <div class="score-row">
-      <span>Eilen H</span>
-      <span class="score-value">0 poeng</span>
-    </div>
-
-    <div class="score-row">
-      <span>Eilen N</span>
-      <span class="score-value">0 poeng</span>
-    </div>
-
-    <div class="score-row">
-      <span>Flemming</span>
-      <span class="score-value">0 poeng</span>
-    </div>
+    <div class="score-row"><span>Anne Grethe</span><span class="score-value">0 poeng</span></div>
+    <div class="score-row"><span>Henning</span><span class="score-value">0 poeng</span></div>
+    <div class="score-row"><span>Ronny</span><span class="score-value">0 poeng</span></div>
+    <div class="score-row"><span>Hanne</span><span class="score-value">0 poeng</span></div>
+    <div class="score-row"><span>Martin</span><span class="score-value">0 poeng</span></div>
+    <div class="score-row"><span>Eilen H</span><span class="score-value">0 poeng</span></div>
+    <div class="score-row"><span>Eilen N</span><span class="score-value">0 poeng</span></div>
+    <div class="score-row"><span>Flemming</span><span class="score-value">0 poeng</span></div>
 
   </div>
 
@@ -530,13 +585,11 @@
 
     <div class="dice-area">
 
-      <div style="font-size:14px; color:#f4d06f;">
+      <div style="color:#f4d06f;">
         DIGITAL TERNING
       </div>
 
-      <div id="dice">
-        🎲
-      </div>
+      <div id="dice">🎲</div>
 
       <button class="game-button" onclick="rollDice()">
         🎲 KAST TERNINGEN
@@ -551,7 +604,7 @@
 
     <div class="timer-area">
 
-      <div style="font-size:14px; color:#f4d06f;">
+      <div style="color:#f4d06f;">
         PAKKELEK-TIMER
       </div>
 
@@ -563,41 +616,38 @@
         ⏱️ START 10 MINUTTER
       </button>
 
-      <button class="game-button red-button" onclick="resetPackageTimer()">
+      <button class="game-button red-button"
+              onclick="resetPackageTimer()">
         ↻ NULLSTILL
       </button>
 
     </div>
 
 
-    <div class="rules">
+    <h3 style="color:#f4d06f;">
+      🎄 Terningregler
+    </h3>
 
-      <h3>🎄 Terningregler</h3>
+    <div class="rule">🎲 <strong>1</strong> – Ta en pakke</div>
 
-      <div class="rule">
-        🎲 <strong>1</strong> – Ta en pakke
-      </div>
+    <div class="rule">
+      🎲 <strong>2</strong> – Bytt med en valgfri person
+    </div>
 
-      <div class="rule">
-        🎲 <strong>2</strong> – Bytt pakke med en valgfri person
-      </div>
+    <div class="rule">
+      🎲 <strong>3</strong> – Send en pakke til venstre
+    </div>
 
-      <div class="rule">
-        🎲 <strong>3</strong> – Send en pakke til venstre
-      </div>
+    <div class="rule">
+      🎲 <strong>4</strong> – Send en pakke til høyre
+    </div>
 
-      <div class="rule">
-        🎲 <strong>4</strong> – Send en pakke til høyre
-      </div>
+    <div class="rule">
+      🎲 <strong>5</strong> – Stjel en valgfri pakke
+    </div>
 
-      <div class="rule">
-        🎲 <strong>5</strong> – Stjel en valgfri pakke
-      </div>
-
-      <div class="rule">
-        🎲 <strong>6</strong> – Kast terningen én gang til
-      </div>
-
+    <div class="rule">
+      🎲 <strong>6</strong> – Kast terningen én gang til
     </div>
 
   </div>
@@ -609,9 +659,7 @@
 
     <h2>📸 Festbilder</h2>
 
-    <p>
-      Her kommer bilder fra julefesten.
-    </p>
+    <p>Her kommer bilder fra julefesten.</p>
 
   </div>
 
@@ -623,15 +671,33 @@
 </div>
 
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
 
-  /* FESTDATO */
+  /* ==============================
+     SUPABASE
+  ============================== */
 
-  const partyDate =
-    new Date("2026-11-28T18:30:00");
+  const SUPABASE_URL =
+    "https://icvpfwwkrvmlfaxzukdl.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
 
-  /* DELTAKERE */
+  /* ==============================
+     DELTAKERE
+  ============================== */
 
   const people = [
     "Anne Grethe",
@@ -645,12 +711,18 @@
   ];
 
 
-  /* NEDTELLING */
+  /* ==============================
+     NEDTELLING
+  ============================== */
+
+  const partyDate =
+    new Date("2026-11-28T18:30:00");
+
 
   function updateCountdown() {
 
-    const now = new Date();
-    const difference = partyDate - now;
+    const difference =
+      partyDate - new Date();
 
     if (difference <= 0) {
 
@@ -662,13 +734,19 @@
     }
 
     const days =
-      Math.floor(difference / (1000 * 60 * 60 * 24));
+      Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+      );
 
     const hours =
-      Math.floor((difference / (1000 * 60 * 60)) % 24);
+      Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+      );
 
     const minutes =
-      Math.floor((difference / (1000 * 60)) % 60);
+      Math.floor(
+        (difference / (1000 * 60)) % 60
+      );
 
     document.getElementById("days").innerText = days;
     document.getElementById("hours").innerText = hours;
@@ -676,11 +754,18 @@
 
   }
 
+
   updateCountdown();
-  setInterval(updateCountdown, 30000);
+
+  setInterval(
+    updateCountdown,
+    30000
+  );
 
 
-  /* MENY */
+  /* ==============================
+     MENY
+  ============================== */
 
   function showSection(sectionId) {
 
@@ -697,207 +782,176 @@
 
     });
 
-    setTimeout(() => {
 
-      const selected =
-        document.getElementById(sectionId);
+    const selected =
+      document.getElementById(sectionId);
 
-      if (selected.classList.contains("active")) {
+    if (
+      selected &&
+      selected.classList.contains("active")
+    ) {
+
+      setTimeout(() => {
 
         selected.scrollIntoView({
           behavior: "smooth",
           block: "nearest"
         });
 
-      }
+      }, 100);
 
-    }, 100);
-
-  }
-
-
-  /* JULEHJULET */
-
-  const challenges = [
-
-    "må velge neste sang! 🎵",
-
-    "må holde en 30 sekunders tale! 🎤",
-
-    "må fortelle en vits! 😂",
-
-    "må starte en skål! 🥂"
-
-  ];
-
-
-  function spinWheel() {
-
-    const person =
-      people[
-        Math.floor(Math.random() * people.length)
-      ];
-
-    const challenge =
-      challenges[
-        Math.floor(Math.random() * challenges.length)
-      ];
-
-    const result =
-      document.getElementById("wheelResult");
-
-    result.innerText =
-      "🎅 Julehjulet spinner...";
-
-    setTimeout(() => {
-
-      result.innerText =
-        "🎄 " + person + " " + challenge;
-
-    }, 900);
-
-  }
-
-
-  /* DIGITAL TERNING */
-
-  const diceFaces = {
-    1: "⚀",
-    2: "⚁",
-    3: "⚂",
-    4: "⚃",
-    5: "⚄",
-    6: "⚅"
-  };
-
-
-  const diceRules = {
-
-    1: "🎁 Ta en pakke!",
-
-    2: "🔄 Bytt pakke med en valgfri person!",
-
-    3: "⬅️ Send en pakke til venstre!",
-
-    4: "➡️ Send en pakke til høyre!",
-
-    5: "😈 Stjel en valgfri pakke!",
-
-    6: "🎲 Kast terningen én gang til!"
-
-  };
-
-
-  function rollDice() {
-
-    const dice =
-      document.getElementById("dice");
-
-    const result =
-      document.getElementById("diceResult");
-
-    result.innerText =
-      "🎲 Terningen ruller...";
-
-    let rolls = 0;
-
-    const animation =
-      setInterval(() => {
-
-        const temp =
-          Math.floor(Math.random() * 6) + 1;
-
-        dice.innerText =
-          diceFaces[temp];
-
-        rolls++;
-
-        if (rolls >= 8) {
-
-          clearInterval(animation);
-
-          const finalRoll =
-            Math.floor(Math.random() * 6) + 1;
-
-          dice.innerText =
-            diceFaces[finalRoll];
-
-          result.innerText =
-            finalRoll + " – " + diceRules[finalRoll];
-
-        }
-
-      }, 90);
-
-  }
-
-
-  /* PAKKELEK-TIMER */
-
-  let packageTime = 600;
-  let packageInterval = null;
-
-
-  function updatePackageTimer() {
-
-    const minutes =
-      Math.floor(packageTime / 60);
-
-    const seconds =
-      packageTime % 60;
-
-    document.getElementById("packageTimer").innerText =
-      String(minutes).padStart(2, "0") +
-      ":" +
-      String(seconds).padStart(2, "0");
-
-  }
-
-
-  function startPackageTimer() {
-
-    if (packageInterval) {
-      return;
     }
 
-    packageInterval =
-      setInterval(() => {
+  }
 
-        if (packageTime > 0) {
 
-          packageTime--;
-          updatePackageTimer();
+  /* ==============================
+     FELLES STATUS VIA SUPABASE
+  ============================== */
 
-        } else {
+  let statuses = {};
 
-          clearInterval(packageInterval);
-          packageInterval = null;
 
-          document.getElementById("packageTimer").innerText =
-            "🎁 FERDIG!";
+  async function loadStatuses() {
 
-        }
+    const { data, error } =
+      await supabaseClient
+        .from("party_status")
+        .select("name,status,updated_at");
 
-      }, 1000);
+
+    if (error) {
+
+      console.error(error);
+
+      document.getElementById(
+        "statusList"
+      ).innerHTML =
+        '<div class="status-message">Kunne ikke hente statusene.</div>';
+
+      return;
+
+    }
+
+
+    statuses = {};
+
+
+    data.forEach(item => {
+
+      statuses[item.name] =
+        item.status;
+
+    });
+
+
+    renderStatuses();
 
   }
 
 
-  function resetPackageTimer() {
+  function renderStatuses() {
 
-    clearInterval(packageInterval);
+    const list =
+      document.getElementById(
+        "statusList"
+      );
 
-    packageInterval = null;
-    packageTime = 600;
+    list.innerHTML = "";
 
-    updatePackageTimer();
+
+    people.forEach(person => {
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "status-row";
+
+
+      const name =
+        document.createElement("span");
+
+      name.innerText =
+        person;
+
+
+      const status =
+        document.createElement("span");
+
+      status.className =
+        "status-value";
+
+      status.innerText =
+        statuses[person] ||
+        "Ikke oppdatert";
+
+
+      row.appendChild(name);
+      row.appendChild(status);
+
+      list.appendChild(row);
+
+    });
 
   }
 
 
-  updatePackageTimer();
+  async function saveStatus() {
 
-</script>
+    const person =
+      document.getElementById(
+        "personSelect"
+      ).value;
 
-</body>
-</html>
+    const status =
+      document.getElementById(
+        "statusSelect"
+      ).value;
+
+    const message =
+      document.getElementById(
+        "statusMessage"
+      );
+
+
+    if (!person || !status) {
+
+      message.innerText =
+        "Velg både navn og status 😊";
+
+      return;
+
+    }
+
+
+    message.innerText =
+      "Lagrer...";
+
+
+    const { error } =
+      await supabaseClient
+        .from("party_status")
+        .upsert(
+          {
+            name: person,
+            status: status,
+            updated_at:
+              new Date().toISOString()
+          },
+          {
+            onConflict: "name"
+          }
+        );
+
+
+    if (error) {
+
+      console.error(error);
+
+      message.innerText =
+        "❌ Kunne ikke lagre status.";
+
+      return;
+
+   
