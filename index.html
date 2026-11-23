@@ -991,7 +991,73 @@
   /*
    * START SUPABASE
    */
+/*
+ * STATUS KAN KUN ENDRES PÅ FESTLØRDAGEN
+ */
 
+function updateStatusAvailability() {
+
+  const now = new Date();
+
+  const start =
+    new Date(2026, 10, 28, 0, 0, 0);
+
+  const end =
+    new Date(2026, 10, 29, 0, 0, 0);
+
+  const personSelect =
+    document.getElementById("personSelect");
+
+  const statusSelect =
+    document.getElementById("statusSelect");
+
+  const statusButton =
+    document.querySelector(
+      '#where button[onclick="saveStatus()"]'
+    );
+
+  const message =
+    document.getElementById("statusMessage");
+
+
+  if (now < start) {
+
+    personSelect.disabled = true;
+    statusSelect.disabled = true;
+    statusButton.disabled = true;
+
+    statusButton.style.opacity = "0.5";
+
+    message.textContent =
+      "🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
+
+  } else if (now >= end) {
+
+    personSelect.disabled = true;
+    statusSelect.disabled = true;
+    statusButton.disabled = true;
+
+    statusButton.style.opacity = "0.5";
+
+    message.textContent =
+      "🎄 Statusoppdateringen er avsluttet. Siste status fra lørdag vises under.";
+
+  } else {
+
+    personSelect.disabled = false;
+    statusSelect.disabled = false;
+    statusButton.disabled = false;
+
+    statusButton.style.opacity = "1";
+
+    message.textContent =
+      "🎄 Status er åpen! Hva gjør du akkurat nå?";
+
+  }
+
+}
+
+updateStatusAvailability();
   function initSupabase() {
 
     try {
