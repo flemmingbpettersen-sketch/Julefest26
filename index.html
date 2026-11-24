@@ -1,419 +1,426 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#12372a">
-  <title>Julefest 2026 🎄</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#12372a">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>Julefest 2026 🎄</title>
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b241b, #12372a);
-      color: white;
-      min-height: 100vh;
-    }
+<style>
 
-    .app {
-      max-width: 500px;
-      margin: auto;
-      padding: 22px 18px 40px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .hero {
-      text-align: center;
-      padding: 35px 10px 25px;
-    }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg,#0b241b,#12372a);
+  color: white;
+  min-height: 100vh;
+}
 
-    .tree {
-      font-size: 58px;
-      margin-bottom: 8px;
-    }
+.app {
+  max-width: 500px;
+  margin: auto;
+  padding: 22px 18px 40px;
+}
 
-    h1 {
-      margin: 0;
-      font-size: 34px;
-      color: #f4d06f;
-    }
+.hero {
+  text-align: center;
+  padding: 35px 10px 25px;
+}
 
-    .date {
-      margin-top: 10px;
-      font-size: 17px;
-    }
+.tree {
+  font-size: 58px;
+}
 
-    .countdown-title {
-      margin-top: 30px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #f4d06f;
-    }
+h1 {
+  margin: 0;
+  font-size: 34px;
+  color: #f4d06f;
+}
 
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
-    }
+.date {
+  margin-top: 10px;
+  font-size: 17px;
+}
 
-    .countdown-box {
-      width: 72px;
-      padding: 12px 5px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(244,208,111,0.35);
-      border-radius: 14px;
-    }
+.countdown-title {
+  margin-top: 30px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #f4d06f;
+}
 
-    .number {
-      font-size: 25px;
-      font-weight: 700;
-    }
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
 
-    .label {
-      margin-top: 3px;
-      font-size: 10px;
-      text-transform: uppercase;
-      color: #d5d5d5;
-    }
+.countdown-box {
+  width: 72px;
+  padding: 12px 5px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(244,208,111,.35);
+  border-radius: 14px;
+}
 
-    .section-title {
-      margin: 22px 4px 10px;
-      font-size: 14px;
-      color: #f4d06f;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.number {
+  font-size: 25px;
+  font-weight: 700;
+}
 
-    .menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+.label {
+  margin-top: 3px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #d5d5d5;
+}
 
-    .card {
-      padding: 20px 12px;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-    }
+.section-title {
+  margin: 22px 4px 10px;
+  font-size: 14px;
+  color: #f4d06f;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    .card:active {
-      transform: scale(0.97);
-    }
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
 
-    .wide-card {
-      grid-column: span 2;
-    }
+.card {
+  padding: 20px 12px;
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 18px;
+  text-align: center;
+  cursor: pointer;
+}
 
-    .status-card {
-      background: linear-gradient(135deg, #155d46, #1f7a5c);
-    }
+.card:active {
+  transform: scale(.97);
+}
 
-    .wheel-card {
-      background: linear-gradient(135deg, #9d1b24, #c32f3c);
-    }
+.wide-card {
+  grid-column: span 2;
+}
 
-    .icon {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
+.status-card {
+  background: linear-gradient(135deg,#155d46,#1f7a5c);
+}
 
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-    }
+.wheel-card {
+  background: linear-gradient(135deg,#9d1b24,#c32f3c);
+}
 
-    .card-text {
-      margin-top: 4px;
-      font-size: 11px;
-      color: #cfcfcf;
-    }
+.icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
 
-    .content-box {
-      display: none;
-      margin-top: 15px;
-      padding: 18px;
-      background: rgba(0,0,0,0.22);
-      border-radius: 18px;
-    }
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+}
 
-    .content-box.active {
-      display: block;
-    }
+.card-text {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #cfcfcf;
+}
 
-    .content-box h2 {
-      margin-top: 0;
-      color: #f4d06f;
-    }
+.content-box {
+  display: none;
+  margin-top: 15px;
+  padding: 18px;
+  background: rgba(0,0,0,.22);
+  border-radius: 18px;
+}
 
-    .person,
-    .score-row,
-    .status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+.content-box.active {
+  display: block;
+}
 
-    .person {
-      justify-content: flex-start;
-    }
+.content-box h2 {
+  margin-top: 0;
+  color: #f4d06f;
+}
 
-    .avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: #9d1b24;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.person,
+.score-row,
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
 
-    .score-value,
-    .status-value {
-      color: #f4d06f;
-      font-weight: 600;
-      text-align: right;
-    }
+.person {
+  justify-content: flex-start;
+}
 
-    .status-value {
-      font-size: 13px;
-    }
+.score-row,
+.status-row {
+  display: flex;
+}
 
-    select {
-      width: 100%;
-      margin: 6px 0 10px;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: white;
-      color: #12372a;
-      font-size: 16px;
-    }
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #9d1b24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .select-label {
-      display: block;
-      margin-top: 12px;
-      color: #f4d06f;
-      font-size: 13px;
-      font-weight: 600;
-    }
+.score-value,
+.status-value {
+  color: #f4d06f;
+  font-weight: 600;
+  text-align: right;
+}
 
-    .game-button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 15px;
-      border: none;
-      border-radius: 14px;
-      background: #f4d06f;
-      color: #12372a;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+.status-value {
+  font-size: 13px;
+}
 
-    .game-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+select {
+  width: 100%;
+  margin: 6px 0 10px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  color: #12372a;
+  font-size: 16px;
+}
 
-    .red-button {
-      background: #c32f3c;
-      color: white;
-    }
+.select-label {
+  display: block;
+  margin-top: 12px;
+  color: #f4d06f;
+  font-size: 13px;
+  font-weight: 600;
+}
 
-    .status-message,
-    .photo-message {
-      min-height: 25px;
-      margin-top: 12px;
-      text-align: center;
-      color: #f4d06f;
-      font-weight: 600;
-    }
+.game-button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: #f4d06f;
+  color: #12372a;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
 
-    /* JULEHJULET */
+.game-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
 
-    .wheel-wrap {
-      position: relative;
-      width: min(100%, 340px);
-      margin: 22px auto 10px;
-    }
+.red-button {
+  background: #c32f3c;
+  color: white;
+}
 
-    .wheel-pointer {
-      position: absolute;
-      z-index: 5;
-      top: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-top: 34px solid #f4d06f;
-      filter: drop-shadow(0 3px 2px rgba(0,0,0,0.45));
-    }
+.status-message,
+.photo-message {
+  min-height: 25px;
+  margin-top: 12px;
+  text-align: center;
+  color: #f4d06f;
+  font-weight: 600;
+}
 
-    .wheel-canvas {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 50%;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.35));
-    }
+/* JULEHJUL */
 
-    .wheel-legend {
-      text-align: center;
-      font-size: 12px;
-      color: #cfcfcf;
-      margin: 8px 0 12px;
-    }
+.wheel-wrap {
+  position: relative;
+  width: min(100%,340px);
+  margin: 22px auto 10px;
+}
 
-    #wheelResult {
-      min-height: 52px;
-      margin-top: 18px;
-      text-align: center;
-      color: #f4d06f;
-      font-size: 20px;
-      font-weight: 700;
-    }
+.wheel-pointer {
+  position: absolute;
+  z-index: 5;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
 
-    /* PAKKELEK */
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 34px solid #f4d06f;
 
-    .dice-area,
-    .timer-area,
-    .upload-area {
-      margin-top: 18px;
-      padding: 20px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 18px;
-      text-align: center;
-    }
+  filter: drop-shadow(0 3px 2px rgba(0,0,0,.45));
+}
 
-    #dice {
-      margin: 10px 0;
-      font-size: 78px;
-    }
+.wheel-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,.35));
+}
 
-    #diceResult {
-      min-height: 45px;
-      margin-top: 15px;
-      color: #f4d06f;
-      font-weight: 600;
-    }
+.wheel-legend {
+  text-align: center;
+  font-size: 12px;
+  color: #cfcfcf;
+  margin: 8px 0 12px;
+}
 
-    #packageTimer {
-      margin: 10px 0;
-      color: #f4d06f;
-      font-size: 42px;
-      font-weight: 700;
-    }
+#wheelResult {
+  min-height: 52px;
+  margin-top: 18px;
+  text-align: center;
+  color: #f4d06f;
+  font-size: 20px;
+  font-weight: 700;
+}
 
-    .rule {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+/* PAKKELEK */
 
-    /* FESTBILDER */
+.dice-area,
+.timer-area,
+.upload-area,
+.bring-box {
+  margin-top: 18px;
+  padding: 20px;
+  background: rgba(255,255,255,.07);
+  border-radius: 18px;
+  text-align: center;
+}
 
-    .photo-count {
-      color: #f4d06f;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
+#dice {
+  font-size: 78px;
+  margin: 10px 0;
+}
 
-    .photo-help {
-      font-size: 12px;
-      color: #cfcfcf;
-      line-height: 1.5;
-    }
+#diceResult {
+  min-height: 45px;
+  margin-top: 15px;
+  color: #f4d06f;
+  font-weight: 600;
+}
 
-    .photo-input {
-      display: none;
-    }
+#packageTimer {
+  margin: 10px 0;
+  color: #f4d06f;
+  font-size: 42px;
+  font-weight: 700;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 16px;
-    }
+.rule {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
 
-    .gallery-item {
-      aspect-ratio: 1 / 1;
-      border-radius: 14px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.08);
-      cursor: pointer;
-    }
+/* BILDER */
 
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+.photo-count {
+  color: #f4d06f;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
 
-    .empty-gallery {
-      grid-column: span 2;
-      text-align: center;
-      color: #cfcfcf;
-      padding: 24px 0;
-    }
+.photo-help {
+  font-size: 12px;
+  color: #cfcfcf;
+  line-height: 1.5;
+}
 
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 99;
-      background: rgba(0,0,0,0.92);
-      padding: 20px;
-      align-items: center;
-      justify-content: center;
-    }
+.photo-input {
+  display: none;
+}
 
-    .modal.open {
-      display: flex;
-    }
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
 
-    .modal img {
-      max-width: 100%;
-      max-height: 86vh;
-      border-radius: 14px;
-    }
+.gallery-item {
+  aspect-ratio: 1/1;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,.08);
+  cursor: pointer;
+}
 
-    .modal-close {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      background: white;
-      color: #12372a;
-      border: none;
-      border-radius: 50%;
-      width: 42px;
-      height: 42px;
-      font-size: 24px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-    footer {
-      margin-top: 35px;
-      text-align: center;
-      font-size: 12px;
-      color: #aeb8b2;
-    }
+.empty-gallery {
+  grid-column: span 2;
+  text-align: center;
+  color: #cfcfcf;
+  padding: 24px 0;
+}
 
-  </style>
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(0,0,0,.92);
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal img {
+  max-width: 100%;
+  max-height: 86vh;
+  border-radius: 14px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  color: #12372a;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+footer {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 12px;
+  color: #aeb8b2;
+}
+
+</style>
 </head>
 
 
@@ -421,538 +428,651 @@
 
 <div class="app">
 
-  <!-- FORSIDE -->
 
-  <div class="hero">
+<!-- FORSIDE -->
 
-    <div class="tree">🎄</div>
+<div class="hero">
 
-    <h1>Julefest 2026</h1>
+<div class="tree">🎄</div>
 
-    <div class="date">
-      28. november • 18:30
-    </div>
+<h1>Julefest 2026</h1>
 
-    <div class="countdown-title">
-      Nedtelling til festen
-    </div>
+<div class="date">
+28. november • 18:30
+</div>
 
-    <div class="countdown">
+<div class="countdown-title">
+Nedtelling til festen
+</div>
 
-      <div class="countdown-box">
-        <div id="days" class="number">0</div>
-        <div class="label">Dager</div>
-      </div>
+<div class="countdown">
 
-      <div class="countdown-box">
-        <div id="hours" class="number">0</div>
-        <div class="label">Timer</div>
-      </div>
+<div class="countdown-box">
+<div id="days" class="number">0</div>
+<div class="label">Dager</div>
+</div>
 
-      <div class="countdown-box">
-        <div id="minutes" class="number">0</div>
-        <div class="label">Min</div>
-      </div>
+<div class="countdown-box">
+<div id="hours" class="number">0</div>
+<div class="label">Timer</div>
+</div>
 
-    </div>
+<div class="countdown-box">
+<div id="minutes" class="number">0</div>
+<div class="label">Min</div>
+</div>
 
-  </div>
-
-
-  <div class="section-title">
-    Festen
-  </div>
-
-
-  <!-- MENY -->
-
-  <div class="menu">
-
-    <div class="card wide-card status-card"
-         onclick="showSection('where')">
-
-      <div class="icon">📍</div>
-      <div class="card-title">Hvor er gjengen?</div>
-      <div class="card-text">Følg gjengen gjennom lørdagen</div>
-
-    </div>
-
-
-    <div class="card"
-         onclick="showSection('friends')">
-
-      <div class="icon">👥</div>
-      <div class="card-title">Gjengen</div>
-      <div class="card-text">De 8 på julefest</div>
-
-    </div>
-
-
-    <div class="card"
-         onclick="showSection('score')">
-
-      <div class="icon">🏆</div>
-      <div class="card-title">Poengtavle</div>
-      <div class="card-text">Hvem leder?</div>
-
-    </div>
-
-
-    <div class="card wide-card wheel-card"
-         onclick="showSection('wheel')">
-
-      <div class="icon">🎡</div>
-      <div class="card-title">JULEHJULET</div>
-      <div class="card-text">Spinn hvis du tør...</div>
-
-    </div>
-
-
-    <div class="card"
-         onclick="showSection('competitions')">
-
-      <div class="icon">🎯</div>
-      <div class="card-title">Konkurranser</div>
-      <div class="card-text">Quiz og utfordringer</div>
-
-    </div>
-
-
-    <div class="card"
-         onclick="showSection('bring')">
-
-      <div class="icon">🍺</div>
-      <div class="card-title">Ta med</div>
-      <div class="card-text">Hvem tar med hva?</div>
-
-    </div>
-
-
-    <div class="card"
-         onclick="showSection('packagegame')">
-
-      <div class="icon">🎁</div>
-      <div class="card-title">Pakkelek</div>
-      <div class="card-text">Terning og pakker</div>
-
-    </div>
-
-
-    <div class="card"
-         onclick="showSection('photos')">
-
-      <div class="icon">📸</div>
-      <div class="card-title">Festbilder</div>
-      <div class="card-text">Felles album, maks 75</div>
-
-    </div>
-
-  </div>
-
-
-  <!-- HVOR ER GJENGEN -->
-
-  <div id="where" class="content-box">
-
-    <h2>📍 Hvor er gjengen?</h2>
-
-    <p>
-      Velg navnet ditt og hva du gjør akkurat nå.
-    </p>
-
-    <span class="select-label">
-      HVEM ER DU?
-    </span>
-
-    <select id="personSelect">
-
-      <option value="">Velg navn</option>
-      <option>Anne Grethe</option>
-      <option>Henning</option>
-      <option>Ronny</option>
-      <option>Hanne</option>
-      <option>Martin</option>
-      <option>Eilen H</option>
-      <option>Eilen N</option>
-      <option>Flemming</option>
-
-    </select>
-
-
-    <span class="select-label">
-      HVA GJØR DU?
-    </span>
-
-    <select id="statusSelect">
-
-      <option value="">Velg status</option>
-      <option value="🥐 Frokost">🥐 Frokost</option>
-      <option value="🚶 Går tur">🚶 Går tur</option>
-      <option value="🏋️ Trener">🏋️ Trener</option>
-      <option value="⚽ Ser fotball">⚽ Ser fotball</option>
-      <option value="🏒 Ser hockey">🏒 Ser hockey</option>
-      <option value="🏎️ Ser Formel 1">🏎️ Ser Formel 1</option>
-      <option value="🚿 Gjør meg klar">🚿 Gjør meg klar</option>
-      <option value="🚗 På vei til festen">🚗 På vei til festen</option>
-      <option value="👋 På vei hjem">👋 På vei hjem</option>
-      <option value="🏠 Hjemme">🏠 Hjemme</option>
-
-    </select>
-
-
-    <button
-      id="statusButton"
-      class="game-button"
-      onclick="saveStatus()">
-
-      📍 OPPDATER STATUS
-
-    </button>
-
-
-    <div
-      id="statusMessage"
-      class="status-message">
-    </div>
-
-
-    <h3 style="color:#f4d06f;margin-top:25px">
-      🎄 Gjengen akkurat nå
-    </h3>
-
-    <div id="statusList"></div>
-
-  </div>
-
-
-  <!-- GJENGEN -->
-
-  <div id="friends" class="content-box">
-
-    <h2>👥 Gjengen</h2>
-
-    <div class="person">
-      <div class="avatar">🎄</div>
-      <span>Anne Grethe</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🎅</div>
-      <span>Henning</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🍺</div>
-      <span>Ronny</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🥂</div>
-      <span>Hanne</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🦌</div>
-      <span>Martin</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">⭐</div>
-      <span>Eilen H</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">☃️</div>
-      <span>Eilen N</span>
-    </div>
-
-    <div class="person">
-      <div class="avatar">🎁</div>
-      <span>Flemming</span>
-    </div>
-
-  </div>
-
-
-  <!-- POENGTAVLE -->
-
-  <div id="score" class="content-box">
-
-    <h2>🏆 Poengtavle</h2>
-
-    <div id="scoreList"></div>
-
-  </div>
-
-
-  <!-- JULEHJULET -->
-
-  <div id="wheel" class="content-box">
-
-    <h2>🎡 Julehjulet</h2>
-
-    <p>
-      Hjulet velger tilfeldig person. Deretter trekkes sang,
-      tale, vits eller skål.
-    </p>
-
-
-    <div class="wheel-wrap">
-
-      <div class="wheel-pointer"></div>
-
-      <canvas
-        id="wheelCanvas"
-        class="wheel-canvas"
-        width="700"
-        height="700"
-        aria-label="Julehjul med navnene på deltakerne">
-      </canvas>
-
-    </div>
-
-
-    <div class="wheel-legend">
-      Pilen øverst viser hvem som blir valgt
-    </div>
-
-
-    <button
-      id="spinButton"
-      class="game-button"
-      onclick="spinWheel()">
-
-      🎡 SPINN HJULET
-
-    </button>
-
-
-    <div id="wheelResult">
-      Hvem blir den heldige? 😈
-    </div>
-
-  </div>
-
-
-  <!-- KONKURRANSER -->
-
-  <div id="competitions" class="content-box">
-
-    <h2>🎯 Konkurranser</h2>
-
-    <p>🎵 Musikkquiz</p>
-    <p>🎄 Julequiz</p>
-    <p>👕 Beste juleantrekk</p>
-    <p>🥇 Kveldens utfordringer</p>
-
-  </div>
-
-
-  <!-- TA MED -->
-
-  <div id="bring" class="content-box">
-
-    <h2>🍺 Hvem tar med hva?</h2>
-
-    <p>
-      Her kan vi legge inn mat, drikke og annet som skal tas med.
-    </p>
-
-  </div>
-
-
-  <!-- PAKKELEK -->
-
-  <div id="packagegame" class="content-box">
-
-    <h2>🎁 Pakkelek</h2>
-
-    <p>
-      Alle tar med én innpakket gave.
-      Legg alle pakkene samlet før leken starter.
-    </p>
-
-
-    <div class="dice-area">
-
-      <div style="color:#f4d06f">
-        DIGITAL TERNING
-      </div>
-
-      <div id="dice">
-        🎲
-      </div>
-
-      <button
-        class="game-button"
-        onclick="rollDice()">
-
-        🎲 KAST TERNINGEN
-
-      </button>
-
-      <div id="diceResult">
-        Trykk for å kaste
-      </div>
-
-    </div>
-
-
-    <div class="timer-area">
-
-      <div style="color:#f4d06f">
-        PAKKELEK-TIMER
-      </div>
-
-      <div id="packageTimer">
-        10:00
-      </div>
-
-      <button
-        class="game-button"
-        onclick="startPackageTimer()">
-
-        ⏱️ START 10 MINUTTER
-
-      </button>
-
-      <button
-        class="game-button red-button"
-        onclick="resetPackageTimer()">
-
-        ↻ NULLSTILL
-
-      </button>
-
-    </div>
-
-
-    <h3 style="color:#f4d06f">
-      🎄 Terningregler
-    </h3>
-
-    <div class="rule">
-      🎲 <strong>1</strong> – Ta en pakke
-    </div>
-
-    <div class="rule">
-      🎲 <strong>2</strong> – Bytt med en valgfri person
-    </div>
-
-    <div class="rule">
-      🎲 <strong>3</strong> – Send en pakke til venstre
-    </div>
-
-    <div class="rule">
-      🎲 <strong>4</strong> – Send en pakke til høyre
-    </div>
-
-    <div class="rule">
-      🎲 <strong>5</strong> – Stjel en valgfri pakke
-    </div>
-
-    <div class="rule">
-      🎲 <strong>6</strong> – Kast én gang til
-    </div>
-
-  </div>
-
-
-  <!-- FESTBILDER -->
-
-  <div id="photos" class="content-box">
-
-    <h2>📸 Festbilder</h2>
-
-    <p>
-      Felles bildegalleri for hele gjengen.
-      Kun bilder, ingen video.
-    </p>
-
-
-    <div class="upload-area">
-
-      <div
-        id="photoCount"
-        class="photo-count">
-
-        0 / 75 bilder
-
-      </div>
-
-
-      <div class="photo-help">
-
-        Maks 6 MB per bilde.<br>
-        Kun bildefiler.
-
-      </div>
-
-
-      <input
-        id="photoInput"
-        class="photo-input"
-        type="file"
-        accept="image/*"
-        onchange="uploadPhoto(event)">
-
-
-      <button
-        id="photoButton"
-        class="game-button"
-        onclick="document.getElementById('photoInput').click()">
-
-        📸 LEGG TIL BILDE
-
-      </button>
-
-
-      <div
-        id="photoMessage"
-        class="photo-message">
-      </div>
-
-    </div>
-
-
-    <div
-      id="gallery"
-      class="gallery">
-
-      <div class="empty-gallery">
-        Henter bilder...
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <footer>
-    🎄 Julefest 2026 • 28. november 🎄
-  </footer>
+</div>
 
 </div>
 
 
-<!-- STOR BILDEVISNING -->
+<div class="section-title">
+Festen
+</div>
+
+
+<!-- MENY -->
+
+<div class="menu">
+
+
+<div class="card wide-card status-card"
+onclick="showSection('where')">
+
+<div class="icon">📍</div>
+<div class="card-title">Hvor er gjengen?</div>
+<div class="card-text">Følg gjengen gjennom lørdagen</div>
+
+</div>
+
+
+<div class="card"
+onclick="showSection('friends')">
+
+<div class="icon">👥</div>
+<div class="card-title">Gjengen</div>
+<div class="card-text">De 8 på julefest</div>
+
+</div>
+
+
+<div class="card"
+onclick="showSection('score')">
+
+<div class="icon">🏆</div>
+<div class="card-title">Poengtavle</div>
+<div class="card-text">Hvem leder?</div>
+
+</div>
+
+
+<div class="card wide-card wheel-card"
+onclick="showSection('wheel')">
+
+<div class="icon">🎡</div>
+<div class="card-title">JULEHJULET</div>
+<div class="card-text">Spinn hvis du tør...</div>
+
+</div>
+
+
+<div class="card"
+onclick="showSection('competitions')">
+
+<div class="icon">🎯</div>
+<div class="card-title">Konkurranser</div>
+<div class="card-text">Quiz og utfordringer</div>
+
+</div>
+
+
+<div class="card"
+onclick="showSection('bring')">
+
+<div class="icon">🎒</div>
+<div class="card-title">Ta med</div>
+<div class="card-text">Husk pakke! 🎁</div>
+
+</div>
+
+
+<div class="card"
+onclick="showSection('packagegame')">
+
+<div class="icon">🎁</div>
+<div class="card-title">Pakkelek</div>
+<div class="card-text">Terning og pakker</div>
+
+</div>
+
+
+<div class="card"
+onclick="showSection('photos')">
+
+<div class="icon">📸</div>
+<div class="card-title">Festbilder</div>
+<div class="card-text">Felles album, maks 75</div>
+
+</div>
+
+</div>
+
+
+<!-- STATUS -->
+
+<div id="where" class="content-box">
+
+<h2>📍 Hvor er gjengen?</h2>
+
+<p>
+Velg navnet ditt og hva du gjør akkurat nå.
+</p>
+
+<span class="select-label">
+HVEM ER DU?
+</span>
+
+<select id="personSelect">
+
+<option value="">Velg navn</option>
+<option>Anne Grethe</option>
+<option>Henning</option>
+<option>Ronny</option>
+<option>Hanne</option>
+<option>Martin</option>
+<option>Eilen H</option>
+<option>Eilen N</option>
+<option>Flemming</option>
+
+</select>
+
+
+<span class="select-label">
+HVA GJØR DU?
+</span>
+
+<select id="statusSelect">
+
+<option value="">Velg status</option>
+
+<option value="🥐 Frokost">
+🥐 Frokost
+</option>
+
+<option value="🚶 Går tur">
+🚶 Går tur
+</option>
+
+<option value="🏋️ Trener">
+🏋️ Trener
+</option>
+
+<option value="⚽ Ser fotball">
+⚽ Ser fotball
+</option>
+
+<option value="🏒 Ser hockey">
+🏒 Ser hockey
+</option>
+
+<option value="🏎️ Ser Formel 1">
+🏎️ Ser Formel 1
+</option>
+
+<option value="🚿 Gjør meg klar">
+🚿 Gjør meg klar
+</option>
+
+<option value="🚗 På vei til festen">
+🚗 På vei til festen
+</option>
+
+<option value="👋 På vei hjem">
+👋 På vei hjem
+</option>
+
+<option value="🏠 Hjemme">
+🏠 Hjemme
+</option>
+
+</select>
+
+
+<button
+id="statusButton"
+class="game-button"
+onclick="saveStatus()">
+
+📍 OPPDATER STATUS
+
+</button>
+
 
 <div
-  id="photoModal"
-  class="modal"
-  onclick="closePhoto()">
+id="statusMessage"
+class="status-message">
+</div>
 
-  <button
-    class="modal-close"
-    onclick="closePhoto()">
 
-    ×
+<h3 style="color:#f4d06f;margin-top:25px">
+🎄 Gjengen akkurat nå
+</h3>
 
-  </button>
+<div id="statusList"></div>
 
-  <img
-    id="modalImage"
-    alt="Festbilde">
+</div>
+
+
+<!-- GJENGEN -->
+
+<div id="friends" class="content-box">
+
+<h2>👥 Gjengen</h2>
+
+<div class="person">
+<div class="avatar">🎄</div>
+<span>Anne Grethe</span>
+</div>
+
+<div class="person">
+<div class="avatar">🎅</div>
+<span>Henning</span>
+</div>
+
+<div class="person">
+<div class="avatar">🍺</div>
+<span>Ronny</span>
+</div>
+
+<div class="person">
+<div class="avatar">🥂</div>
+<span>Hanne</span>
+</div>
+
+<div class="person">
+<div class="avatar">🦌</div>
+<span>Martin</span>
+</div>
+
+<div class="person">
+<div class="avatar">⭐</div>
+<span>Eilen H</span>
+</div>
+
+<div class="person">
+<div class="avatar">☃️</div>
+<span>Eilen N</span>
+</div>
+
+<div class="person">
+<div class="avatar">🎁</div>
+<span>Flemming</span>
+</div>
+
+</div>
+
+
+<!-- POENG -->
+
+<div id="score" class="content-box">
+
+<h2>🏆 Poengtavle</h2>
+
+<div id="scoreList"></div>
+
+</div>
+
+
+<!-- JULEHJUL -->
+
+<div id="wheel" class="content-box">
+
+<h2>🎡 Julehjulet</h2>
+
+<p>
+Hjulet velger tilfeldig person.
+Deretter trekkes sang, tale, vits eller skål.
+</p>
+
+
+<div class="wheel-wrap">
+
+<div class="wheel-pointer"></div>
+
+<canvas
+id="wheelCanvas"
+class="wheel-canvas"
+width="700"
+height="700">
+</canvas>
+
+</div>
+
+
+<div class="wheel-legend">
+Pilen øverst viser hvem som blir valgt
+</div>
+
+
+<button
+id="spinButton"
+class="game-button"
+onclick="spinWheel()">
+
+🎡 SPINN HJULET
+
+</button>
+
+
+<div id="wheelResult">
+Hvem blir den heldige? 😈
+</div>
+
+</div>
+
+
+<!-- KONKURRANSER -->
+
+<div id="competitions" class="content-box">
+
+<h2>🎯 Konkurranser</h2>
+
+<p>🎵 Musikkquiz</p>
+<p>🎄 Julequiz</p>
+<p>👕 Beste juleantrekk</p>
+<p>🥇 Kveldens utfordringer</p>
+
+</div>
+
+
+<!-- TA MED -->
+
+<div id="bring" class="content-box">
+
+<h2>🎒 Husk å ta med</h2>
+
+
+<div class="bring-box">
+
+<div style="font-size:48px">
+🎁
+</div>
+
+<div style="
+color:#f4d06f;
+font-size:20px;
+font-weight:700;
+margin-top:5px">
+
+PAKKE TIL PAKKELEKEN
+
+</div>
+
+
+<p style="line-height:1.7">
+
+Alle må ta med
+<strong>én innpakket pakke</strong>.
+
+<br>
+
+Verdi:
+<strong>10–100 kr</strong>.
+
+</p>
+
+
+<div style="
+font-size:13px;
+color:#cfcfcf;
+line-height:1.6">
+
+Gjerne noe morsomt, nyttig
+eller helt unødvendig 😄
+
+</div>
+
+</div>
+
+
+<h3 style="
+color:#f4d06f;
+margin-top:25px">
+
+Andre ting du kan ta med
+
+</h3>
+
+
+<div class="rule">
+🍺 Øl
+</div>
+
+<div class="rule">
+🍷 Vin
+</div>
+
+<div class="rule">
+🥂 Bobler
+</div>
+
+<div class="rule">
+🥤 Alkoholfritt
+</div>
+
+<div class="rule">
+🔊 Høyttaler
+</div>
+
+<div class="rule">
+🎲 Spill
+</div>
+
+<div class="rule">
+🎅 Godt humør
+</div>
+
+</div>
+
+
+<!-- PAKKELEK -->
+
+<div id="packagegame" class="content-box">
+
+<h2>🎁 Pakkelek</h2>
+
+<p>
+Alle tar med én innpakket gave/pakke.
+Legg alle pakkene samlet før leken starter.
+</p>
+
+
+<div class="dice-area">
+
+<div style="color:#f4d06f">
+DIGITAL TERNING
+</div>
+
+<div id="dice">
+🎲
+</div>
+
+<button
+class="game-button"
+onclick="rollDice()">
+
+🎲 KAST TERNINGEN
+
+</button>
+
+<div id="diceResult">
+Trykk for å kaste
+</div>
+
+</div>
+
+
+<div class="timer-area">
+
+<div style="color:#f4d06f">
+PAKKELEK-TIMER
+</div>
+
+<div id="packageTimer">
+10:00
+</div>
+
+<button
+class="game-button"
+onclick="startPackageTimer()">
+
+⏱️ START 10 MINUTTER
+
+</button>
+
+<button
+class="game-button red-button"
+onclick="resetPackageTimer()">
+
+↻ NULLSTILL
+
+</button>
+
+</div>
+
+
+<h3 style="color:#f4d06f">
+🎄 Terningregler
+</h3>
+
+
+<div class="rule">
+🎲 <strong>1</strong> – Ta en pakke
+</div>
+
+<div class="rule">
+🎲 <strong>2</strong> – Bytt med en valgfri person
+</div>
+
+<div class="rule">
+🎲 <strong>3</strong> – Send en pakke til venstre
+</div>
+
+<div class="rule">
+🎲 <strong>4</strong> – Send en pakke til høyre
+</div>
+
+<div class="rule">
+🎲 <strong>5</strong> – Stjel en valgfri pakke
+</div>
+
+<div class="rule">
+🎲 <strong>6</strong> – Kast én gang til
+</div>
+
+</div>
+
+
+<!-- FESTBILDER -->
+
+<div id="photos" class="content-box">
+
+<h2>📸 Festbilder</h2>
+
+<p>
+Felles bildegalleri for hele gjengen.
+Kun bilder, ingen video.
+</p>
+
+
+<div class="upload-area">
+
+<div
+id="photoCount"
+class="photo-count">
+
+0 / 75 bilder
+
+</div>
+
+
+<div class="photo-help">
+
+Maks 6 MB per bilde.
+
+<br>
+
+Kun bildefiler.
+
+</div>
+
+
+<input
+id="photoInput"
+class="photo-input"
+type="file"
+accept="image/*"
+onchange="uploadPhoto(event)">
+
+
+<button
+id="photoButton"
+class="game-button"
+onclick="document.getElementById('photoInput').click()">
+
+📸 LEGG TIL BILDE
+
+</button>
+
+
+<div
+id="photoMessage"
+class="photo-message">
+</div>
+
+</div>
+
+
+<div
+id="gallery"
+class="gallery">
+
+<div class="empty-gallery">
+Henter bilder...
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+🎄 Julefest 2026 • 28. november 🎄
+</footer>
+
+
+</div>
+
+
+<!-- BILDE MODAL -->
+
+<div
+id="photoModal"
+class="modal"
+onclick="closePhoto()">
+
+<button
+class="modal-close"
+onclick="closePhoto()">
+
+×
+
+</button>
+
+<img
+id="modalImage"
+alt="Festbilde">
 
 </div>
 
@@ -962,1834 +1082,1799 @@
 
 <script>
 
-  /* ========================
-     DELTAKERE
-  ======================== */
+/* DELTAKERE */
 
-  const people = [
-    "Anne Grethe",
-    "Henning",
-    "Ronny",
-    "Hanne",
-    "Martin",
-    "Eilen H",
-    "Eilen N",
-    "Flemming"
-  ];
+const people = [
 
+"Anne Grethe",
+"Henning",
+"Ronny",
+"Hanne",
+"Martin",
+"Eilen H",
+"Eilen N",
+"Flemming"
 
-  /* ========================
-     DATOER
-  ======================== */
+];
 
-  const partyDate =
-    new Date(2026, 10, 28, 18, 30, 0);
 
-  const statusStart =
-    new Date(2026, 10, 28, 0, 0, 0);
+/* DATOER */
 
-  const statusEnd =
-    new Date(2026, 10, 29, 0, 0, 0);
+const partyDate =
+new Date(2026,10,28,18,30,0);
 
-  const photoStart =
-    new Date(2026, 10, 28, 0, 0, 0);
+const statusStart =
+new Date(2026,10,28,0,0,0);
 
-  const photoEnd =
-    new Date(2026, 10, 30, 0, 0, 0);
+const statusEnd =
+new Date(2026,10,29,0,0,0);
 
+const photoStart =
+new Date(2026,10,28,0,0,0);
 
-  const MAX_PHOTOS = 75;
+const photoEnd =
+new Date(2026,10,30,0,0,0);
 
-  const MAX_FILE_SIZE =
-    6 * 1024 * 1024;
 
+const MAX_PHOTOS = 75;
 
-  /* ========================
-     SUPABASE
-  ======================== */
+const MAX_FILE_SIZE =
+6 * 1024 * 1024;
 
-  const SUPABASE_URL =
-    "https://icvpfwwkrvmlfaxzukdl.supabase.co";
 
+/* SUPABASE */
 
-  const SUPABASE_KEY =
-    "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
+const SUPABASE_URL =
+"https://icvpfwwkrvmlfaxzukdl.supabase.co";
 
 
-  let db = null;
+const SUPABASE_KEY =
+"sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
 
-  let statuses = {};
 
-  let photoFiles = [];
+let db = null;
 
+let statuses = {};
 
-  /* ========================
-     MENY
-  ======================== */
+let photoFiles = [];
 
-  function showSection(id) {
 
-    const boxes =
-      document.querySelectorAll(
-        ".content-box"
-      );
+/* MENY */
 
+function showSection(id) {
 
-    boxes.forEach(box => {
+const boxes =
+document.querySelectorAll(
+".content-box"
+);
 
-      if (box.id === id) {
 
-        box.classList.toggle(
-          "active"
-        );
+boxes.forEach(box => {
 
-      } else {
+if (box.id === id) {
 
-        box.classList.remove(
-          "active"
-        );
+box.classList.toggle(
+"active"
+);
 
-      }
+} else {
 
-    });
+box.classList.remove(
+"active"
+);
 
+}
 
-    const selected =
-      document.getElementById(id);
+});
 
 
-    if (
-      selected &&
-      selected.classList.contains(
-        "active"
-      )
-    ) {
+const selected =
+document.getElementById(id);
 
-      setTimeout(() => {
 
-        selected.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest"
-        });
+if (
+selected &&
+selected.classList.contains(
+"active"
+)
+) {
 
-      }, 100);
+setTimeout(() => {
 
-    }
+selected.scrollIntoView({
 
+behavior: "smooth",
 
-    if (
-      id === "photos" &&
-      selected &&
-      selected.classList.contains(
-        "active"
-      )
-    ) {
+block: "nearest"
 
-      loadPhotos();
+});
 
-    }
+},100);
 
-  }
+}
 
 
-  /* ========================
-     NEDTELLING
-  ======================== */
+if (
+id === "photos" &&
+selected &&
+selected.classList.contains(
+"active"
+)
+) {
 
-  function updateCountdown() {
+loadPhotos();
 
-    const difference =
-      partyDate.getTime() -
-      new Date().getTime();
+}
 
+}
 
-    if (difference <= 0) {
 
-      document.getElementById(
-        "days"
-      ).textContent = "🎉";
+/* NEDTELLING */
 
-      document.getElementById(
-        "hours"
-      ).textContent = "🎄";
+function updateCountdown() {
 
-      document.getElementById(
-        "minutes"
-      ).textContent = "🥂";
+const difference =
+partyDate.getTime() -
+new Date().getTime();
 
-      return;
 
-    }
+if (difference <= 0) {
 
+document.getElementById(
+"days"
+).textContent = "🎉";
 
-    document.getElementById(
-      "days"
-    ).textContent =
-      Math.floor(
-        difference / 86400000
-      );
+document.getElementById(
+"hours"
+).textContent = "🎄";
 
+document.getElementById(
+"minutes"
+).textContent = "🥂";
 
-    document.getElementById(
-      "hours"
-    ).textContent =
-      Math.floor(
-        (difference % 86400000)
-        / 3600000
-      );
+return;
 
+}
 
-    document.getElementById(
-      "minutes"
-    ).textContent =
-      Math.floor(
-        (difference % 3600000)
-        / 60000
-      );
 
-  }
+document.getElementById(
+"days"
+).textContent =
 
+Math.floor(
+difference / 86400000
+);
 
-  updateCountdown();
 
-  setInterval(
-    updateCountdown,
-    30000
-  );
+document.getElementById(
+"hours"
+).textContent =
 
+Math.floor(
+(difference % 86400000)
+/
+3600000
+);
 
-  /* ========================
-     POENGTAVLE
-  ======================== */
 
-  const scoreList =
-    document.getElementById(
-      "scoreList"
-    );
+document.getElementById(
+"minutes"
+).textContent =
 
+Math.floor(
+(difference % 3600000)
+/
+60000
+);
 
-  people.forEach(person => {
+}
 
-    const row =
-      document.createElement(
-        "div"
-      );
 
-    row.className =
-      "score-row";
+updateCountdown();
 
+setInterval(
+updateCountdown,
+30000
+);
 
-    const name =
-      document.createElement(
-        "span"
-      );
 
-    name.textContent =
-      person;
+/* POENGTAVLE */
 
+const scoreList =
+document.getElementById(
+"scoreList"
+);
 
-    const score =
-      document.createElement(
-        "span"
-      );
 
-    score.className =
-      "score-value";
+people.forEach(person => {
 
-    score.textContent =
-      "0 poeng";
+const row =
+document.createElement(
+"div"
+);
 
+row.className =
+"score-row";
 
-    row.appendChild(name);
 
-    row.appendChild(score);
+const name =
+document.createElement(
+"span"
+);
 
-    scoreList.appendChild(row);
+name.textContent =
+person;
 
-  });
 
+const score =
+document.createElement(
+"span"
+);
 
-  /* ========================
-     VISUELT JULEHJUL
-  ======================== */
+score.className =
+"score-value";
 
-  const challenges = [
+score.textContent =
+"0 poeng";
 
-    "må velge neste sang! 🎵",
 
-    "må holde en 30 sekunders tale! 🎤",
+row.appendChild(name);
 
-    "må fortelle en vits! 😂",
+row.appendChild(score);
 
-    "må starte en skål! 🥂"
+scoreList.appendChild(row);
 
-  ];
+});
 
 
-  const wheelColors = [
+/* JULEHJULET */
 
-    "#b51f2e",
-    "#1f7a5c",
-    "#d49b24",
-    "#315c8c",
-    "#9d3d7a",
-    "#287a76",
-    "#c65b2d",
-    "#6f4b9b"
+const challenges = [
 
-  ];
+"må velge neste sang! 🎵",
 
+"må holde en 30 sekunders tale! 🎤",
 
-  let wheelRotation = 0;
+"må fortelle en vits! 😂",
 
-  let wheelSpinning = false;
+"må starte en skål! 🥂"
 
+];
 
-  function drawWheel(
-    rotation = wheelRotation
-  ) {
 
-    const canvas =
-      document.getElementById(
-        "wheelCanvas"
-      );
+const wheelColors = [
 
+"#b51f2e",
+"#1f7a5c",
+"#d49b24",
+"#315c8c",
+"#9d3d7a",
+"#287a76",
+"#c65b2d",
+"#6f4b9b"
 
-    if (!canvas) {
-      return;
-    }
+];
 
 
-    const ctx =
-      canvas.getContext(
-        "2d"
-      );
+let wheelRotation = 0;
 
+let wheelSpinning = false;
 
-    const centerX =
-      canvas.width / 2;
 
-    const centerY =
-      canvas.height / 2;
+function drawWheel(
+rotation = wheelRotation
+) {
 
-    const radius =
-      canvas.width * 0.47;
+const canvas =
+document.getElementById(
+"wheelCanvas"
+);
 
-    const segmentAngle =
-      Math.PI * 2 /
-      people.length;
 
+if (!canvas) {
+return;
+}
 
-    ctx.clearRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
 
+const ctx =
+canvas.getContext(
+"2d"
+);
 
-    ctx.save();
 
-    ctx.translate(
-      centerX,
-      centerY
-    );
+const centerX =
+canvas.width / 2;
 
+const centerY =
+canvas.height / 2;
 
-    ctx.rotate(
-      rotation
-    );
+const radius =
+canvas.width * .47;
 
+const segmentAngle =
+Math.PI * 2 /
+people.length;
 
-    people.forEach(
-      (name, index) => {
 
-        const startAngle =
-          -Math.PI / 2 +
-          index *
-          segmentAngle;
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
 
 
-        const endAngle =
-          startAngle +
-          segmentAngle;
+ctx.save();
 
+ctx.translate(
+centerX,
+centerY
+);
 
-        ctx.beginPath();
+ctx.rotate(
+rotation
+);
 
-        ctx.moveTo(
-          0,
-          0
-        );
 
+people.forEach(
+(name,index) => {
 
-        ctx.arc(
-          0,
-          0,
-          radius,
-          startAngle,
-          endAngle
-        );
+const startAngle =
+-Math.PI/2 +
+index * segmentAngle;
 
 
-        ctx.closePath();
+const endAngle =
+startAngle +
+segmentAngle;
 
 
-        ctx.fillStyle =
-          wheelColors[index];
+ctx.beginPath();
 
+ctx.moveTo(
+0,
+0
+);
 
-        ctx.fill();
 
+ctx.arc(
+0,
+0,
+radius,
+startAngle,
+endAngle
+);
 
-        ctx.strokeStyle =
-          "rgba(255,255,255,0.75)";
 
+ctx.closePath();
 
-        ctx.lineWidth =
-          5;
 
+ctx.fillStyle =
+wheelColors[index];
 
-        ctx.stroke();
+ctx.fill();
 
 
-        /* NAVN */
+ctx.strokeStyle =
+"rgba(255,255,255,.75)";
 
-        ctx.save();
+ctx.lineWidth =
+5;
 
+ctx.stroke();
 
-        ctx.rotate(
-          startAngle +
-          segmentAngle / 2
-        );
 
+ctx.save();
 
-        ctx.translate(
-          radius * 0.64,
-          0
-        );
 
+ctx.rotate(
+startAngle +
+segmentAngle/2
+);
 
-        ctx.rotate(
-          Math.PI / 2
-        );
 
+ctx.translate(
+radius * .64,
+0
+);
 
-        ctx.fillStyle =
-          "#ffffff";
 
+ctx.rotate(
+Math.PI/2
+);
 
-        ctx.font =
-          "700 31px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
 
+ctx.fillStyle =
+"#ffffff";
 
-        ctx.textAlign =
-          "center";
 
+ctx.font =
+"700 31px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
 
-        ctx.textBaseline =
-          "middle";
 
+ctx.textAlign =
+"center";
 
-        const parts =
-          name.split(" ");
+ctx.textBaseline =
+"middle";
 
 
-        if (parts.length > 1) {
+const parts =
+name.split(" ");
 
-          ctx.fillText(
-            parts[0],
-            0,
-            -18
-          );
 
+if (
+parts.length > 1
+) {
 
-          ctx.fillText(
-            parts
-              .slice(1)
-              .join(" "),
-            0,
-            18
-          );
+ctx.fillText(
+parts[0],
+0,
+-18
+);
 
-        } else {
 
-          ctx.fillText(
-            name,
-            0,
-            0
-          );
+ctx.fillText(
+parts.slice(1).join(" "),
+0,
+18
+);
 
-        }
+} else {
 
+ctx.fillText(
+name,
+0,
+0
+);
 
-        ctx.restore();
+}
 
-      }
-    );
 
+ctx.restore();
 
-    /* MIDTEN */
+}
+);
 
-    ctx.beginPath();
 
+/* MIDTEN */
 
-    ctx.arc(
-      0,
-      0,
-      radius * 0.16,
-      0,
-      Math.PI * 2
-    );
+ctx.beginPath();
 
+ctx.arc(
+0,
+0,
+radius*.16,
+0,
+Math.PI*2
+);
 
-    ctx.fillStyle =
-      "#f4d06f";
 
+ctx.fillStyle =
+"#f4d06f";
 
-    ctx.fill();
+ctx.fill();
 
 
-    ctx.strokeStyle =
-      "#ffffff";
+ctx.strokeStyle =
+"#ffffff";
 
+ctx.lineWidth =
+7;
 
-    ctx.lineWidth =
-      7;
+ctx.stroke();
 
 
-    ctx.stroke();
+ctx.fillStyle =
+"#12372a";
 
 
-    ctx.fillStyle =
-      "#12372a";
+ctx.font =
+"700 55px Segoe UI Emoji, sans-serif";
 
 
-    ctx.font =
-      "700 55px Segoe UI Emoji, sans-serif";
+ctx.textAlign =
+"center";
 
+ctx.textBaseline =
+"middle";
 
-    ctx.textAlign =
-      "center";
 
+ctx.fillText(
+"🎄",
+0,
+4
+);
 
-    ctx.textBaseline =
-      "middle";
 
+ctx.restore();
 
-    ctx.fillText(
-      "🎄",
-      0,
-      4
-    );
+}
 
 
-    ctx.restore();
+function spinWheel() {
 
-  }
+if (wheelSpinning) {
+return;
+}
 
 
-  function spinWheel() {
+wheelSpinning =
+true;
 
-    if (wheelSpinning) {
-      return;
-    }
 
+const button =
+document.getElementById(
+"spinButton"
+);
 
-    wheelSpinning =
-      true;
 
+const result =
+document.getElementById(
+"wheelResult"
+);
 
-    const button =
-      document.getElementById(
-        "spinButton"
-      );
 
+button.disabled =
+true;
 
-    const result =
-      document.getElementById(
-        "wheelResult"
-      );
 
+result.textContent =
+"🎡 Hjulet spinner...";
 
-    button.disabled =
-      true;
 
+const winnerIndex =
+Math.floor(
+Math.random() *
+people.length
+);
 
-    result.textContent =
-      "🎡 Hjulet spinner...";
 
+const segmentAngle =
+Math.PI * 2 /
+people.length;
 
-    const winnerIndex =
-      Math.floor(
-        Math.random() *
-        people.length
-      );
 
+const currentNormalized =
+(
+(
+wheelRotation %
+(Math.PI*2)
+)
++
+Math.PI*2
+)
+%
+(Math.PI*2);
 
-    const segmentAngle =
-      Math.PI * 2 /
-      people.length;
 
+const targetNormalized =
+(
+-(winnerIndex+.5) *
+segmentAngle
++
+Math.PI*2
+)
+%
+(Math.PI*2);
 
-    const currentNormalized =
-      (
-        (
-          wheelRotation %
-          (Math.PI * 2)
-        ) +
-        Math.PI * 2
-      ) %
-      (Math.PI * 2);
 
+const delta =
+(
+targetNormalized -
+currentNormalized +
+Math.PI*2
+)
+%
+(Math.PI*2);
 
-    /*
-      Midten av vinnerens felt skal
-      stoppe under pilen øverst.
-    */
 
-    const targetNormalized =
-      (
-        -(winnerIndex + 0.5) *
-        segmentAngle +
-        Math.PI * 2
-      ) %
-      (Math.PI * 2);
+const turns =
+5 +
+Math.floor(
+Math.random()*3
+);
 
 
-    const delta =
-      (
-        targetNormalized -
-        currentNormalized +
-        Math.PI * 2
-      ) %
-      (Math.PI * 2);
+const startRotation =
+wheelRotation;
 
 
-    const turns =
-      5 +
-      Math.floor(
-        Math.random() * 3
-      );
+const endRotation =
+wheelRotation +
+turns * Math.PI*2 +
+delta;
 
 
-    const startRotation =
-      wheelRotation;
+const startTime =
+performance.now();
 
 
-    const endRotation =
-      wheelRotation +
-      turns *
-      Math.PI * 2 +
-      delta;
+const duration =
+4200;
 
 
-    const startTime =
-      performance.now();
+function animate(now) {
 
+const progress =
+Math.min(
+(now-startTime)
+/ duration,
+1
+);
 
-    const duration =
-      4200;
 
+const eased =
+1 -
+Math.pow(
+1-progress,
+4
+);
 
-    function animate(now) {
 
-      const progress =
-        Math.min(
-          (now - startTime)
-          / duration,
-          1
-        );
+wheelRotation =
+startRotation +
+(
+endRotation -
+startRotation
+)
+*
+eased;
 
 
-      /*
-        Rolig nedbremsing mot slutten.
-      */
+drawWheel(
+wheelRotation
+);
 
-      const eased =
-        1 -
-        Math.pow(
-          1 - progress,
-          4
-        );
 
+if (
+progress < 1
+) {
 
-      wheelRotation =
-        startRotation +
-        (
-          endRotation -
-          startRotation
-        ) *
-        eased;
+requestAnimationFrame(
+animate
+);
 
+} else {
 
-      drawWheel(
-        wheelRotation
-      );
+wheelRotation =
+targetNormalized;
 
 
-      if (progress < 1) {
+drawWheel(
+wheelRotation
+);
 
-        requestAnimationFrame(
-          animate
-        );
 
-      } else {
+const challenge =
+challenges[
+Math.floor(
+Math.random() *
+challenges.length
+)
+];
 
-        wheelRotation =
-          targetNormalized;
 
+result.textContent =
+"🎄 " +
+people[winnerIndex] +
+" " +
+challenge;
 
-        drawWheel(
-          wheelRotation
-        );
 
+button.disabled =
+false;
 
-        const challenge =
-          challenges[
-            Math.floor(
-              Math.random() *
-              challenges.length
-            )
-          ];
 
+wheelSpinning =
+false;
 
-        result.textContent =
-          "🎄 " +
-          people[winnerIndex] +
-          " " +
-          challenge;
+}
 
+}
 
-        button.disabled =
-          false;
 
+requestAnimationFrame(
+animate
+);
 
-        wheelSpinning =
-          false;
+}
 
-      }
 
-    }
+drawWheel();
 
 
-    requestAnimationFrame(
-      animate
-    );
+/* TERNING */
 
-  }
+const diceFaces = {
 
+1:"⚀",
+2:"⚁",
+3:"⚂",
+4:"⚃",
+5:"⚄",
+6:"⚅"
 
-  drawWheel();
+};
 
 
-  /* ========================
-     DIGITAL TERNING
-  ======================== */
+const diceRules = {
 
-  const diceFaces = {
+1:"🎁 Ta en pakke!",
 
-    1: "⚀",
-    2: "⚁",
-    3: "⚂",
-    4: "⚃",
-    5: "⚄",
-    6: "⚅"
+2:"🔄 Bytt med en valgfri person!",
 
-  };
+3:"⬅️ Send en pakke til venstre!",
 
+4:"➡️ Send en pakke til høyre!",
 
-  const diceRules = {
+5:"😈 Stjel en valgfri pakke!",
 
-    1: "🎁 Ta en pakke!",
+6:"🎲 Kast terningen én gang til!"
 
-    2: "🔄 Bytt med en valgfri person!",
+};
 
-    3: "⬅️ Send en pakke til venstre!",
 
-    4: "➡️ Send en pakke til høyre!",
+function rollDice() {
 
-    5: "😈 Stjel en valgfri pakke!",
+const dice =
+document.getElementById(
+"dice"
+);
 
-    6: "🎲 Kast terningen én gang til!"
+const result =
+document.getElementById(
+"diceResult"
+);
 
-  };
 
+result.textContent =
+"🎲 Terningen ruller...";
 
-  function rollDice() {
 
-    const dice =
-      document.getElementById(
-        "dice"
-      );
+let count = 0;
 
 
-    const result =
-      document.getElementById(
-        "diceResult"
-      );
+const animation =
+setInterval(() => {
 
+const temporary =
+Math.floor(
+Math.random()*6
+)+1;
 
-    result.textContent =
-      "🎲 Terningen ruller...";
 
+dice.textContent =
+diceFaces[temporary];
 
-    let count = 0;
 
+count++;
 
-    const animation =
-      setInterval(() => {
 
-        const temporary =
-          Math.floor(
-            Math.random() * 6
-          ) + 1;
+if (
+count >= 8
+) {
 
+clearInterval(
+animation
+);
 
-        dice.textContent =
-          diceFaces[temporary];
 
+const finalRoll =
+Math.floor(
+Math.random()*6
+)+1;
 
-        count++;
 
+dice.textContent =
+diceFaces[finalRoll];
 
-        if (count >= 8) {
 
-          clearInterval(
-            animation
-          );
+result.textContent =
+finalRoll +
+" – " +
+diceRules[finalRoll];
 
+}
 
-          const finalRoll =
-            Math.floor(
-              Math.random() * 6
-            ) + 1;
+},90);
 
+}
 
-          dice.textContent =
-            diceFaces[finalRoll];
 
+/* TIMER */
 
-          result.textContent =
-            finalRoll +
-            " – " +
-            diceRules[finalRoll];
+let packageTime =
+600;
 
-        }
+let packageInterval =
+null;
 
-      }, 90);
 
-  }
+function updatePackageTimer() {
 
+const min =
+Math.floor(
+packageTime / 60
+);
 
-  /* ========================
-     PAKKELEK TIMER
-  ======================== */
 
-  let packageTime =
-    600;
+const sec =
+packageTime % 60;
 
 
-  let packageInterval =
-    null;
+document.getElementById(
+"packageTimer"
+).textContent =
 
+String(min)
+.padStart(
+2,
+"0"
+)
++
+":"
++
+String(sec)
+.padStart(
+2,
+"0"
+);
 
-  function updatePackageTimer() {
+}
 
-    const min =
-      Math.floor(
-        packageTime / 60
-      );
 
+function startPackageTimer() {
 
-    const sec =
-      packageTime % 60;
+if (packageInterval) {
+return;
+}
 
 
-    document.getElementById(
-      "packageTimer"
-    ).textContent =
+packageInterval =
+setInterval(() => {
 
-      String(min)
-        .padStart(
-          2,
-          "0"
-        ) +
+if (
+packageTime > 0
+) {
 
-      ":" +
+packageTime--;
 
-      String(sec)
-        .padStart(
-          2,
-          "0"
-        );
+updatePackageTimer();
 
-  }
+} else {
 
+clearInterval(
+packageInterval
+);
 
-  function startPackageTimer() {
+packageInterval =
+null;
 
-    if (packageInterval) {
-      return;
-    }
 
+document.getElementById(
+"packageTimer"
+).textContent =
+"🎁 FERDIG!";
 
-    packageInterval =
-      setInterval(() => {
+}
 
-        if (
-          packageTime > 0
-        ) {
+},1000);
 
-          packageTime--;
+}
 
-          updatePackageTimer();
 
-        } else {
+function resetPackageTimer() {
 
-          clearInterval(
-            packageInterval
-          );
+clearInterval(
+packageInterval
+);
 
+packageInterval =
+null;
 
-          packageInterval =
-            null;
+packageTime =
+600;
 
+updatePackageTimer();
 
-          document.getElementById(
-            "packageTimer"
-          ).textContent =
-            "🎁 FERDIG!";
+}
 
-        }
 
-      }, 1000);
+updatePackageTimer();
 
-  }
 
+/* STATUS */
 
-  function resetPackageTimer() {
+function renderStatuses() {
 
-    clearInterval(
-      packageInterval
-    );
+const list =
+document.getElementById(
+"statusList"
+);
 
 
-    packageInterval =
-      null;
+list.innerHTML =
+"";
 
 
-    packageTime =
-      600;
+people.forEach(
+person => {
 
+const row =
+document.createElement(
+"div"
+);
 
-    updatePackageTimer();
+row.className =
+"status-row";
 
-  }
 
+const name =
+document.createElement(
+"span"
+);
 
-  updatePackageTimer();
+name.textContent =
+person;
 
 
-  /* ========================
-     STATUS
-  ======================== */
+const status =
+document.createElement(
+"span"
+);
 
-  function renderStatuses() {
+status.className =
+"status-value";
 
-    const list =
-      document.getElementById(
-        "statusList"
-      );
 
+status.textContent =
+statuses[person] ||
+"Ikke oppdatert";
 
-    list.innerHTML =
-      "";
 
+row.appendChild(
+name
+);
 
-    people.forEach(
-      person => {
+row.appendChild(
+status
+);
 
-        const row =
-          document.createElement(
-            "div"
-          );
+list.appendChild(
+row
+);
 
+}
+);
 
-        row.className =
-          "status-row";
+}
 
 
-        const name =
-          document.createElement(
-            "span"
-          );
+function updateStatusAvailability() {
 
+const now =
+new Date();
 
-        name.textContent =
-          person;
 
+const open =
+now >= statusStart &&
+now < statusEnd;
 
-        const status =
-          document.createElement(
-            "span"
-          );
 
+const personSelect =
+document.getElementById(
+"personSelect"
+);
 
-        status.className =
-          "status-value";
 
+const statusSelect =
+document.getElementById(
+"statusSelect"
+);
 
-        status.textContent =
-          statuses[person] ||
-          "Ikke oppdatert";
 
+const button =
+document.getElementById(
+"statusButton"
+);
 
-        row.appendChild(
-          name
-        );
 
+const message =
+document.getElementById(
+"statusMessage"
+);
 
-        row.appendChild(
-          status
-        );
 
+personSelect.disabled =
+!open;
 
-        list.appendChild(
-          row
-        );
+statusSelect.disabled =
+!open;
 
-      }
-    );
+button.disabled =
+!open;
 
-  }
 
+if (
+now < statusStart
+) {
 
-  function updateStatusAvailability() {
+message.textContent =
+"🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
 
-    const now =
-      new Date();
+}
 
+else if (
+now >= statusEnd
+) {
 
-    const open =
-      now >= statusStart &&
-      now < statusEnd;
+message.textContent =
+"🎄 Statusoppdateringen er avsluttet. Siste status fra lørdag vises under.";
 
+}
 
-    const personSelect =
-      document.getElementById(
-        "personSelect"
-      );
+else {
 
+message.textContent =
+"🎄 Status er åpen! Hva gjør du akkurat nå?";
 
-    const statusSelect =
-      document.getElementById(
-        "statusSelect"
-      );
+}
 
+}
 
-    const button =
-      document.getElementById(
-        "statusButton"
-      );
 
+async function loadStatuses() {
 
-    const message =
-      document.getElementById(
-        "statusMessage"
-      );
+if (!db) {
+return;
+}
 
 
-    personSelect.disabled =
-      !open;
+const response =
+await db
+.from(
+"party_status"
+)
+.select(
+"name,status"
+);
 
 
-    statusSelect.disabled =
-      !open;
+if (
+response.error
+) {
 
+console.error(
+response.error
+);
 
-    button.disabled =
-      !open;
+return;
 
+}
 
-    if (now < statusStart) {
 
-      message.textContent =
-        "🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
+statuses = {};
 
-    }
 
-    else if (
-      now >= statusEnd
-    ) {
+(response.data || [])
+.forEach(
+row => {
 
-      message.textContent =
-        "🎄 Statusoppdateringen er avsluttet. Siste status fra lørdag vises under.";
+statuses[row.name] =
+row.status;
 
-    }
+}
+);
 
-    else {
 
-      message.textContent =
-        "🎄 Status er åpen! Hva gjør du akkurat nå?";
+renderStatuses();
 
-    }
+}
 
-  }
 
+async function saveStatus() {
 
-  async function loadStatuses() {
+const person =
+document.getElementById(
+"personSelect"
+).value;
 
-    if (!db) {
-      return;
-    }
 
+const status =
+document.getElementById(
+"statusSelect"
+).value;
 
-    const response =
-      await db
-        .from(
-          "party_status"
-        )
-        .select(
-          "name,status"
-        );
 
+const message =
+document.getElementById(
+"statusMessage"
+);
 
-    if (response.error) {
 
-      console.error(
-        response.error
-      );
+const now =
+new Date();
 
-      return;
 
-    }
+if (
+now < statusStart ||
+now >= statusEnd
+) {
 
+message.textContent =
+"🔒 Status kan bare oppdateres lørdag 28. november 🎄";
 
-    statuses =
-      {};
+return;
 
+}
 
-    (response.data || [])
-      .forEach(row => {
 
-        statuses[row.name] =
-          row.status;
+if (
+!person ||
+!status
+) {
 
-      });
+message.textContent =
+"Velg både navn og status 😊";
 
+return;
 
-    renderStatuses();
+}
 
-  }
 
+if (!db) {
 
-  async function saveStatus() {
+message.textContent =
+"⚠️ Felles status er ikke koblet til.";
 
-    const person =
-      document.getElementById(
-        "personSelect"
-      ).value;
+return;
 
+}
 
-    const status =
-      document.getElementById(
-        "statusSelect"
-      ).value;
 
+message.textContent =
+"Lagrer...";
 
-    const message =
-      document.getElementById(
-        "statusMessage"
-      );
 
+const response =
+await db
+.from(
+"party_status"
+)
+.upsert(
 
-    const now =
-      new Date();
+{
 
+name:person,
 
-    if (
-      now < statusStart ||
-      now >= statusEnd
-    ) {
+status:status,
 
-      message.textContent =
-        "🔒 Status kan bare oppdateres lørdag 28. november 🎄";
+updated_at:
+new Date()
+.toISOString()
 
-      return;
+},
 
-    }
+{
 
+onConflict:
+"name"
 
-    if (!person || !status) {
+}
 
-      message.textContent =
-        "Velg både navn og status 😊";
+);
 
-      return;
 
-    }
+if (
+response.error
+) {
 
+console.error(
+response.error
+);
 
-    if (!db) {
 
-      message.textContent =
-        "⚠️ Felles status er ikke koblet til.";
+message.textContent =
+"❌ Kunne ikke lagre status.";
 
-      return;
+return;
 
-    }
+}
 
 
-    message.textContent =
-      "Lagrer...";
+message.textContent =
+"✅ " +
+person +
+": " +
+status;
 
 
-    const response =
-      await db
-        .from(
-          "party_status"
-        )
-        .upsert(
+await loadStatuses();
 
-          {
+}
 
-            name: person,
 
-            status: status,
+/* BILDER */
 
-            updated_at:
-              new Date()
-              .toISOString()
+function updatePhotoAvailability() {
 
-          },
+const now =
+new Date();
 
-          {
 
-            onConflict:
-              "name"
+const open =
+now >= photoStart &&
+now < photoEnd;
 
-          }
 
-        );
+const button =
+document.getElementById(
+"photoButton"
+);
 
 
-    if (response.error) {
+const message =
+document.getElementById(
+"photoMessage"
+);
 
-      console.error(
-        response.error
-      );
 
+button.disabled =
+!open;
 
-      message.textContent =
-        "❌ Kunne ikke lagre status.";
 
-      return;
+if (
+now < photoStart
+) {
 
-    }
+message.textContent =
+"🔒 Bildeopplasting åpner lørdag 28. november kl. 00:00 📸";
 
+}
 
-    message.textContent =
-      "✅ " +
-      person +
-      ": " +
-      status;
+else if (
+now >= photoEnd
+) {
 
+message.textContent =
+"📸 Albumet er åpent for visning, men nye opplastinger er avsluttet.";
 
-    await loadStatuses();
+}
 
-  }
+else {
 
+message.textContent =
+"📸 Bildeopplasting er åpen lørdag og søndag.";
 
-  /* ========================
-     FESTBILDER
-  ======================== */
+}
 
-  function updatePhotoAvailability() {
+}
 
-    const now =
-      new Date();
 
+function safeFileName(
+name
+) {
 
-    const open =
-      now >= photoStart &&
-      now < photoEnd;
+let ext =
+name
+.split(".")
+.pop()
+.toLowerCase()
+.replace(
+/[^a-z0-9]/g,
+""
+);
 
 
-    const button =
-      document.getElementById(
-        "photoButton"
-      );
+if (!ext) {
+ext = "jpg";
+}
 
 
-    const message =
-      document.getElementById(
-        "photoMessage"
-      );
+return (
 
+Date.now()
++
+"-"
++
+Math.random()
+.toString(36)
+.slice(2,9)
++
+"."
++
+ext
 
-    button.disabled =
-      !open;
+);
 
+}
 
-    if (
-      now < photoStart
-    ) {
 
-      message.textContent =
-        "🔒 Bildeopplasting åpner lørdag 28. november kl. 00:00 📸";
+async function loadPhotos() {
 
-    }
+const gallery =
+document.getElementById(
+"gallery"
+);
 
-    else if (
-      now >= photoEnd
-    ) {
 
-      message.textContent =
-        "📸 Albumet er åpent for visning, men nye opplastinger er avsluttet.";
+if (!db) {
 
-    }
+gallery.innerHTML =
+'<div class="empty-gallery">Bildekoblingen er ikke tilgjengelig.</div>';
 
-    else {
+return;
 
-      message.textContent =
-        "📸 Bildeopplasting er åpen lørdag og søndag.";
+}
 
-    }
 
-  }
+gallery.innerHTML =
+'<div class="empty-gallery">Henter bilder...</div>';
 
 
-  function safeFileName(
-    originalName
-  ) {
+const response =
+await db
+.storage
+.from(
+"festbilder"
+)
+.list(
+"",
+{
 
-    let extension =
-      originalName
-      .split(".")
-      .pop()
-      .toLowerCase();
+limit:100,
 
+sortBy:{
 
-    extension =
-      extension.replace(
-        /[^a-z0-9]/g,
-        ""
-      );
+column:
+"created_at",
 
+order:
+"desc"
 
-    if (!extension) {
+}
 
-      extension =
-        "jpg";
+}
+);
 
-    }
 
+if (
+response.error
+) {
 
-    return (
+console.error(
+response.error
+);
 
-      Date.now() +
 
-      "-" +
+gallery.innerHTML =
+'<div class="empty-gallery">Kunne ikke hente bildene.</div>';
 
-      Math.random()
-      .toString(36)
-      .slice(2, 9) +
+return;
 
-      "." +
+}
 
-      extension
 
-    );
+photoFiles =
+(response.data || [])
+.filter(
+file =>
+file.name &&
+!file.name.startsWith(".")
+);
 
-  }
 
+document.getElementById(
+"photoCount"
+).textContent =
 
-  async function loadPhotos() {
+photoFiles.length
++
+" / "
++
+MAX_PHOTOS
++
+" bilder";
 
-    const gallery =
-      document.getElementById(
-        "gallery"
-      );
 
+renderGallery();
 
-    if (!db) {
+}
 
-      gallery.innerHTML =
-        '<div class="empty-gallery">Bildekoblingen er ikke tilgjengelig.</div>';
 
-      return;
+function renderGallery() {
 
-    }
+const gallery =
+document.getElementById(
+"gallery"
+);
 
 
-    gallery.innerHTML =
-      '<div class="empty-gallery">Henter bilder...</div>';
+gallery.innerHTML =
+"";
 
 
-    const response =
-      await db
-        .storage
-        .from(
-          "festbilder"
-        )
-        .list(
-          "",
-          {
+if (
+!photoFiles.length
+) {
 
-            limit: 100,
+gallery.innerHTML =
+'<div class="empty-gallery">Ingen bilder ennå.</div>';
 
-            sortBy: {
-              column: "created_at",
-              order: "desc"
-            }
+return;
 
-          }
-        );
+}
 
 
-    if (response.error) {
+photoFiles.forEach(
+file => {
 
-      console.error(
-        response.error
-      );
+const result =
+db
+.storage
+.from(
+"festbilder"
+)
+.getPublicUrl(
+file.name
+);
 
 
-      gallery.innerHTML =
-        '<div class="empty-gallery">Kunne ikke hente bildene.</div>';
+const imageUrl =
+result.data.publicUrl;
 
-      return;
 
-    }
+const item =
+document.createElement(
+"div"
+);
 
+item.className =
+"gallery-item";
 
-    photoFiles =
-      (response.data || [])
-      .filter(
-        file =>
-          file.name &&
-          !file.name
-          .startsWith(".")
-      );
 
+const image =
+document.createElement(
+"img"
+);
 
-    document.getElementById(
-      "photoCount"
-    ).textContent =
 
-      photoFiles.length +
+image.src =
+imageUrl;
 
-      " / " +
+image.alt =
+"Festbilde";
 
-      MAX_PHOTOS +
+image.loading =
+"lazy";
 
-      " bilder";
 
+item.onclick =
+function() {
 
-    renderGallery();
+openPhoto(
+imageUrl
+);
 
-  }
+};
 
 
-  function renderGallery() {
+item.appendChild(
+image
+);
 
-    const gallery =
-      document.getElementById(
-        "gallery"
-      );
+gallery.appendChild(
+item
+);
 
+}
+);
 
-    gallery.innerHTML =
-      "";
+}
 
 
-    if (
-      !photoFiles.length
-    ) {
+async function uploadPhoto(
+event
+) {
 
-      gallery.innerHTML =
-        '<div class="empty-gallery">Ingen bilder ennå.</div>';
+const file =
+event.target.files &&
+event.target.files[0];
 
-      return;
 
-    }
+event.target.value =
+"";
 
 
-    photoFiles.forEach(
-      file => {
+const message =
+document.getElementById(
+"photoMessage"
+);
 
-        const result =
-          db
-          .storage
-          .from(
-            "festbilder"
-          )
-          .getPublicUrl(
-            file.name
-          );
 
+const now =
+new Date();
 
-        const imageUrl =
-          result.data.publicUrl;
 
+if (
+now < photoStart ||
+now >= photoEnd
+) {
 
-        const item =
-          document.createElement(
-            "div"
-          );
+message.textContent =
+"🔒 Bilder kan bare lastes opp lørdag og søndag.";
 
+return;
 
-        item.className =
-          "gallery-item";
+}
 
 
-        const image =
-          document.createElement(
-            "img"
-          );
+if (!file) {
+return;
+}
 
 
-        image.src =
-          imageUrl;
+if (
+!file.type.startsWith(
+"image/"
+)
+) {
 
+message.textContent =
+"❌ Kun bilder er tillatt. Video kan ikke lastes opp.";
 
-        image.alt =
-          "Festbilde";
+return;
 
+}
 
-        image.loading =
-          "lazy";
 
+if (
+file.size >
+MAX_FILE_SIZE
+) {
 
-        item.onclick =
-          function() {
+message.textContent =
+"❌ Bildet er større enn 6 MB.";
 
-            openPhoto(
-              imageUrl
-            );
+return;
 
-          };
+}
 
 
-        item.appendChild(
-          image
-        );
+if (!db) {
 
+message.textContent =
+"❌ Bildekoblingen er ikke klar.";
 
-        gallery.appendChild(
-          item
-        );
+return;
 
-      }
-    );
+}
 
-  }
 
+await loadPhotos();
 
-  async function uploadPhoto(
-    event
-  ) {
 
-    const file =
-      event.target.files &&
-      event.target.files[0];
+if (
+photoFiles.length >=
+MAX_PHOTOS
+) {
 
+message.textContent =
+"❌ Albumet har nådd grensen på 75 bilder.";
 
-    event.target.value =
-      "";
+return;
 
+}
 
-    const message =
-      document.getElementById(
-        "photoMessage"
-      );
 
+const button =
+document.getElementById(
+"photoButton"
+);
 
-    const now =
-      new Date();
 
+button.disabled =
+true;
 
-    if (
-      now < photoStart ||
-      now >= photoEnd
-    ) {
 
-      message.textContent =
-        "🔒 Bilder kan bare lastes opp lørdag og søndag.";
+message.textContent =
+"Laster opp bilde...";
 
-      return;
 
-    }
+const response =
+await db
+.storage
+.from(
+"festbilder"
+)
+.upload(
 
+safeFileName(
+file.name
+),
 
-    if (!file) {
-      return;
-    }
+file,
 
+{
 
-    if (
-      !file.type.startsWith(
-        "image/"
-      )
-    ) {
+cacheControl:
+"3600",
 
-      message.textContent =
-        "❌ Kun bilder er tillatt. Video kan ikke lastes opp.";
+upsert:
+false,
 
-      return;
+contentType:
+file.type
 
-    }
+}
 
+);
 
-    if (
-      file.size >
-      MAX_FILE_SIZE
-    ) {
 
-      message.textContent =
-        "❌ Bildet er større enn 6 MB.";
+if (
+response.error
+) {
 
-      return;
+console.error(
+response.error
+);
 
-    }
 
+message.textContent =
+"❌ Kunne ikke laste opp bildet.";
 
-    if (!db) {
 
-      message.textContent =
-        "❌ Bildekoblingen er ikke klar.";
+button.disabled =
+false;
 
-      return;
 
-    }
+return;
 
+}
 
-    await loadPhotos();
 
+message.textContent =
+"✅ Bildet er lagt til!";
 
-    if (
-      photoFiles.length >=
-      MAX_PHOTOS
-    ) {
 
-      message.textContent =
-        "❌ Albumet har nådd grensen på 75 bilder.";
+await loadPhotos();
 
-      return;
 
-    }
+updatePhotoAvailability();
 
+}
 
-    const button =
-      document.getElementById(
-        "photoButton"
-      );
 
+function openPhoto(
+url
+) {
 
-    button.disabled =
-      true;
+document.getElementById(
+"modalImage"
+).src =
+url;
 
 
-    message.textContent =
-      "Laster opp bilde...";
+document.getElementById(
+"photoModal"
+).classList.add(
+"open"
+);
 
+}
 
-    const response =
-      await db
-        .storage
-        .from(
-          "festbilder"
-        )
-        .upload(
 
-          safeFileName(
-            file.name
-          ),
+function closePhoto() {
 
-          file,
+document.getElementById(
+"photoModal"
+).classList.remove(
+"open"
+);
 
-          {
 
-            cacheControl:
-              "3600",
+document.getElementById(
+"modalImage"
+).src =
+"";
 
-            upsert:
-              false,
+}
 
-            contentType:
-              file.type
 
-          }
+/* START SUPABASE */
 
-        );
+function initSupabase() {
 
+renderStatuses();
 
-    if (
-      response.error
-    ) {
+updateStatusAvailability();
 
-      console.error(
-        response.error
-      );
+updatePhotoAvailability();
 
 
-      message.textContent =
-        "❌ Kunne ikke laste opp bildet.";
+if (
+!window.supabase
+) {
 
+document.getElementById(
+"statusMessage"
+).textContent =
+"⚠️ Supabase kunne ikke lastes.";
 
-      button.disabled =
-        false;
+return;
 
+}
 
-      return;
 
-    }
+db =
+window.supabase
+.createClient(
 
+SUPABASE_URL,
 
-    message.textContent =
-      "✅ Bildet er lagt til!";
+SUPABASE_KEY
 
+);
 
-    await loadPhotos();
 
+loadStatuses();
 
-    updatePhotoAvailability();
+loadPhotos();
 
-  }
 
+db
+.channel(
+"julefest-status"
+)
+.on(
 
-  function openPhoto(
-    url
-  ) {
+"postgres_changes",
 
-    document.getElementById(
-      "modalImage"
-    ).src =
-      url;
+{
 
+event:"*",
 
-    document.getElementById(
-      "photoModal"
-    ).classList.add(
-      "open"
-    );
+schema:"public",
 
-  }
+table:"party_status"
 
+},
 
-  function closePhoto() {
+function() {
 
-    document.getElementById(
-      "photoModal"
-    ).classList.remove(
-      "open"
-    );
+loadStatuses();
 
+}
 
-    document.getElementById(
-      "modalImage"
-    ).src =
-      "";
+)
+.subscribe();
 
-  }
 
+setInterval(
+loadStatuses,
+15000
+);
 
-  /* ========================
-     START SUPABASE
-  ======================== */
 
-  function initSupabase() {
+setInterval(
 
-    renderStatuses();
+function() {
 
-    updateStatusAvailability();
+updateStatusAvailability();
 
-    updatePhotoAvailability();
+updatePhotoAvailability();
 
+},
 
-    if (
-      !window.supabase
-    ) {
+60000
 
-      document.getElementById(
-        "statusMessage"
-      ).textContent =
-        "⚠️ Supabase kunne ikke lastes.";
+);
 
-      return;
+}
 
-    }
 
-
-    db =
-      window.supabase
-      .createClient(
-
-        SUPABASE_URL,
-
-        SUPABASE_KEY
-
-      );
-
-
-    loadStatuses();
-
-    loadPhotos();
-
-
-    db
-      .channel(
-        "julefest-status"
-      )
-      .on(
-
-        "postgres_changes",
-
-        {
-
-          event: "*",
-
-          schema: "public",
-
-          table:
-            "party_status"
-
-        },
-
-        function() {
-
-          loadStatuses();
-
-        }
-
-      )
-      .subscribe();
-
-
-    setInterval(
-      loadStatuses,
-      15000
-    );
-
-
-    setInterval(
-
-      function() {
-
-        updateStatusAvailability();
-
-        updatePhotoAvailability();
-
-      },
-
-      60000
-
-    );
-
-  }
-
-
-  initSupabase();
+initSupabase();
 
 </script>
 
