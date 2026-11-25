@@ -4,583 +4,1192 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12372a">
-<title>Julefest at the Breviks 🎄</title>
+
+<title>Julefest at the Breviks</title>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:#fff;background:linear-gradient(180deg,#082a20,#12372a);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.app{max-width:500px;margin:auto;padding:20px 18px 40px}
-.hero{text-align:center;padding:25px 10px}
-h1{margin:8px 0;color:#f4c85a;font-size:31px}
-h2,h3{color:#f4d06f}
-.date{margin-top:10px;font-size:17px}
-.jager{display:block;width:90px;height:auto;margin:15px auto 8px}
-.lights{margin:10px 0;font-size:21px;letter-spacing:3px}
-.countdown-title{margin-top:28px;color:#f4d06f;font-size:12px;letter-spacing:2px;text-transform:uppercase}
-.countdown{display:flex;justify-content:center;gap:8px;margin-top:12px}
-.countdown-box{width:72px;padding:12px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(244,208,111,.4);border-radius:14px}
-.number{font-size:25px;font-weight:800}
-.small-label{color:#ddd;font-size:10px}
-.section-title{margin:22px 4px 10px;color:#f4d06f;font-size:13px;letter-spacing:1px;text-transform:uppercase}
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{padding:20px 10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.1);border-radius:18px;text-align:center;cursor:pointer}
-.card:active{transform:scale(.97)}
-.wide{grid-column:span 2}
-.status-card{background:linear-gradient(135deg,#155d46,#1f7a5c)}
-.wheel-card{background:linear-gradient(135deg,#a91825,#c92d3b)}
-.ten-card{background:linear-gradient(135deg,#a96512,#d68b18)}
-.icon{margin-bottom:7px;font-size:31px}
-.card-title{font-weight:700}
-.card-text{margin-top:4px;color:#ddd;font-size:11px}
-.box{display:none;margin-top:15px;padding:18px;background:rgba(0,0,0,.25);border-radius:18px}
-.box.active{display:block}
-.box h2{margin-top:0}
-select{width:100%;margin:6px 0 10px;padding:14px;color:#12372a;background:#fff;border:0;border-radius:12px;font-size:16px}
-.field-label{display:block;margin-top:12px;color:#f4d06f;font-size:12px;font-weight:700}
-.btn{width:100%;margin-top:10px;padding:15px;color:#12372a;background:#f4d06f;border:0;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.red{color:#fff;background:#bd2432}
-.message{min-height:24px;margin-top:12px;color:#f4d06f;font-weight:700;text-align:center}
-.row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.09)}
-.person{display:flex;align-items:center;gap:10px}
-.avatar{display:flex;width:34px;height:34px;align-items:center;justify-content:center;background:#9d1b24;border-radius:50%}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: #fff;
+  background: linear-gradient(180deg, #082a20, #12372a);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.app {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px 18px 40px;
+}
+
+.hero {
+  padding: 25px 10px;
+  text-align: center;
+}
+
+h1 {
+  margin: 8px 0;
+  color: #f4c85a;
+  font-size: 31px;
+}
+
+h2,
+h3 {
+  color: #f4d06f;
+}
+
+.date {
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.jager {
+  display: block;
+  width: 90px;
+  height: auto;
+  margin: 15px auto 8px;
+}
+
+.lights {
+  margin: 10px 0;
+  font-size: 21px;
+  letter-spacing: 3px;
+}
+
+.countdown-title {
+  margin-top: 28px;
+  color: #f4d06f;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.countdown-box {
+  width: 72px;
+  padding: 12px 5px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(244,208,111,0.4);
+  border-radius: 14px;
+}
+
+.number {
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.small-label {
+  color: #ddd;
+  font-size: 10px;
+}
+
+.section-title {
+  margin: 22px 4px 10px;
+  color: #f4d06f;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.card {
+  padding: 20px 10px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card:active {
+  transform: scale(0.97);
+}
+
+.wide {
+  grid-column: span 2;
+}
+
+.status-card {
+  background: linear-gradient(135deg, #155d46, #1f7a5c);
+}
+
+.wheel-card {
+  background: linear-gradient(135deg, #a91825, #c92d3b);
+}
+
+.ten-card {
+  background: linear-gradient(135deg, #a96512, #d68b18);
+}
+
+.icon {
+  margin-bottom: 7px;
+  font-size: 31px;
+}
+
+.card-title {
+  font-weight: 700;
+}
+
+.card-text {
+  margin-top: 4px;
+  color: #ddd;
+  font-size: 11px;
+}
+
+.box {
+  display: none;
+  margin-top: 15px;
+  padding: 18px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 18px;
+}
+
+.box.active {
+  display: block;
+}
+
+.box h2 {
+  margin-top: 0;
+}
+
+select {
+  width: 100%;
+  margin: 6px 0 10px;
+  padding: 14px;
+  color: #12372a;
+  background: #fff;
+  border: 0;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.field-label {
+  display: block;
+  margin-top: 12px;
+  color: #f4d06f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px;
+  color: #12372a;
+  background: #f4d06f;
+  border: 0;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.red {
+  color: #fff;
+  background: #bd2432;
+}
+
+.message {
+  min-height: 24px;
+  margin-top: 12px;
+  color: #f4d06f;
+  font-weight: 700;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  background: #9d1b24;
+  border-radius: 50%;
+}
 
 /* JULEHJUL */
-.wheel-wrap{position:relative;width:min(100%,340px);margin:22px auto 10px}
-.pointer{position:absolute;z-index:3;top:-5px;left:50%;width:0;height:0;transform:translateX(-50%);border-right:18px solid transparent;border-top:34px solid #f4d06f;border-left:18px solid transparent}
-#wheelCanvas{width:100%;height:auto;border-radius:50%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.35))}
-#wheelResult{min-height:48px;margin-top:16px;color:#f4d06f;font-size:20px;font-weight:800;text-align:center}
+
+.wheel-wrap {
+  position: relative;
+  width: min(100%, 340px);
+  margin: 22px auto 10px;
+}
+
+.pointer {
+  position: absolute;
+  z-index: 3;
+  top: -5px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-right: 18px solid transparent;
+  border-top: 34px solid #f4d06f;
+  border-left: 18px solid transparent;
+}
+
+#wheelCanvas {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,0.35));
+}
+
+#wheelResult {
+  min-height: 48px;
+  margin-top: 16px;
+  color: #f4d06f;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+}
 
 /* 10 SEKUNDER */
-.ten-game,.game-area,.quiz-area{margin-top:15px;padding:18px;background:rgba(255,255,255,.07);border-radius:18px;text-align:center}
-#tenPerson{color:#f4d06f;font-size:27px;font-weight:900}
-#tenQuestion{margin:14px 0;font-size:21px;font-weight:700;line-height:1.35}
-#tenTimer{color:#f4d06f;font-size:72px;font-weight:900}
-.two-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+.ten-game,
+.game-area,
+.quiz-area {
+  margin-top: 15px;
+  padding: 18px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 18px;
+  text-align: center;
+}
+
+#tenPerson {
+  color: #f4d06f;
+  font-size: 27px;
+  font-weight: 900;
+}
+
+#tenQuestion {
+  margin: 14px 0;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#tenTimer {
+  color: #f4d06f;
+  font-size: 72px;
+  font-weight: 900;
+}
+
+.two-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
 
 /* POENG */
-.score-name{flex:1}
-.rank{min-width:28px}
-.controls{display:flex;align-items:center;gap:7px}
-.score{min-width:62px;color:#f4d06f;font-weight:800;text-align:center}
-.score-btn{width:36px;height:36px;border:0;border-radius:9px;font-size:21px;font-weight:900;cursor:pointer}
-.minus{color:#fff;background:#9d1b24}
-.plus{color:#12372a;background:#f4d06f}
 
-/* QUIZ */
-.quiz-progress{color:#f4d06f;font-size:13px;font-weight:700}
-.quiz-person{margin:10px 0;color:#f4d06f;font-size:24px;font-weight:900}
-.quiz-question{margin:15px 0;font-size:20px;font-weight:700;line-height:1.4}
-.quiz-options{display:grid;gap:9px}
-.quiz-option{width:100%;padding:14px;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;font-size:15px;font-weight:700;text-align:left;cursor:pointer}
-.quiz-option.correct{color:#fff;background:#18834f}
-.quiz-option.wrong{color:#fff;background:#ad2835}
-.quiz-option:disabled{cursor:default}
+.score-name {
+  flex: 1;
+}
+
+.rank {
+  min-width: 28px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.score {
+  min-width: 62px;
+  color: #f4d06f;
+  font-weight: 800;
+  text-align: center;
+}
+
+.score-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 9px;
+  font-size: 21px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.minus {
+  color: #fff;
+  background: #9d1b24;
+}
+
+.plus {
+  color: #12372a;
+  background: #f4d06f;
+}
+
+/* JULEQUIZ */
+
+.quiz-lock {
+  padding: 22px 12px;
+  color: #f4d06f;
+  font-weight: 800;
+  text-align: center;
+}
+
+.quiz-progress {
+  color: #f4d06f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.quiz-person {
+  margin: 10px 0;
+  color: #f4d06f;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.quiz-question {
+  margin: 15px 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 9px;
+}
+
+.quiz-option {
+  width: 100%;
+  padding: 14px;
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quiz-option.correct {
+  background: #18834f;
+}
+
+.quiz-option.wrong {
+  background: #ad2835;
+}
+
+.quiz-option:disabled {
+  cursor: default;
+}
 
 /* TA MED */
-.check{display:flex;align-items:center;gap:12px;padding:13px 6px;border-bottom:1px solid rgba(255,255,255,.08)}
-.check input{width:22px;height:22px;accent-color:#f4d06f}
-.check span{font-weight:700}
-.group{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-.group-title{margin-bottom:5px;color:#f4d06f;font-weight:800}
-.names{font-size:14px;line-height:1.6}
-.progress{margin-top:7px;color:#f4d06f;font-weight:800}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.check input {
+  width: 22px;
+  height: 22px;
+  accent-color: #f4d06f;
+}
+
+.check span {
+  font-weight: 700;
+}
+
+.group {
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.group-title {
+  margin-bottom: 5px;
+  color: #f4d06f;
+  font-weight: 800;
+}
+
+.names {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.progress {
+  margin-top: 7px;
+  color: #f4d06f;
+  font-weight: 800;
+}
 
 /* PAKKELEK */
-#dice{font-size:75px}
-#diceResult{min-height:38px;color:#f4d06f;font-weight:700}
-#packageTimer{color:#f4d06f;font-size:42px;font-weight:900}
-.rule{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08)}
 
-/* BILDER */
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
-.gallery-item{overflow:hidden;aspect-ratio:1;border-radius:13px}
-.gallery-item img{width:100%;height:100%;object-fit:cover}
-.photo-count{color:#f4d06f;font-weight:800;text-align:center}
-.photo-input{display:none}
-.empty{text-align:center;color:#ccc;padding:20px}
-.modal{display:none;position:fixed;z-index:99;inset:0;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.92)}
-.modal.open{display:flex}
-.modal img{max-width:100%;max-height:85vh;border-radius:12px}
-.close{position:absolute;top:18px;right:18px;width:42px;height:42px;border:0;border-radius:50%;font-size:24px}
-footer{margin-top:35px;color:#aaa;font-size:12px;text-align:center}
+#dice {
+  font-size: 75px;
+}
+
+#diceResult {
+  min-height: 38px;
+  color: #f4d06f;
+  font-weight: 700;
+}
+
+#packageTimer {
+  color: #f4d06f;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.rule {
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* FESTBILDER */
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: 13px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-count {
+  color: #f4d06f;
+  font-weight: 800;
+  text-align: center;
+}
+
+.photo-input {
+  display: none;
+}
+
+.empty {
+  padding: 20px;
+  color: #ccc;
+  text-align: center;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.92);
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 12px;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+footer {
+  margin-top: 35px;
+  color: #aaa;
+  font-size: 12px;
+  text-align: center;
+}
+
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
-<div class="hero">
-  <div style="font-size:34px">✨🎄✨</div>
-  <h1>Julefest at the Breviks</h1>
-  <div class="lights">🤶 🛷 🦌 🎄 🦌 🛷 🎅</div>
-  <img src="jagermeister.png" class="jager" alt="Jägermeister">
-  <div class="date">28. november • 18:30</div>
+  <!-- TOPP -->
 
-  <div class="countdown-title">Nedtelling til festen</div>
+  <div class="hero">
 
-  <div class="countdown">
-    <div class="countdown-box">
-      <div id="days" class="number">0</div>
-      <div class="small-label">DAGER</div>
+    <div style="font-size:34px">
+      ✨🎄✨
     </div>
 
-    <div class="countdown-box">
-      <div id="hours" class="number">0</div>
-      <div class="small-label">TIMER</div>
+    <h1>Julefest at the Breviks</h1>
+
+    <div class="lights">
+      🤶 🛷 🦌 🎄 🦌 🛷 🎅
     </div>
 
-    <div class="countdown-box">
-      <div id="minutes" class="number">0</div>
-      <div class="small-label">MIN</div>
-    </div>
-  </div>
-</div>
+    <img
+      src="jagermeister.png"
+      class="jager"
+      alt="Jägermeister">
 
-<div class="section-title">Festen</div>
-
-<div class="menu">
-
-  <div class="card wide status-card" onclick="showSection('where')">
-    <div class="icon">📍</div>
-    <div class="card-title">Hvor er gjengen?</div>
-    <div class="card-text">Og hva holder de på med?</div>
-  </div>
-
-  <div class="card" onclick="showSection('friends')">
-    <div class="icon">👥</div>
-    <div class="card-title">Gjengen</div>
-    <div class="card-text">De 8 på julefest</div>
-  </div>
-
-  <div class="card" onclick="showSection('scores')">
-    <div class="icon">🏆</div>
-    <div class="card-title">Poengtavle</div>
-    <div class="card-text">Hvem leder?</div>
-  </div>
-
-  <div class="card wide wheel-card" onclick="showSection('wheel')">
-    <div class="icon">🎡</div>
-    <div class="card-title">JULEHJULET</div>
-    <div class="card-text">Spinn hvis du tør...</div>
-  </div>
-
-  <div class="card wide ten-card" onclick="showSection('ten')">
-    <div class="icon">⏱️</div>
-    <div class="card-title">10 SEKUNDER</div>
-    <div class="card-text">Tenk fort!</div>
-  </div>
-
-  <div class="card" onclick="showSection('competitions')">
-    <div class="icon">🎯</div>
-    <div class="card-title">Konkurranser</div>
-    <div class="card-text">Julequiz og antrekk</div>
-  </div>
-
-  <div class="card" onclick="showSection('bring')">
-    <div class="icon">🎒</div>
-    <div class="card-title">Ta med</div>
-    <div class="card-text">Hvem tar med hva?</div>
-  </div>
-
-  <div class="card" onclick="showSection('package')">
-    <div class="icon">🎁</div>
-    <div class="card-title">Pakkelek</div>
-    <div class="card-text">Terning og pakker</div>
-  </div>
-
-  <div class="card" onclick="showSection('photos')">
-    <div class="icon">📸</div>
-    <div class="card-title">Festbilder</div>
-    <div class="card-text">Felles album, maks 75</div>
-  </div>
-
-</div>
-
-<!-- HVOR ER GJENGEN -->
-
-<div id="where" class="box">
-
-  <h2>📍 Hvor er gjengen og hva holder de på med?</h2>
-
-  <span class="field-label">HVEM ER DU?</span>
-
-  <select id="personSelect">
-    <option value="">Velg navn</option>
-    <option>Anne Grethe</option>
-    <option>Henning</option>
-    <option>Ronny</option>
-    <option>Hanne</option>
-    <option>Martin</option>
-    <option>Eilen H</option>
-    <option>Eilen N</option>
-    <option>Flemming</option>
-  </select>
-
-  <span class="field-label">HVA GJØR DU?</span>
-
-  <select id="statusSelect">
-    <option value="">Velg status</option>
-    <option>🥐 Frokost</option>
-    <option>🚶 Går tur</option>
-    <option>🏋️ Trener</option>
-    <option>⚽ Ser fotball</option>
-    <option>🏒 Ser hockey</option>
-    <option>🏎️ Ser Formel 1</option>
-    <option>🚿 Gjør meg klar</option>
-    <option>🚗 På vei til festen</option>
-    <option>👋 På vei hjem</option>
-    <option>🏠 Hjemme</option>
-  </select>
-
-  <button id="statusButton" class="btn" onclick="saveStatus()">
-    📍 OPPDATER STATUS
-  </button>
-
-  <div id="statusMessage" class="message"></div>
-
-  <h3>🎄 Gjengen akkurat nå</h3>
-
-  <div id="statusList"></div>
-
-</div>
-
-<!-- GJENGEN -->
-
-<div id="friends" class="box">
-  <h2>👥 Gjengen</h2>
-  <div id="friendsList"></div>
-</div>
-
-<!-- POENGTAVLE -->
-
-<div id="scores" class="box">
-  <h2>🏆 Felles poengtavle</h2>
-  <div id="scoreMessage" class="message"></div>
-  <div id="scoreList"></div>
-</div>
-
-<!-- JULEHJULET -->
-
-<div id="wheel" class="box">
-
-  <h2>🎡 Julehjulet</h2>
-
-  <p>
-    Hjulet velger person og gir sang, tale, vits eller skål.
-  </p>
-
-  <div class="wheel-wrap">
-    <div class="pointer"></div>
-    <canvas id="wheelCanvas" width="700" height="700"></canvas>
-  </div>
-
-  <button id="spinButton" class="btn" onclick="spinWheel()">
-    🎡 SPINN HJULET
-  </button>
-
-  <div id="wheelResult">
-    Hvem blir den heldige? 😈
-  </div>
-
-</div>
-
-<!-- 10 SEKUNDER -->
-
-<div id="ten" class="box">
-
-  <h2>⏱️ 10 sekunder</h2>
-
-  <p>
-    En tilfeldig person må nevne tre ting før tiden går ut.
-  </p>
-
-  <button class="btn" onclick="newTenChallenge()">
-    🎲 NY UTFORDRING
-  </button>
-
-  <div class="ten-game">
-
-    <div id="tenPerson">
-      Hvem blir valgt?
+    <div class="date">
+      28. november • 18:30
     </div>
 
-    <div id="tenQuestion">
-      Trykk «Ny utfordring»
+    <div class="countdown-title">
+      Nedtelling til festen
     </div>
 
-    <div id="tenTimer">
-      10
+    <div class="countdown">
+
+      <div class="countdown-box">
+        <div id="days" class="number">0</div>
+        <div class="small-label">DAGER</div>
+      </div>
+
+      <div class="countdown-box">
+        <div id="hours" class="number">0</div>
+        <div class="small-label">TIMER</div>
+      </div>
+
+      <div class="countdown-box">
+        <div id="minutes" class="number">0</div>
+        <div class="small-label">MIN</div>
+      </div>
+
     </div>
 
-    <button id="tenStart" class="btn" onclick="startTen()" disabled>
-      ▶ START 10 SEKUNDER
+  </div>
+
+  <div class="section-title">
+    Festen
+  </div>
+
+  <!-- MENY -->
+
+  <div class="menu">
+
+    <div class="card wide status-card"
+         onclick="showSection('where')">
+
+      <div class="icon">📍</div>
+      <div class="card-title">Hvor er gjengen?</div>
+      <div class="card-text">Og hva holder de på med?</div>
+
+    </div>
+
+    <div class="card"
+         onclick="showSection('friends')">
+
+      <div class="icon">👥</div>
+      <div class="card-title">Gjengen</div>
+      <div class="card-text">De 8 på julefest</div>
+
+    </div>
+
+    <div class="card"
+         onclick="showSection('scores')">
+
+      <div class="icon">🏆</div>
+      <div class="card-title">Poengtavle</div>
+      <div class="card-text">Hvem leder?</div>
+
+    </div>
+
+    <div class="card wide wheel-card"
+         onclick="showSection('wheel')">
+
+      <div class="icon">🎡</div>
+      <div class="card-title">JULEHJULET</div>
+      <div class="card-text">Spinn hvis du tør...</div>
+
+    </div>
+
+    <div class="card wide ten-card"
+         onclick="showSection('ten')">
+
+      <div class="icon">⏱️</div>
+      <div class="card-title">10 SEKUNDER</div>
+      <div class="card-text">Tenk fort!</div>
+
+    </div>
+
+    <div class="card"
+         onclick="showSection('competitions')">
+
+      <div class="icon">🎯</div>
+      <div class="card-title">Konkurranser</div>
+      <div class="card-text">Julequiz</div>
+
+    </div>
+
+    <div class="card"
+         onclick="showSection('bring')">
+
+      <div class="icon">🎒</div>
+      <div class="card-title">Ta med</div>
+      <div class="card-text">Hvem tar med hva?</div>
+
+    </div>
+
+    <div class="card"
+         onclick="showSection('package')">
+
+      <div class="icon">🎁</div>
+      <div class="card-title">Pakkelek</div>
+      <div class="card-text">Terning og pakker</div>
+
+    </div>
+
+    <div class="card"
+         onclick="showSection('photos')">
+
+      <div class="icon">📸</div>
+      <div class="card-title">Festbilder</div>
+      <div class="card-text">Felles album, maks 75</div>
+
+    </div>
+
+  </div>
+
+  <!-- HVOR ER GJENGEN -->
+
+  <div id="where" class="box">
+
+    <h2>📍 Hvor er gjengen og hva holder de på med?</h2>
+
+    <span class="field-label">HVEM ER DU?</span>
+
+    <select id="personSelect">
+      <option value="">Velg navn</option>
+      <option>Anne Grethe</option>
+      <option>Henning</option>
+      <option>Ronny</option>
+      <option>Hanne</option>
+      <option>Martin</option>
+      <option>Eilen H</option>
+      <option>Eilen N</option>
+      <option>Flemming</option>
+    </select>
+
+    <span class="field-label">
+      HVA GJØR DU?
+    </span>
+
+    <select id="statusSelect">
+      <option value="">Velg status</option>
+      <option>🥐 Frokost</option>
+      <option>🚶 Går tur</option>
+      <option>🏋️ Trener</option>
+      <option>⚽ Ser fotball</option>
+      <option>🏒 Ser hockey</option>
+      <option>🏎️ Ser Formel 1</option>
+      <option>🚿 Gjør meg klar</option>
+      <option>🚗 På vei til festen</option>
+      <option>👋 På vei hjem</option>
+      <option>🏠 Hjemme</option>
+    </select>
+
+    <button
+      id="statusButton"
+      class="btn"
+      onclick="saveStatus()">
+
+      📍 OPPDATER STATUS
+
     </button>
 
-    <div id="tenActions" class="two-buttons" style="display:none">
+    <div id="statusMessage" class="message"></div>
 
-      <button class="btn" onclick="tenSuccess()">
-        ✅ GODKJENT +1
-      </button>
+    <h3>🎄 Gjengen akkurat nå</h3>
 
-      <button class="btn red" onclick="tenFail()">
-        ❌ IKKE GODKJENT
-      </button>
-
-    </div>
-
-    <div id="tenMessage" class="message"></div>
+    <div id="statusList"></div>
 
   </div>
 
-</div>
+  <!-- GJENGEN -->
 
-<!-- KONKURRANSER OG JULEQUIZ -->
+  <div id="friends" class="box">
 
-<div id="competitions" class="box">
+    <h2>👥 Gjengen</h2>
 
-  <h2>🎯 Konkurranser</h2>
+    <div id="friendsList"></div>
 
-  <div class="quiz-area">
+  </div>
 
-    <div style="font-size:44px">🎄</div>
+  <!-- POENGTAVLE -->
 
-    <h3 style="margin-bottom:5px">
-      JULEQUIZ
-    </h3>
+  <div id="scores" class="box">
+
+    <h2>🏆 Felles poengtavle</h2>
+
+    <div id="scoreMessage" class="message"></div>
+
+    <div id="scoreList"></div>
+
+  </div>
+
+  <!-- JULEHJULET -->
+
+  <div id="wheel" class="box">
+
+    <h2>🎡 Julehjulet</h2>
 
     <p>
-      20 spørsmål om jul, julemusikk og julefilmer.
+      Hjulet velger person og gir sang, tale, vits eller skål.
     </p>
 
-    <button id="quizStartButton" class="btn" onclick="startQuiz()">
-      🎄 START JULEQUIZ
+    <div class="wheel-wrap">
+
+      <div class="pointer"></div>
+
+      <canvas
+        id="wheelCanvas"
+        width="700"
+        height="700">
+      </canvas>
+
+    </div>
+
+    <button
+      id="spinButton"
+      class="btn"
+      onclick="spinWheel()">
+
+      🎡 SPINN HJULET
+
     </button>
 
-    <div id="quizGame" style="display:none">
+    <div id="wheelResult">
+      Hvem blir den heldige? 😈
+    </div>
 
-      <div id="quizProgress" class="quiz-progress"></div>
+  </div>
 
-      <div id="quizPerson" class="quiz-person"></div>
+  <!-- 10 SEKUNDER -->
 
-      <div id="quizQuestion" class="quiz-question"></div>
+  <div id="ten" class="box">
 
-      <div id="quizOptions" class="quiz-options"></div>
+    <h2>⏱️ 10 sekunder</h2>
 
-      <div id="quizMessage" class="message"></div>
+    <p>
+      En tilfeldig person må nevne tre ting før tiden går ut.
+    </p>
 
-      <button id="quizNextButton"
-              class="btn"
-              onclick="nextQuizQuestion()"
-              style="display:none">
-        NESTE SPØRSMÅL ➡️
+    <button
+      class="btn"
+      onclick="newTenChallenge()">
+
+      🎲 NY UTFORDRING
+
+    </button>
+
+    <div class="ten-game">
+
+      <div id="tenPerson">
+        Hvem blir valgt?
+      </div>
+
+      <div id="tenQuestion">
+        Trykk «Ny utfordring»
+      </div>
+
+      <div id="tenTimer">
+        10
+      </div>
+
+      <button
+        id="tenStart"
+        class="btn"
+        onclick="startTen()"
+        disabled>
+
+        ▶ START 10 SEKUNDER
+
+      </button>
+
+      <div
+        id="tenActions"
+        class="two-buttons"
+        style="display:none">
+
+        <button
+          class="btn"
+          onclick="tenSuccess()">
+
+          ✅ GODKJENT +1
+
+        </button>
+
+        <button
+          class="btn red"
+          onclick="tenFail()">
+
+          ❌ IKKE GODKJENT
+
+        </button>
+
+      </div>
+
+      <div id="tenMessage" class="message"></div>
+
+    </div>
+
+  </div>
+
+  <!-- JULEQUIZ -->
+
+  <div id="competitions" class="box">
+
+    <h2>🎯 Konkurranser</h2>
+
+    <div class="quiz-area">
+
+      <div style="font-size:44px">
+        🎄
+      </div>
+
+      <h3>JULEQUIZ</h3>
+
+      <p>
+        20 spørsmål om jul, julemusikk og julefilmer.
+      </p>
+
+      <div id="quizLock" class="quiz-lock">
+        🔒 Julequizen åpner lørdag 28. november kl. 18:30
+      </div>
+
+      <button
+        id="quizStartButton"
+        class="btn"
+        onclick="startQuiz()"
+        style="display:none">
+
+        🎄 START JULEQUIZ
+
+      </button>
+
+      <div id="quizGame" style="display:none">
+
+        <div
+          id="quizProgress"
+          class="quiz-progress">
+        </div>
+
+        <div
+          id="quizPerson"
+          class="quiz-person">
+        </div>
+
+        <div
+          id="quizQuestion"
+          class="quiz-question">
+        </div>
+
+        <div
+          id="quizOptions"
+          class="quiz-options">
+        </div>
+
+        <div
+          id="quizMessage"
+          class="message">
+        </div>
+
+        <button
+          id="quizNextButton"
+          class="btn"
+          onclick="nextQuizQuestion()"
+          style="display:none">
+
+          NESTE SPØRSMÅL ➡️
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TA MED -->
+
+  <div id="bring" class="box">
+
+    <h2>🎒 Hva tar du med?</h2>
+
+    <div class="game-area">
+
+      <div style="font-size:42px">
+        🎁
+      </div>
+
+      <strong style="color:#f4d06f;font-size:19px">
+        PAKKE TIL PAKKELEKEN
+      </strong>
+
+      <p>
+        Alle tar med én innpakket pakke.<br>
+        <strong>Verdi: 10–100 kr</strong>
+      </p>
+
+      <small>
+        Alle ser den samme avkrysningslisten.
+      </small>
+
+    </div>
+
+    <span class="field-label">
+      HVEM ER DU?
+    </span>
+
+    <select id="bringPerson">
+      <option value="">Velg navn</option>
+      <option>Anne Grethe</option>
+      <option>Henning</option>
+      <option>Ronny</option>
+      <option>Hanne</option>
+      <option>Martin</option>
+      <option>Eilen H</option>
+      <option>Eilen N</option>
+      <option>Flemming</option>
+    </select>
+
+    <div id="bringChecks">
+
+      <label class="check">
+        <input type="checkbox" data-item="package">
+        <span>🎁 Pakke til pakkeleken</span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" data-item="beer">
+        <span>🍺 Øl</span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" data-item="wine">
+        <span>🍷 Vin</span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" data-item="bubbles">
+        <span>🥂 Bobler</span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" data-item="mood">
+        <span>🎅 Godt humør</span>
+      </label>
+
+    </div>
+
+    <div id="bringMessage" class="message"></div>
+
+    <h3>Felles oversikt</h3>
+
+    <div id="bringSummary"></div>
+
+  </div>
+
+  <!-- PAKKELEK -->
+
+  <div id="package" class="box">
+
+    <h2>🎁 Pakkelek</h2>
+
+    <p>
+      Alle legger pakkene samlet før leken starter.
+    </p>
+
+    <div class="game-area">
+
+      <div>DIGITAL TERNING</div>
+
+      <div id="dice">
+        🎲
+      </div>
+
+      <button
+        class="btn"
+        onclick="rollDice()">
+
+        🎲 KAST TERNINGEN
+
+      </button>
+
+      <div id="diceResult">
+        Trykk for å kaste
+      </div>
+
+    </div>
+
+    <div class="game-area">
+
+      <div>PAKKELEK-TIMER</div>
+
+      <div id="packageTimer">
+        10:00
+      </div>
+
+      <button
+        class="btn"
+        onclick="startPackageTimer()">
+
+        ⏱️ START 10 MINUTTER
+
+      </button>
+
+      <button
+        class="btn red"
+        onclick="resetPackageTimer()">
+
+        ↻ NULLSTILL
+
       </button>
 
     </div>
 
+    <h3>🎄 Terningregler</h3>
+
+    <div class="rule">🎲 1 – Ta en pakke</div>
+    <div class="rule">🎲 2 – Bytt med en valgfri person</div>
+    <div class="rule">🎲 3 – Send en pakke til venstre</div>
+    <div class="rule">🎲 4 – Send en pakke til høyre</div>
+    <div class="rule">🎲 5 – Stjel en valgfri pakke</div>
+    <div class="rule">🎲 6 – Kast én gang til</div>
+
   </div>
 
-  <div class="game-area">
-    <h3>👕 Beste juleantrekk</h3>
-    <p>
-      Kveldens beste juleantrekk kåres under festen.
-    </p>
-  </div>
+  <!-- FESTBILDER -->
 
-</div>
+  <div id="photos" class="box">
 
-<!-- TA MED -->
-
-<div id="bring" class="box">
-
-  <h2>🎒 Hva tar du med?</h2>
-
-  <div class="game-area">
-
-    <div style="font-size:42px">🎁</div>
-
-    <strong style="color:#f4d06f;font-size:19px">
-      PAKKE TIL PAKKELEKEN
-    </strong>
+    <h2>📸 Festbilder</h2>
 
     <p>
-      Alle tar med én innpakket pakke.<br>
-      <strong>Verdi: 10–100 kr</strong>
+      Felles album. Kun bilder, ingen video.
     </p>
 
-    <small>
-      Alle ser den samme avkrysningslisten.
-    </small>
+    <div class="game-area">
 
-  </div>
+      <div id="photoCount" class="photo-count">
+        0 / 75 bilder
+      </div>
 
-  <span class="field-label">HVEM ER DU?</span>
+      <small>
+        Maks 6 MB per bilde.
+      </small>
 
-  <select id="bringPerson">
-    <option value="">Velg navn</option>
-    <option>Anne Grethe</option>
-    <option>Henning</option>
-    <option>Ronny</option>
-    <option>Hanne</option>
-    <option>Martin</option>
-    <option>Eilen H</option>
-    <option>Eilen N</option>
-    <option>Flemming</option>
-  </select>
+      <input
+        id="photoInput"
+        class="photo-input"
+        type="file"
+        accept="image/*">
 
-  <div id="bringChecks">
+      <button
+        id="photoButton"
+        class="btn"
+        onclick="document.getElementById('photoInput').click()">
 
-    <label class="check">
-      <input type="checkbox" data-item="package">
-      <span>🎁 Pakke til pakkeleken</span>
-    </label>
+        📸 LEGG TIL BILDE
 
-    <label class="check">
-      <input type="checkbox" data-item="beer">
-      <span>🍺 Øl</span>
-    </label>
+      </button>
 
-    <label class="check">
-      <input type="checkbox" data-item="wine">
-      <span>🍷 Vin</span>
-    </label>
+      <div id="photoMessage" class="message"></div>
 
-    <label class="check">
-      <input type="checkbox" data-item="bubbles">
-      <span>🥂 Bobler</span>
-    </label>
-
-    <label class="check">
-      <input type="checkbox" data-item="mood">
-      <span>🎅 Godt humør</span>
-    </label>
-
-  </div>
-
-  <div id="bringMessage" class="message"></div>
-
-  <h3>Felles oversikt</h3>
-
-  <div id="bringSummary"></div>
-
-</div>
-
-<!-- PAKKELEK -->
-
-<div id="package" class="box">
-
-  <h2>🎁 Pakkelek</h2>
-
-  <p>
-    Alle legger pakkene samlet før leken starter.
-  </p>
-
-  <div class="game-area">
-
-    <div>DIGITAL TERNING</div>
-
-    <div id="dice">🎲</div>
-
-    <button class="btn" onclick="rollDice()">
-      🎲 KAST TERNINGEN
-    </button>
-
-    <div id="diceResult">
-      Trykk for å kaste
     </div>
 
-  </div>
-
-  <div class="game-area">
-
-    <div>PAKKELEK-TIMER</div>
-
-    <div id="packageTimer">
-      10:00
-    </div>
-
-    <button class="btn" onclick="startPackageTimer()">
-      ⏱️ START 10 MINUTTER
-    </button>
-
-    <button class="btn red" onclick="resetPackageTimer()">
-      ↻ NULLSTILL
-    </button>
+    <div id="gallery" class="gallery"></div>
 
   </div>
 
-  <h3>🎄 Terningregler</h3>
-
-  <div class="rule">🎲 1 – Ta en pakke</div>
-  <div class="rule">🎲 2 – Bytt med en valgfri person</div>
-  <div class="rule">🎲 3 – Send en pakke til venstre</div>
-  <div class="rule">🎲 4 – Send en pakke til høyre</div>
-  <div class="rule">🎲 5 – Stjel en valgfri pakke</div>
-  <div class="rule">🎲 6 – Kast én gang til</div>
+  <footer>
+    🎄 Julefest at the Breviks • 28. november 🎄
+  </footer>
 
 </div>
 
-<!-- FESTBILDER -->
+<!-- BILDEVISNING -->
 
-<div id="photos" class="box">
+<div
+  id="photoModal"
+  class="modal"
+  onclick="closePhoto()">
 
-  <h2>📸 Festbilder</h2>
+  <button
+    class="close"
+    onclick="closePhoto()">
 
-  <p>
-    Felles album. Kun bilder, ingen video.
-  </p>
-
-  <div class="game-area">
-
-    <div id="photoCount" class="photo-count">
-      0 / 75 bilder
-    </div>
-
-    <small>
-      Maks 6 MB per bilde.
-    </small>
-
-    <input id="photoInput"
-           class="photo-input"
-           type="file"
-           accept="image/*">
-
-    <button id="photoButton"
-            class="btn"
-            onclick="document.getElementById('photoInput').click()">
-      📸 LEGG TIL BILDE
-    </button>
-
-    <div id="photoMessage" class="message"></div>
-
-  </div>
-
-  <div id="gallery" class="gallery"></div>
-
-</div>
-
-<footer>
-  🎄 Julefest at the Breviks • 28. november 🎄
-</footer>
-
-</div>
-
-<!-- STOR BILDEVISNING -->
-
-<div id="photoModal" class="modal" onclick="closePhoto()">
-
-  <button class="close" onclick="closePhoto()">
     ×
+
   </button>
 
-  <img id="modalImage" alt="Festbilde">
+  <img
+    id="modalImage"
+    alt="Festbilde">
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const people=[
+
+const people = [
   "Anne Grethe",
   "Henning",
   "Ronny",
@@ -591,69 +1200,133 @@ const people=[
   "Flemming"
 ];
 
-const SUPABASE_URL=
+const SUPABASE_URL =
   "https://icvpfwwkrvmlfaxzukdl.supabase.co";
 
-const SUPABASE_KEY=
+const SUPABASE_KEY =
   "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
 
-const partyDate=new Date(2026,10,28,18,30);
-const statusStart=new Date(2026,10,28,0,0);
-const statusEnd=new Date(2026,10,29,0,0);
-const scoreStart=new Date(2026,10,28,18,30);
-const photoStart=new Date(2026,10,28,0,0);
-const photoEnd=new Date(2026,10,30,0,0);
+const partyDate =
+  new Date(2026, 10, 28, 18, 30);
 
-let db=null;
-let statuses={};
-let scores={};
-let bringRows=[];
-let photos=[];
-let currentTenPerson="";
-let tenRunning=false;
-let packageTime=600;
-let packageInterval=null;
+const statusStart =
+  new Date(2026, 10, 28, 0, 0);
 
-let quizQuestions=[];
-let quizIndex=0;
-let quizAnswered=false;
-let currentQuizPerson="";
+const statusEnd =
+  new Date(2026, 10, 29, 0, 0);
 
-const bringItems={
-  package:"🎁 Pakke til pakkeleken",
-  beer:"🍺 Øl",
-  wine:"🍷 Vin",
-  bubbles:"🥂 Bobler",
-  mood:"🎅 Godt humør"
+const scoreStart =
+  new Date(2026, 10, 28, 18, 30);
+
+const photoStart =
+  new Date(2026, 10, 28, 0, 0);
+
+const photoEnd =
+  new Date(2026, 10, 30, 0, 0);
+
+let db = null;
+
+let statuses = {};
+
+let scores = {};
+
+let bringRows = [];
+
+let photos = [];
+
+let currentTenPerson = "";
+
+let tenRunning = false;
+
+let packageTime = 600;
+
+let packageInterval = null;
+
+let quizQuestions = [];
+
+let quizIndex = 0;
+
+let quizAnswered = false;
+
+let currentQuizPerson = "";
+
+const bringItems = {
+
+  package:
+    "🎁 Pakke til pakkeleken",
+
+  beer:
+    "🍺 Øl",
+
+  wine:
+    "🍷 Vin",
+
+  bubbles:
+    "🥂 Bobler",
+
+  mood:
+    "🎅 Godt humør"
+
 };
+
+function el(id) {
+
+  return document.getElementById(id);
+
+}
 
 /* MENY */
 
-function showSection(id){
+function showSection(id) {
 
-  document.querySelectorAll(".box").forEach(box=>{
+  document
+    .querySelectorAll(".box")
+    .forEach(box => {
 
-    if(box.id===id){
-      box.classList.toggle("active");
-    }else{
-      box.classList.remove("active");
-    }
+      if (box.id === id) {
 
-  });
+        box.classList.toggle(
+          "active"
+        );
 
-  const selected=document.getElementById(id);
+      } else {
 
-  if(selected&&selected.classList.contains("active")){
+        box.classList.remove(
+          "active"
+        );
 
-    setTimeout(()=>{
+      }
+
+    });
+
+  const selected =
+    el(id);
+
+  if (
+    selected &&
+    selected.classList.contains(
+      "active"
+    )
+  ) {
+
+    setTimeout(() => {
+
       selected.scrollIntoView({
-        behavior:"smooth",
-        block:"nearest"
-      });
-    },100);
 
-    if(id==="photos"){
+        behavior:
+          "smooth",
+
+        block:
+          "nearest"
+
+      });
+
+    }, 100);
+
+    if (id === "photos") {
+
       loadPhotos();
+
     }
 
   }
@@ -662,368 +1335,536 @@ function showSection(id){
 
 /* NEDTELLING */
 
-function updateCountdown(){
+function updateCountdown() {
 
-  const difference=
-    partyDate-new Date();
+  const difference =
+    partyDate -
+    new Date();
 
-  if(difference<=0){
+  if (difference <= 0) {
 
-    document.getElementById("days").textContent="🎉";
-    document.getElementById("hours").textContent="🎄";
-    document.getElementById("minutes").textContent="🥂";
+    el("days").textContent =
+      "🎉";
+
+    el("hours").textContent =
+      "🎄";
+
+    el("minutes").textContent =
+      "🥂";
 
     return;
+
   }
 
-  document.getElementById("days").textContent=
-    Math.floor(difference/86400000);
+  el("days").textContent =
+    Math.floor(
+      difference /
+      86400000
+    );
 
-  document.getElementById("hours").textContent=
-    Math.floor((difference%86400000)/3600000);
+  el("hours").textContent =
+    Math.floor(
+      (
+        difference %
+        86400000
+      ) /
+      3600000
+    );
 
-  document.getElementById("minutes").textContent=
-    Math.floor((difference%3600000)/60000);
+  el("minutes").textContent =
+    Math.floor(
+      (
+        difference %
+        3600000
+      ) /
+      60000
+    );
+
 }
 
 updateCountdown();
-setInterval(updateCountdown,30000);
+
+setInterval(
+  updateCountdown,
+  30000
+);
 
 /* GJENGEN */
 
-const avatars=[
-  "🎄","🎅","🍺","🥂",
-  "🦌","⭐","☃️","🎁"
+const avatars = [
+
+  "🎄",
+  "🎅",
+  "🍺",
+  "🥂",
+  "🦌",
+  "⭐",
+  "☃️",
+  "🎁"
+
 ];
 
-people.forEach((person,index)=>{
+people.forEach(
+  (person, index) => {
 
-  document.getElementById("friendsList").innerHTML+=`
-    <div class="row">
-      <div class="person">
-        <div class="avatar">${avatars[index]}</div>
-        ${person}
+    el("friendsList").innerHTML +=
+
+      `
+      <div class="row">
+
+        <div class="person">
+
+          <div class="avatar">
+            ${avatars[index]}
+          </div>
+
+          ${person}
+
+        </div>
+
       </div>
-    </div>
-  `;
-});
+      `;
+
+  }
+);
 
 /* STATUS */
 
-function statusIsOpen(){
+function statusIsOpen() {
 
-  const now=new Date();
+  const now =
+    new Date();
 
-  return(
-    now>=statusStart&&
-    now<statusEnd
+  return (
+
+    now >= statusStart &&
+
+    now < statusEnd
+
   );
+
 }
 
-function renderStatuses(){
+function renderStatuses() {
 
-  const list=
-    document.getElementById("statusList");
+  el("statusList").innerHTML =
+    "";
 
-  list.innerHTML="";
+  people.forEach(person => {
 
-  people.forEach(person=>{
+    el("statusList").innerHTML +=
 
-    list.innerHTML+=`
+      `
       <div class="row">
-        <span>${person}</span>
-        <span style="color:#f4d06f">
-          ${statuses[person]||"Ikke oppdatert"}
+
+        <span>
+          ${person}
         </span>
+
+        <span style="color:#f4d06f">
+
+          ${
+            statuses[person] ||
+            "Ikke oppdatert"
+          }
+
+        </span>
+
       </div>
-    `;
+      `;
+
   });
+
 }
 
-function updateStatusAvailability(){
+function updateStatusAvailability() {
 
-  const open=statusIsOpen();
+  const open =
+    statusIsOpen();
 
-  const personSelect=
-    document.getElementById("personSelect");
+  el("personSelect").disabled =
+    !open;
 
-  const statusSelect=
-    document.getElementById("statusSelect");
+  el("statusSelect").disabled =
+    !open;
 
-  const statusButton=
-    document.getElementById("statusButton");
+  el("statusButton").disabled =
+    !open;
 
-  const statusMessage=
-    document.getElementById("statusMessage");
+  if (
+    new Date() <
+    statusStart
+  ) {
 
-  personSelect.disabled=!open;
-  statusSelect.disabled=!open;
-  statusButton.disabled=!open;
-
-  if(new Date()<statusStart){
-
-    statusMessage.textContent=
+    el("statusMessage").textContent =
       "🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
 
-  }else if(!open){
+  }
 
-    statusMessage.textContent=
+  else if (!open) {
+
+    el("statusMessage").textContent =
       "🎄 Siste status fra lørdag vises her.";
 
-  }else{
+  }
 
-    statusMessage.textContent=
+  else {
+
+    el("statusMessage").textContent =
       "🎄 Hva gjør du akkurat nå?";
 
   }
+
 }
 
-async function loadStatuses(){
+async function loadStatuses() {
 
-  if(!db){
+  if (!db) {
     return;
   }
 
-  const {data,error}=
+  const {
+    data,
+    error
+  } =
+
     await db
-      .from("party_status")
-      .select("name,status");
+      .from(
+        "party_status"
+      )
+      .select(
+        "name,status"
+      );
 
-  if(error){
+  if (error) {
 
-    console.error(error);
+    console.error(
+      error
+    );
+
     return;
+
   }
 
-  statuses={};
+  statuses = {};
 
-  (data||[]).forEach(item=>{
+  (data || [])
+    .forEach(item => {
 
-    statuses[item.name]=
-      item.status;
+      statuses[item.name] =
+        item.status;
 
-  });
+    });
 
   renderStatuses();
+
 }
 
-async function saveStatus(){
+async function saveStatus() {
 
-  const statusMessage=
-    document.getElementById("statusMessage");
+  const person =
+    el("personSelect").value;
 
-  const person=
-    document.getElementById("personSelect").value;
+  const status =
+    el("statusSelect").value;
 
-  const status=
-    document.getElementById("statusSelect").value;
-
-  if(!statusIsOpen()){
+  if (!statusIsOpen()) {
     return;
   }
 
-  if(!person||!status){
+  if (
+    !person ||
+    !status
+  ) {
 
-    statusMessage.textContent=
+    el("statusMessage").textContent =
       "Velg navn og status 😊";
 
     return;
+
   }
 
-  if(!db){
+  const {
+    error
+  } =
 
-    statusMessage.textContent=
-      "⚠️ Felles status er ikke koblet til.";
-
-    return;
-  }
-
-  statusMessage.textContent=
-    "Lagrer...";
-
-  const {error}=
     await db
-      .from("party_status")
+      .from(
+        "party_status"
+      )
       .upsert(
         {
-          name:person,
-          status:status,
-          updated_at:new Date().toISOString()
+
+          name:
+            person,
+
+          status:
+            status,
+
+          updated_at:
+            new Date()
+              .toISOString()
+
         },
         {
-          onConflict:"name"
+
+          onConflict:
+            "name"
+
         }
       );
 
-  if(error){
+  el("statusMessage").textContent =
 
-    console.error(error);
+    error
+      ? "❌ Kunne ikke lagre"
+      : "✅ Status oppdatert";
 
-    statusMessage.textContent=
-      "❌ Kunne ikke lagre";
+  if (!error) {
 
-    return;
+    loadStatuses();
+
   }
 
-  statusMessage.textContent=
-    "✅ Status oppdatert";
-
-  await loadStatuses();
 }
 
-/* POENGTAVLE */
+/* POENG */
 
-function scoreIsOpen(){
+function scoreIsOpen() {
 
-  return(
-    new Date()>=scoreStart
+  return (
+
+    new Date() >=
+    scoreStart
+
   );
+
 }
 
-async function loadScores(){
+async function loadScores() {
 
-  if(!db){
+  if (!db) {
 
     renderScores();
+
     return;
+
   }
 
-  const {data,error}=
+  const {
+    data,
+    error
+  } =
+
     await db
-      .from("party_scores")
-      .select("name,score");
+      .from(
+        "party_scores"
+      )
+      .select(
+        "name,score"
+      );
 
-  if(error){
+  if (error) {
 
-    console.error(error);
-    renderScores();
+    console.error(
+      error
+    );
+
     return;
+
   }
 
-  scores={};
+  scores = {};
 
-  people.forEach(person=>{
-    scores[person]=0;
+  people.forEach(person => {
+
+    scores[person] =
+      0;
+
   });
 
-  (data||[]).forEach(item=>{
-    scores[item.name]=item.score;
-  });
+  (data || [])
+    .forEach(item => {
+
+      scores[item.name] =
+        item.score;
+
+    });
 
   renderScores();
+
 }
 
-function renderScores(){
+function renderScores() {
 
-  const message=
-    document.getElementById("scoreMessage");
+  el("scoreMessage").textContent =
 
-  const list=
-    document.getElementById("scoreList");
-
-  message.textContent=
     scoreIsOpen()
       ? ""
       : "🔒 Poengjakten starter lørdag kl. 18:30";
 
-  const ordered=
-    [...people].sort((a,b)=>
-      (scores[b]||0)-(scores[a]||0)||
-      people.indexOf(a)-people.indexOf(b)
-    );
+  const ordered =
 
-  list.innerHTML="";
+    [...people]
+      .sort((a, b) =>
 
-  ordered.forEach((person,index)=>{
+        (scores[b] || 0) -
+        (scores[a] || 0)
 
-    const rank=
-      index===0
-        ? "🥇"
-        : index===1
-          ? "🥈"
-          : index===2
-            ? "🥉"
-            : `${index+1}.`;
+        ||
 
-    const disabled=
-      scoreIsOpen()
-        ? ""
-        : "disabled";
+        people.indexOf(a) -
+        people.indexOf(b)
 
-    list.innerHTML+=`
-      <div class="row">
-        <span class="rank">${rank}</span>
+      );
 
-        <span class="score-name">
-          ${person}
-        </span>
+  el("scoreList").innerHTML =
+    "";
 
-        <div class="controls">
+  ordered.forEach(
+    (person, index) => {
 
-          <button class="score-btn minus"
-                  ${disabled}
-                  onclick="changeScore('${person}',-1)">
-            −
-          </button>
+      const rank =
 
-          <span class="score">
-            ${scores[person]||0}
+        index === 0
+          ? "🥇"
+          : index === 1
+            ? "🥈"
+            : index === 2
+              ? "🥉"
+              : `${index + 1}.`;
+
+      const disabled =
+
+        scoreIsOpen()
+          ? ""
+          : "disabled";
+
+      el("scoreList").innerHTML +=
+
+        `
+        <div class="row">
+
+          <span class="rank">
+            ${rank}
           </span>
 
-          <button class="score-btn plus"
-                  ${disabled}
-                  onclick="changeScore('${person}',1)">
-            +
-          </button>
+          <span class="score-name">
+            ${person}
+          </span>
+
+          <div class="controls">
+
+            <button
+              class="score-btn minus"
+              ${disabled}
+              onclick="changeScore('${person}',-1)">
+
+              −
+
+            </button>
+
+            <span class="score">
+              ${scores[person] || 0}
+            </span>
+
+            <button
+              class="score-btn plus"
+              ${disabled}
+              onclick="changeScore('${person}',1)">
+
+              +
+
+            </button>
+
+          </div>
 
         </div>
-      </div>
-    `;
-  });
+        `;
+
+    }
+  );
+
 }
 
-async function changeScore(name,delta){
+async function changeScore(
+  name,
+  delta
+) {
 
-  if(!scoreIsOpen()||!db){
+  if (
+    !scoreIsOpen() ||
+    !db
+  ) {
+
     return false;
+
   }
 
-  const next=
+  const next =
+
     Math.max(
+
       0,
-      (scores[name]||0)+delta
+
+      (
+        scores[name] ||
+        0
+      ) +
+
+      delta
+
     );
 
-  const {error}=
+  const {
+    error
+  } =
+
     await db
-      .from("party_scores")
+      .from(
+        "party_scores"
+      )
       .upsert(
         {
-          name:name,
-          score:next,
-          updated_at:new Date().toISOString()
+
+          name:
+            name,
+
+          score:
+            next,
+
+          updated_at:
+            new Date()
+              .toISOString()
+
         },
         {
-          onConflict:"name"
+
+          onConflict:
+            "name"
+
         }
       );
 
-  if(error){
+  if (error) {
 
-    console.error(error);
     return false;
+
   }
 
-  scores[name]=next;
+  scores[name] =
+    next;
 
   renderScores();
 
   return true;
+
 }
 
 /* JULEHJUL */
 
-const wheelColors=[
+const wheelColors = [
+
   "#b51f2e",
   "#1f7a5c",
   "#d49b24",
@@ -1032,31 +1873,48 @@ const wheelColors=[
   "#287a76",
   "#c65b2d",
   "#6f4b9b"
+
 ];
 
-const wheelChallenges=[
+const wheelChallenges = [
+
   "må velge neste sang! 🎵",
+
   "må holde en 30 sekunders tale! 🎤",
+
   "må fortelle en vits! 😂",
+
   "må starte en skål! 🥂"
+
 ];
 
-let wheelRotation=0;
-let wheelSpinning=false;
+let wheelRotation =
+  0;
 
-function drawWheel(rotation=wheelRotation){
+let wheelSpinning =
+  false;
 
-  const canvas=
-    document.getElementById("wheelCanvas");
+function drawWheel(
+  rotation =
+    wheelRotation
+) {
 
-  const ctx=
-    canvas.getContext("2d");
+  const canvas =
+    el("wheelCanvas");
 
-  const radius=
-    canvas.width*.47;
+  const ctx =
+    canvas.getContext(
+      "2d"
+    );
 
-  const arc=
-    Math.PI*2/people.length;
+  const radius =
+    canvas.width *
+    0.47;
+
+  const arc =
+    Math.PI *
+    2 /
+    people.length;
 
   ctx.clearRect(
     0,
@@ -1068,105 +1926,148 @@ function drawWheel(rotation=wheelRotation){
   ctx.save();
 
   ctx.translate(
-    canvas.width/2,
-    canvas.height/2
+    canvas.width / 2,
+    canvas.height / 2
   );
 
-  ctx.rotate(rotation);
+  ctx.rotate(
+    rotation
+  );
 
-  people.forEach((name,index)=>{
+  people.forEach(
+    (name, index) => {
 
-    const start=
-      -Math.PI/2+
-      index*arc;
+      const start =
 
-    ctx.beginPath();
-    ctx.moveTo(0,0);
+        -Math.PI / 2 +
 
-    ctx.arc(
-      0,
-      0,
-      radius,
-      start,
-      start+arc
-    );
+        index *
+        arc;
 
-    ctx.closePath();
+      ctx.beginPath();
 
-    ctx.fillStyle=
-      wheelColors[index];
-
-    ctx.fill();
-
-    ctx.strokeStyle="white";
-    ctx.lineWidth=4;
-    ctx.stroke();
-
-    ctx.save();
-
-    ctx.rotate(
-      start+arc/2
-    );
-
-    ctx.translate(
-      radius*.63,
-      0
-    );
-
-    ctx.rotate(
-      Math.PI/2
-    );
-
-    ctx.fillStyle="white";
-    ctx.font="700 29px Segoe UI";
-    ctx.textAlign="center";
-
-    const parts=
-      name.split(" ");
-
-    if(parts.length>1){
-
-      ctx.fillText(
-        parts[0],
-        0,
-        -16
-      );
-
-      ctx.fillText(
-        parts.slice(1).join(" "),
-        0,
-        18
-      );
-
-    }else{
-
-      ctx.fillText(
-        name,
+      ctx.moveTo(
         0,
         0
       );
-    }
 
-    ctx.restore();
-  });
+      ctx.arc(
+        0,
+        0,
+        radius,
+        start,
+        start + arc
+      );
+
+      ctx.closePath();
+
+      ctx.fillStyle =
+        wheelColors[index];
+
+      ctx.fill();
+
+      ctx.strokeStyle =
+        "white";
+
+      ctx.lineWidth =
+        4;
+
+      ctx.stroke();
+
+      ctx.save();
+
+      ctx.rotate(
+        start +
+        arc / 2
+      );
+
+      ctx.translate(
+        radius *
+        0.63,
+        0
+      );
+
+      ctx.rotate(
+        Math.PI / 2
+      );
+
+      ctx.fillStyle =
+        "white";
+
+      ctx.font =
+        "700 29px Segoe UI";
+
+      ctx.textAlign =
+        "center";
+
+      const parts =
+        name.split(
+          " "
+        );
+
+      if (
+        parts.length >
+        1
+      ) {
+
+        ctx.fillText(
+          parts[0],
+          0,
+          -16
+        );
+
+        ctx.fillText(
+          parts
+            .slice(1)
+            .join(" "),
+          0,
+          18
+        );
+
+      }
+
+      else {
+
+        ctx.fillText(
+          name,
+          0,
+          0
+        );
+
+      }
+
+      ctx.restore();
+
+    }
+  );
 
   ctx.beginPath();
 
   ctx.arc(
     0,
     0,
-    radius*.15,
+    radius *
+    0.15,
     0,
-    Math.PI*2
+    Math.PI * 2
   );
 
-  ctx.fillStyle="#f4d06f";
+  ctx.fillStyle =
+    "#f4d06f";
+
   ctx.fill();
 
-  ctx.fillStyle="#12372a";
-  ctx.font="52px serif";
-  ctx.textAlign="center";
-  ctx.textBaseline="middle";
+  ctx.fillStyle =
+    "#12372a";
+
+  ctx.font =
+    "52px serif";
+
+  ctx.textAlign =
+    "center";
+
+  ctx.textBaseline =
+    "middle";
 
   ctx.fillText(
     "🎄",
@@ -1175,1223 +2076,1853 @@ function drawWheel(rotation=wheelRotation){
   );
 
   ctx.restore();
+
 }
 
-function spinWheel(){
+function spinWheel() {
 
-  if(wheelSpinning){
+  if (wheelSpinning) {
     return;
   }
 
-  wheelSpinning=true;
+  wheelSpinning =
+    true;
 
-  const button=
-    document.getElementById("spinButton");
+  el("spinButton").disabled =
+    true;
 
-  const result=
-    document.getElementById("wheelResult");
-
-  button.disabled=true;
-
-  result.textContent=
+  el("wheelResult").textContent =
     "🎡 Hjulet spinner...";
 
-  const winner=
+  const winner =
     Math.floor(
-      Math.random()*people.length
+      Math.random() *
+      people.length
     );
 
-  const arc=
-    Math.PI*2/people.length;
+  const arc =
+    Math.PI *
+    2 /
+    people.length;
 
-  const current=
+  const current =
+
     (
       (
-        wheelRotation%(Math.PI*2)
-      )+
-      Math.PI*2
-    )%
-    (Math.PI*2);
+        wheelRotation %
+        (
+          Math.PI *
+          2
+        )
+      ) +
 
-  const target=
+      Math.PI *
+      2
+    )
+
+    %
+
     (
-      -(winner+.5)*arc+
-      Math.PI*2
-    )%
-    (Math.PI*2);
+      Math.PI *
+      2
+    );
 
-  const delta=
+  const target =
+
     (
-      target-current+
-      Math.PI*2
-    )%
-    (Math.PI*2);
+      -(winner + 0.5) *
+      arc +
 
-  const start=
+      Math.PI *
+      2
+    )
+
+    %
+
+    (
+      Math.PI *
+      2
+    );
+
+  const delta =
+
+    (
+      target -
+      current +
+
+      Math.PI *
+      2
+    )
+
+    %
+
+    (
+      Math.PI *
+      2
+    );
+
+  const start =
     wheelRotation;
 
-  const end=
-    start+
+  const end =
+
+    start +
+
     (
-      5+
-      Math.floor(Math.random()*3)
-    )*
-    Math.PI*2+
+      5 +
+      Math.floor(
+        Math.random() *
+        3
+      )
+    ) *
+
+    Math.PI *
+    2 +
+
     delta;
 
-  const startTime=
+  const startTime =
     performance.now();
 
-  function animate(time){
+  function animate(
+    time
+  ) {
 
-    const progress=
+    const progress =
+
       Math.min(
-        (time-startTime)/4200,
+
+        (
+          time -
+          startTime
+        ) /
+
+        4200,
+
         1
+
       );
 
-    const eased=
-      1-
+    const eased =
+
+      1 -
+
       Math.pow(
-        1-progress,
+        1 -
+        progress,
         4
       );
 
-    wheelRotation=
-      start+
-      (end-start)*eased;
+    wheelRotation =
+
+      start +
+
+      (
+        end -
+        start
+      ) *
+
+      eased;
 
     drawWheel();
 
-    if(progress<1){
+    if (progress < 1) {
 
-      requestAnimationFrame(animate);
+      requestAnimationFrame(
+        animate
+      );
 
-    }else{
+    }
 
-      wheelRotation=target;
+    else {
+
+      wheelRotation =
+        target;
 
       drawWheel();
 
-      const challenge=
-        wheelChallenges[
-          Math.floor(
-            Math.random()*
-            wheelChallenges.length
-          )
-        ];
+      el("wheelResult").textContent =
 
-      result.textContent=
-        `🎄 ${people[winner]} ${challenge}`;
+        `🎄 ${people[winner]} ${
 
-      button.disabled=false;
-      wheelSpinning=false;
+          wheelChallenges[
+            Math.floor(
+              Math.random() *
+              wheelChallenges.length
+            )
+          ]
+
+        }`;
+
+      el("spinButton").disabled =
+        false;
+
+      wheelSpinning =
+        false;
+
     }
+
   }
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(
+    animate
+  );
+
 }
 
 drawWheel();
 
 /* 10 SEKUNDER */
 
-const tenQuestions=[
+const tenQuestions = [
+
   "Nevn 3 julesanger",
+
   "Nevn 3 julefilmer",
+
   "Nevn 3 ting du finner på et julebord",
+
   "Nevn 3 ølmerker",
+
   "Nevn 3 drinker",
+
   "Nevn 3 norske artister",
+
   "Nevn 3 fotballag",
+
   "Nevn 3 hockeylag",
+
   "Nevn 3 Formel 1-førere",
+
   "Nevn 3 ting du tar med på hytta",
+
   "Nevn 3 ting som er røde",
+
   "Nevn 3 ting du ikke vil ha i julegave",
+
   "Nevn 3 ting du kan gjøre i snøen",
+
   "Nevn 3 ting som finnes på et kjøkken",
+
   "Nevn 3 ting som gjør en fest bra",
+
   "Nevn 3 ting man gjør dagen derpå"
+
 ];
 
-function newTenChallenge(){
+function newTenChallenge() {
 
-  if(tenRunning){
+  if (tenRunning) {
     return;
   }
 
-  currentTenPerson=
+  currentTenPerson =
+
     people[
       Math.floor(
-        Math.random()*people.length
+        Math.random() *
+        people.length
       )
     ];
 
-  document.getElementById("tenPerson").textContent=
+  el("tenPerson").textContent =
     currentTenPerson;
 
-  document.getElementById("tenQuestion").textContent=
+  el("tenQuestion").textContent =
+
     tenQuestions[
       Math.floor(
-        Math.random()*tenQuestions.length
+        Math.random() *
+        tenQuestions.length
       )
     ];
 
-  document.getElementById("tenTimer").textContent=
+  el("tenTimer").textContent =
     "10";
 
-  document.getElementById("tenStart").disabled=
+  el("tenStart").disabled =
     false;
 
-  document.getElementById("tenActions").style.display=
+  el("tenActions").style.display =
     "none";
 
-  document.getElementById("tenMessage").textContent=
+  el("tenMessage").textContent =
+
     scoreIsOpen()
       ? ""
       : "🔒 Poeng kan først gis fra kl. 18:30";
+
 }
 
-function startTen(){
+function startTen() {
 
-  if(tenRunning||!currentTenPerson){
+  if (
+    tenRunning ||
+    !currentTenPerson
+  ) {
+
     return;
+
   }
 
-  tenRunning=true;
+  tenRunning =
+    true;
 
-  const timerElement=
-    document.getElementById("tenTimer");
+  el("tenStart").disabled =
+    true;
 
-  const startButton=
-    document.getElementById("tenStart");
+  el("tenActions").style.display =
+    "none";
 
-  const actions=
-    document.getElementById("tenActions");
+  let seconds =
+    10;
 
-  const message=
-    document.getElementById("tenMessage");
-
-  startButton.disabled=true;
-  actions.style.display="none";
-
-  let seconds=10;
-
-  timerElement.textContent=
+  el("tenTimer").textContent =
     seconds;
 
-  message.textContent=
+  el("tenMessage").textContent =
     "Tenk fort!";
 
-  const timer=
-    setInterval(()=>{
+  const timer =
 
-      seconds--;
+    setInterval(
+      () => {
 
-      if(seconds>0){
+        seconds--;
 
-        timerElement.textContent=
-          seconds;
+        if (
+          seconds >
+          0
+        ) {
 
-      }else{
+          el("tenTimer").textContent =
+            seconds;
 
-        clearInterval(timer);
+        }
 
-        timerElement.textContent=
-          "💥";
+        else {
 
-        message.textContent=
-          "TIDEN ER UTE!";
+          clearInterval(
+            timer
+          );
 
-        actions.style.display=
-          "grid";
+          el("tenTimer").textContent =
+            "💥";
 
-        tenRunning=false;
-      }
+          el("tenMessage").textContent =
+            "TIDEN ER UTE!";
 
-    },1000);
+          el("tenActions").style.display =
+            "grid";
+
+          tenRunning =
+            false;
+
+        }
+
+      },
+      1000
+    );
+
 }
 
-async function tenSuccess(){
+async function tenSuccess() {
 
-  const message=
-    document.getElementById("tenMessage");
+  if (!scoreIsOpen()) {
 
-  if(!scoreIsOpen()){
-
-    message.textContent=
+    el("tenMessage").textContent =
       "🔒 Poengjakten starter kl. 18:30";
 
     return;
+
   }
 
-  const saved=
+  const saved =
+
     await changeScore(
       currentTenPerson,
       1
     );
 
-  if(saved){
+  if (saved) {
 
-    message.textContent=
+    el("tenMessage").textContent =
+
       `✅ ${currentTenPerson} fikk 1 poeng!`;
 
-    document.getElementById("tenActions").style.display=
+    el("tenActions").style.display =
       "none";
+
   }
+
 }
 
-function tenFail(){
+function tenFail() {
 
-  document.getElementById("tenMessage").textContent=
+  el("tenMessage").textContent =
+
     `❌ Ingen poeng til ${currentTenPerson}`;
 
-  document.getElementById("tenActions").style.display=
+  el("tenActions").style.display =
     "none";
+
 }
 
-/* JULEQUIZ MED 20 SPØRSMÅL */
+/* JULEQUIZ */
 
-const allQuizQuestions=[
+const allQuizQuestions = [
+
   {
-    question:"Hva heter reinsdyret med den røde nesen?",
-    options:["Rudolf","Dasher","Comet","Blitzen"],
-    answer:0
+    question:
+      "Hva heter reinsdyret med den røde nesen?",
+
+    options:
+      ["Rudolf", "Dasher", "Comet", "Blitzen"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvilken plante forbindes med kyssing i julen?",
-    options:["Misteltein","Kristtorn","Eføy","Rosmarin"],
-    answer:0
+    question:
+      "Hvilken plante forbindes med kyssing i julen?",
+
+    options:
+      ["Misteltein", "Kristtorn", "Eføy", "Rosmarin"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvem synger «All I Want for Christmas Is You»?",
-    options:["Mariah Carey","Celine Dion","Adele","Whitney Houston"],
-    answer:0
+    question:
+      "Hvem synger «All I Want for Christmas Is You»?",
+
+    options:
+      ["Mariah Carey", "Celine Dion", "Adele", "Whitney Houston"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva heter gutten som blir glemt hjemme i «Home Alone»?",
-    options:["Kevin","Harry","Buddy","Charlie"],
-    answer:0
+    question:
+      "Hva heter gutten i «Home Alone»?",
+
+    options:
+      ["Kevin", "Harry", "Buddy", "Charlie"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvor mange reinsdyr trekker tradisjonelt sleden når Rudolf er med?",
-    options:["9","7","8","10"],
-    answer:0
+    question:
+      "Hvor mange reinsdyr trekker sleden når Rudolf er med?",
+
+    options:
+      ["9", "7", "8", "10"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvilken gruppe ga ut «Last Christmas»?",
-    options:["Wham!","ABBA","Queen","A-ha"],
-    answer:0
+    question:
+      "Hvilken gruppe ga ut «Last Christmas»?",
+
+    options:
+      ["Wham!", "ABBA", "Queen", "A-ha"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvilken dato er julaften i Norge?",
-    options:["24. desember","23. desember","25. desember","26. desember"],
-    answer:0
+    question:
+      "Hvilken dato er julaften i Norge?",
+
+    options:
+      ["24. desember", "23. desember", "25. desember", "26. desember"],
+
+    answer:
+      0
   },
+
   {
-    question:"I hvilken by foregår mye av handlingen i «Home Alone 2»?",
-    options:["New York","Chicago","Boston","Los Angeles"],
-    answer:0
+    question:
+      "I hvilken by foregår mye av «Home Alone 2»?",
+
+    options:
+      ["New York", "Chicago", "Boston", "Los Angeles"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva heter den grønne figuren som forsøker å stjele julen?",
-    options:["Grinchen","Hulken","Shrek","Gollum"],
-    answer:0
+    question:
+      "Hva heter figuren som forsøker å stjele julen?",
+
+    options:
+      ["Grinchen", "Hulken", "Shrek", "Gollum"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvem synger «Driving Home for Christmas»?",
-    options:["Chris Rea","Bryan Adams","Elton John","Rod Stewart"],
-    answer:0
+    question:
+      "Hvem synger «Driving Home for Christmas»?",
+
+    options:
+      ["Chris Rea", "Bryan Adams", "Elton John", "Rod Stewart"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva plasseres tradisjonelt øverst på juletreet?",
-    options:["En stjerne","En gave","En bjelle","En sokk"],
-    answer:0
+    question:
+      "Hva plasseres ofte øverst på juletreet?",
+
+    options:
+      ["En stjerne", "En gave", "En bjelle", "En sokk"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva heter julenissen på engelsk?",
-    options:["Santa Claus","Father Winter","Christmas Man","Snow Father"],
-    answer:0
+    question:
+      "Hva heter julenissen på engelsk?",
+
+    options:
+      ["Santa Claus", "Father Winter", "Christmas Man", "Snow Father"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva setter mange frem til julenissen i amerikansk tradisjon?",
-    options:["Melk og kjeks","Kaffe og kake","Brus og chips","Te og brød"],
-    answer:0
+    question:
+      "Hva setter mange frem til julenissen i USA?",
+
+    options:
+      ["Melk og kjeks", "Kaffe og kake", "Brus og chips", "Te og brød"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvem synger julelåten «Mistletoe»?",
-    options:["Justin Bieber","Ed Sheeran","Bruno Mars","Shawn Mendes"],
-    answer:0
+    question:
+      "Hvem synger «Mistletoe»?",
+
+    options:
+      ["Justin Bieber", "Ed Sheeran", "Bruno Mars", "Shawn Mendes"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvilken farge har bærene på kristtorn vanligvis?",
-    options:["Røde","Blå","Gule","Hvite"],
-    answer:0
+    question:
+      "Hvilken farge har bærene på kristtorn?",
+
+    options:
+      ["Røde", "Blå", "Gule", "Hvite"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva heter hovedfiguren i filmen «Elf»?",
-    options:["Buddy","Kevin","Rudolf","Clark"],
-    answer:0
+    question:
+      "Hva heter hovedfiguren i filmen «Elf»?",
+
+    options:
+      ["Buddy", "Kevin", "Rudolf", "Clark"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvem synger «Rockin' Around the Christmas Tree»?",
-    options:["Brenda Lee","Dolly Parton","Cher","Tina Turner"],
-    answer:0
+    question:
+      "Hvem synger «Rockin' Around the Christmas Tree»?",
+
+    options:
+      ["Brenda Lee", "Dolly Parton", "Cher", "Tina Turner"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva sier julenissen tradisjonelt tre ganger?",
-    options:["Ho, ho, ho","Hei, hei, hei","God, god, jul","Kom, kom, kom"],
-    answer:0
+    question:
+      "Hva sier julenissen tradisjonelt tre ganger?",
+
+    options:
+      ["Ho, ho, ho", "Hei, hei, hei", "God, god, jul", "Kom, kom, kom"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hva heter snømannen i Disneys «Frost»?",
-    options:["Olaf","Sven","Kristoff","Hans"],
-    answer:0
+    question:
+      "Hva heter snømannen i Disneys «Frost»?",
+
+    options:
+      ["Olaf", "Sven", "Kristoff", "Hans"],
+
+    answer:
+      0
   },
+
   {
-    question:"Hvilken norsk julemiddag består ofte av tørket fisk som er lutet?",
-    options:["Lutefisk","Pinnekjøtt","Ribbe","Rakfisk"],
-    answer:0
+    question:
+      "Hvilken julemiddag består av tørket fisk som er lutet?",
+
+    options:
+      ["Lutefisk", "Pinnekjøtt", "Ribbe", "Rakfisk"],
+
+    answer:
+      0
   }
+
 ];
 
-function shuffle(array){
+function shuffle(array) {
 
-  const copy=
+  const copy =
     [...array];
 
-  for(
-    let i=copy.length-1;
-    i>0;
-    i--
-  ){
+  for (
+    let i =
+      copy.length - 1;
 
-    const j=
+    i >
+      0;
+
+    i--
+  ) {
+
+    const j =
+
       Math.floor(
-        Math.random()*(i+1)
+        Math.random() *
+        (
+          i +
+          1
+        )
       );
 
     [
       copy[i],
       copy[j]
-    ]=[
+    ] = [
+
       copy[j],
       copy[i]
+
     ];
+
   }
 
   return copy;
+
 }
 
-function startQuiz(){
+/*
+  JULEQUIZEN VISER INGEN
+  SPØRSMÅL FØR KL. 18:30.
+*/
 
-  quizQuestions=
-    shuffle(allQuizQuestions);
+function updateQuizAvailability() {
 
-  quizIndex=0;
-  quizAnswered=false;
+  const open =
+    scoreIsOpen();
 
-  document.getElementById("quizStartButton").style.display=
+  el("quizLock").style.display =
+
+    open
+      ? "none"
+      : "block";
+
+  el("quizStartButton").style.display =
+
+    open
+      ? "block"
+      : "none";
+
+  if (!open) {
+
+    el("quizGame").style.display =
+      "none";
+
+    quizQuestions =
+      [];
+
+    quizIndex =
+      0;
+
+  }
+
+}
+
+function startQuiz() {
+
+  if (!scoreIsOpen()) {
+
+    updateQuizAvailability();
+
+    return;
+
+  }
+
+  quizQuestions =
+    shuffle(
+      allQuizQuestions
+    );
+
+  quizIndex =
+    0;
+
+  quizAnswered =
+    false;
+
+  el("quizStartButton").style.display =
     "none";
 
-  document.getElementById("quizGame").style.display=
+  el("quizGame").style.display =
     "block";
 
   showQuizQuestion();
+
 }
 
-function showQuizQuestion(){
+function showQuizQuestion() {
 
-  if(quizIndex>=quizQuestions.length){
+  if (!scoreIsOpen()) {
 
-    finishQuiz();
+    updateQuizAvailability();
+
     return;
+
   }
 
-  quizAnswered=false;
+  if (
+    quizIndex >=
+    quizQuestions.length
+  ) {
 
-  currentQuizPerson=
+    finishQuiz();
+
+    return;
+
+  }
+
+  quizAnswered =
+    false;
+
+  currentQuizPerson =
+
     people[
-      quizIndex%people.length
+      quizIndex %
+      people.length
     ];
 
-  const current=
+  const current =
     quizQuestions[quizIndex];
 
-  const options=
-    current.options.map((text,index)=>({
-      text:text,
-      correct:index===current.answer
-    }));
+  const options =
 
-  const shuffledOptions=
-    shuffle(options);
+    shuffle(
 
-  document.getElementById("quizProgress").textContent=
-    `Spørsmål ${quizIndex+1} av ${quizQuestions.length}`;
+      current.options.map(
+        (text, index) => ({
 
-  document.getElementById("quizPerson").textContent=
+          text:
+            text,
+
+          correct:
+            index ===
+            current.answer
+
+        })
+      )
+
+    );
+
+  el("quizProgress").textContent =
+
+    `Spørsmål ${quizIndex + 1} av ${quizQuestions.length}`;
+
+  el("quizPerson").textContent =
+
     `Spørsmål til ${currentQuizPerson}`;
 
-  document.getElementById("quizQuestion").textContent=
+  el("quizQuestion").textContent =
     current.question;
 
-  document.getElementById("quizMessage").textContent=
-    scoreIsOpen()
-      ? ""
-      : "🔒 Quizen kan testes, men poeng gis først kl. 18:30";
+  el("quizMessage").textContent =
+    "";
 
-  document.getElementById("quizNextButton").style.display=
+  el("quizNextButton").style.display =
     "none";
 
-  const optionsContainer=
-    document.getElementById("quizOptions");
+  el("quizOptions").innerHTML =
+    "";
 
-  optionsContainer.innerHTML="";
+  options.forEach(
+    (option, index) => {
 
-  shuffledOptions.forEach((option,index)=>{
+      const button =
 
-    const button=
-      document.createElement("button");
+        document.createElement(
+          "button"
+        );
 
-    button.className=
-      "quiz-option";
+      button.className =
+        "quiz-option";
 
-    button.textContent=
-      `${String.fromCharCode(65+index)}. ${option.text}`;
+      button.textContent =
 
-    button.onclick=
-      ()=>answerQuiz(
-        button,
-        option.correct,
-        shuffledOptions
-      );
+        `${String.fromCharCode(65 + index)}. ${option.text}`;
 
-    optionsContainer.appendChild(button);
-  });
+      button.onclick =
+
+        () => answerQuiz(
+
+          button,
+
+          option.correct,
+
+          current.options[
+            current.answer
+          ]
+
+        );
+
+      el("quizOptions")
+        .appendChild(
+          button
+        );
+
+    }
+  );
+
 }
 
 async function answerQuiz(
-  selectedButton,
-  isCorrect
-){
+  selected,
+  isCorrect,
+  correctAnswer
+) {
 
-  if(quizAnswered){
+  if (
+    quizAnswered ||
+    !scoreIsOpen()
+  ) {
+
     return;
+
   }
 
-  quizAnswered=true;
+  quizAnswered =
+    true;
 
-  const buttons=
+  const buttons =
+
     document.querySelectorAll(
       ".quiz-option"
     );
 
-  buttons.forEach(button=>{
-    button.disabled=true;
-  });
+  buttons.forEach(button => {
 
-  const currentQuestion=
-    quizQuestions[quizIndex];
+    button.disabled =
+      true;
 
-  const correctAnswer=
-    currentQuestion.options[
-      currentQuestion.answer
-    ];
+    if (
+      button.textContent
+        .endsWith(
+          correctAnswer
+        )
+    ) {
 
-  buttons.forEach(button=>{
+      button.classList.add(
+        "correct"
+      );
 
-    if(
-      button.textContent.endsWith(correctAnswer)
-    ){
-
-      button.classList.add("correct");
-    }
-  });
-
-  const message=
-    document.getElementById("quizMessage");
-
-  if(isCorrect){
-
-    selectedButton.classList.add("correct");
-
-    if(scoreIsOpen()){
-
-      const saved=
-        await changeScore(
-          currentQuizPerson,
-          1
-        );
-
-      message.textContent=
-        saved
-          ? `✅ Riktig! ${currentQuizPerson} fikk 1 poeng.`
-          : "✅ Riktig, men poenget kunne ikke lagres.";
-
-    }else{
-
-      message.textContent=
-        "✅ Riktig! Poeng åpner kl. 18:30.";
     }
 
-  }else{
+  });
 
-    selectedButton.classList.add("wrong");
+  if (isCorrect) {
 
-    message.textContent=
-      `❌ Feil. Riktig svar er: ${correctAnswer}`;
+    selected.classList.add(
+      "correct"
+    );
+
+    const saved =
+
+      await changeScore(
+        currentQuizPerson,
+        1
+      );
+
+    el("quizMessage").textContent =
+
+      saved
+        ? `✅ Riktig! ${currentQuizPerson} fikk 1 poeng.`
+        : "✅ Riktig, men poenget kunne ikke lagres.";
+
   }
 
-  document.getElementById("quizNextButton").style.display=
+  else {
+
+    selected.classList.add(
+      "wrong"
+    );
+
+    el("quizMessage").textContent =
+
+      `❌ Feil. Riktig svar er: ${correctAnswer}`;
+
+  }
+
+  el("quizNextButton").style.display =
     "block";
+
 }
 
-function nextQuizQuestion(){
+function nextQuizQuestion() {
 
   quizIndex++;
 
   showQuizQuestion();
+
 }
 
-function finishQuiz(){
+function finishQuiz() {
 
-  document.getElementById("quizProgress").textContent=
+  el("quizProgress").textContent =
     "Quizen er ferdig!";
 
-  document.getElementById("quizPerson").textContent=
+  el("quizPerson").textContent =
     "🎉 Godt jobbet!";
 
-  document.getElementById("quizQuestion").textContent=
+  el("quizQuestion").textContent =
     "Se sluttstillingen på den felles poengtavlen.";
 
-  document.getElementById("quizOptions").innerHTML=
+  el("quizOptions").innerHTML =
     "";
 
-  document.getElementById("quizMessage").textContent=
+  el("quizMessage").textContent =
     "";
 
-  document.getElementById("quizNextButton").style.display=
+  el("quizNextButton").style.display =
     "none";
 
-  document.getElementById("quizStartButton").textContent=
+  el("quizStartButton").textContent =
     "🔄 START QUIZEN PÅ NYTT";
 
-  document.getElementById("quizStartButton").style.display=
+  el("quizStartButton").style.display =
     "block";
 
-  document.getElementById("quizStartButton").onclick=
-    startQuiz;
 }
 
 /* TA MED */
 
-async function loadBringItems(){
+async function loadBringItems() {
 
-  if(!db){
+  if (!db) {
     return;
   }
 
-  const {data,error}=
+  const {
+    data,
+    error
+  } =
+
     await db
-      .from("bring_items")
-      .select("name,item,checked");
+      .from(
+        "bring_items"
+      )
+      .select(
+        "name,item,checked"
+      );
 
-  if(error){
+  if (error) {
 
-    console.error(error);
-    return;
-  }
-
-  bringRows=
-    (data||[]).filter(
-      item=>item.checked
+    console.error(
+      error
     );
 
+    return;
+
+  }
+
+  bringRows =
+
+    (data || [])
+      .filter(
+        item =>
+          item.checked
+      );
+
   renderBringItems();
+
   syncBringCheckboxes();
+
 }
 
-function renderBringItems(){
+function renderBringItems() {
 
-  const summary=
-    document.getElementById("bringSummary");
+  el("bringSummary").innerHTML =
+    "";
 
-  summary.innerHTML="";
+  Object.entries(
+    bringItems
+  )
+    .forEach(
+      ([key, label]) => {
 
-  Object.entries(bringItems)
-    .forEach(([key,label])=>{
+        const names =
 
-      const names=
-        bringRows
-          .filter(item=>item.item===key)
-          .map(item=>item.name);
+          bringRows
+            .filter(
+              item =>
+                item.item ===
+                key
+            )
+            .map(
+              item =>
+                item.name
+            );
 
-      summary.innerHTML+=`
-        <div class="group">
+        el("bringSummary").innerHTML +=
 
-          <div class="group-title">
-            ${label}
-          </div>
+          `
+          <div class="group">
 
-          <div class="names">
+            <div class="group-title">
+              ${label}
+            </div>
+
+            <div class="names">
+
+              ${
+                names.length
+                  ? names
+                      .map(
+                        name =>
+                          "✅ " + name
+                      )
+                      .join(" · ")
+                  : "Ingen har krysset av ennå"
+              }
+
+            </div>
+
             ${
-              names.length
-                ? names.map(name=>"✅ "+name).join(" · ")
-                : "Ingen har krysset av ennå"
+              key === "package"
+                ? `<div class="progress">${names.length} av 8 har husket pakke</div>`
+                : ""
             }
+
           </div>
+          `;
 
-          ${
-            key==="package"
-              ? `<div class="progress">${names.length} av 8 har husket pakke</div>`
-              : ""
-          }
+      }
+    );
 
-        </div>
-      `;
-    });
 }
 
-function syncBringCheckboxes(){
+function syncBringCheckboxes() {
 
-  const person=
-    document.getElementById("bringPerson").value;
+  const person =
+    el("bringPerson").value;
 
   document
-    .querySelectorAll("#bringChecks input")
-    .forEach(box=>{
+    .querySelectorAll(
+      "#bringChecks input"
+    )
+    .forEach(box => {
 
-      box.disabled=
+      box.disabled =
         !person;
 
-      box.checked=
-        Boolean(person)&&
-        bringRows.some(item=>
-          item.name===person&&
-          item.item===box.dataset.item
+      box.checked =
+
+        Boolean(person) &&
+
+        bringRows.some(
+          item =>
+
+            item.name ===
+            person
+
+            &&
+
+            item.item ===
+            box.dataset.item
+
         );
+
     });
+
 }
 
-document
-  .getElementById("bringPerson")
+el("bringPerson")
   .addEventListener(
     "change",
     syncBringCheckboxes
   );
 
 document
-  .querySelectorAll("#bringChecks input")
-  .forEach(box=>{
+  .querySelectorAll(
+    "#bringChecks input"
+  )
+  .forEach(box => {
 
     box.addEventListener(
       "change",
-      async()=>{
+      async () => {
 
-        const person=
-          document.getElementById("bringPerson").value;
+        const person =
+          el("bringPerson").value;
 
-        const item=
+        const item =
           box.dataset.item;
 
-        const message=
-          document.getElementById("bringMessage");
+        if (
+          !person ||
+          !db
+        ) {
 
-        if(!person||!db){
+          box.checked =
+            false;
 
-          box.checked=false;
           return;
+
         }
 
-        message.textContent=
+        el("bringMessage").textContent =
           "Lagrer...";
 
         let error;
 
-        if(box.checked){
+        if (box.checked) {
 
           ({
             error
-          }=
+          } =
+
             await db
-              .from("bring_items")
+              .from(
+                "bring_items"
+              )
               .upsert(
                 {
-                  name:person,
-                  item:item,
-                  checked:true,
-                  updated_at:new Date().toISOString()
+
+                  name:
+                    person,
+
+                  item:
+                    item,
+
+                  checked:
+                    true,
+
+                  updated_at:
+                    new Date()
+                      .toISOString()
+
                 },
                 {
-                  onConflict:"name,item"
+
+                  onConflict:
+                    "name,item"
+
                 }
               )
+
           );
 
-        }else{
+        }
+
+        else {
 
           ({
             error
-          }=
+          } =
+
             await db
-              .from("bring_items")
+              .from(
+                "bring_items"
+              )
               .delete()
-              .eq("name",person)
-              .eq("item",item)
+              .eq(
+                "name",
+                person
+              )
+              .eq(
+                "item",
+                item
+              )
+
           );
+
         }
 
-        if(error){
+        if (error) {
 
-          console.error(error);
-
-          box.checked=
+          box.checked =
             !box.checked;
 
-          message.textContent=
+          el("bringMessage").textContent =
             "❌ Kunne ikke lagre";
 
           return;
+
         }
 
-        message.textContent=
+        el("bringMessage").textContent =
           "✅ Listen er oppdatert";
 
-        await loadBringItems();
+        loadBringItems();
+
       }
     );
+
   });
 
 /* PAKKELEK */
 
-const diceFaces={
-  1:"⚀",
-  2:"⚁",
-  3:"⚂",
-  4:"⚃",
-  5:"⚄",
-  6:"⚅"
+const diceFaces = {
+
+  1:
+    "⚀",
+
+  2:
+    "⚁",
+
+  3:
+    "⚂",
+
+  4:
+    "⚃",
+
+  5:
+    "⚄",
+
+  6:
+    "⚅"
+
 };
 
-const diceRules={
-  1:"Ta en pakke",
-  2:"Bytt med en valgfri person",
-  3:"Send en pakke til venstre",
-  4:"Send en pakke til høyre",
-  5:"Stjel en valgfri pakke",
-  6:"Kast én gang til"
+const diceRules = {
+
+  1:
+    "Ta en pakke",
+
+  2:
+    "Bytt med en valgfri person",
+
+  3:
+    "Send en pakke til venstre",
+
+  4:
+    "Send en pakke til høyre",
+
+  5:
+    "Stjel en valgfri pakke",
+
+  6:
+    "Kast én gang til"
+
 };
 
-function rollDice(){
+function rollDice() {
 
-  const dice=
-    document.getElementById("dice");
-
-  const result=
-    document.getElementById("diceResult");
-
-  result.textContent=
+  el("diceResult").textContent =
     "🎲 Terningen ruller...";
 
-  let rolls=0;
+  let rolls =
+    0;
 
-  const animation=
-    setInterval(()=>{
+  const animation =
 
-      dice.textContent=
-        diceFaces[
-          Math.floor(Math.random()*6)+1
-        ];
+    setInterval(
+      () => {
 
-      rolls++;
+        el("dice").textContent =
 
-      if(rolls>=8){
+          diceFaces[
+            Math.floor(
+              Math.random() *
+              6
+            ) +
+            1
+          ];
 
-        clearInterval(animation);
+        rolls++;
 
-        const finalRoll=
-          Math.floor(Math.random()*6)+1;
+        if (
+          rolls >=
+          8
+        ) {
 
-        dice.textContent=
-          diceFaces[finalRoll];
+          clearInterval(
+            animation
+          );
 
-        result.textContent=
-          `${finalRoll} – ${diceRules[finalRoll]}`;
-      }
+          const finalRoll =
 
-    },90);
+            Math.floor(
+              Math.random() *
+              6
+            ) +
+            1;
+
+          el("dice").textContent =
+            diceFaces[finalRoll];
+
+          el("diceResult").textContent =
+
+            `${finalRoll} – ${diceRules[finalRoll]}`;
+
+        }
+
+      },
+      90
+    );
+
 }
 
-function updatePackageTimer(){
+function updatePackageTimer() {
 
-  document.getElementById("packageTimer").textContent=
-    `${String(Math.floor(packageTime/60)).padStart(2,"0")}:${String(packageTime%60).padStart(2,"0")}`;
+  el("packageTimer").textContent =
+
+    `${String(Math.floor(packageTime / 60)).padStart(2, "0")}:${String(packageTime % 60).padStart(2, "0")}`;
+
 }
 
-function startPackageTimer(){
+function startPackageTimer() {
 
-  if(packageInterval){
+  if (packageInterval) {
     return;
   }
 
-  packageInterval=
-    setInterval(()=>{
+  packageInterval =
 
-      if(packageTime>0){
+    setInterval(
+      () => {
 
-        packageTime--;
-        updatePackageTimer();
+        if (
+          packageTime >
+          0
+        ) {
 
-      }else{
+          packageTime--;
 
-        clearInterval(packageInterval);
+          updatePackageTimer();
 
-        packageInterval=null;
+        }
 
-        document.getElementById("packageTimer").textContent=
-          "🎁 FERDIG!";
-      }
+        else {
 
-    },1000);
+          clearInterval(
+            packageInterval
+          );
+
+          packageInterval =
+            null;
+
+          el("packageTimer").textContent =
+            "🎁 FERDIG!";
+
+        }
+
+      },
+      1000
+    );
+
 }
 
-function resetPackageTimer(){
+function resetPackageTimer() {
 
-  clearInterval(packageInterval);
+  clearInterval(
+    packageInterval
+  );
 
-  packageInterval=null;
-  packageTime=600;
+  packageInterval =
+    null;
+
+  packageTime =
+    600;
 
   updatePackageTimer();
+
 }
 
 updatePackageTimer();
 
 /* FESTBILDER */
 
-function updatePhotoAvailability(){
+function updatePhotoAvailability() {
 
-  const now=
+  const now =
     new Date();
 
-  const open=
-    now>=photoStart&&
-    now<photoEnd;
+  const open =
 
-  const button=
-    document.getElementById("photoButton");
+    now >= photoStart &&
 
-  const message=
-    document.getElementById("photoMessage");
+    now < photoEnd;
 
-  button.disabled=
+  el("photoButton").disabled =
     !open;
 
-  if(now<photoStart){
+  if (
+    now <
+    photoStart
+  ) {
 
-    message.textContent=
+    el("photoMessage").textContent =
       "🔒 Bilder åpner lørdag 📸";
 
-  }else if(now>=photoEnd){
+  }
 
-    message.textContent=
+  else if (
+    now >=
+    photoEnd
+  ) {
+
+    el("photoMessage").textContent =
       "📸 Albumet er kun åpent for visning.";
 
-  }else{
-
-    message.textContent=
-      "📸 Bildeopplasting er åpen.";
   }
+
+  else {
+
+    el("photoMessage").textContent =
+      "📸 Bildeopplasting er åpen.";
+
+  }
+
 }
 
-function createFileName(file){
+function createFileName(
+  file
+) {
 
-  const extension=
+  const extension =
+
     (
-      file.name.split(".").pop()||
-      "jpg"
-    ).replace(
-      /[^a-z0-9]/gi,
-      ""
-    );
+      file.name
+        .split(".")
+        .pop()
 
-  return(
-    Date.now()+
-    "-"+
-    Math.random().toString(36).slice(2,8)+
-    "."+
+      ||
+
+      "jpg"
+    )
+      .replace(
+        /[^a-z0-9]/gi,
+        ""
+      );
+
+  return (
+
+    Date.now() +
+
+    "-" +
+
+    Math.random()
+      .toString(36)
+      .slice(2, 8) +
+
+    "." +
+
     extension
+
   );
+
 }
 
-async function loadPhotos(){
+async function loadPhotos() {
 
-  if(!db){
+  if (!db) {
     return;
   }
 
-  const gallery=
-    document.getElementById("gallery");
-
-  gallery.innerHTML=
+  el("gallery").innerHTML =
     '<div class="empty">Henter bilder...</div>';
 
-  const {data,error}=
+  const {
+    data,
+    error
+  } =
+
     await db
       .storage
-      .from("festbilder")
+      .from(
+        "festbilder"
+      )
       .list(
         "",
         {
-          limit:100,
-          sortBy:{
-            column:"created_at",
-            order:"desc"
-          }
+
+          limit:
+            100,
+
+          sortBy:
+            {
+
+              column:
+                "created_at",
+
+              order:
+                "desc"
+
+            }
+
         }
       );
 
-  if(error){
+  if (error) {
 
-    console.error(error);
-
-    gallery.innerHTML=
+    el("gallery").innerHTML =
       '<div class="empty">Kunne ikke hente bildene.</div>';
 
     return;
+
   }
 
-  photos=
-    (data||[]).filter(item=>
-      item.name&&
-      !item.name.startsWith(".")
-    );
+  photos =
 
-  document.getElementById("photoCount").textContent=
+    (data || [])
+      .filter(
+        item =>
+
+          item.name &&
+
+          !item.name
+            .startsWith(".")
+
+      );
+
+  el("photoCount").textContent =
+
     `${photos.length} / 75 bilder`;
 
-  gallery.innerHTML="";
+  el("gallery").innerHTML =
 
-  if(!photos.length){
+    photos.length
+      ? ""
+      : '<div class="empty">Ingen bilder ennå.</div>';
 
-    gallery.innerHTML=
-      '<div class="empty">Ingen bilder ennå.</div>';
+  photos.forEach(file => {
 
-    return;
-  }
+    const url =
 
-  photos.forEach(file=>{
-
-    const url=
       db
         .storage
-        .from("festbilder")
-        .getPublicUrl(file.name)
+        .from(
+          "festbilder"
+        )
+        .getPublicUrl(
+          file.name
+        )
         .data
         .publicUrl;
 
-    const element=
-      document.createElement("div");
+    const element =
 
-    element.className=
+      document.createElement(
+        "div"
+      );
+
+    element.className =
       "gallery-item";
 
-    element.innerHTML=
+    element.innerHTML =
+
       `<img src="${url}" alt="Festbilde" loading="lazy">`;
 
-    element.onclick=
-      ()=>{
+    element.onclick =
+      () => {
 
-        document.getElementById("modalImage").src=
+        el("modalImage").src =
           url;
 
-        document.getElementById("photoModal")
-          .classList.add("open");
+        el("photoModal")
+          .classList
+          .add(
+            "open"
+          );
+
       };
 
-    gallery.appendChild(element);
+    el("gallery")
+      .appendChild(
+        element
+      );
+
   });
+
 }
 
-document
-  .getElementById("photoInput")
+el("photoInput")
   .addEventListener(
     "change",
-    async event=>{
+    async event => {
 
-      const input=
+      const input =
         event.target;
 
-      const file=
+      const file =
         input.files[0];
 
-      input.value="";
+      input.value =
+        "";
 
-      const message=
-        document.getElementById("photoMessage");
-
-      if(!file){
+      if (!file) {
         return;
       }
 
-      if(!file.type.startsWith("image/")){
+      if (
+        !file.type
+          .startsWith(
+            "image/"
+          )
+      ) {
 
-        message.textContent=
+        el("photoMessage").textContent =
           "❌ Kun bilder er tillatt.";
 
         return;
+
       }
 
-      if(file.size>6*1024*1024){
+      if (
+        file.size >
+        6 * 1024 * 1024
+      ) {
 
-        message.textContent=
+        el("photoMessage").textContent =
           "❌ Bildet kan være maks 6 MB.";
 
         return;
+
       }
 
-      if(photos.length>=75){
+      if (
+        photos.length >=
+        75
+      ) {
 
-        message.textContent=
+        el("photoMessage").textContent =
           "❌ Albumet har nådd 75 bilder.";
 
         return;
+
       }
 
-      if(!db){
-
-        message.textContent=
-          "❌ Bildekoblingen er ikke klar.";
-
+      if (!db) {
         return;
       }
 
-      message.textContent=
+      el("photoMessage").textContent =
         "Laster opp...";
 
-      const {error}=
+      const {
+        error
+      } =
+
         await db
           .storage
-          .from("festbilder")
+          .from(
+            "festbilder"
+          )
           .upload(
             createFileName(file),
             file,
             {
-              contentType:file.type,
-              upsert:false
+
+              contentType:
+                file.type,
+
+              upsert:
+                false
+
             }
           );
 
-      if(error){
+      el("photoMessage").textContent =
 
-        console.error(error);
+        error
+          ? "❌ Kunne ikke laste opp."
+          : "✅ Bildet er lagt til!";
 
-        message.textContent=
-          "❌ Kunne ikke laste opp.";
+      if (!error) {
 
-        return;
+        loadPhotos();
+
       }
 
-      message.textContent=
-        "✅ Bildet er lagt til!";
-
-      await loadPhotos();
     }
   );
 
-function closePhoto(){
+function closePhoto() {
 
-  document
-    .getElementById("photoModal")
-    .classList.remove("open");
+  el("photoModal")
+    .classList
+    .remove(
+      "open"
+    );
 
-  document.getElementById("modalImage").src=
+  el("modalImage").src =
     "";
+
 }
 
 /* OPPSTART */
 
-function init(){
+function init() {
 
   renderStatuses();
+
   renderScores();
+
   renderBringItems();
 
   updateStatusAvailability();
+
   updatePhotoAvailability();
+
+  updateQuizAvailability();
+
   syncBringCheckboxes();
 
-  if(!window.supabase){
+  if (!window.supabase) {
 
-    document.getElementById("statusMessage").textContent=
+    el("statusMessage").textContent =
       "⚠️ Supabase kunne ikke lastes.";
 
     return;
+
   }
 
-  db=
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+  db =
+
+    window.supabase
+      .createClient(
+
+        SUPABASE_URL,
+
+        SUPABASE_KEY
+
+      );
 
   loadStatuses();
+
   loadScores();
+
   loadBringItems();
+
   loadPhotos();
 
   db
-    .channel("status-live")
+    .channel(
+      "status-live"
+    )
     .on(
       "postgres_changes",
       {
-        event:"*",
-        schema:"public",
-        table:"party_status"
+
+        event:
+          "*",
+
+        schema:
+          "public",
+
+        table:
+          "party_status"
+
       },
       loadStatuses
     )
     .subscribe();
 
   db
-    .channel("scores-live")
+    .channel(
+      "scores-live"
+    )
     .on(
       "postgres_changes",
       {
-        event:"*",
-        schema:"public",
-        table:"party_scores"
+
+        event:
+          "*",
+
+        schema:
+          "public",
+
+        table:
+          "party_scores"
+
       },
       loadScores
     )
     .subscribe();
 
   db
-    .channel("bring-live")
+    .channel(
+      "bring-live"
+    )
     .on(
       "postgres_changes",
       {
-        event:"*",
-        schema:"public",
-        table:"bring_items"
+
+        event:
+          "*",
+
+        schema:
+          "public",
+
+        table:
+          "bring_items"
+
       },
       loadBringItems
     )
     .subscribe();
 
   setInterval(
-    ()=>{
+    () => {
+
       updateStatusAvailability();
+
       updatePhotoAvailability();
+
+      updateQuizAvailability();
+
       renderScores();
+
     },
     60000
   );
+
 }
 
 init();
+
 </script>
+
 </body>
 </html>
