@@ -1,2389 +1,840 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#12372a">
-  <title>Julefest 2026 🎄</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: white;
-      background: linear-gradient(180deg, #0b241b, #12372a);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    .app {
-      max-width: 500px;
-      margin: auto;
-      padding: 22px 18px 40px;
-    }
-
-    .hero {
-      padding: 35px 10px 25px;
-      text-align: center;
-    }
-
-    .tree {
-      margin-bottom: 8px;
-      font-size: 58px;
-    }
-
-    h1 {
-      margin: 0;
-      color: #f4d06f;
-      font-size: 34px;
-    }
-
-    .date {
-      margin-top: 10px;
-      font-size: 17px;
-    }
-
-    .countdown-title {
-      margin-top: 30px;
-      color: #f4d06f;
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .countdown-box {
-      width: 72px;
-      padding: 12px 5px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(244,208,111,0.35);
-      border-radius: 14px;
-    }
-
-    .number {
-      font-size: 25px;
-      font-weight: 700;
-    }
-
-    .label {
-      margin-top: 3px;
-      color: #d5d5d5;
-      font-size: 10px;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      margin: 22px 4px 10px;
-      color: #f4d06f;
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .card {
-      padding: 20px 12px;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .card:active {
-      transform: scale(0.97);
-    }
-
-    .wide-card {
-      grid-column: span 2;
-    }
-
-    .status-card {
-      background: linear-gradient(135deg, #155d46, #1f7a5c);
-    }
-
-    .wheel-card {
-      background: linear-gradient(135deg, #9d1b24, #c32f3c);
-    }
-
-    .icon {
-      margin-bottom: 8px;
-      font-size: 32px;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .card-text {
-      margin-top: 4px;
-      color: #cfcfcf;
-      font-size: 11px;
-    }
-
-    .content-box {
-      display: none;
-      margin-top: 15px;
-      padding: 18px;
-      background: rgba(0,0,0,0.22);
-      border-radius: 18px;
-    }
-
-    .content-box.active {
-      display: block;
-    }
-
-    .content-box h2 {
-      margin-top: 0;
-      color: #f4d06f;
-    }
-
-    .person,
-    .score-row,
-    .status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .person {
-      justify-content: flex-start;
-    }
-
-    .avatar {
-      display: flex;
-      width: 34px;
-      height: 34px;
-      align-items: center;
-      justify-content: center;
-      background: #9d1b24;
-      border-radius: 50%;
-    }
-
-    .score-value,
-    .status-value {
-      color: #f4d06f;
-      font-weight: 600;
-      text-align: right;
-    }
-
-    .status-value {
-      font-size: 13px;
-    }
-
-    select {
-      width: 100%;
-      margin: 6px 0 10px;
-      padding: 14px;
-      color: #12372a;
-      background: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-    }
-
-    .select-label {
-      display: block;
-      margin-top: 12px;
-      color: #f4d06f;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .game-button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 15px;
-      color: #12372a;
-      background: #f4d06f;
-      border: none;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .game-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .red-button {
-      color: white;
-      background: #c32f3c;
-    }
-
-    .status-message,
-    .photo-message,
-    .bring-message {
-      min-height: 25px;
-      margin-top: 12px;
-      color: #f4d06f;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    /* SPILLEHJUL */
-
-    .wheel-wrap {
-      position: relative;
-      width: min(100%, 340px);
-      margin: 22px auto 10px;
-    }
-
-    .wheel-pointer {
-      position: absolute;
-      z-index: 5;
-      top: -6px;
-      left: 50%;
-      width: 0;
-      height: 0;
-      transform: translateX(-50%);
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-top: 34px solid #f4d06f;
-      filter: drop-shadow(0 3px 2px rgba(0,0,0,0.45));
-    }
-
-    .wheel-canvas {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 50%;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.35));
-    }
-
-    .wheel-legend {
-      margin: 8px 0 12px;
-      color: #cfcfcf;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    #wheelResult {
-      min-height: 52px;
-      margin-top: 18px;
-      color: #f4d06f;
-      font-size: 20px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    /* TA MED */
-
-    .bring-intro,
-    .dice-area,
-    .timer-area,
-    .upload-area {
-      margin-top: 18px;
-      padding: 20px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 18px;
-      text-align: center;
-    }
-
-    .bring-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      cursor: pointer;
-    }
-
-    .bring-option input {
-      width: 22px;
-      height: 22px;
-      accent-color: #f4d06f;
-    }
-
-    .bring-option-text {
-      flex: 1;
-      font-weight: 600;
-      text-align: left;
-    }
-
-    .bring-summary {
-      margin-top: 22px;
-    }
-
-    .bring-group {
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .bring-group-title {
-      margin-bottom: 6px;
-      color: #f4d06f;
-      font-weight: 700;
-    }
-
-    .bring-names {
-      color: #e8e8e8;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .bring-progress {
-      margin-top: 10px;
-      color: #f4d06f;
-      font-weight: 700;
-    }
-
-    /* PAKKELEK */
-
-    #dice {
-      margin: 10px 0;
-      font-size: 78px;
-    }
-
-    #diceResult {
-      min-height: 45px;
-      margin-top: 15px;
-      color: #f4d06f;
-      font-weight: 600;
-    }
-
-    #packageTimer {
-      margin: 10px 0;
-      color: #f4d06f;
-      font-size: 42px;
-      font-weight: 700;
-    }
-
-    .rule {
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    /* FESTBILDER */
-
-    .photo-count {
-      margin-bottom: 8px;
-      color: #f4d06f;
-      font-weight: 700;
-    }
-
-    .photo-help {
-      color: #cfcfcf;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .photo-input {
-      display: none;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .gallery-item {
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      background: rgba(255,255,255,0.08);
-      border-radius: 14px;
-      cursor: pointer;
-    }
-
-    .gallery-item img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .empty-gallery {
-      grid-column: span 2;
-      padding: 24px 0;
-      color: #cfcfcf;
-      text-align: center;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 99;
-      inset: 0;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.92);
-    }
-
-    .modal.open {
-      display: flex;
-    }
-
-    .modal img {
-      max-width: 100%;
-      max-height: 86vh;
-      border-radius: 14px;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      width: 42px;
-      height: 42px;
-      color: #12372a;
-      background: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 24px;
-      font-weight: 700;
-    }
-
-    footer {
-      margin-top: 35px;
-      color: #aeb8b2;
-      font-size: 12px;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#12372a">
+<title>Julefest at the Breviks 🎄</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:linear-gradient(180deg,#082a20,#12372a);
+ color:#fff;
+ min-height:100vh
+}
+.app{max-width:500px;margin:auto;padding:20px 18px 40px}
+.hero{text-align:center;padding:25px 10px}
+h1{margin:8px 0;color:#f4c85a;font-size:31px}
+.date{font-size:17px;margin-top:10px}
+.jager{width:90px;height:auto;display:block;margin:15px auto 8px}
+.lights{font-size:21px;letter-spacing:3px;margin:10px 0}
+.countdown-title{
+ margin-top:28px;color:#f4d06f;font-size:12px;
+ letter-spacing:2px;text-transform:uppercase
+}
+.countdown{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.countdown-box{
+ width:72px;padding:12px 5px;background:rgba(255,255,255,.1);
+ border:1px solid rgba(244,208,111,.4);border-radius:14px
+}
+.number{font-size:25px;font-weight:800}
+.label{font-size:10px;color:#ddd}
+.section-title{
+ margin:22px 4px 10px;color:#f4d06f;font-size:13px;
+ text-transform:uppercase;letter-spacing:1px
+}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{
+ background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.1);
+ border-radius:18px;padding:20px 10px;text-align:center;cursor:pointer
+}
+.card:active{transform:scale(.97)}
+.wide{grid-column:span 2}
+.status-card{background:linear-gradient(135deg,#155d46,#1f7a5c)}
+.wheel-card{background:linear-gradient(135deg,#a91825,#c92d3b)}
+.five-card{background:linear-gradient(135deg,#a96512,#d68b18)}
+.icon{font-size:31px;margin-bottom:7px}
+.card-title{font-weight:700}
+.card-text{font-size:11px;color:#ddd;margin-top:4px}
+.box{
+ display:none;margin-top:15px;padding:18px;
+ background:rgba(0,0,0,.25);border-radius:18px
+}
+.box.active{display:block}
+.box h2{margin-top:0;color:#f4d06f}
+select{
+ width:100%;padding:14px;margin:6px 0 10px;border:0;
+ border-radius:12px;background:white;color:#12372a;font-size:16px
+}
+.label2{display:block;color:#f4d06f;font-size:12px;font-weight:700;margin-top:12px}
+.btn{
+ width:100%;border:0;border-radius:14px;padding:15px;margin-top:10px;
+ background:#f4d06f;color:#12372a;font-size:16px;font-weight:800;cursor:pointer
+}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.red{background:#bd2432;color:white}
+.message{color:#f4d06f;font-weight:700;text-align:center;margin-top:12px;min-height:24px}
+.row{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:8px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.09)
+}
+.person{display:flex;gap:10px;align-items:center}
+.avatar{
+ width:34px;height:34px;border-radius:50%;background:#9d1b24;
+ display:flex;align-items:center;justify-content:center
+}
+
+/* JULEHJUL */
+.wheel-wrap{position:relative;width:min(100%,340px);margin:22px auto 10px}
+.pointer{
+ position:absolute;z-index:3;top:-5px;left:50%;transform:translateX(-50%);
+ width:0;height:0;border-left:18px solid transparent;
+ border-right:18px solid transparent;border-top:34px solid #f4d06f
+}
+#wheelCanvas{
+ width:100%;height:auto;border-radius:50%;
+ filter:drop-shadow(0 8px 10px rgba(0,0,0,.35))
+}
+#wheelResult{
+ color:#f4d06f;font-size:20px;font-weight:800;text-align:center;
+ min-height:48px;margin-top:16px
+}
+
+/* 5 SEKUNDER */
+.five-game{text-align:center;background:rgba(255,255,255,.07);padding:18px;border-radius:18px}
+#fivePerson{font-size:27px;font-weight:900;color:#f4d06f}
+#fiveQuestion{font-size:21px;font-weight:700;line-height:1.35;margin:14px 0}
+#fiveTimer{font-size:72px;font-weight:900;color:#f4d06f}
+.two-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* POENG */
+.score-name{flex:1}
+.rank{min-width:28px}
+.controls{display:flex;align-items:center;gap:7px}
+.score{color:#f4d06f;font-weight:800;min-width:62px;text-align:center}
+.score-btn{
+ width:36px;height:36px;border:0;border-radius:9px;
+ font-size:21px;font-weight:900;cursor:pointer
+}
+.minus{background:#9d1b24;color:white}
+.plus{background:#f4d06f;color:#12372a}
+
+/* TA MED */
+.check{
+ display:flex;align-items:center;gap:12px;padding:13px 6px;
+ border-bottom:1px solid rgba(255,255,255,.08)
+}
+.check input{width:22px;height:22px;accent-color:#f4d06f}
+.check span{font-weight:700}
+.group{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.group-title{font-weight:800;color:#f4d06f;margin-bottom:5px}
+.names{font-size:14px;line-height:1.6}
+.progress{color:#f4d06f;font-weight:800;margin-top:7px}
+
+/* PAKKELEK */
+.game-area{
+ background:rgba(255,255,255,.07);padding:18px;border-radius:18px;
+ text-align:center;margin-top:15px
+}
+#dice{font-size:75px}
+#diceResult{color:#f4d06f;font-weight:700;min-height:38px}
+#packageTimer{font-size:42px;color:#f4d06f;font-weight:900}
+.rule{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+
+/* BILDER */
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
+.gallery-item{aspect-ratio:1;border-radius:13px;overflow:hidden}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
+.photo-count{color:#f4d06f;font-weight:800;text-align:center}
+.photo-input{display:none}
+.modal{
+ display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
+ z-index:99;align-items:center;justify-content:center;padding:20px
+}
+.modal.open{display:flex}
+.modal img{max-width:100%;max-height:85vh;border-radius:12px}
+.close{
+ position:absolute;right:18px;top:18px;width:42px;height:42px;
+ border:0;border-radius:50%;font-size:24px
+}
+footer{text-align:center;color:#aaa;font-size:12px;margin-top:35px}
+</style>
 </head>
 
 <body>
-
 <div class="app">
 
-  <div class="hero">
-<div class="tree">
-  ✨🎄✨
+<div class="hero">
+ <div style="font-size:34px">✨🎄✨</div>
+ <h1>Julefest at the Breviks</h1>
+
+ <div class="lights">
+  🤶 🛷 🦌 🎄 🦌 🛷 🎅
+ </div>
+
+ <img src="jagermeister.png" class="jager" alt="Jägermeister">
+
+ <div class="date">28. november • 18:30</div>
+
+ <div class="countdown-title">Nedtelling til festen</div>
+ <div class="countdown">
+  <div class="countdown-box"><div id="days" class="number">0</div><div class="label">DAGER</div></div>
+  <div class="countdown-box"><div id="hours" class="number">0</div><div class="label">TIMER</div></div>
+  <div class="countdown-box"><div id="minutes" class="number">0</div><div class="label">MIN</div></div>
+ </div>
 </div>
 
-<h1>Julefest at the Breviks</h1>
-
-<div style="
-  font-size:24px;
-  margin-top:10px;
-  letter-spacing:5px;
-">
-🤶  🦌 🎄  🛷 🎅
-</div>
-<img
- src="jagermeister.png.png"
-  alt="Jägermeister"
-  style="
-    width:110px;
-    max-width:32%;
-    height:auto;
-    display:block;
-    margin:18px auto 12px;
-  "
->
-<div style="
-  font-size:32px;
-  margin-top:8px;
-">
-  🎄✨🍾✨🎄
-</div>
-    <div class="date">28. november • 18:30</div>
-
-    <div class="countdown-title">
-      Nedtelling til festen
-    </div>
-
-    <div class="countdown">
-      <div class="countdown-box">
-        <div id="days" class="number">0</div>
-        <div class="label">Dager</div>
-      </div>
-
-      <div class="countdown-box">
-        <div id="hours" class="number">0</div>
-        <div class="label">Timer</div>
-      </div>
-
-      <div class="countdown-box">
-        <div id="minutes" class="number">0</div>
-        <div class="label">Min</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Festen</div>
-
-  <div class="menu">
-
-    <div class="card wide-card status-card"
-         onclick="showSection('where')">
-      <div class="icon">📍</div>
-      <div class="card-title">Hvor er gjengen?</div>
-      <div class="card-text">Følg gjengen gjennom lørdagen</div>
-    </div>
-
-    <div class="card" onclick="showSection('friends')">
-      <div class="icon">👥</div>
-      <div class="card-title">Gjengen</div>
-      <div class="card-text">De 8 på julefest</div>
-    </div>
-
-    <div class="card" onclick="showSection('score')">
-      <div class="icon">🏆</div>
-      <div class="card-title">Poengtavle</div>
-      <div class="card-text">Hvem leder?</div>
-    </div>
-
-    <div class="card wide-card wheel-card"
-         onclick="showSection('wheel')">
-      <div class="icon">🎡</div>
-      <div class="card-title">JULEHJULET</div>
-      <div class="card-text">Spinn hvis du tør...</div>
-    </div>
-
-    <div class="card" onclick="showSection('competitions')">
-      <div class="icon">🎯</div>
-      <div class="card-title">Konkurranser</div>
-      <div class="card-text">Quiz og utfordringer</div>
-    </div>
-
-    <div class="card" onclick="showSection('bring')">
-      <div class="icon">🎒</div>
-      <div class="card-title">Ta med</div>
-      <div class="card-text">Hvem tar med hva?</div>
-    </div>
-
-    <div class="card" onclick="showSection('packagegame')">
-      <div class="icon">🎁</div>
-      <div class="card-title">Pakkelek</div>
-      <div class="card-text">Terning og pakker</div>
-    </div>
-
-    <div class="card" onclick="showSection('photos')">
-      <div class="icon">📸</div>
-      <div class="card-title">Festbilder</div>
-      <div class="card-text">Felles album, maks 75</div>
-    </div>
-
-  </div>
-
-  <!-- HVOR ER GJENGEN -->
-
-  <div id="where" class="content-box">
-
-    <h2>📍 Hvor er gjengen?</h2>
-
-    <p>Velg navnet ditt og hva du gjør akkurat nå.</p>
-
-    <span class="select-label">HVEM ER DU?</span>
-
-    <select id="personSelect">
-      <option value="">Velg navn</option>
-      <option>Anne Grethe</option>
-      <option>Henning</option>
-      <option>Ronny</option>
-      <option>Hanne</option>
-      <option>Martin</option>
-      <option>Eilen H</option>
-      <option>Eilen N</option>
-      <option>Flemming</option>
-    </select>
-
-    <span class="select-label">HVA GJØR DU?</span>
-
-    <select id="statusSelect">
-      <option value="">Velg status</option>
-      <option value="🥐 Frokost">🥐 Frokost</option>
-      <option value="🚶 Går tur">🚶 Går tur</option>
-      <option value="🏋️ Trener">🏋️ Trener</option>
-      <option value="⚽ Ser fotball">⚽ Ser fotball</option>
-      <option value="🏒 Ser hockey">🏒 Ser hockey</option>
-      <option value="🏎️ Ser Formel 1">🏎️ Ser Formel 1</option>
-      <option value="🚿 Gjør meg klar">🚿 Gjør meg klar</option>
-      <option value="🚗 På vei til festen">🚗 På vei til festen</option>
-      <option value="👋 På vei hjem">👋 På vei hjem</option>
-      <option value="🏠 Hjemme">🏠 Hjemme</option>
-    </select>
-
-    <button id="statusButton"
-            class="game-button"
-            onclick="saveStatus()">
-      📍 OPPDATER STATUS
-    </button>
-
-    <div id="statusMessage" class="status-message"></div>
-
-    <h3 style="color:#f4d06f;margin-top:25px">
-      🎄 Gjengen akkurat nå
-    </h3>
-
-    <div id="statusList"></div>
-
-  </div>
-
-  <!-- GJENGEN -->
-
-  <div id="friends" class="content-box">
-
-    <h2>👥 Gjengen</h2>
-
-    <div class="person"><div class="avatar">🎄</div><span>Anne Grethe</span></div>
-    <div class="person"><div class="avatar">🎅</div><span>Henning</span></div>
-    <div class="person"><div class="avatar">🍺</div><span>Ronny</span></div>
-    <div class="person"><div class="avatar">🥂</div><span>Hanne</span></div>
-    <div class="person"><div class="avatar">🦌</div><span>Martin</span></div>
-    <div class="person"><div class="avatar">⭐</div><span>Eilen H</span></div>
-    <div class="person"><div class="avatar">☃️</div><span>Eilen N</span></div>
-    <div class="person"><div class="avatar">🎁</div><span>Flemming</span></div>
-
-  </div>
-
-  <!-- POENGTAVLE -->
-
-  <div id="score" class="content-box">
-    <h2>🏆 Poengtavle</h2>
-    <div id="scoreList"></div>
-  </div>
-
-  <!-- JULEHJULET -->
-
-  <div id="wheel" class="content-box">
-
-    <h2>🎡 Julehjulet</h2>
-
-    <p>
-      Hjulet velger tilfeldig person. Deretter trekkes sang,
-      tale, vits eller skål.
-    </p>
-
-    <div class="wheel-wrap">
-      <div class="wheel-pointer"></div>
-
-      <canvas id="wheelCanvas"
-              class="wheel-canvas"
-              width="700"
-              height="700">
-      </canvas>
-    </div>
-
-    <div class="wheel-legend">
-      Pilen øverst viser hvem som blir valgt
-    </div>
-
-    <button id="spinButton"
-            class="game-button"
-            onclick="spinWheel()">
-      🎡 SPINN HJULET
-    </button>
-
-    <div id="wheelResult">
-      Hvem blir den heldige? 😈
-    </div>
-
-  </div>
-
-  <!-- KONKURRANSER -->
-
-  <div id="competitions" class="content-box">
-    <h2>🎯 Konkurranser</h2>
-    <p>🎵 Musikkquiz</p>
-    <p>🎄 Julequiz</p>
-    <p>👕 Beste juleantrekk</p>
-    <p>🥇 Kveldens utfordringer</p>
-  </div>
-
-  <!-- TA MED -->
-
-  <div id="bring" class="content-box">
-
-    <h2>🎒 Hva tar du med?</h2>
-
-    <div class="bring-intro">
-      <div style="font-size:44px">🎁</div>
-
-      <div style="color:#f4d06f;font-size:20px;font-weight:700">
-        PAKKE TIL PAKKELEKEN
-      </div>
-
-      <p style="line-height:1.6">
-        Alle må ta med <strong>én innpakket pakke</strong>.<br>
-        Verdi: <strong>10–100 kr</strong>.
-      </p>
-
-      <div class="photo-help">
-        Velg navnet ditt og kryss av. Alle ser den samme listen.
-      </div>
-    </div>
-
-    <span class="select-label">HVEM ER DU?</span>
-
-    <select id="bringPersonSelect">
-      <option value="">Velg navn</option>
-      <option>Anne Grethe</option>
-      <option>Henning</option>
-      <option>Ronny</option>
-      <option>Hanne</option>
-      <option>Martin</option>
-      <option>Eilen H</option>
-      <option>Eilen N</option>
-      <option>Flemming</option>
-    </select>
-
-    <div id="bringChoices">
-
-      <label class="bring-option">
-        <input type="checkbox"
-               data-item="package"
-               onchange="toggleBringItem(this)">
-        <span class="bring-option-text">
-          🎁 Pakke til pakkeleken
-        </span>
-      </label>
-
-      <label class="bring-option">
-        <input type="checkbox"
-               data-item="beer"
-               onchange="toggleBringItem(this)">
-        <span class="bring-option-text">🍺 Øl</span>
-      </label>
-
-      <label class="bring-option">
-        <input type="checkbox"
-               data-item="wine"
-               onchange="toggleBringItem(this)">
-        <span class="bring-option-text">🍷 Vin</span>
-      </label>
-
-      <label class="bring-option">
-        <input type="checkbox"
-               data-item="bubbles"
-               onchange="toggleBringItem(this)">
-        <span class="bring-option-text">🥂 Bobler</span>
-      </label>
-
-      <label class="bring-option">
-        <input type="checkbox"
-               data-item="mood"
-               onchange="toggleBringItem(this)">
-        <span class="bring-option-text">🎅 Godt humør</span>
-      </label>
-
-    </div>
-
-    <div id="bringMessage" class="bring-message"></div>
-
-    <div class="bring-summary">
-      <h3 style="color:#f4d06f">Felles oversikt</h3>
-
-      <div id="bringSummaryList">
-        Henter listen...
-      </div>
-    </div>
-
-  </div>
-
-  <!-- PAKKELEK -->
-
-  <div id="packagegame" class="content-box">
-
-    <h2>🎁 Pakkelek</h2>
-
-    <p>
-      Alle tar med én innpakket pakke.
-      Legg alle pakkene samlet før leken starter.
-    </p>
-
-    <div class="dice-area">
-
-      <div style="color:#f4d06f">DIGITAL TERNING</div>
-      <div id="dice">🎲</div>
-
-      <button class="game-button" onclick="rollDice()">
-        🎲 KAST TERNINGEN
-      </button>
-
-      <div id="diceResult">Trykk for å kaste</div>
-
-    </div>
-
-    <div class="timer-area">
-
-      <div style="color:#f4d06f">PAKKELEK-TIMER</div>
-      <div id="packageTimer">10:00</div>
-
-      <button class="game-button" onclick="startPackageTimer()">
-        ⏱️ START 10 MINUTTER
-      </button>
-
-      <button class="game-button red-button"
-              onclick="resetPackageTimer()">
-        ↻ NULLSTILL
-      </button>
-
-    </div>
-
-    <h3 style="color:#f4d06f">🎄 Terningregler</h3>
-
-    <div class="rule">🎲 <strong>1</strong> – Ta en pakke</div>
-    <div class="rule">🎲 <strong>2</strong> – Bytt med en valgfri person</div>
-    <div class="rule">🎲 <strong>3</strong> – Send en pakke til venstre</div>
-    <div class="rule">🎲 <strong>4</strong> – Send en pakke til høyre</div>
-    <div class="rule">🎲 <strong>5</strong> – Stjel en valgfri pakke</div>
-    <div class="rule">🎲 <strong>6</strong> – Kast én gang til</div>
-
-  </div>
-
-  <!-- FESTBILDER -->
-
-  <div id="photos" class="content-box">
-
-    <h2>📸 Festbilder</h2>
-
-    <p>
-      Felles bildegalleri for hele gjengen.
-      Kun bilder, ingen video.
-    </p>
-
-    <div class="upload-area">
-
-      <div id="photoCount" class="photo-count">
-        0 / 75 bilder
-      </div>
-
-      <div class="photo-help">
-        Maks 6 MB per bilde.<br>
-        Kun bildefiler.
-      </div>
-
-      <input id="photoInput"
-             class="photo-input"
-             type="file"
-             accept="image/*"
-             onchange="uploadPhoto(event)">
-
-      <button id="photoButton"
-              class="game-button"
-              onclick="document.getElementById('photoInput').click()">
-        📸 LEGG TIL BILDE
-      </button>
-
-      <div id="photoMessage" class="photo-message"></div>
-
-    </div>
-
-    <div id="gallery" class="gallery">
-      <div class="empty-gallery">Henter bilder...</div>
-    </div>
-
-  </div>
-
-  <footer>
-    🎄 Julefest 2026 • 28. november 🎄
-  </footer>
+<div class="section-title">Festen</div>
+
+<div class="menu">
+
+ <div class="card wide status-card" onclick="show('where')">
+  <div class="icon">📍</div>
+  <div class="card-title">Hvor er gjengen?</div>
+  <div class="card-text">Følg gjengen gjennom lørdagen</div>
+ </div>
+
+ <div class="card" onclick="show('friends')">
+  <div class="icon">👥</div><div class="card-title">Gjengen</div>
+  <div class="card-text">De 8 på julefest</div>
+ </div>
+
+ <div class="card" onclick="show('scores')">
+  <div class="icon">🏆</div><div class="card-title">Poengtavle</div>
+  <div class="card-text">Hvem leder?</div>
+ </div>
+
+ <div class="card wide wheel-card" onclick="show('wheel')">
+  <div class="icon">🎡</div><div class="card-title">JULEHJULET</div>
+  <div class="card-text">Spinn hvis du tør...</div>
+ </div>
+
+ <div class="card wide five-card" onclick="show('five')">
+  <div class="icon">⏱️</div><div class="card-title">5 SEKUNDER</div>
+  <div class="card-text">Tenk fort!</div>
+ </div>
+
+ <div class="card" onclick="show('competitions')">
+  <div class="icon">🎯</div><div class="card-title">Konkurranser</div>
+  <div class="card-text">Quiz og utfordringer</div>
+ </div>
+
+ <div class="card" onclick="show('bring')">
+  <div class="icon">🎒</div><div class="card-title">Ta med</div>
+  <div class="card-text">Hvem tar med hva?</div>
+ </div>
+
+ <div class="card" onclick="show('package')">
+  <div class="icon">🎁</div><div class="card-title">Pakkelek</div>
+  <div class="card-text">Terning og pakker</div>
+ </div>
+
+ <div class="card" onclick="show('photos')">
+  <div class="icon">📸</div><div class="card-title">Festbilder</div>
+  <div class="card-text">Felles album, maks 75</div>
+ </div>
 
 </div>
 
-<!-- BILDEVISNING -->
+<!-- STATUS -->
+<div id="where" class="box">
+ <h2>📍 Hvor er gjengen?</h2>
 
-<div id="photoModal" class="modal" onclick="closePhoto()">
+ <span class="label2">HVEM ER DU?</span>
+ <select id="personSelect">
+  <option value="">Velg navn</option>
+  <option>Anne Grethe</option><option>Henning</option><option>Ronny</option>
+  <option>Hanne</option><option>Martin</option><option>Eilen H</option>
+  <option>Eilen N</option><option>Flemming</option>
+ </select>
 
-  <button class="modal-close" onclick="closePhoto()">
-    ×
+ <span class="label2">HVA GJØR DU?</span>
+ <select id="statusSelect">
+  <option value="">Velg status</option>
+  <option>🥐 Frokost</option>
+  <option>🚶 Går tur</option>
+  <option>🏋️ Trener</option>
+  <option>⚽ Ser fotball</option>
+  <option>🏒 Ser hockey</option>
+  <option>🏎️ Ser Formel 1</option>
+  <option>🚿 Gjør meg klar</option>
+  <option>🚗 På vei til festen</option>
+  <option>👋 På vei hjem</option>
+  <option>🏠 Hjemme</option>
+ </select>
+
+ <button id="statusButton" class="btn" onclick="saveStatus()">📍 OPPDATER STATUS</button>
+ <div id="statusMessage" class="message"></div>
+
+ <h3>🎄 Gjengen akkurat nå</h3>
+ <div id="statusList"></div>
+</div>
+
+<!-- GJENGEN -->
+<div id="friends" class="box">
+ <h2>👥 Gjengen</h2>
+ <div id="friendsList"></div>
+</div>
+
+<!-- POENG -->
+<div id="scores" class="box">
+ <h2>🏆 Felles poengtavle</h2>
+ <div id="scoreMessage" class="message"></div>
+ <div id="scoreList"></div>
+</div>
+
+<!-- JULEHJUL -->
+<div id="wheel" class="box">
+ <h2>🎡 Julehjulet</h2>
+ <p>Hjulet velger person og gir sang, tale, vits eller skål.</p>
+
+ <div class="wheel-wrap">
+  <div class="pointer"></div>
+  <canvas id="wheelCanvas" width="700" height="700"></canvas>
+ </div>
+
+ <button id="spinButton" class="btn" onclick="spinWheel()">🎡 SPINN HJULET</button>
+ <div id="wheelResult">Hvem blir den heldige? 😈</div>
+</div>
+
+<!-- 5 SEKUNDER -->
+<div id="five" class="box">
+ <h2>⏱️ 5 sekunder</h2>
+ <p>En tilfeldig person må nevne tre ting før tiden går ut.</p>
+
+ <button class="btn" onclick="newChallenge()">🎲 NY UTFORDRING</button>
+
+ <div class="five-game">
+  <div id="fivePerson">Hvem blir valgt?</div>
+  <div id="fiveQuestion">Trykk «Ny utfordring»</div>
+  <div id="fiveTimer">5</div>
+
+  <button id="fiveStart" class="btn" onclick="startFive()" disabled>
+   ▶ START 5 SEKUNDER
   </button>
 
-  <img id="modalImage" alt="Festbilde">
+  <div id="fiveActions" class="two-buttons" style="display:none">
+   <button class="btn" onclick="fiveSuccess()">✅ KLARTE DET +1</button>
+   <button class="btn red" onclick="fiveFail()">❌ IKKE KLART</button>
+  </div>
 
+  <div id="fiveMessage" class="message"></div>
+ </div>
+</div>
+
+<!-- KONKURRANSER -->
+<div id="competitions" class="box">
+ <h2>🎯 Konkurranser</h2>
+ <p>🎵 Musikkquiz</p>
+ <p>🎄 Julequiz</p>
+ <p>👕 Beste juleantrekk</p>
+ <p>⏱️ 5 sekunder</p>
+</div>
+
+<!-- TA MED -->
+<div id="bring" class="box">
+ <h2>🎒 Hva tar du med?</h2>
+
+ <div class="game-area">
+  <div style="font-size:42px">🎁</div>
+  <strong style="color:#f4d06f;font-size:19px">PAKKE TIL PAKKELEKEN</strong>
+  <p>Alle tar med én innpakket pakke.<br><strong>Verdi: 10–100 kr</strong></p>
+  <small>Alle ser den samme avkrysningslisten.</small>
+ </div>
+
+ <span class="label2">HVEM ER DU?</span>
+ <select id="bringPerson">
+  <option value="">Velg navn</option>
+  <option>Anne Grethe</option><option>Henning</option><option>Ronny</option>
+  <option>Hanne</option><option>Martin</option><option>Eilen H</option>
+  <option>Eilen N</option><option>Flemming</option>
+ </select>
+
+ <div id="bringChecks">
+  <label class="check"><input type="checkbox" data-item="package"><span>🎁 Pakke til pakkeleken</span></label>
+  <label class="check"><input type="checkbox" data-item="beer"><span>🍺 Øl</span></label>
+  <label class="check"><input type="checkbox" data-item="wine"><span>🍷 Vin</span></label>
+  <label class="check"><input type="checkbox" data-item="bubbles"><span>🥂 Bobler</span></label>
+  <label class="check"><input type="checkbox" data-item="mood"><span>🎅 Godt humør</span></label>
+ </div>
+
+ <div id="bringMessage" class="message"></div>
+
+ <h3>Felles oversikt</h3>
+ <div id="bringSummary"></div>
+</div>
+
+<!-- PAKKELEK -->
+<div id="package" class="box">
+ <h2>🎁 Pakkelek</h2>
+ <p>Alle legger pakkene samlet før leken starter.</p>
+
+ <div class="game-area">
+  <div>DIGITAL TERNING</div>
+  <div id="dice">🎲</div>
+  <button class="btn" onclick="rollDice()">🎲 KAST TERNINGEN</button>
+  <div id="diceResult">Trykk for å kaste</div>
+ </div>
+
+ <div class="game-area">
+  <div>PAKKELEK-TIMER</div>
+  <div id="packageTimer">10:00</div>
+  <button class="btn" onclick="startPackageTimer()">⏱️ START 10 MINUTTER</button>
+  <button class="btn red" onclick="resetPackageTimer()">↻ NULLSTILL</button>
+ </div>
+
+ <h3>🎄 Terningregler</h3>
+ <div class="rule">🎲 1 – Ta en pakke</div>
+ <div class="rule">🎲 2 – Bytt med en valgfri person</div>
+ <div class="rule">🎲 3 – Send en pakke til venstre</div>
+ <div class="rule">🎲 4 – Send en pakke til høyre</div>
+ <div class="rule">🎲 5 – Stjel en valgfri pakke</div>
+ <div class="rule">🎲 6 – Kast én gang til</div>
+</div>
+
+<!-- FESTBILDER -->
+<div id="photos" class="box">
+ <h2>📸 Festbilder</h2>
+ <p>Felles album. Kun bilder, ingen video.</p>
+
+ <div class="game-area">
+  <div id="photoCount" class="photo-count">0 / 75 bilder</div>
+  <small>Maks 6 MB per bilde.</small>
+
+  <input id="photoInput" class="photo-input" type="file" accept="image/*">
+
+  <button id="photoButton" class="btn" onclick="photoInput.click()">
+   📸 LEGG TIL BILDE
+  </button>
+
+  <div id="photoMessage" class="message"></div>
+ </div>
+
+ <div id="gallery" class="gallery"></div>
+</div>
+
+<footer>🎄 Julefest at the Breviks • 28. november 🎄</footer>
+
+</div>
+
+<div id="photoModal" class="modal" onclick="closePhoto()">
+ <button class="close">×</button>
+ <img id="modalImage" alt="Festbilde">
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-  const people = [
-    "Anne Grethe",
-    "Henning",
-    "Ronny",
-    "Hanne",
-    "Martin",
-    "Eilen H",
-    "Eilen N",
-    "Flemming"
-  ];
-
-  const partyDate =
-    new Date(2026, 10, 28, 18, 30, 0);
-
-  const statusStart =
-    new Date(2026, 10, 28, 0, 0, 0);
-
-  const statusEnd =
-    new Date(2026, 10, 29, 0, 0, 0);
-
-  const photoStart =
-    new Date(2026, 10, 28, 0, 0, 0);
-
-  const photoEnd =
-    new Date(2026, 10, 30, 0, 0, 0);
-
-  const MAX_PHOTOS = 75;
-  const MAX_FILE_SIZE = 6 * 1024 * 1024;
-
-  const SUPABASE_URL =
-    "https://icvpfwwkrvmlfaxzukdl.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
-
-  let db = null;
-  let statuses = {};
-  let photoFiles = [];
-  let bringRows = [];
-
-  const bringItems = {
-    package: "🎁 Pakke til pakkeleken",
-    beer: "🍺 Øl",
-    wine: "🍷 Vin",
-    bubbles: "🥂 Bobler",
-    mood: "🎅 Godt humør"
-  };
-
-  /* MENY */
-
-  function showSection(id) {
-
-    const boxes =
-      document.querySelectorAll(".content-box");
-
-    boxes.forEach(box => {
-
-      if (box.id === id) {
-        box.classList.toggle("active");
-      } else {
-        box.classList.remove("active");
-      }
-
-    });
-
-    const selected =
-      document.getElementById(id);
-
-    if (
-      selected &&
-      selected.classList.contains("active")
-    ) {
-
-      setTimeout(() => {
-
-        selected.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest"
-        });
-
-      }, 100);
-
-    }
-
-    if (
-      id === "photos" &&
-      selected &&
-      selected.classList.contains("active")
-    ) {
-      loadPhotos();
-    }
-
-  }
-
-  /* NEDTELLING */
-
-  function updateCountdown() {
-
-    const difference =
-      partyDate.getTime() -
-      new Date().getTime();
-
-    if (difference <= 0) {
-
-      document.getElementById("days").textContent = "🎉";
-      document.getElementById("hours").textContent = "🎄";
-      document.getElementById("minutes").textContent = "🥂";
-
-      return;
-    }
-
-    document.getElementById("days").textContent =
-      Math.floor(difference / 86400000);
-
-    document.getElementById("hours").textContent =
-      Math.floor((difference % 86400000) / 3600000);
-
-    document.getElementById("minutes").textContent =
-      Math.floor((difference % 3600000) / 60000);
-
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 30000);
-
-  /* POENGTAVLE */
-
-  const scoreList =
-    document.getElementById("scoreList");
-
-  people.forEach(person => {
-
-    const row =
-      document.createElement("div");
-
-    row.className =
-      "score-row";
-
-    const name =
-      document.createElement("span");
-
-    name.textContent =
-      person;
-
-    const score =
-      document.createElement("span");
-
-    score.className =
-      "score-value";
-
-    score.textContent =
-      "0 poeng";
-
-    row.appendChild(name);
-    row.appendChild(score);
-
-    scoreList.appendChild(row);
-
-  });
-
-  /* JULEHJUL */
-
-  const challenges = [
-    "må velge neste sang! 🎵",
-    "må holde en 30 sekunders tale! 🎤",
-    "må fortelle en vits! 😂",
-    "må starte en skål! 🥂"
-  ];
-
-  const wheelColors = [
-    "#b51f2e",
-    "#1f7a5c",
-    "#d49b24",
-    "#315c8c",
-    "#9d3d7a",
-    "#287a76",
-    "#c65b2d",
-    "#6f4b9b"
-  ];
-
-  let wheelRotation = 0;
-  let wheelSpinning = false;
-
-  function drawWheel(rotation = wheelRotation) {
-
-    const canvas =
-      document.getElementById("wheelCanvas");
-
-    if (!canvas) {
-      return;
-    }
-
-    const ctx =
-      canvas.getContext("2d");
-
-    const centerX =
-      canvas.width / 2;
-
-    const centerY =
-      canvas.height / 2;
-
-    const radius =
-      canvas.width * 0.47;
-
-    const segmentAngle =
-      Math.PI * 2 / people.length;
-
-    ctx.clearRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-    ctx.save();
-
-    ctx.translate(centerX, centerY);
-    ctx.rotate(rotation);
-
-    people.forEach((name, index) => {
-
-      const startAngle =
-        -Math.PI / 2 +
-        index * segmentAngle;
-
-      const endAngle =
-        startAngle + segmentAngle;
-
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-
-      ctx.arc(
-        0,
-        0,
-        radius,
-        startAngle,
-        endAngle
-      );
-
-      ctx.closePath();
-
-      ctx.fillStyle =
-        wheelColors[index];
-
-      ctx.fill();
-
-      ctx.strokeStyle =
-        "rgba(255,255,255,0.75)";
-
-      ctx.lineWidth = 5;
-      ctx.stroke();
-
-      ctx.save();
-
-      ctx.rotate(
-        startAngle +
-        segmentAngle / 2
-      );
-
-      ctx.translate(
-        radius * 0.64,
-        0
-      );
-
-      ctx.rotate(Math.PI / 2);
-
-      ctx.fillStyle =
-        "#ffffff";
-
-      ctx.font =
-        "700 31px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-
-      ctx.textAlign =
-        "center";
-
-      ctx.textBaseline =
-        "middle";
-
-      const parts =
-        name.split(" ");
-
-      if (parts.length > 1) {
-
-        ctx.fillText(
-          parts[0],
-          0,
-          -18
-        );
-
-        ctx.fillText(
-          parts.slice(1).join(" "),
-          0,
-          18
-        );
-
-      } else {
-
-        ctx.fillText(
-          name,
-          0,
-          0
-        );
-
-      }
-
-      ctx.restore();
-
-    });
-
-    ctx.beginPath();
-
-    ctx.arc(
-      0,
-      0,
-      radius * 0.16,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#f4d06f";
-
-    ctx.fill();
-
-    ctx.strokeStyle =
-      "#ffffff";
-
-    ctx.lineWidth = 7;
-    ctx.stroke();
-
-    ctx.fillStyle =
-      "#12372a";
-
-    ctx.font =
-      "700 55px Segoe UI Emoji, sans-serif";
-
-    ctx.textAlign =
-      "center";
-
-    ctx.textBaseline =
-      "middle";
-
-    ctx.fillText(
-      "🎄",
-      0,
-      4
-    );
-
-    ctx.restore();
-
-  }
-
-  function spinWheel() {
-
-    if (wheelSpinning) {
-      return;
-    }
-
-    wheelSpinning = true;
-
-    const button =
-      document.getElementById("spinButton");
-
-    const result =
-      document.getElementById("wheelResult");
-
-    button.disabled = true;
-
-    result.textContent =
-      "🎡 Hjulet spinner...";
-
-    const winnerIndex =
-      Math.floor(
-        Math.random() *
-        people.length
-      );
-
-    const segmentAngle =
-      Math.PI * 2 /
-      people.length;
-
-    const currentNormalized =
-      (
-        (
-          wheelRotation %
-          (Math.PI * 2)
-        ) +
-        Math.PI * 2
-      ) %
-      (Math.PI * 2);
-
-    const targetNormalized =
-      (
-        -(winnerIndex + 0.5) *
-        segmentAngle +
-        Math.PI * 2
-      ) %
-      (Math.PI * 2);
-
-    const delta =
-      (
-        targetNormalized -
-        currentNormalized +
-        Math.PI * 2
-      ) %
-      (Math.PI * 2);
-
-    const turns =
-      5 +
-      Math.floor(
-        Math.random() * 3
-      );
-
-    const startRotation =
-      wheelRotation;
-
-    const endRotation =
-      wheelRotation +
-      turns *
-      Math.PI * 2 +
-      delta;
-
-    const startTime =
-      performance.now();
-
-    const duration =
-      4200;
-
-    function animate(now) {
-
-      const progress =
-        Math.min(
-          (now - startTime) /
-          duration,
-          1
-        );
-
-      const eased =
-        1 -
-        Math.pow(
-          1 - progress,
-          4
-        );
-
-      wheelRotation =
-        startRotation +
-        (
-          endRotation -
-          startRotation
-        ) *
-        eased;
-
-      drawWheel(wheelRotation);
-
-      if (progress < 1) {
-
-        requestAnimationFrame(animate);
-
-      } else {
-
-        wheelRotation =
-          targetNormalized;
-
-        drawWheel(wheelRotation);
-
-        const challenge =
-          challenges[
-            Math.floor(
-              Math.random() *
-              challenges.length
-            )
-          ];
-
-        result.textContent =
-          "🎄 " +
-          people[winnerIndex] +
-          " " +
-          challenge;
-
-        button.disabled = false;
-        wheelSpinning = false;
-
-      }
-
-    }
-
-    requestAnimationFrame(animate);
-
-  }
-
+const people=["Anne Grethe","Henning","Ronny","Hanne","Martin","Eilen H","Eilen N","Flemming"];
+
+const SUPABASE_URL="https://icvpfwwkrvmlfaxzukdl.supabase.co";
+const SUPABASE_KEY="sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
+
+const partyDate=new Date(2026,10,28,18,30);
+const statusStart=new Date(2026,10,28,0,0);
+const statusEnd=new Date(2026,10,29,0,0);
+const scoreStart=new Date(2026,10,28,18,30);
+const photoStart=new Date(2026,10,28,0,0);
+const photoEnd=new Date(2026,10,30,0,0);
+
+let db=null;
+let statuses={};
+let scores={};
+let bringRows=[];
+let photos=[];
+let currentFivePerson="";
+let fiveRunning=false;
+let pkgTime=600;
+let pkgInterval=null;
+
+const bringItems={
+ package:"🎁 Pakke til pakkeleken",
+ beer:"🍺 Øl",
+ wine:"🍷 Vin",
+ bubbles:"🥂 Bobler",
+ mood:"🎅 Godt humør"
+};
+
+function show(id){
+ document.querySelectorAll(".box").forEach(x=>{
+  if(x.id===id)x.classList.toggle("active");
+  else x.classList.remove("active");
+ });
+ const e=document.getElementById(id);
+ if(e&&e.classList.contains("active")){
+  setTimeout(()=>e.scrollIntoView({behavior:"smooth",block:"nearest"}),100);
+  if(id==="photos")loadPhotos();
+ }
+}
+
+/* NEDTELLING */
+function countdown(){
+ const d=partyDate-new Date();
+ if(d<=0){
+  days.textContent="🎉";hours.textContent="🎄";minutes.textContent="🥂";return;
+ }
+ days.textContent=Math.floor(d/86400000);
+ hours.textContent=Math.floor((d%86400000)/3600000);
+ minutes.textContent=Math.floor((d%3600000)/60000);
+}
+countdown();
+setInterval(countdown,30000);
+
+/* GJENGEN */
+const avatars=["🎄","🎅","🍺","🥂","🦌","⭐","☃️","🎁"];
+people.forEach((p,i)=>{
+ friendsList.innerHTML+=`<div class="row"><div class="person"><div class="avatar">${avatars[i]}</div>${p}</div></div>`;
+});
+
+/* STATUS */
+function statusOpen(){const n=new Date();return n>=statusStart&&n<statusEnd}
+
+function renderStatus(){
+ statusList.innerHTML="";
+ people.forEach(p=>{
+  statusList.innerHTML+=`<div class="row"><span>${p}</span><span style="color:#f4d06f">${statuses[p]||"Ikke oppdatert"}</span></div>`;
+ });
+}
+
+function statusAvailability(){
+ const open=statusOpen();
+ personSelect.disabled=!open;
+ statusSelect.disabled=!open;
+ statusButton.disabled=!open;
+ if(new Date()<statusStart)statusMessage.textContent="🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
+ else if(!open)statusMessage.textContent="🎄 Siste status fra lørdag vises her.";
+ else statusMessage.textContent="🎄 Hva gjør du akkurat nå?";
+}
+
+async function loadStatus(){
+ if(!db)return;
+ const {data,error}=await db.from("party_status").select("name,status");
+ if(error)return console.error(error);
+ statuses={};
+ (data||[]).forEach(x=>statuses[x.name]=x.status);
+ renderStatus();
+}
+
+async function saveStatus(){
+ if(!statusOpen())return;
+ if(!personSelect.value||!statusSelect.value){
+  statusMessage.textContent="Velg navn og status 😊";return;
+ }
+ const {error}=await db.from("party_status").upsert({
+  name:personSelect.value,status:statusSelect.value,updated_at:new Date().toISOString()
+ },{onConflict:"name"});
+ if(error){statusMessage.textContent="❌ Kunne ikke lagre";return}
+ statusMessage.textContent="✅ Status oppdatert";
+ loadStatus();
+}
+
+/* POENG */
+function scoreOpen(){return new Date()>=scoreStart}
+
+async function loadScores(){
+ if(!db){renderScores();return}
+ const {data,error}=await db.from("party_scores").select("name,score");
+ if(error){console.error(error);return}
+ scores={};
+ people.forEach(p=>scores[p]=0);
+ (data||[]).forEach(x=>scores[x.name]=x.score);
+ renderScores();
+}
+
+function renderScores(){
+ scoreMessage.textContent=scoreOpen()?"":"🔒 Poengjakten starter lørdag kl. 18:30";
+
+ const ordered=[...people].sort((a,b)=>(scores[b]||0)-(scores[a]||0)||people.indexOf(a)-people.indexOf(b));
+ scoreList.innerHTML="";
+
+ ordered.forEach((p,i)=>{
+  const rank=i===0?"🥇":i===1?"🥈":i===2?"🥉":`${i+1}.`;
+  const disabled=scoreOpen()?"":"disabled";
+
+  scoreList.innerHTML+=`
+   <div class="row">
+    <span class="rank">${rank}</span>
+    <span class="score-name">${p}</span>
+    <div class="controls">
+     <button class="score-btn minus" ${disabled} onclick="changeScore('${p}',-1)">−</button>
+     <span class="score">${scores[p]||0}</span>
+     <button class="score-btn plus" ${disabled} onclick="changeScore('${p}',1)">+</button>
+    </div>
+   </div>`;
+ });
+}
+
+async function changeScore(name,delta){
+ if(!scoreOpen()||!db)return;
+ const next=Math.max(0,(scores[name]||0)+delta);
+ const {error}=await db.from("party_scores").upsert({
+  name,score:next,updated_at:new Date().toISOString()
+ },{onConflict:"name"});
+ if(error)return console.error(error);
+ scores[name]=next;
+ renderScores();
+}
+
+/* JULEHJUL */
+const wheelColors=["#b51f2e","#1f7a5c","#d49b24","#315c8c","#9d3d7a","#287a76","#c65b2d","#6f4b9b"];
+const challenges=["må velge neste sang! 🎵","må holde en 30 sekunders tale! 🎤","må fortelle en vits! 😂","må starte en skål! 🥂"];
+let wheelRotation=0,wheelSpinning=false;
+
+function drawWheel(rot=wheelRotation){
+ const c=wheelCanvas,ctx=c.getContext("2d"),r=c.width*.47,arc=Math.PI*2/people.length;
+ ctx.clearRect(0,0,c.width,c.height);
+ ctx.save();ctx.translate(c.width/2,c.height/2);ctx.rotate(rot);
+
+ people.forEach((name,i)=>{
+  const start=-Math.PI/2+i*arc;
+  ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,r,start,start+arc);ctx.closePath();
+  ctx.fillStyle=wheelColors[i];ctx.fill();
+  ctx.strokeStyle="white";ctx.lineWidth=4;ctx.stroke();
+
+  ctx.save();ctx.rotate(start+arc/2);ctx.translate(r*.63,0);ctx.rotate(Math.PI/2);
+  ctx.fillStyle="white";ctx.font="700 29px Segoe UI";ctx.textAlign="center";
+  const parts=name.split(" ");
+  if(parts.length>1){ctx.fillText(parts[0],0,-16);ctx.fillText(parts.slice(1).join(" "),0,18)}
+  else ctx.fillText(name,0,0);
+  ctx.restore();
+ });
+
+ ctx.beginPath();ctx.arc(0,0,r*.15,0,Math.PI*2);ctx.fillStyle="#f4d06f";ctx.fill();
+ ctx.fillStyle="#12372a";ctx.font="52px serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("🎄",0,3);
+ ctx.restore();
+}
+
+function spinWheel(){
+ if(wheelSpinning)return;
+ wheelSpinning=true;spinButton.disabled=true;wheelResult.textContent="🎡 Hjulet spinner...";
+
+ const winner=Math.floor(Math.random()*people.length);
+ const arc=Math.PI*2/people.length;
+ const current=((wheelRotation%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+ const target=(-(winner+.5)*arc+Math.PI*2)%(Math.PI*2);
+ const delta=(target-current+Math.PI*2)%(Math.PI*2);
+ const start=wheelRotation;
+ const end=start+(5+Math.floor(Math.random()*3))*Math.PI*2+delta;
+ const t0=performance.now();
+
+ function animate(t){
+  const p=Math.min((t-t0)/4200,1);
+  const eased=1-Math.pow(1-p,4);
+  wheelRotation=start+(end-start)*eased;
   drawWheel();
-
-  /* PAKKELEK */
-
-  const diceFaces = {
-    1: "⚀",
-    2: "⚁",
-    3: "⚂",
-    4: "⚃",
-    5: "⚄",
-    6: "⚅"
-  };
-
-  const diceRules = {
-    1: "🎁 Ta en pakke!",
-    2: "🔄 Bytt med en valgfri person!",
-    3: "⬅️ Send en pakke til venstre!",
-    4: "➡️ Send en pakke til høyre!",
-    5: "😈 Stjel en valgfri pakke!",
-    6: "🎲 Kast terningen én gang til!"
-  };
-
-  function rollDice() {
-
-    const dice =
-      document.getElementById("dice");
-
-    const result =
-      document.getElementById("diceResult");
-
-    result.textContent =
-      "🎲 Terningen ruller...";
-
-    let count = 0;
-
-    const animation =
-      setInterval(() => {
-
-        const temporary =
-          Math.floor(
-            Math.random() * 6
-          ) + 1;
-
-        dice.textContent =
-          diceFaces[temporary];
-
-        count++;
-
-        if (count >= 8) {
-
-          clearInterval(animation);
-
-          const finalRoll =
-            Math.floor(
-              Math.random() * 6
-            ) + 1;
-
-          dice.textContent =
-            diceFaces[finalRoll];
-
-          result.textContent =
-            finalRoll +
-            " – " +
-            diceRules[finalRoll];
-
-        }
-
-      }, 90);
-
+  if(p<1)requestAnimationFrame(animate);
+  else{
+   wheelRotation=target;drawWheel();
+   const challenge=challenges[Math.floor(Math.random()*challenges.length)];
+   wheelResult.textContent=`🎄 ${people[winner]} ${challenge}`;
+   spinButton.disabled=false;wheelSpinning=false;
   }
+ }
+ requestAnimationFrame(animate);
+}
+drawWheel();
 
-  let packageTime = 600;
-  let packageInterval = null;
+/* 5 SEKUNDER */
+const fiveQuestions=[
+ "Nevn 3 julesanger","Nevn 3 julefilmer","Nevn 3 ting du finner på et julebord",
+ "Nevn 3 ølmerker","Nevn 3 drinker","Nevn 3 norske artister","Nevn 3 fotballag",
+ "Nevn 3 hockeylag","Nevn 3 Formel 1-førere","Nevn 3 ting du tar med på hytta",
+ "Nevn 3 ting som er røde","Nevn 3 ting du ikke vil ha i julegave",
+ "Nevn 3 ting du kan gjøre i snøen","Nevn 3 ting som finnes på et kjøkken",
+ "Nevn 3 ting som gjør en fest bra","Nevn 3 ting man gjør dagen derpå"
+];
 
-  function updatePackageTimer() {
+function newChallenge(){
+ if(fiveRunning)return;
+ currentFivePerson=people[Math.floor(Math.random()*people.length)];
+ fivePerson.textContent=currentFivePerson;
+ fiveQuestion.textContent=fiveQuestions[Math.floor(Math.random()*fiveQuestions.length)];
+ fiveTimer.textContent="5";
+ fiveStart.disabled=false;
+ fiveActions.style.display="none";
+ fiveMessage.textContent=scoreOpen()?"":"🔒 Poeng kan først gis fra kl. 18:30";
+}
 
-    const min =
-      Math.floor(
-        packageTime / 60
-      );
+function startFive(){
+ if(fiveRunning||!currentFivePerson)return;
+ fiveRunning=true;fiveStart.disabled=true;fiveActions.style.display="none";
+ let s=5;fiveTimer.textContent=s;fiveMessage.textContent="Tenk fort!";
 
-    const sec =
-      packageTime % 60;
-
-    document.getElementById(
-      "packageTimer"
-    ).textContent =
-      String(min).padStart(2, "0") +
-      ":" +
-      String(sec).padStart(2, "0");
-
+ const timer=setInterval(()=>{
+  s--;
+  if(s>0)fiveTimer.textContent=s;
+  else{
+   clearInterval(timer);fiveTimer.textContent="💥";fiveMessage.textContent="TIDEN ER UTE!";
+   fiveActions.style.display="grid";fiveRunning=false;
   }
+ },1000);
+}
 
-  function startPackageTimer() {
+async function fiveSuccess(){
+ if(!scoreOpen()){fiveMessage.textContent="🔒 Poengjakten starter kl. 18:30";return}
+ await changeScore(currentFivePerson,1);
+ fiveMessage.textContent=`✅ ${currentFivePerson} fikk 1 poeng!`;
+ fiveActions.style.display="none";
+}
 
-    if (packageInterval) {
-      return;
-    }
+function fiveFail(){
+ fiveMessage.textContent=`❌ Ingen poeng til ${currentFivePerson}`;
+ fiveActions.style.display="none";
+}
 
-    packageInterval =
-      setInterval(() => {
+/* TA MED */
+async function loadBring(){
+ if(!db)return;
+ const {data,error}=await db.from("bring_items").select("name,item,checked");
+ if(error)return console.error(error);
+ bringRows=(data||[]).filter(x=>x.checked);
+ renderBring();
+ syncBring();
+}
 
-        if (packageTime > 0) {
+function renderBring(){
+ bringSummary.innerHTML="";
+ Object.entries(bringItems).forEach(([key,label])=>{
+  const names=bringRows.filter(x=>x.item===key).map(x=>x.name);
+  bringSummary.innerHTML+=`
+   <div class="group">
+    <div class="group-title">${label}</div>
+    <div class="names">${names.length?names.map(n=>"✅ "+n).join(" · "):"Ingen har krysset av ennå"}</div>
+    ${key==="package"?`<div class="progress">${names.length} av 8 har husket pakke</div>`:""}
+   </div>`;
+ });
+}
 
-          packageTime--;
-          updatePackageTimer();
+function syncBring(){
+ const p=bringPerson.value;
+ document.querySelectorAll("#bringChecks input").forEach(box=>{
+  box.disabled=!p;
+  box.checked=!!p&&bringRows.some(x=>x.name===p&&x.item===box.dataset.item);
+ });
+}
 
-        } else {
+bringPerson.addEventListener("change",syncBring);
 
-          clearInterval(packageInterval);
-          packageInterval = null;
-
-          document.getElementById(
-            "packageTimer"
-          ).textContent =
-            "🎁 FERDIG!";
-
-        }
-
-      }, 1000);
-
+document.querySelectorAll("#bringChecks input").forEach(box=>{
+ box.addEventListener("change",async()=>{
+  const p=bringPerson.value,item=box.dataset.item;
+  if(!p||!db){box.checked=false;return}
+  let error;
+  if(box.checked){
+   ({error}=await db.from("bring_items").upsert({
+    name:p,item,checked:true,updated_at:new Date().toISOString()
+   },{onConflict:"name,item"}));
+  }else{
+   ({error}=await db.from("bring_items").delete().eq("name",p).eq("item",item));
   }
+  if(error){box.checked=!box.checked;bringMessage.textContent="❌ Kunne ikke lagre";return}
+  bringMessage.textContent="✅ Listen er oppdatert";
+  loadBring();
+ });
+});
 
-  function resetPackageTimer() {
+/* PAKKELEK */
+const faces={1:"⚀",2:"⚁",3:"⚂",4:"⚃",5:"⚄",6:"⚅"};
+const rules={
+ 1:"Ta en pakke",2:"Bytt med en valgfri person",3:"Send en pakke til venstre",
+ 4:"Send en pakke til høyre",5:"Stjel en valgfri pakke",6:"Kast én gang til"
+};
 
-    clearInterval(packageInterval);
-
-    packageInterval = null;
-    packageTime = 600;
-
-    updatePackageTimer();
-
+function rollDice(){
+ diceResult.textContent="🎲 Terningen ruller...";
+ let n=0;
+ const a=setInterval(()=>{
+  dice.textContent=faces[Math.floor(Math.random()*6)+1];
+  if(++n>=8){
+   clearInterval(a);
+   const r=Math.floor(Math.random()*6)+1;
+   dice.textContent=faces[r];diceResult.textContent=`${r} – ${rules[r]}`;
   }
-
-  updatePackageTimer();
-
-  /* STATUS */
-
-  function renderStatuses() {
-
-    const list =
-      document.getElementById("statusList");
-
-    list.innerHTML = "";
-
-    people.forEach(person => {
-
-      const row =
-        document.createElement("div");
-
-      row.className =
-        "status-row";
-
-      const name =
-        document.createElement("span");
-
-      name.textContent =
-        person;
-
-      const status =
-        document.createElement("span");
-
-      status.className =
-        "status-value";
-
-      status.textContent =
-        statuses[person] ||
-        "Ikke oppdatert";
-
-      row.appendChild(name);
-      row.appendChild(status);
-
-      list.appendChild(row);
-
-    });
-
-  }
-
-  function updateStatusAvailability() {
-
-    const now =
-      new Date();
-
-    const open =
-      now >= statusStart &&
-      now < statusEnd;
-
-    const personSelect =
-      document.getElementById("personSelect");
-
-    const statusSelect =
-      document.getElementById("statusSelect");
-
-    const button =
-      document.getElementById("statusButton");
-
-    const message =
-      document.getElementById("statusMessage");
-
-    personSelect.disabled = !open;
-    statusSelect.disabled = !open;
-    button.disabled = !open;
-
-    if (now < statusStart) {
-
-      message.textContent =
-        "🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
-
-    } else if (now >= statusEnd) {
-
-      message.textContent =
-        "🎄 Statusoppdateringen er avsluttet. Siste status fra lørdag vises under.";
-
-    } else {
-
-      message.textContent =
-        "🎄 Status er åpen! Hva gjør du akkurat nå?";
-
-    }
-
-  }
-
-  async function loadStatuses() {
-
-    if (!db) {
-      return;
-    }
-
-    const response =
-      await db
-        .from("party_status")
-        .select("name,status");
-
-    if (response.error) {
-
-      console.error(response.error);
-      return;
-
-    }
-
-    statuses = {};
-
-    (response.data || [])
-      .forEach(row => {
-
-        statuses[row.name] =
-          row.status;
-
-      });
-
-    renderStatuses();
-
-  }
-
-  async function saveStatus() {
-
-    const person =
-      document.getElementById(
-        "personSelect"
-      ).value;
-
-    const status =
-      document.getElementById(
-        "statusSelect"
-      ).value;
-
-    const message =
-      document.getElementById(
-        "statusMessage"
-      );
-
-    const now =
-      new Date();
-
-    if (
-      now < statusStart ||
-      now >= statusEnd
-    ) {
-
-      message.textContent =
-        "🔒 Status kan bare oppdateres lørdag 28. november 🎄";
-
-      return;
-    }
-
-    if (!person || !status) {
-
-      message.textContent =
-        "Velg både navn og status 😊";
-
-      return;
-    }
-
-    if (!db) {
-
-      message.textContent =
-        "⚠️ Felles status er ikke koblet til.";
-
-      return;
-    }
-
-    message.textContent =
-      "Lagrer...";
-
-    const response =
-      await db
-        .from("party_status")
-        .upsert(
-          {
-            name: person,
-            status: status,
-            updated_at:
-              new Date().toISOString()
-          },
-          {
-            onConflict: "name"
-          }
-        );
-
-    if (response.error) {
-
-      console.error(response.error);
-
-      message.textContent =
-        "❌ Kunne ikke lagre status.";
-
-      return;
-    }
-
-    message.textContent =
-      "✅ " +
-      person +
-      ": " +
-      status;
-
-    await loadStatuses();
-
-  }
-
-  /* FELLES TA-MED-LISTE */
-
-  async function loadBringItems() {
-
-    if (!db) {
-      return;
-    }
-
-    const response =
-      await db
-        .from("bring_items")
-        .select("name,item,checked");
-
-    if (response.error) {
-
-      console.error(response.error);
-
-      document.getElementById(
-        "bringSummaryList"
-      ).textContent =
-        "Kunne ikke hente listen.";
-
-      return;
-    }
-
-    bringRows =
-      (response.data || [])
-      .filter(row => row.checked);
-
-    renderBringSummary();
-    syncBringCheckboxes();
-
-  }
-
-  function renderBringSummary() {
-
-    const summary =
-      document.getElementById(
-        "bringSummaryList"
-      );
-
-    summary.innerHTML = "";
-
-    Object.entries(bringItems)
-      .forEach(([key, label]) => {
-
-        const names =
-          bringRows
-            .filter(row => row.item === key)
-            .map(row => row.name);
-
-        const group =
-          document.createElement("div");
-
-        group.className =
-          "bring-group";
-
-        const title =
-          document.createElement("div");
-
-        title.className =
-          "bring-group-title";
-
-        title.textContent =
-          label;
-
-        const list =
-          document.createElement("div");
-
-        list.className =
-          "bring-names";
-
-        list.textContent =
-          names.length
-            ? names.map(name => "✅ " + name).join(" · ")
-            : "Ingen har krysset av ennå";
-
-        group.appendChild(title);
-        group.appendChild(list);
-
-        if (key === "package") {
-
-          const progress =
-            document.createElement("div");
-
-          progress.className =
-            "bring-progress";
-
-          progress.textContent =
-            names.length +
-            " av " +
-            people.length +
-            " har husket pakke";
-
-          group.appendChild(progress);
-
-        }
-
-        summary.appendChild(group);
-
-      });
-
-  }
-
-  function syncBringCheckboxes() {
-
-    const person =
-      document.getElementById(
-        "bringPersonSelect"
-      ).value;
-
-    const checkboxes =
-      document.querySelectorAll(
-        '#bringChoices input[type="checkbox"]'
-      );
-
-    checkboxes.forEach(box => {
-
-      box.disabled =
-        !person;
-
-      box.checked =
-        Boolean(person) &&
-        bringRows.some(row =>
-          row.name === person &&
-          row.item === box.dataset.item
-        );
-
-    });
-
-  }
-
-  document.getElementById(
-    "bringPersonSelect"
-  ).addEventListener(
-    "change",
-    () => {
-
-      document.getElementById(
-        "bringMessage"
-      ).textContent = "";
-
-      syncBringCheckboxes();
-
-    }
-  );
-
-  async function toggleBringItem(box) {
-
-    const person =
-      document.getElementById(
-        "bringPersonSelect"
-      ).value;
-
-    const item =
-      box.dataset.item;
-
-    const message =
-      document.getElementById(
-        "bringMessage"
-      );
-
-    if (!person) {
-
-      message.textContent =
-        "Velg navnet ditt først 😊";
-
-      box.checked = false;
-
-      return;
-    }
-
-    if (!db) {
-
-      message.textContent =
-        "⚠️ Felles liste er ikke koblet til.";
-
-      box.checked =
-        !box.checked;
-
-      return;
-    }
-
-    message.textContent =
-      "Lagrer...";
-
-    let error = null;
-
-    if (box.checked) {
-
-      const response =
-        await db
-          .from("bring_items")
-          .upsert(
-            {
-              name: person,
-              item: item,
-              checked: true,
-              updated_at:
-                new Date().toISOString()
-            },
-            {
-              onConflict: "name,item"
-            }
-          );
-
-      error =
-        response.error;
-
-    } else {
-
-      const response =
-        await db
-          .from("bring_items")
-          .delete()
-          .eq("name", person)
-          .eq("item", item);
-
-      error =
-        response.error;
-
-    }
-
-    if (error) {
-
-      console.error(error);
-
-      message.textContent =
-        "❌ Kunne ikke oppdatere listen.";
-
-      box.checked =
-        !box.checked;
-
-      return;
-    }
-
-    message.textContent =
-      "✅ Listen er oppdatert";
-
-    await loadBringItems();
-
-  }
-
-  /* FESTBILDER */
-
-  function updatePhotoAvailability() {
-
-    const now =
-      new Date();
-
-    const open =
-      now >= photoStart &&
-      now < photoEnd;
-
-    const button =
-      document.getElementById(
-        "photoButton"
-      );
-
-    const message =
-      document.getElementById(
-        "photoMessage"
-      );
-
-    button.disabled =
-      !open;
-
-    if (now < photoStart) {
-
-      message.textContent =
-        "🔒 Bildeopplasting åpner lørdag 28. november kl. 00:00 📸";
-
-    } else if (now >= photoEnd) {
-
-      message.textContent =
-        "📸 Albumet er åpent for visning, men nye opplastinger er avsluttet.";
-
-    } else {
-
-      message.textContent =
-        "📸 Bildeopplasting er åpen lørdag og søndag.";
-
-    }
-
-  }
-
-  function safeFileName(name) {
-
-    let extension =
-      name
-        .split(".")
-        .pop()
-        .toLowerCase()
-        .replace(/[^a-z0-9]/g, "");
-
-    if (!extension) {
-      extension = "jpg";
-    }
-
-    return (
-      Date.now() +
-      "-" +
-      Math.random()
-        .toString(36)
-        .slice(2, 9) +
-      "." +
-      extension
-    );
-
-  }
-
-  async function loadPhotos() {
-
-    const gallery =
-      document.getElementById(
-        "gallery"
-      );
-
-    if (!db) {
-
-      gallery.innerHTML =
-        '<div class="empty-gallery">Bildekoblingen er ikke tilgjengelig.</div>';
-
-      return;
-    }
-
-    gallery.innerHTML =
-      '<div class="empty-gallery">Henter bilder...</div>';
-
-    const response =
-      await db
-        .storage
-        .from("festbilder")
-        .list(
-          "",
-          {
-            limit: 100,
-            sortBy: {
-              column: "created_at",
-              order: "desc"
-            }
-          }
-        );
-
-    if (response.error) {
-
-      console.error(response.error);
-
-      gallery.innerHTML =
-        '<div class="empty-gallery">Kunne ikke hente bildene.</div>';
-
-      return;
-    }
-
-    photoFiles =
-      (response.data || [])
-        .filter(file =>
-          file.name &&
-          !file.name.startsWith(".")
-        );
-
-    document.getElementById(
-      "photoCount"
-    ).textContent =
-      photoFiles.length +
-      " / " +
-      MAX_PHOTOS +
-      " bilder";
-
-    renderGallery();
-
-  }
-
-  function renderGallery() {
-
-    const gallery =
-      document.getElementById(
-        "gallery"
-      );
-
-    gallery.innerHTML = "";
-
-    if (!photoFiles.length) {
-
-      gallery.innerHTML =
-        '<div class="empty-gallery">Ingen bilder ennå.</div>';
-
-      return;
-    }
-
-    photoFiles.forEach(file => {
-
-      const result =
-        db
-          .storage
-          .from("festbilder")
-          .getPublicUrl(file.name);
-
-      const imageUrl =
-        result.data.publicUrl;
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "gallery-item";
-
-      const image =
-        document.createElement("img");
-
-      image.src =
-        imageUrl;
-
-      image.alt =
-        "Festbilde";
-
-      image.loading =
-        "lazy";
-
-      item.onclick =
-        function() {
-          openPhoto(imageUrl);
-        };
-
-      item.appendChild(image);
-      gallery.appendChild(item);
-
-    });
-
-  }
-
-  async function uploadPhoto(event) {
-
-    const file =
-      event.target.files &&
-      event.target.files[0];
-
-    event.target.value = "";
-
-    const message =
-      document.getElementById(
-        "photoMessage"
-      );
-
-    const now =
-      new Date();
-
-    if (
-      now < photoStart ||
-      now >= photoEnd
-    ) {
-
-      message.textContent =
-        "🔒 Bilder kan bare lastes opp lørdag og søndag.";
-
-      return;
-    }
-
-    if (!file) {
-      return;
-    }
-
-    if (!file.type.startsWith("image/")) {
-
-      message.textContent =
-        "❌ Kun bilder er tillatt. Video kan ikke lastes opp.";
-
-      return;
-    }
-
-    if (file.size > MAX_FILE_SIZE) {
-
-      message.textContent =
-        "❌ Bildet er større enn 6 MB.";
-
-      return;
-    }
-
-    if (!db) {
-
-      message.textContent =
-        "❌ Bildekoblingen er ikke klar.";
-
-      return;
-    }
-
-    await loadPhotos();
-
-    if (photoFiles.length >= MAX_PHOTOS) {
-
-      message.textContent =
-        "❌ Albumet har nådd grensen på 75 bilder.";
-
-      return;
-    }
-
-    const button =
-      document.getElementById(
-        "photoButton"
-      );
-
-    button.disabled = true;
-
-    message.textContent =
-      "Laster opp bilde...";
-
-    const response =
-      await db
-        .storage
-        .from("festbilder")
-        .upload(
-          safeFileName(file.name),
-          file,
-          {
-            cacheControl: "3600",
-            upsert: false,
-            contentType: file.type
-          }
-        );
-
-    button.disabled = false;
-
-    if (response.error) {
-
-      console.error(response.error);
-
-      message.textContent =
-        "❌ Kunne ikke laste opp bildet.";
-
-      return;
-    }
-
-    message.textContent =
-      "✅ Bildet er lagt til!";
-
-    await loadPhotos();
-    updatePhotoAvailability();
-
-  }
-
-  function openPhoto(url) {
-
-    document.getElementById(
-      "modalImage"
-    ).src = url;
-
-    document.getElementById(
-      "photoModal"
-    ).classList.add("open");
-
-  }
-
-  function closePhoto() {
-
-    document.getElementById(
-      "photoModal"
-    ).classList.remove("open");
-
-    document.getElementById(
-      "modalImage"
-    ).src = "";
-
-  }
-
-  /* SUPABASE OPPSTART */
-
-  function initSupabase() {
-
-    renderStatuses();
-    updateStatusAvailability();
-    updatePhotoAvailability();
-    syncBringCheckboxes();
-
-    if (!window.supabase) {
-
-      document.getElementById(
-        "statusMessage"
-      ).textContent =
-        "⚠️ Supabase kunne ikke lastes.";
-
-      return;
-    }
-
-    db =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
-
-    loadStatuses();
-    loadBringItems();
-    loadPhotos();
-
-    db
-      .channel("julefest-status")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "party_status"
-        },
-        loadStatuses
-      )
-      .subscribe();
-
-    db
-      .channel("julefest-bring")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "bring_items"
-        },
-        loadBringItems
-      )
-      .subscribe();
-
-    setInterval(
-      loadStatuses,
-      15000
-    );
-
-    setInterval(
-      loadBringItems,
-      15000
-    );
-
-    setInterval(
-      function() {
-        updateStatusAvailability();
-        updatePhotoAvailability();
-      },
-      60000
-    );
-
-  }
-
-  initSupabase();
-
+ },90);
+}
+
+function pkgDisplay(){
+ packageTimer.textContent=`${String(Math.floor(pkgTime/60)).padStart(2,"0")}:${String(pkgTime%60).padStart(2,"0")}`;
+}
+function startPackageTimer(){
+ if(pkgInterval)return;
+ pkgInterval=setInterval(()=>{
+  if(pkgTime>0){pkgTime--;pkgDisplay()}
+  else{clearInterval(pkgInterval);pkgInterval=null;packageTimer.textContent="🎁 FERDIG!"}
+ },1000);
+}
+function resetPackageTimer(){clearInterval(pkgInterval);pkgInterval=null;pkgTime=600;pkgDisplay()}
+pkgDisplay();
+
+/* BILDER */
+function photoAvailability(){
+ const n=new Date(),open=n>=photoStart&&n<photoEnd;
+ photoButton.disabled=!open;
+ photoMessage.textContent=n<photoStart?"🔒 Bilder åpner lørdag 📸":n>=photoEnd?"📸 Albumet er kun åpent for visning.":"📸 Bildeopplasting er åpen.";
+}
+
+function fileName(f){
+ const ext=(f.name.split(".").pop()||"jpg").replace(/[^a-z0-9]/gi,"");
+ return `${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+}
+
+async function loadPhotos(){
+ if(!db)return;
+ const {data,error}=await db.storage.from("festbilder").list("",{limit:100,sortBy:{column:"created_at",order:"desc"}});
+ if(error)return console.error(error);
+ photos=(data||[]).filter(x=>x.name&&!x.name.startsWith("."));
+ photoCount.textContent=`${photos.length} / 75 bilder`;
+ gallery.innerHTML="";
+ photos.forEach(f=>{
+  const url=db.storage.from("festbilder").getPublicUrl(f.name).data.publicUrl;
+  const d=document.createElement("div");d.className="gallery-item";
+  d.innerHTML=`<img src="${url}" alt="Festbilde" loading="lazy">`;
+  d.onclick=()=>{modalImage.src=url;photoModal.classList.add("open")};
+  gallery.appendChild(d);
+ });
+}
+
+photoInput.addEventListener("change",async()=>{
+ const f=photoInput.files[0];photoInput.value="";
+ if(!f)return;
+ if(!f.type.startsWith("image/")){photoMessage.textContent="❌ Kun bilder";return}
+ if(f.size>6*1024*1024){photoMessage.textContent="❌ Maks 6 MB";return}
+ if(photos.length>=75){photoMessage.textContent="❌ Maks 75 bilder";return}
+ photoMessage.textContent="Laster opp...";
+ const {error}=await db.storage.from("festbilder").upload(fileName(f),f,{contentType:f.type});
+ photoMessage.textContent=error?"❌ Kunne ikke laste opp":"✅ Bildet er lagt til!";
+ loadPhotos();
+});
+
+function closePhoto(){photoModal.classList.remove("open");modalImage.src=""}
+
+/* START */
+function init(){
+ renderStatus();renderScores();renderBring();
+ statusAvailability();photoAvailability();syncBring();
+
+ if(!window.supabase)return;
+
+ db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+ loadStatus();
+ loadScores();
+ loadBring();
+ loadPhotos();
+
+ db.channel("status-live")
+   .on("postgres_changes",{event:"*",schema:"public",table:"party_status"},loadStatus)
+   .subscribe();
+
+ db.channel("scores-live")
+   .on("postgres_changes",{event:"*",schema:"public",table:"party_scores"},loadScores)
+   .subscribe();
+
+ db.channel("bring-live")
+   .on("postgres_changes",{event:"*",schema:"public",table:"bring_items"},loadBring)
+   .subscribe();
+
+ setInterval(()=>{
+  statusAvailability();
+  photoAvailability();
+  renderScores();
+ },60000);
+}
+
+init();
 </script>
-
 </body>
 </html>
