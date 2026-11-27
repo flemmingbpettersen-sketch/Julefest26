@@ -728,7 +728,21 @@
       <div class="card-title">JULEORMEN</div>
       <div class="card-text">Spill på din egen telefon</div>
     </div>
+<div class="card wide" 
+     style="background:linear-gradient(135deg,#7a2b1d,#b84d28)"
+     onclick="showSection('kong')">
 
+  <div class="icon">🦍</div>
+
+  <div class="card-title">
+    JULE-KONG
+  </div>
+
+  <div class="card-text">
+    Spillteaser åpner i kveld kl. 19:00
+  </div>
+
+</div>
     <div class="card" onclick="showSection('quiz')">
       <div class="icon">🎄</div>
       <div class="card-title">Julequiz</div>
@@ -982,6 +996,160 @@
   </div>
 
   <!-- QUIZ -->
+<!-- JULE-KONG -->
+
+<div id="kong" class="box">
+
+  <h2>🦍 Jule-Kong</h2>
+
+  <p>
+    Hjelp nissen til toppen!
+    Unngå pakkene som kommer fra Jule-Kong.
+  </p>
+
+  <div id="kongLock"
+       style="
+         padding:20px 8px;
+         color:#f4d06f;
+         font-weight:800;
+         text-align:center;
+       ">
+
+    🔒 Jule-Kong åpner i kveld kl. 19:00
+
+  </div>
+
+  <div id="kongGame"
+       style="display:none">
+
+    <span class="field-label">
+      HVEM SPILLER?
+    </span>
+
+    <select id="kongPerson">
+
+      <option value="">
+        Velg navn
+      </option>
+
+      <option>Anne Grethe</option>
+      <option>Henning</option>
+      <option>Ronny</option>
+      <option>Hanne</option>
+      <option>Martin</option>
+      <option>Eilen H</option>
+      <option>Eilen N</option>
+      <option>Flemming</option>
+
+    </select>
+
+
+    <div class="game-area">
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        color:#f4d06f;
+        font-weight:800;
+        margin-bottom:10px;
+      ">
+
+        <span>
+          Poeng:
+          <span id="kongScore">0</span>
+        </span>
+
+        <span>
+          Rekord:
+          <span id="kongBest">0</span>
+        </span>
+
+      </div>
+
+
+      <div style="
+        max-width:320px;
+        margin:auto;
+        background:#071b14;
+        border:3px solid #f4d06f;
+        border-radius:14px;
+        overflow:hidden;
+      ">
+
+        <canvas
+          id="kongCanvas"
+          width="320"
+          height="360"
+          style="
+            display:block;
+            width:100%;
+            height:auto;
+          ">
+        </canvas>
+
+      </div>
+
+
+      <button
+        id="kongStartButton"
+        class="btn"
+        onclick="startKong()">
+
+        🎅 START JULE-KONG
+
+      </button>
+
+
+      <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
+        gap:8px;
+        margin-top:12px;
+      ">
+
+        <button
+          class="btn"
+          onpointerdown="kongLeft=true"
+          onpointerup="kongLeft=false"
+          onpointercancel="kongLeft=false">
+
+          ⬅️
+
+        </button>
+
+        <button
+          class="btn"
+          onclick="kongJump()">
+
+          ⬆️ HOPP
+
+        </button>
+
+        <button
+          class="btn"
+          onpointerdown="kongRight=true"
+          onpointerup="kongRight=false"
+          onpointercancel="kongRight=false">
+
+          ➡️
+
+        </button>
+
+      </div>
+
+
+      <div id="kongMessage"
+           class="message">
+
+        🎄 Kom deg helt til toppen!
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
   <div id="quiz" class="box">
 
@@ -3504,7 +3672,993 @@ function startApp() {
 }
 
 startApp();
+/* ==========================
+   JULE-KONG
+========================== */
 
+const kongStartDate =
+  new Date(2026, 10, 27, 19, 0, 0);
+
+let kongRunning = false;
+
+let kongLeft = false;
+
+let kongRight = false;
+
+let kongAnimation = null;
+
+let kongLastTime = 0;
+
+let kongSpawnTimer = 0;
+
+let kongScoreValue = 0;
+
+let kongPackages = [];
+
+let kongPlayer = {
+  x: 25,
+  y: 305,
+  width: 22,
+  height: 28,
+  vx: 0,
+  vy: 0,
+  onGround: false
+};
+
+
+const kongPlatforms = [
+
+  {
+    x: 10,
+    y: 336,
+    width: 300
+  },
+
+  {
+    x: 45,
+    y: 270,
+    width: 265
+  },
+
+  {
+    x: 10,
+    y: 204,
+    width: 265
+  },
+
+  {
+    x: 45,
+    y: 138,
+    width: 265
+  },
+
+  {
+    x: 10,
+    y: 72,
+    width: 300
+  }
+
+];
+
+
+function kongIsOpen() {
+
+  return new Date() >= kongStartDate;
+
+}
+
+
+function updateKongAvailability() {
+
+  const lock =
+    document.getElementById("kongLock");
+
+  const game =
+    document.getElementById("kongGame");
+
+
+  if (!lock || !game) {
+    return;
+  }
+
+
+  if (kongIsOpen()) {
+
+    lock.style.display =
+      "none";
+
+    game.style.display =
+      "block";
+
+    drawKong();
+
+    updateKongBest();
+
+  } else {
+
+    lock.style.display =
+      "block";
+
+    game.style.display =
+      "none";
+
+  }
+
+}
+
+
+function kongBestKey() {
+
+  const person =
+    document.getElementById(
+      "kongPerson"
+    ).value || "ukjent";
+
+
+  return (
+    "julekong-best-" +
+    person
+  );
+
+}
+
+
+function updateKongBest() {
+
+  const best =
+    localStorage.getItem(
+      kongBestKey()
+    ) || "0";
+
+
+  document.getElementById(
+    "kongBest"
+  ).textContent =
+    best;
+
+}
+
+
+document.getElementById(
+  "kongPerson"
+).addEventListener(
+  "change",
+  updateKongBest
+);
+
+
+function startKong() {
+
+  if (!kongIsOpen()) {
+
+    return;
+
+  }
+
+
+  const person =
+    document.getElementById(
+      "kongPerson"
+    ).value;
+
+
+  if (!person) {
+
+    document.getElementById(
+      "kongMessage"
+    ).textContent =
+      "Velg navnet ditt først 😊";
+
+    return;
+
+  }
+
+
+  if (kongAnimation) {
+
+    cancelAnimationFrame(
+      kongAnimation
+    );
+
+  }
+
+
+  kongRunning =
+    true;
+
+  kongScoreValue =
+    0;
+
+  kongPackages =
+    [];
+
+  kongLeft =
+    false;
+
+  kongRight =
+    false;
+
+  kongSpawnTimer =
+    0;
+
+
+  kongPlayer = {
+
+    x: 25,
+
+    y: 305,
+
+    width: 22,
+
+    height: 28,
+
+    vx: 0,
+
+    vy: 0,
+
+    onGround: false
+
+  };
+
+
+  document.getElementById(
+    "kongScore"
+  ).textContent =
+    "0";
+
+
+  document.getElementById(
+    "kongMessage"
+  ).textContent =
+    "🎅 Kom deg til toppen!";
+
+
+  document.getElementById(
+    "kongStartButton"
+  ).textContent =
+    "🔄 START PÅ NYTT";
+
+
+  kongLastTime =
+    performance.now();
+
+
+  kongAnimation =
+    requestAnimationFrame(
+      kongLoop
+    );
+
+}
+
+
+function kongJump() {
+
+  if (
+    kongRunning &&
+    kongPlayer.onGround
+  ) {
+
+    kongPlayer.vy =
+      -325;
+
+    kongPlayer.onGround =
+      false;
+
+  }
+
+}
+
+
+function kongLoop(time) {
+
+  if (!kongRunning) {
+    return;
+  }
+
+
+  const delta =
+    Math.min(
+      (time - kongLastTime) /
+      1000,
+      0.035
+    );
+
+
+  kongLastTime =
+    time;
+
+
+  updateKong(
+    delta
+  );
+
+
+  drawKong();
+
+
+  if (kongRunning) {
+
+    kongAnimation =
+      requestAnimationFrame(
+        kongLoop
+      );
+
+  }
+
+}
+
+
+function updateKong(delta) {
+
+  /* VENSTRE / HØYRE */
+
+  kongPlayer.vx =
+    0;
+
+
+  if (kongLeft) {
+
+    kongPlayer.vx =
+      -135;
+
+  }
+
+
+  if (kongRight) {
+
+    kongPlayer.vx =
+      135;
+
+  }
+
+
+  kongPlayer.x +=
+    kongPlayer.vx *
+    delta;
+
+
+  kongPlayer.x =
+    Math.max(
+      0,
+      Math.min(
+        320 -
+        kongPlayer.width,
+        kongPlayer.x
+      )
+    );
+
+
+  /* TYNGDEKRAFT */
+
+  const oldBottom =
+    kongPlayer.y +
+    kongPlayer.height;
+
+
+  kongPlayer.vy +=
+    760 *
+    delta;
+
+
+  kongPlayer.y +=
+    kongPlayer.vy *
+    delta;
+
+
+  kongPlayer.onGround =
+    false;
+
+
+  /* PLATTFORMER */
+
+  kongPlatforms.forEach(
+    platform => {
+
+      const newBottom =
+        kongPlayer.y +
+        kongPlayer.height;
+
+
+      const overlaps =
+
+        kongPlayer.x +
+        kongPlayer.width >
+        platform.x
+
+        &&
+
+        kongPlayer.x <
+        platform.x +
+        platform.width;
+
+
+      if (
+        overlaps &&
+        kongPlayer.vy >= 0 &&
+        oldBottom <=
+        platform.y + 4 &&
+        newBottom >=
+        platform.y
+      ) {
+
+        kongPlayer.y =
+          platform.y -
+          kongPlayer.height;
+
+        kongPlayer.vy =
+          0;
+
+        kongPlayer.onGround =
+          true;
+
+      }
+
+    }
+  );
+
+
+  /* FALLER UT */
+
+  if (
+    kongPlayer.y >
+    370
+  ) {
+
+    endKong(
+      false
+    );
+
+    return;
+
+  }
+
+
+  /* NYE PAKKER */
+
+  kongSpawnTimer +=
+    delta;
+
+
+  if (
+    kongSpawnTimer >
+    1.25
+  ) {
+
+    kongSpawnTimer =
+      0;
+
+
+    const level =
+      1 +
+      Math.floor(
+        Math.random() *
+        4
+      );
+
+
+    const platform =
+      kongPlatforms[level];
+
+
+    const fromRight =
+      level % 2 === 1;
+
+
+    kongPackages.push({
+
+      x:
+        fromRight
+          ? platform.x +
+            platform.width -
+            20
+          : platform.x +
+            4,
+
+      y:
+        platform.y -
+        20,
+
+      width:
+        18,
+
+      height:
+        18,
+
+      vx:
+        fromRight
+          ? -75
+          : 75
+
+    });
+
+  }
+
+
+  kongPackages.forEach(
+    gift => {
+
+      gift.x +=
+        gift.vx *
+        delta;
+
+
+      if (
+        gift.x <
+        5 ||
+        gift.x >
+        297
+      ) {
+
+        gift.vx *=
+          -1;
+
+      }
+
+
+      if (
+        kongCollision(
+          kongPlayer,
+          gift
+        )
+      ) {
+
+        endKong(
+          false
+        );
+
+      }
+
+    }
+  );
+
+
+  /* POENG FRA HØYDE */
+
+  let heightScore =
+    0;
+
+
+  if (
+    kongPlayer.y <
+    290
+  ) {
+
+    heightScore =
+      25;
+
+  }
+
+
+  if (
+    kongPlayer.y <
+    225
+  ) {
+
+    heightScore =
+      50;
+
+  }
+
+
+  if (
+    kongPlayer.y <
+    160
+  ) {
+
+    heightScore =
+      75;
+
+  }
+
+
+  if (
+    kongPlayer.y <
+    95
+  ) {
+
+    heightScore =
+      100;
+
+  }
+
+
+  if (
+    heightScore >
+    kongScoreValue
+  ) {
+
+    kongScoreValue =
+      heightScore;
+
+
+    document.getElementById(
+      "kongScore"
+    ).textContent =
+      kongScoreValue;
+
+  }
+
+
+  /* TOPPEN */
+
+  if (
+    kongPlayer.y <
+    45
+  ) {
+
+    kongScoreValue +=
+      100;
+
+
+    document.getElementById(
+      "kongScore"
+    ).textContent =
+      kongScoreValue;
+
+
+    endKong(
+      true
+    );
+
+  }
+
+}
+
+
+function kongCollision(
+  first,
+  second
+) {
+
+  return (
+
+    first.x <
+    second.x +
+    second.width
+
+    &&
+
+    first.x +
+    first.width >
+    second.x
+
+    &&
+
+    first.y <
+    second.y +
+    second.height
+
+    &&
+
+    first.y +
+    first.height >
+    second.y
+
+  );
+
+}
+
+
+function drawKong() {
+
+  const canvas =
+    document.getElementById(
+      "kongCanvas"
+    );
+
+
+  if (!canvas) {
+    return;
+  }
+
+
+  const context =
+    canvas.getContext(
+      "2d"
+    );
+
+
+  context.fillStyle =
+    "#071b14";
+
+
+  context.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  /* JULE-KONG */
+
+  context.font =
+    "24px Segoe UI Emoji";
+
+
+  context.textAlign =
+    "center";
+
+
+  context.fillText(
+    "🦍",
+    285,
+    50
+  );
+
+
+  /* MÅL */
+
+  context.fillText(
+    "⭐",
+    25,
+    48
+  );
+
+
+  /* PLATTFORMER */
+
+  kongPlatforms.forEach(
+    (platform, index) => {
+
+      context.fillStyle =
+
+        index % 2
+          ? "#b83d32"
+          : "#d88428";
+
+
+      context.fillRect(
+        platform.x,
+        platform.y,
+        platform.width,
+        8
+      );
+
+
+      for (
+        let x =
+          platform.x;
+
+        x <
+          platform.x +
+          platform.width;
+
+        x +=
+          24
+      ) {
+
+        context.fillStyle =
+          "rgba(255,255,255,0.25)";
+
+
+        context.fillRect(
+          x,
+          platform.y,
+          12,
+          3
+        );
+
+      }
+
+    }
+  );
+
+
+  /* PAKKER */
+
+  context.font =
+    "19px Segoe UI Emoji";
+
+
+  kongPackages.forEach(
+    gift => {
+
+      context.fillText(
+        "🎁",
+        gift.x + 9,
+        gift.y + 14
+      );
+
+    }
+  );
+
+
+  /* NISSEN */
+
+  context.font =
+    "25px Segoe UI Emoji";
+
+
+  context.fillText(
+    "🎅",
+    kongPlayer.x + 11,
+    kongPlayer.y + 21
+  );
+
+
+  /* JULETRÆR */
+
+  context.font =
+    "16px Segoe UI Emoji";
+
+
+  context.fillText(
+    "🎄",
+    20,
+    330
+  );
+
+
+  context.fillText(
+    "🎄",
+    300,
+    330
+  );
+
+}
+
+
+function endKong(
+  won
+) {
+
+  if (!kongRunning) {
+    return;
+  }
+
+
+  kongRunning =
+    false;
+
+
+  if (kongAnimation) {
+
+    cancelAnimationFrame(
+      kongAnimation
+    );
+
+  }
+
+
+  kongAnimation =
+    null;
+
+
+  const oldBest =
+    Number(
+      localStorage.getItem(
+        kongBestKey()
+      ) || 0
+    );
+
+
+  if (
+    kongScoreValue >
+    oldBest
+  ) {
+
+    localStorage.setItem(
+      kongBestKey(),
+      String(
+        kongScoreValue
+      )
+    );
+
+  }
+
+
+  updateKongBest();
+
+
+  if (won) {
+
+    document.getElementById(
+      "kongMessage"
+    ).textContent =
+
+      "🎉 Du nådde toppen! " +
+      kongScoreValue +
+      " poeng!";
+
+  } else {
+
+    document.getElementById(
+      "kongMessage"
+    ).textContent =
+
+      "💥 Game over! " +
+      kongScoreValue +
+      " poeng.";
+
+  }
+
+}
+
+
+/* TASTATURSTYRING */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
+      kongLeft =
+        true;
+
+    }
+
+
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
+      kongRight =
+        true;
+
+    }
+
+
+    if (
+      event.key ===
+      "ArrowUp" ||
+      event.key ===
+      " "
+    ) {
+
+      kongJump();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keyup",
+  event => {
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
+      kongLeft =
+        false;
+
+    }
+
+
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
+      kongRight =
+        false;
+
+    }
+
+  }
+);
+
+
+/* START VISNING */
+
+updateKongAvailability();
+
+
+/* SJEKK HVERT 30. SEKUND */
+
+setInterval(
+  updateKongAvailability,
+  30000
+);
 </script>
 
 </body>
