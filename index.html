@@ -1957,24 +1957,28 @@ function showSection(id) {
 
         });
 
-      },
-      100
-    );
-if (id === "snake") {
+    },
+    100
+  );
 
-  updateSnakeAvailability();
 
-}
-    if (id === "photos") {
+  if (id === "photos") {
 
-      loadPhotos();
-
-    }
+    loadPhotos();
 
   }
 
 }
 
+
+/*
+  Oppdater Juleormen hver gang en menyseksjon
+  åpnes eller lukkes.
+*/
+
+updateSnakeAvailability();
+
+}
 /* NEDTELLING */
 
 function updateCountdown() {
