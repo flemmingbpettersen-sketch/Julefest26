@@ -4515,7 +4515,127 @@ bringRows =
   syncBringCheckboxes();
 
 }
+function renderBringItems() {
 
+  const summary =
+    byId("bringSummary");
+
+  if (!summary) {
+    return;
+  }
+
+  summary.innerHTML =
+    "";
+
+  Object.keys(
+    bringItems
+  ).forEach(
+    function (key) {
+
+      const names =
+        bringRows
+          .filter(
+            function (item) {
+
+              return (
+                item.item === key
+              );
+
+            }
+          )
+          .map(
+            function (item) {
+
+              return item.name;
+
+            }
+          );
+
+      const group =
+        document.createElement(
+          "div"
+        );
+
+      group.className =
+        "group";
+
+      const title =
+        document.createElement(
+          "div"
+        );
+
+      title.className =
+        "group-title";
+
+      title.textContent =
+        bringItems[key];
+
+      const list =
+        document.createElement(
+          "div"
+        );
+
+      list.className =
+        "names";
+
+      if (names.length > 0) {
+
+        list.textContent =
+          names
+            .map(
+              function (name) {
+
+                return "✅ " + name;
+
+              }
+            )
+            .join(" · ");
+
+      } else {
+
+        list.textContent =
+          "Ingen har krysset av ennå";
+
+      }
+
+      group.appendChild(
+        title
+      );
+
+      group.appendChild(
+        list
+      );
+
+      if (key === "package") {
+
+        const progress =
+          document.createElement(
+            "div"
+          );
+
+        progress.className =
+          "progress";
+
+        progress.textContent =
+          names.length +
+          " av " +
+          people.length +
+          " har husket pakke";
+
+        group.appendChild(
+          progress
+        );
+
+      }
+
+      summary.appendChild(
+        group
+      );
+
+    }
+  );
+
+}
 function syncBringCheckboxes() {
 
   const person =
