@@ -1891,7 +1891,13 @@ function showSection(id) {
     100
   );
 
+    if (id === "bring") {
 
+      renderBringItems();
+
+      loadBringItems();
+
+    }
   if (id === "photos") {
 
     loadPhotos();
