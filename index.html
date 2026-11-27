@@ -1418,6 +1418,7 @@ const gameStart = new Date(2026, 10, 28, 18, 30);
 const snakeStartDate = new Date(2026, 10, 28, 0, 0);
 const photoStart = new Date(2026, 10, 28, 0, 0);
 const photoEnd = new Date(2026, 10, 30, 0, 0);
+  const tenStartDate = new Date(2026, 10, 28, 17, 0);
 
 let db = null;
 let statuses = {};
@@ -2253,8 +2254,80 @@ const tenQuestions = [
   "Nevn 3 ting en 20-åring sannsynligvis mener du er for gammel til å gjøre"
 
 ];
+  function tenIsOpen() {
 
+  const tenStartDate =
+    new Date(2026, 10, 28, 17, 0, 0);
+
+  return new Date() >= tenStartDate;
+
+}
+
+
+function updateTenAvailability() {
+
+  const open =
+    tenIsOpen();
+
+  const startButton =
+    document.querySelector(
+      '#ten button[onclick="newTenChallenge()"]'
+    );
+
+  if (!startButton) {
+    return;
+  }
+
+
+  if (!open) {
+
+    startButton.disabled = true;
+
+    document.getElementById(
+      "tenPerson"
+    ).textContent =
+      "🔒 Spillet åpner lørdag kl. 17:00";
+
+    document.getElementById(
+      "tenQuestion"
+    ).textContent =
+      "Spørsmålene er hemmelige frem til da 🎅";
+
+    document.getElementById(
+      "tenTimer"
+    ).textContent =
+      "🎄";
+
+  } else {
+
+    startButton.disabled = false;
+
+    if (!currentTenPerson) {
+
+      document.getElementById(
+        "tenPerson"
+      ).textContent =
+        "Hvem blir valgt?";
+
+      document.getElementById(
+        "tenQuestion"
+      ).textContent =
+        "Trykk «Ny utfordring»";
+
+      document.getElementById(
+        "tenTimer"
+      ).textContent =
+        "10";
+
+    }
+
+  }
 function newTenChallenge() {
+
+  if (!tenIsOpen()) {
+    return;
+  }
+
 
   if (tenRunning) {
     return;
@@ -3678,6 +3751,7 @@ function startApp() {
 
   updateStatusAvailability();
   updateSnakeAvailability();
+  updateTenAvailability();
   updateQuizAvailability();
   updatePhotoAvailability();
 
@@ -3742,18 +3816,24 @@ function startApp() {
     )
     .subscribe();
 
-  setInterval(
-    function () {
+ setInterval(
+  function () {
 
-      updateStatusAvailability();
-      updateSnakeAvailability();
-      updateQuizAvailability();
-      updatePhotoAvailability();
-      renderScores();
+    updateStatusAvailability();
 
-    },
-    60000
-  );
+    updateSnakeAvailability();
+
+    updateTenAvailability();
+
+    updateQuizAvailability();
+
+    updatePhotoAvailability();
+
+    renderScores();
+
+  },
+  60000
+);
 }
 
 startApp();
