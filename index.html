@@ -4506,15 +4506,9 @@ async function loadBringItems() {
 
   }
 
-  bringRows =
-    (response.data || [])
-      .filter(
-        function (item) {
+bringRows =
+  response.data || [];
 
-          return item.checked;
-
-        }
-      );
 
   renderBringItems();
 
