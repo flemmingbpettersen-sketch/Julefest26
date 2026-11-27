@@ -1960,7 +1960,11 @@ function showSection(id) {
       },
       100
     );
+if (id === "snake") {
 
+  updateSnakeAvailability();
+
+}
     if (id === "photos") {
 
       loadPhotos();
@@ -3535,27 +3539,54 @@ function updateSnakeAvailability() {
   const open =
     snakeIsOpen();
 
-  byId(
-    "snakeLock"
-  ).style.display =
-    open
-      ? "none"
-      : "block";
+  const snakeBox =
+    byId("snake");
 
-  byId(
-    "snakeGame"
-  ).style.display =
-    open
-      ? "block"
-      : "none";
+  const snakeLock =
+    byId("snakeLock");
+
+  const snakeGame =
+    byId("snakeGame");
+
 
   if (
-    open
+    !snakeBox ||
+    !snakeLock ||
+    !snakeGame
   ) {
 
-    drawSnake();
+    return;
 
-    updateSnakeBest();
+  }
+
+
+  if (!open) {
+
+    snakeLock.style.display =
+      "block";
+
+    snakeGame.style.display =
+      "none";
+
+  } else {
+
+    snakeLock.style.display =
+      "none";
+
+    snakeGame.style.display =
+      snakeBox.classList.contains("active")
+        ? "block"
+        : "none";
+
+    if (
+      snakeBox.classList.contains("active")
+    ) {
+
+      drawSnake();
+
+      updateSnakeBest();
+
+    }
 
   }
 
@@ -3563,25 +3594,6 @@ function updateSnakeAvailability() {
 
 
 function snakeBestKey() {
-
-  const person =
-    byId(
-      "snakePerson"
-    ).value
-
-    ||
-
-    "ukjent";
-
-  return (
-    "juleormen-best-" +
-    person
-  );
-
-}
-
-
-function updateSnakeBest() {
 
   byId(
     "snakeBest"
