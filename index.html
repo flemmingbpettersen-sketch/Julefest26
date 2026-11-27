@@ -3535,19 +3535,22 @@ function updateSnakeAvailability() {
 
 function snakeBestKey() {
 
-  byId(
-    "snakeBest"
-  ).textContent =
-    localStorage.getItem(
-      snakeBestKey()
-    )
+  const person =
+    byId("snakePerson").value || "ukjent";
 
-    ||
-
-    "0";
+  return "juleormen-best-" + person;
 
 }
 
+
+function updateSnakeBest() {
+
+  byId("snakeBest").textContent =
+    localStorage.getItem(
+      snakeBestKey()
+    ) || "0";
+
+}
 
 byId(
   "snakePerson"
