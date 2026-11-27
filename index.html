@@ -1060,3 +1060,5134 @@
     </div>
 
   </div>
+          <div class="snake-info">
+
+          <span>
+            Poeng:
+            <span id="snakeScore">0</span>
+          </span>
+
+          <span>
+            Personlig rekord:
+            <span id="snakeBest">0</span>
+          </span>
+
+        </div>
+
+        <div class="snake-canvas-wrap">
+
+          <canvas
+            id="snakeCanvas"
+            width="320"
+            height="320">
+          </canvas>
+
+        </div>
+
+        <button
+          id="snakeStartButton"
+          class="btn"
+          onclick="startSnake()">
+
+          🎄 START JULEORMEN
+
+        </button>
+
+        <div class="snake-controls">
+
+          <button
+            class="snake-control snake-up"
+            onclick="setSnakeDirection(0,-1)">
+            ⬆️
+          </button>
+
+          <button
+            class="snake-control snake-left"
+            onclick="setSnakeDirection(-1,0)">
+            ⬅️
+          </button>
+
+          <button
+            class="snake-control snake-down"
+            onclick="setSnakeDirection(0,1)">
+            ⬇️
+          </button>
+
+          <button
+            class="snake-control snake-right"
+            onclick="setSnakeDirection(1,0)">
+            ➡️
+          </button>
+
+        </div>
+
+        <div id="snakeMessage" class="message">
+          Spis 🎁 og 🎄. Unngå veggen og deg selv.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JULE-KONG -->
+
+  <div id="kong" class="box">
+
+    <h2>🦍 Jule-Kong</h2>
+
+    <p>
+      Hjelp nissen til toppen!
+      Unngå pakkene som kommer fra Jule-Kong.
+    </p>
+
+    <div
+      id="kongLock"
+      class="kong-lock">
+
+      🔒 Jule-Kong åpner i kveld kl. 19:00
+
+    </div>
+
+    <div
+      id="kongGame"
+      style="display:none">
+
+      <span class="field-label">
+        HVEM SPILLER?
+      </span>
+
+      <select id="kongPerson">
+
+        <option value="">
+          Velg navn
+        </option>
+
+        <option>Anne Grethe</option>
+        <option>Henning</option>
+        <option>Ronny</option>
+        <option>Hanne</option>
+        <option>Martin</option>
+        <option>Eilen H</option>
+        <option>Eilen N</option>
+        <option>Flemming</option>
+
+      </select>
+
+      <div class="kong-area">
+
+        <div class="kong-info">
+
+          <span>
+            Poeng:
+            <span id="kongScore">0</span>
+          </span>
+
+          <span>
+            Rekord:
+            <span id="kongBest">0</span>
+          </span>
+
+        </div>
+
+        <div class="kong-canvas-wrap">
+
+          <canvas
+            id="kongCanvas"
+            width="320"
+            height="360">
+          </canvas>
+
+        </div>
+
+        <button
+          id="kongStartButton"
+          class="btn"
+          onclick="startKong()">
+
+          🎅 START JULE-KONG
+
+        </button>
+
+        <div class="kong-controls">
+
+          <button
+            class="kong-control"
+            onpointerdown="kongLeft=true"
+            onpointerup="kongLeft=false"
+            onpointercancel="kongLeft=false">
+
+            ⬅️
+
+          </button>
+
+          <button
+            class="kong-control"
+            onclick="kongJump()">
+
+            ⬆️ HOPP
+
+          </button>
+
+          <button
+            class="kong-control"
+            onpointerdown="kongRight=true"
+            onpointerup="kongRight=false"
+            onpointercancel="kongRight=false">
+
+            ➡️
+
+          </button>
+
+        </div>
+
+        <div
+          id="kongMessage"
+          class="message">
+
+          🎄 Kom deg helt til toppen!
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JULEQUIZ -->
+
+  <div id="quiz" class="box">
+
+    <h2>🎄 Julequiz</h2>
+
+    <div class="quiz-area">
+
+      <div style="font-size:44px">
+        🎄
+      </div>
+
+      <p>
+        20 spørsmål om jul, julemusikk og julefilmer.
+      </p>
+
+      <div
+        id="quizLock"
+        class="quiz-lock">
+
+        🔒 Julequizen åpner lørdag 28. november kl. 18:30
+
+      </div>
+
+      <button
+        id="quizStartButton"
+        class="btn"
+        onclick="startQuiz()"
+        style="display:none">
+
+        🎄 START JULEQUIZ
+
+      </button>
+
+      <div
+        id="quizGame"
+        style="display:none">
+
+        <div
+          id="quizProgress"
+          class="quiz-progress">
+        </div>
+
+        <div
+          id="quizPerson"
+          class="quiz-person">
+        </div>
+
+        <div
+          id="quizQuestion"
+          class="quiz-question">
+        </div>
+
+        <div
+          id="quizOptions"
+          class="quiz-options">
+        </div>
+
+        <div
+          id="quizMessage"
+          class="message">
+        </div>
+
+        <button
+          id="quizNextButton"
+          class="btn"
+          onclick="nextQuizQuestion()"
+          style="display:none">
+
+          NESTE SPØRSMÅL ➡️
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TA MED -->
+
+  <div id="bring" class="box">
+
+    <h2>🎒 Hva tar du med?</h2>
+
+    <div class="game-area">
+
+      <div style="font-size:42px">
+        🎁
+      </div>
+
+      <strong
+        style="
+          color:#f4d06f;
+          font-size:19px
+        ">
+
+        PAKKE TIL PAKKELEKEN
+
+      </strong>
+
+      <p>
+        Alle tar med én innpakket pakke.<br>
+        <strong>Verdi: 10–100 kr</strong>
+      </p>
+
+      <small>
+        Alle ser den samme avkrysningslisten.
+      </small>
+
+    </div>
+
+    <span class="field-label">
+      HVEM ER DU?
+    </span>
+
+    <select id="bringPerson">
+
+      <option value="">
+        Velg navn
+      </option>
+
+      <option>Anne Grethe</option>
+      <option>Henning</option>
+      <option>Ronny</option>
+      <option>Hanne</option>
+      <option>Martin</option>
+      <option>Eilen H</option>
+      <option>Eilen N</option>
+      <option>Flemming</option>
+
+    </select>
+
+    <div id="bringChecks">
+
+      <label class="check">
+
+        <input
+          type="checkbox"
+          data-item="package">
+
+        <span>
+          🎁 Pakke til pakkeleken
+        </span>
+
+      </label>
+
+      <label class="check">
+
+        <input
+          type="checkbox"
+          data-item="beer">
+
+        <span>
+          🍺 Øl
+        </span>
+
+      </label>
+
+      <label class="check">
+
+        <input
+          type="checkbox"
+          data-item="wine">
+
+        <span>
+          🍷 Vin
+        </span>
+
+      </label>
+
+      <label class="check">
+
+        <input
+          type="checkbox"
+          data-item="bubbles">
+
+        <span>
+          🥂 Bobler
+        </span>
+
+      </label>
+
+      <label class="check">
+
+        <input
+          type="checkbox"
+          data-item="mood">
+
+        <span>
+          🎅 Godt humør
+        </span>
+
+      </label>
+
+    </div>
+
+    <div
+      id="bringMessage"
+      class="message">
+    </div>
+
+    <h3>
+      Felles oversikt
+    </h3>
+
+    <div id="bringSummary">
+    </div>
+
+  </div>
+
+  <!-- PAKKELEK -->
+
+  <div id="package" class="box">
+
+    <h2>🎁 Pakkelek</h2>
+
+    <p>
+      Alle legger pakkene samlet før leken starter.
+    </p>
+
+    <div class="game-area">
+
+      <div>
+        DIGITAL TERNING
+      </div>
+
+      <div id="dice">
+        🎲
+      </div>
+
+      <button
+        class="btn"
+        onclick="rollDice()">
+
+        🎲 KAST TERNINGEN
+
+      </button>
+
+      <div id="diceResult">
+        Trykk for å kaste
+      </div>
+
+    </div>
+
+    <div class="game-area">
+
+      <div>
+        PAKKELEK-TIMER
+      </div>
+
+      <div id="packageTimer">
+        10:00
+      </div>
+
+      <button
+        class="btn"
+        onclick="startPackageTimer()">
+
+        ⏱️ START 10 MINUTTER
+
+      </button>
+
+      <button
+        class="btn red"
+        onclick="resetPackageTimer()">
+
+        ↻ NULLSTILL
+
+      </button>
+
+    </div>
+
+    <h3>
+      🎄 Terningregler
+    </h3>
+
+    <div class="rule">
+      🎲 1 – Ta en pakke
+    </div>
+
+    <div class="rule">
+      🎲 2 – Bytt med en valgfri person
+    </div>
+
+    <div class="rule">
+      🎲 3 – Send en pakke til venstre
+    </div>
+
+    <div class="rule">
+      🎲 4 – Send en pakke til høyre
+    </div>
+
+    <div class="rule">
+      🎲 5 – Stjel en valgfri pakke
+    </div>
+
+    <div class="rule">
+      🎲 6 – Kast én gang til
+    </div>
+
+  </div>
+
+  <!-- FESTBILDER -->
+
+  <div id="photos" class="box">
+
+    <h2>📸 Festbilder</h2>
+
+    <p>
+      Felles album. Kun bilder, ingen video.
+    </p>
+
+    <div class="game-area">
+
+      <div
+        id="photoCount"
+        class="photo-count">
+
+        0 / 75 bilder
+
+      </div>
+
+      <small>
+        Maks 6 MB per bilde.
+      </small>
+
+      <input
+        id="photoInput"
+        class="photo-input"
+        type="file"
+        accept="image/*">
+
+      <button
+        id="photoButton"
+        class="btn"
+        onclick="document.getElementById('photoInput').click()">
+
+        📸 LEGG TIL BILDE
+
+      </button>
+
+      <div
+        id="photoMessage"
+        class="message">
+      </div>
+
+    </div>
+
+    <div
+      id="gallery"
+      class="gallery">
+    </div>
+
+  </div>
+
+  <footer>
+    🎄 Julefest at the Breviks • 28. november 🎄
+  </footer>
+
+</div>
+
+<!-- BILDEVISNING -->
+
+<div
+  id="photoModal"
+  class="modal"
+  onclick="closePhoto()">
+
+  <button
+    class="close"
+    onclick="closePhoto()">
+
+    ×
+
+  </button>
+
+  <img
+    id="modalImage"
+    alt="Festbilde">
+
+</div>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
+<script>
+
+"use strict";
+
+const people = [
+
+  "Anne Grethe",
+  "Henning",
+  "Ronny",
+  "Hanne",
+  "Martin",
+  "Eilen H",
+  "Eilen N",
+  "Flemming"
+
+];
+
+const SUPABASE_URL =
+  "https://icvpfwwkrvmlfaxzukdl.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_pfBgYwR6MFPrYlaIc3416Q_yLurIcIB";
+
+const partyDate =
+  new Date(
+    2026,
+    10,
+    28,
+    18,
+    30
+  );
+
+const statusStart =
+  new Date(
+    2026,
+    10,
+    28,
+    0,
+    0
+  );
+
+const statusEnd =
+  new Date(
+    2026,
+    10,
+    29,
+    0,
+    0
+  );
+
+const gameStart =
+  new Date(
+    2026,
+    10,
+    28,
+    18,
+    30
+  );
+
+const snakeStartDate =
+  new Date(
+    2026,
+    10,
+    28,
+    0,
+    0
+  );
+
+const kongStartDate =
+  new Date(
+    2026,
+    10,
+    27,
+    19,
+    0,
+    0
+  );
+
+const photoStart =
+  new Date(
+    2026,
+    10,
+    28,
+    0,
+    0
+  );
+
+const photoEnd =
+  new Date(
+    2026,
+    10,
+    30,
+    0,
+    0
+  );
+
+let db = null;
+
+let statuses = {};
+
+let scores = {};
+
+let bringRows = [];
+
+let photos = [];
+
+let currentTenPerson = "";
+
+let tenRunning = false;
+
+let packageTime = 600;
+
+let packageInterval = null;
+
+let quizQuestions = [];
+
+let quizIndex = 0;
+
+let quizAnswered = false;
+
+let currentQuizPerson = "";
+
+let snake = [];
+
+let snakeFood = {
+  x: 5,
+  y: 5
+};
+
+let snakeDirection = {
+  x: 1,
+  y: 0
+};
+
+let snakeNextDirection = {
+  x: 1,
+  y: 0
+};
+
+let snakeTimer = null;
+
+let snakeRunning = false;
+
+let snakePoints = 0;
+
+const SNAKE_SIZE = 20;
+
+const SNAKE_CELLS = 16;
+
+let kongPlayer = {
+  x: 38,
+  y: 310,
+  w: 20,
+  h: 26,
+  vx: 0,
+  vy: 0,
+  onGround: false
+};
+
+let kongPackages = [];
+
+let kongRunning = false;
+
+let kongAnimation = null;
+
+let kongLastTime = 0;
+
+let kongSpawn = 0;
+
+let kongScoreValue = 0;
+
+let kongLevel = 0;
+
+let kongLeft = false;
+
+let kongRight = false;
+
+const kongPlatforms = [
+
+  {
+    x: 12,
+    y: 336,
+    w: 296
+  },
+
+  {
+    x: 50,
+    y: 270,
+    w: 258
+  },
+
+  {
+    x: 12,
+    y: 204,
+    w: 258
+  },
+
+  {
+    x: 50,
+    y: 138,
+    w: 258
+  },
+
+  {
+    x: 12,
+    y: 72,
+    w: 296
+  }
+
+];
+
+const bringItems = {
+
+  package:
+    "🎁 Pakke til pakkeleken",
+
+  beer:
+    "🍺 Øl",
+
+  wine:
+    "🍷 Vin",
+
+  bubbles:
+    "🥂 Bobler",
+
+  mood:
+    "🎅 Godt humør"
+
+};
+
+function byId(id) {
+
+  return document.getElementById(id);
+
+}
+
+/* BILDEFILENS FALLBACK */
+
+const jagerImage =
+  byId("jagerImage");
+
+jagerImage.addEventListener(
+  "error",
+  function () {
+
+    if (
+      !jagerImage.dataset
+        .fallbackUsed
+    ) {
+
+      jagerImage.dataset
+        .fallbackUsed =
+        "true";
+
+      jagerImage.src =
+        "./jagermeister.png.png";
+
+    } else {
+
+      jagerImage.style.display =
+        "none";
+
+    }
+
+  }
+);
+
+/* MENY */
+
+function showSection(id) {
+
+  document
+    .querySelectorAll(".box")
+    .forEach(function (box) {
+
+      if (box.id === id) {
+
+        box.classList.toggle(
+          "active"
+        );
+
+      } else {
+
+        box.classList.remove(
+          "active"
+        );
+
+      }
+
+    });
+
+  const selected =
+    byId(id);
+
+  if (
+    selected &&
+    selected.classList.contains(
+      "active"
+    )
+  ) {
+
+    setTimeout(
+      function () {
+
+        selected.scrollIntoView({
+
+          behavior:
+            "smooth",
+
+          block:
+            "nearest"
+
+        });
+
+      },
+      100
+    );
+
+    if (id === "photos") {
+
+      loadPhotos();
+
+    }
+
+  }
+
+}
+
+/* NEDTELLING */
+
+function updateCountdown() {
+
+  const difference =
+
+    partyDate.getTime() -
+
+    Date.now();
+
+  if (
+    difference <=
+    0
+  ) {
+
+    byId("days").textContent =
+      "🎉";
+
+    byId("hours").textContent =
+      "🎄";
+
+    byId("minutes").textContent =
+      "🥂";
+
+    return;
+
+  }
+
+  byId("days").textContent =
+
+    Math.floor(
+      difference /
+      86400000
+    );
+
+  byId("hours").textContent =
+
+    Math.floor(
+      (
+        difference %
+        86400000
+      ) /
+      3600000
+    );
+
+  byId("minutes").textContent =
+
+    Math.floor(
+      (
+        difference %
+        3600000
+      ) /
+      60000
+    );
+
+}
+
+updateCountdown();
+
+setInterval(
+  updateCountdown,
+  30000
+);
+
+/* GJENGEN */
+
+const avatars = [
+
+  "🎄",
+  "🎅",
+  "🍺",
+  "🥂",
+  "🦌",
+  "⭐",
+  "☃️",
+  "🎁"
+
+];
+
+people.forEach(
+  function (
+    person,
+    index
+  ) {
+
+    byId(
+      "friendsList"
+    ).innerHTML +=
+
+      `
+      <div class="row">
+
+        <div class="person">
+
+          <div class="avatar">
+            ${avatars[index]}
+          </div>
+
+          ${person}
+
+        </div>
+
+      </div>
+      `;
+
+  }
+);
+
+/* STATUS */
+
+function statusIsOpen() {
+
+  const now =
+    new Date();
+
+  return (
+
+    now >=
+    statusStart
+
+    &&
+
+    now <
+    statusEnd
+
+  );
+
+}
+
+function renderStatuses() {
+
+  const list =
+    byId(
+      "statusList"
+    );
+
+  list.innerHTML =
+    "";
+
+  people.forEach(
+    function (person) {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+      row.className =
+        "row";
+
+      const name =
+        document.createElement(
+          "span"
+        );
+
+      name.textContent =
+        person;
+
+      const value =
+        document.createElement(
+          "span"
+        );
+
+      value.style.color =
+        "#f4d06f";
+
+      value.textContent =
+
+        statuses[person]
+
+        ||
+
+        "Ikke oppdatert";
+
+      row.appendChild(
+        name
+      );
+
+      row.appendChild(
+        value
+      );
+
+      list.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+function updateStatusAvailability() {
+
+  const open =
+    statusIsOpen();
+
+  byId(
+    "personSelect"
+  ).disabled =
+    !open;
+
+  byId(
+    "statusSelect"
+  ).disabled =
+    !open;
+
+  byId(
+    "statusButton"
+  ).disabled =
+    !open;
+
+  if (
+    new Date() <
+    statusStart
+  ) {
+
+    byId(
+      "statusMessage"
+    ).textContent =
+      "🔒 Status åpner lørdag 28. november kl. 00:00 🎄";
+
+  }
+
+  else if (
+    !open
+  ) {
+
+    byId(
+      "statusMessage"
+    ).textContent =
+      "🎄 Siste status fra lørdag vises her.";
+
+  }
+
+  else {
+
+    byId(
+      "statusMessage"
+    ).textContent =
+      "🎄 Hva gjør du akkurat nå?";
+
+  }
+
+}
+
+async function loadStatuses() {
+
+  if (!db) {
+
+    return;
+
+  }
+
+  const response =
+
+    await db
+      .from(
+        "party_status"
+      )
+      .select(
+        "name,status"
+      );
+
+  if (
+    response.error
+  ) {
+
+    console.error(
+      response.error
+    );
+
+    return;
+
+  }
+
+  statuses =
+    {};
+
+  (
+    response.data
+    ||
+    []
+  )
+    .forEach(
+      function (item) {
+
+        statuses[
+          item.name
+        ] =
+          item.status;
+
+      }
+    );
+
+  renderStatuses();
+
+}
+
+async function saveStatus() {
+
+  if (
+    !statusIsOpen()
+    ||
+    !db
+  ) {
+
+    return;
+
+  }
+
+  const person =
+    byId(
+      "personSelect"
+    ).value;
+
+  const status =
+    byId(
+      "statusSelect"
+    ).value;
+
+  if (
+    !person
+    ||
+    !status
+  ) {
+
+    byId(
+      "statusMessage"
+    ).textContent =
+      "Velg navn og status 😊";
+
+    return;
+
+  }
+
+  byId(
+    "statusMessage"
+  ).textContent =
+    "Lagrer...";
+
+  const response =
+
+    await db
+      .from(
+        "party_status"
+      )
+      .upsert(
+        {
+
+          name:
+            person,
+
+          status:
+            status,
+
+          updated_at:
+            new Date()
+              .toISOString()
+
+        },
+        {
+
+          onConflict:
+            "name"
+
+        }
+      );
+
+  if (
+    response.error
+  ) {
+
+    console.error(
+      response.error
+    );
+
+    byId(
+      "statusMessage"
+    ).textContent =
+      "❌ Kunne ikke lagre";
+
+    return;
+
+  }
+
+  byId(
+    "statusMessage"
+  ).textContent =
+    "✅ Status oppdatert";
+
+  await loadStatuses();
+
+}
+
+/* POENG */
+
+function scoresAreOpen() {
+
+  return (
+    new Date() >=
+    gameStart
+  );
+
+}
+
+function renderScores() {
+
+  const list =
+    byId(
+      "scoreList"
+    );
+
+  byId(
+    "scoreMessage"
+  ).textContent =
+
+    scoresAreOpen()
+
+      ? ""
+
+      : "🔒 Poengjakten starter lørdag kl. 18:30";
+
+  const ordered =
+
+    people
+      .slice()
+      .sort(
+        function (
+          a,
+          b
+        ) {
+
+          return (
+
+            (
+              scores[b]
+              ||
+              0
+            )
+
+            -
+
+            (
+              scores[a]
+              ||
+              0
+            )
+
+          )
+
+          ||
+
+          (
+
+            people.indexOf(a)
+
+            -
+
+            people.indexOf(b)
+
+          );
+
+        }
+      );
+
+  list.innerHTML =
+    "";
+
+  ordered.forEach(
+    function (
+      person,
+      index
+    ) {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+      row.className =
+        "row";
+
+      const rank =
+        document.createElement(
+          "span"
+        );
+
+      rank.className =
+        "rank";
+
+      rank.textContent =
+
+        index === 0
+
+          ? "🥇"
+
+          : index === 1
+
+            ? "🥈"
+
+            : index === 2
+
+              ? "🥉"
+
+              : (
+                  index +
+                  1
+                ) +
+                ".";
+
+      const name =
+        document.createElement(
+          "span"
+        );
+
+      name.className =
+        "score-name";
+
+      name.textContent =
+        person;
+
+      const controls =
+        document.createElement(
+          "div"
+        );
+
+      controls.className =
+        "controls";
+
+      const minus =
+        document.createElement(
+          "button"
+        );
+
+      minus.className =
+        "score-btn minus";
+
+      minus.textContent =
+        "−";
+
+      minus.disabled =
+        !scoresAreOpen();
+
+      minus.addEventListener(
+        "click",
+        function () {
+
+          changeScore(
+            person,
+            -1
+          );
+
+        }
+      );
+
+      const value =
+        document.createElement(
+          "span"
+        );
+
+      value.className =
+        "score";
+
+      value.textContent =
+
+        scores[person]
+
+        ||
+
+        0;
+
+      const plus =
+        document.createElement(
+          "button"
+        );
+
+      plus.className =
+        "score-btn plus";
+
+      plus.textContent =
+        "+";
+
+      plus.disabled =
+        !scoresAreOpen();
+
+      plus.addEventListener(
+        "click",
+        function () {
+
+          changeScore(
+            person,
+            1
+          );
+
+        }
+      );
+
+      controls.appendChild(
+        minus
+      );
+
+      controls.appendChild(
+        value
+      );
+
+      controls.appendChild(
+        plus
+      );
+
+      row.appendChild(
+        rank
+      );
+
+      row.appendChild(
+        name
+      );
+
+      row.appendChild(
+        controls
+      );
+
+      list.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+async function loadScores() {
+
+  if (!db) {
+
+    renderScores();
+
+    return;
+
+  }
+
+  const response =
+
+    await db
+      .from(
+        "party_scores"
+      )
+      .select(
+        "name,score"
+      );
+
+  if (
+    response.error
+  ) {
+
+    console.error(
+      response.error
+    );
+
+    renderScores();
+
+    return;
+
+  }
+
+  scores =
+    {};
+
+  people.forEach(
+    function (person) {
+
+      scores[person] =
+        0;
+
+    }
+  );
+
+  (
+    response.data
+    ||
+    []
+  )
+    .forEach(
+      function (item) {
+
+        scores[
+          item.name
+        ] =
+          item.score;
+
+      }
+    );
+
+  renderScores();
+
+}
+
+async function changeScore(
+  name,
+  difference
+) {
+
+  if (
+    !scoresAreOpen()
+    ||
+    !db
+  ) {
+
+    return false;
+
+  }
+
+  const next =
+
+    Math.max(
+
+      0,
+
+      (
+        scores[name]
+        ||
+        0
+      )
+
+      +
+
+      difference
+
+    );
+
+  const response =
+
+    await db
+      .from(
+        "party_scores"
+      )
+      .upsert(
+        {
+
+          name:
+            name,
+
+          score:
+            next,
+
+          updated_at:
+            new Date()
+              .toISOString()
+
+        },
+        {
+
+          onConflict:
+            "name"
+
+        }
+      );
+
+  if (
+    response.error
+  ) {
+
+    console.error(
+      response.error
+    );
+
+    return false;
+
+  }
+
+  scores[name] =
+    next;
+
+  renderScores();
+
+  return true;
+
+}
+
+/* JULEHJUL */
+
+const wheelColors = [
+
+  "#b51f2e",
+  "#1f7a5c",
+  "#d49b24",
+  "#315c8c",
+  "#9d3d7a",
+  "#287a76",
+  "#c65b2d",
+  "#6f4b9b"
+
+];
+
+const wheelChallenges = [
+
+  "må velge neste sang! 🎵",
+
+  "må holde en 30 sekunders tale! 🎤",
+
+  "må fortelle en vits! 😂",
+
+  "må starte en skål! 🥂"
+
+];
+
+let wheelRotation =
+  0;
+
+let wheelSpinning =
+  false;
+  function drawWheel() {
+
+  const canvas =
+    byId("wheelCanvas");
+
+  const context =
+    canvas.getContext("2d");
+
+  const radius =
+    canvas.width * 0.47;
+
+  const section =
+    Math.PI * 2 / people.length;
+
+  context.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  context.save();
+
+  context.translate(
+    canvas.width / 2,
+    canvas.height / 2
+  );
+
+  context.rotate(
+    wheelRotation
+  );
+
+  people.forEach(
+    function (name, index) {
+
+      const start =
+        -Math.PI / 2 +
+        index * section;
+
+      context.beginPath();
+
+      context.moveTo(
+        0,
+        0
+      );
+
+      context.arc(
+        0,
+        0,
+        radius,
+        start,
+        start + section
+      );
+
+      context.closePath();
+
+      context.fillStyle =
+        wheelColors[index];
+
+      context.fill();
+
+      context.strokeStyle =
+        "white";
+
+      context.lineWidth =
+        4;
+
+      context.stroke();
+
+      context.save();
+
+      context.rotate(
+        start +
+        section / 2
+      );
+
+      context.translate(
+        radius * 0.63,
+        0
+      );
+
+      context.rotate(
+        Math.PI / 2
+      );
+
+      context.fillStyle =
+        "white";
+
+      context.font =
+        "700 29px Segoe UI";
+
+      context.textAlign =
+        "center";
+
+      const parts =
+        name.split(" ");
+
+      if (
+        parts.length >
+        1
+      ) {
+
+        context.fillText(
+          parts[0],
+          0,
+          -16
+        );
+
+        context.fillText(
+          parts
+            .slice(1)
+            .join(" "),
+          0,
+          18
+        );
+
+      } else {
+
+        context.fillText(
+          name,
+          0,
+          0
+        );
+      }
+
+      context.restore();
+
+    }
+  );
+
+  context.beginPath();
+
+  context.arc(
+    0,
+    0,
+    radius * 0.15,
+    0,
+    Math.PI * 2
+  );
+
+  context.fillStyle =
+    "#f4d06f";
+
+  context.fill();
+
+  context.fillStyle =
+    "#12372a";
+
+  context.font =
+    "52px serif";
+
+  context.textAlign =
+    "center";
+
+  context.textBaseline =
+    "middle";
+
+  context.fillText(
+    "🎄",
+    0,
+    3
+  );
+
+  context.restore();
+
+}
+
+
+function spinWheel() {
+
+  if (
+    wheelSpinning
+  ) {
+
+    return;
+
+  }
+
+  wheelSpinning =
+    true;
+
+  const button =
+    byId("spinButton");
+
+  const result =
+    byId("wheelResult");
+
+  button.disabled =
+    true;
+
+  result.textContent =
+    "🎡 Hjulet spinner...";
+
+  const winner =
+    Math.floor(
+      Math.random() *
+      people.length
+    );
+
+  const section =
+    Math.PI * 2 /
+    people.length;
+
+  const current =
+    (
+      (
+        wheelRotation %
+        (Math.PI * 2)
+      ) +
+      Math.PI * 2
+    ) %
+    (Math.PI * 2);
+
+  const target =
+    (
+      -(winner + 0.5) *
+      section +
+      Math.PI * 2
+    ) %
+    (Math.PI * 2);
+
+  const difference =
+    (
+      target -
+      current +
+      Math.PI * 2
+    ) %
+    (Math.PI * 2);
+
+  const start =
+    wheelRotation;
+
+  const finish =
+    start +
+    (
+      5 +
+      Math.floor(
+        Math.random() * 3
+      )
+    ) *
+    Math.PI * 2 +
+    difference;
+
+  const startTime =
+    performance.now();
+
+  function animate(time) {
+
+    const progress =
+      Math.min(
+        (
+          time -
+          startTime
+        ) /
+        4200,
+        1
+      );
+
+    const eased =
+      1 -
+      Math.pow(
+        1 - progress,
+        4
+      );
+
+    wheelRotation =
+      start +
+      (
+        finish -
+        start
+      ) *
+      eased;
+
+    drawWheel();
+
+    if (
+      progress <
+      1
+    ) {
+
+      requestAnimationFrame(
+        animate
+      );
+
+    } else {
+
+      wheelRotation =
+        target;
+
+      drawWheel();
+
+      const challenge =
+        wheelChallenges[
+          Math.floor(
+            Math.random() *
+            wheelChallenges.length
+          )
+        ];
+
+      result.textContent =
+        "🎄 " +
+        people[winner] +
+        " " +
+        challenge;
+
+      button.disabled =
+        false;
+
+      wheelSpinning =
+        false;
+
+    }
+
+  }
+
+  requestAnimationFrame(
+    animate
+  );
+
+}
+
+drawWheel();
+
+
+/* =========================
+   10 SEKUNDER
+========================= */
+
+const tenQuestions = [
+
+  "Nevn 3 artister fra 80-tallet",
+
+  "Nevn 3 artister som er populære i dag",
+
+  "Nevn 3 norske artister",
+
+  "Nevn 3 rockeband",
+
+  "Nevn 3 kvinnelige artister",
+
+  "Nevn 3 låter av ABBA",
+
+  "Nevn 3 låter av Queen",
+
+  "Nevn 3 låter som får deg ut på dansegulvet",
+
+  "Nevn 3 julesanger",
+
+  "Nevn 3 artister du gjerne ville sett live",
+
+  "Nevn 3 filmer fra 80- eller 90-tallet",
+
+  "Nevn 3 filmer du har sett mer enn én gang",
+
+  "Nevn 3 kjente skuespillere",
+
+  "Nevn 3 TV-serier du følger eller har fulgt",
+
+  "Nevn 3 strømmetjenester",
+
+  "Nevn 3 engelske fotballag",
+
+  "Nevn 3 norske fotballspillere",
+
+  "Nevn 3 Formel 1-førere",
+
+  "Nevn 3 hockeylag",
+
+  "Nevn 3 norske idrettsutøvere",
+
+  "Nevn 3 vintersporter",
+
+  "Nevn 3 land som har vunnet fotball-VM",
+
+  "Nevn 3 ølmerker",
+
+  "Nevn 3 drinker",
+
+  "Nevn 3 typer brennevin",
+
+  "Nevn 3 ting du forbinder med et julebord",
+
+  "Nevn 3 ting som gjør en fest bra",
+
+  "Nevn 3 ting man kan gjøre på nachspiel",
+
+  "Nevn 3 ting man kan angre på dagen derpå",
+
+  "Nevn 3 unnskyldninger for å komme for sent hjem",
+
+  "Nevn 3 ting du alltid bør ha på hytta",
+
+  "Nevn 3 ting du tar med på ferie",
+
+  "Nevn 3 ting du har i kjøleskapet akkurat nå",
+
+  "Nevn 3 ting du kan kjøpe på en bensinstasjon",
+
+  "Nevn 3 ting du aldri ville bestilt på restaurant",
+
+  "Nevn 3 ting som var bedre før",
+
+  "Nevn 3 ting som definitivt er bedre nå",
+
+  "Nevn 3 ting vi brukte før smarttelefonen",
+
+  "Nevn 3 apper du bruker nesten hver dag",
+
+  "Nevn 3 gamle videospill",
+
+  "Nevn 3 bilmerker",
+
+  "Nevn 3 steder du kunne tenke deg å reise til",
+
+  "Nevn 3 ting du gjerne bruker penger på",
+
+  "Nevn 3 ting du synes har blitt altfor dyrt",
+
+  "Nevn 3 ting du gjorde på byen som 20-åring",
+
+  "Nevn 3 ting du ikke lenger orker å gjøre på byen",
+
+  "Nevn 3 ting du nå trenger lesebriller for å gjøre",
+
+  "Nevn 3 ting du aldri ville lagt ut på Facebook",
+
+  "Nevn 3 ting du ikke vil høre noen si morgenen etter en fest",
+
+  "Nevn 3 ting en 20-åring sannsynligvis mener du er for gammel til å gjøre"
+
+];
+
+
+function tenIsOpen() {
+
+  const tenStartDate =
+    new Date(
+      2026,
+      10,
+      28,
+      17,
+      0,
+      0
+    );
+
+  return (
+    new Date() >=
+    tenStartDate
+  );
+
+}
+
+
+function updateTenAvailability() {
+
+  const open =
+    tenIsOpen();
+
+  const startButton =
+    document.querySelector(
+      '#ten button[onclick="newTenChallenge()"]'
+    );
+
+  if (
+    !startButton
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    !open
+  ) {
+
+    startButton.disabled =
+      true;
+
+    byId(
+      "tenPerson"
+    ).textContent =
+      "🔒 Spillet åpner lørdag kl. 17:00";
+
+    byId(
+      "tenQuestion"
+    ).textContent =
+      "Spørsmålene er hemmelige frem til da 🎅";
+
+    byId(
+      "tenTimer"
+    ).textContent =
+      "🎄";
+
+  } else {
+
+    startButton.disabled =
+      false;
+
+    if (
+      !currentTenPerson
+    ) {
+
+      byId(
+        "tenPerson"
+      ).textContent =
+        "Hvem blir valgt?";
+
+      byId(
+        "tenQuestion"
+      ).textContent =
+        "Trykk «Ny utfordring»";
+
+      byId(
+        "tenTimer"
+      ).textContent =
+        "10";
+
+    }
+
+  }
+
+}
+
+
+function newTenChallenge() {
+
+  if (
+    !tenIsOpen()
+  ) {
+
+    return;
+
+  }
+
+  if (
+    tenRunning
+  ) {
+
+    return;
+
+  }
+
+  currentTenPerson =
+    people[
+      Math.floor(
+        Math.random() *
+        people.length
+      )
+    ];
+
+  byId(
+    "tenPerson"
+  ).textContent =
+    currentTenPerson;
+
+  byId(
+    "tenQuestion"
+  ).textContent =
+    tenQuestions[
+      Math.floor(
+        Math.random() *
+        tenQuestions.length
+      )
+    ];
+
+  byId(
+    "tenTimer"
+  ).textContent =
+    "10";
+
+  byId(
+    "tenStart"
+  ).disabled =
+    false;
+
+  byId(
+    "tenActions"
+  ).style.display =
+    "none";
+
+  byId(
+    "tenMessage"
+  ).textContent =
+    scoresAreOpen()
+      ? ""
+      : "🔒 Poeng kan først gis fra kl. 18:30";
+
+}
+
+
+function startTen() {
+
+  if (
+    tenRunning ||
+    !currentTenPerson
+  ) {
+
+    return;
+
+  }
+
+  tenRunning =
+    true;
+
+  byId(
+    "tenStart"
+  ).disabled =
+    true;
+
+  byId(
+    "tenActions"
+  ).style.display =
+    "none";
+
+  let seconds =
+    10;
+
+  byId(
+    "tenTimer"
+  ).textContent =
+    seconds;
+
+  byId(
+    "tenMessage"
+  ).textContent =
+    "Tenk fort!";
+
+  const timer =
+    setInterval(
+      function () {
+
+        seconds--;
+
+        if (
+          seconds >
+          0
+        ) {
+
+          byId(
+            "tenTimer"
+          ).textContent =
+            seconds;
+
+        } else {
+
+          clearInterval(
+            timer
+          );
+
+          byId(
+            "tenTimer"
+          ).textContent =
+            "💥";
+
+          byId(
+            "tenMessage"
+          ).textContent =
+            "TIDEN ER UTE!";
+
+          byId(
+            "tenActions"
+          ).style.display =
+            "grid";
+
+          tenRunning =
+            false;
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+
+async function tenSuccess() {
+
+  if (
+    !scoresAreOpen()
+  ) {
+
+    byId(
+      "tenMessage"
+    ).textContent =
+      "🔒 Poengjakten starter kl. 18:30";
+
+    return;
+
+  }
+
+  const saved =
+    await changeScore(
+      currentTenPerson,
+      1
+    );
+
+  if (
+    saved
+  ) {
+
+    byId(
+      "tenMessage"
+    ).textContent =
+      "✅ " +
+      currentTenPerson +
+      " fikk 1 poeng!";
+
+    byId(
+      "tenActions"
+    ).style.display =
+      "none";
+
+  }
+
+}
+
+
+function tenFail() {
+
+  byId(
+    "tenMessage"
+  ).textContent =
+    "❌ Ingen poeng til " +
+    currentTenPerson;
+
+  byId(
+    "tenActions"
+  ).style.display =
+    "none";
+
+}
+
+
+/* =========================
+   JULEORMEN
+========================= */
+
+function snakeIsOpen() {
+
+  return (
+    new Date() >=
+    snakeStartDate
+  );
+
+}
+
+
+function updateSnakeAvailability() {
+
+  const open =
+    snakeIsOpen();
+
+  byId(
+    "snakeLock"
+  ).style.display =
+    open
+      ? "none"
+      : "block";
+
+  byId(
+    "snakeGame"
+  ).style.display =
+    open
+      ? "block"
+      : "none";
+
+  if (
+    open
+  ) {
+
+    drawSnake();
+
+    updateSnakeBest();
+
+  }
+
+}
+
+
+function snakeBestKey() {
+
+  const person =
+    byId(
+      "snakePerson"
+    ).value
+
+    ||
+
+    "ukjent";
+
+  return (
+    "juleormen-best-" +
+    person
+  );
+
+}
+
+
+function updateSnakeBest() {
+
+  byId(
+    "snakeBest"
+  ).textContent =
+    localStorage.getItem(
+      snakeBestKey()
+    )
+
+    ||
+
+    "0";
+
+}
+
+
+byId(
+  "snakePerson"
+).addEventListener(
+  "change",
+  updateSnakeBest
+);
+
+
+function randomSnakeFood() {
+
+  let food;
+
+  do {
+
+    food = {
+
+      x:
+        Math.floor(
+          Math.random() *
+          SNAKE_CELLS
+        ),
+
+      y:
+        Math.floor(
+          Math.random() *
+          SNAKE_CELLS
+        )
+
+    };
+
+  } while (
+
+    snake.some(
+      function (part) {
+
+        return (
+
+          part.x ===
+          food.x
+
+          &&
+
+          part.y ===
+          food.y
+
+        );
+
+      }
+    )
+
+  );
+
+  return food;
+
+}
+
+
+function startSnake() {
+
+  if (
+    !snakeIsOpen()
+  ) {
+
+    return;
+
+  }
+
+  if (
+    !byId(
+      "snakePerson"
+    ).value
+  ) {
+
+    byId(
+      "snakeMessage"
+    ).textContent =
+      "Velg navnet ditt først 😊";
+
+    return;
+
+  }
+
+  clearInterval(
+    snakeTimer
+  );
+
+  snake = [
+
+    {
+      x: 7,
+      y: 8
+    },
+
+    {
+      x: 6,
+      y: 8
+    },
+
+    {
+      x: 5,
+      y: 8
+    }
+
+  ];
+
+  snakeDirection = {
+    x: 1,
+    y: 0
+  };
+
+  snakeNextDirection = {
+    x: 1,
+    y: 0
+  };
+
+  snakeFood =
+    randomSnakeFood();
+
+  snakePoints =
+    0;
+
+  snakeRunning =
+    true;
+
+  byId(
+    "snakeScore"
+  ).textContent =
+    "0";
+
+  byId(
+    "snakeStartButton"
+  ).textContent =
+    "🔄 START PÅ NYTT";
+
+  byId(
+    "snakeMessage"
+  ).textContent =
+    "Spis julegavene!";
+
+  drawSnake();
+
+  snakeTimer =
+    setInterval(
+      moveSnake,
+      135
+    );
+
+}
+
+
+function setSnakeDirection(
+  x,
+  y
+) {
+
+  if (
+    !snakeRunning
+  ) {
+
+    return;
+
+  }
+
+  if (
+    x ===
+      -snakeDirection.x
+
+    &&
+
+    y ===
+      -snakeDirection.y
+  ) {
+
+    return;
+
+  }
+
+  snakeNextDirection = {
+    x: x,
+    y: y
+  };
+
+}
+
+
+function moveSnake() {
+
+  snakeDirection =
+    snakeNextDirection;
+
+  const head = {
+
+    x:
+      snake[0].x +
+      snakeDirection.x,
+
+    y:
+      snake[0].y +
+      snakeDirection.y
+
+  };
+
+  const hitsWall =
+
+    head.x < 0 ||
+
+    head.x >=
+      SNAKE_CELLS ||
+
+    head.y < 0 ||
+
+    head.y >=
+      SNAKE_CELLS;
+
+  const hitsSnake =
+
+    snake.some(
+      function (part) {
+
+        return (
+
+          part.x ===
+            head.x
+
+          &&
+
+          part.y ===
+            head.y
+
+        );
+
+      }
+    );
+
+  if (
+    hitsWall ||
+    hitsSnake
+  ) {
+
+    endSnake();
+
+    return;
+
+  }
+
+  snake.unshift(
+    head
+  );
+
+  if (
+    head.x ===
+      snakeFood.x
+
+    &&
+
+    head.y ===
+      snakeFood.y
+  ) {
+
+    snakePoints++;
+
+    byId(
+      "snakeScore"
+    ).textContent =
+      snakePoints;
+
+    snakeFood =
+      randomSnakeFood();
+
+  } else {
+
+    snake.pop();
+
+  }
+
+  drawSnake();
+
+}
+
+
+function roundedRectangle(
+  context,
+  x,
+  y,
+  width,
+  height,
+  radius
+) {
+
+  context.beginPath();
+
+  context.moveTo(
+    x + radius,
+    y
+  );
+
+  context.lineTo(
+    x + width - radius,
+    y
+  );
+
+  context.quadraticCurveTo(
+    x + width,
+    y,
+    x + width,
+    y + radius
+  );
+
+  context.lineTo(
+    x + width,
+    y + height - radius
+  );
+
+  context.quadraticCurveTo(
+    x + width,
+    y + height,
+    x + width - radius,
+    y + height
+  );
+
+  context.lineTo(
+    x + radius,
+    y + height
+  );
+
+  context.quadraticCurveTo(
+    x,
+    y + height,
+    x,
+    y + height - radius
+  );
+
+  context.lineTo(
+    x,
+    y + radius
+  );
+
+  context.quadraticCurveTo(
+    x,
+    y,
+    x + radius,
+    y
+  );
+
+  context.closePath();
+
+}
+function drawSnake() {
+
+  const canvas = byId("snakeCanvas");
+
+  if (!canvas) {
+    return;
+  }
+
+  const context = canvas.getContext("2d");
+
+  context.fillStyle = "#071b14";
+
+  context.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  context.font = "16px Segoe UI Emoji";
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+
+  context.fillText(
+    snakePoints % 2 === 0
+      ? "🎁"
+      : "🎄",
+    snakeFood.x * SNAKE_SIZE + 10,
+    snakeFood.y * SNAKE_SIZE + 10
+  );
+
+  snake.forEach(function (part, index) {
+
+    context.fillStyle =
+      index === 0
+        ? "#f4d06f"
+        : "#2ba866";
+
+    roundedRectangle(
+      context,
+      part.x * SNAKE_SIZE + 2,
+      part.y * SNAKE_SIZE + 2,
+      16,
+      16,
+      5
+    );
+
+    context.fill();
+
+    if (index === 0) {
+
+      context.fillStyle = "#12372a";
+
+      context.fillRect(
+        part.x * SNAKE_SIZE + 6,
+        part.y * SNAKE_SIZE + 6,
+        3,
+        3
+      );
+
+      context.fillRect(
+        part.x * SNAKE_SIZE + 12,
+        part.y * SNAKE_SIZE + 6,
+        3,
+        3
+      );
+
+    }
+
+  });
+
+}
+
+
+function endSnake() {
+
+  clearInterval(snakeTimer);
+
+  snakeTimer = null;
+  snakeRunning = false;
+
+  const oldBest =
+    Number(
+      localStorage.getItem(
+        snakeBestKey()
+      ) || 0
+    );
+
+  if (snakePoints > oldBest) {
+
+    localStorage.setItem(
+      snakeBestKey(),
+      String(snakePoints)
+    );
+
+    byId("snakeMessage").textContent =
+      "🎉 Ny personlig rekord: " +
+      snakePoints +
+      "!";
+
+  } else {
+
+    byId("snakeMessage").textContent =
+      "💥 Game over! Du fikk " +
+      snakePoints +
+      " poeng.";
+
+  }
+
+  updateSnakeBest();
+
+}
+
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+
+    if (event.key === "ArrowUp") {
+      setSnakeDirection(0, -1);
+    }
+
+    if (event.key === "ArrowDown") {
+      setSnakeDirection(0, 1);
+    }
+
+    if (event.key === "ArrowLeft") {
+      setSnakeDirection(-1, 0);
+    }
+
+    if (event.key === "ArrowRight") {
+      setSnakeDirection(1, 0);
+    }
+
+  }
+);
+
+
+/* =========================
+   JULEQUIZ
+========================= */
+
+const quizData = [
+
+  [
+    "Hva heter reinsdyret med den røde nesen?",
+    ["Rudolf", "Dasher", "Comet", "Blitzen"],
+    0
+  ],
+
+  [
+    "Hvilken plante forbindes med kyssing i julen?",
+    ["Misteltein", "Kristtorn", "Eføy", "Rosmarin"],
+    0
+  ],
+
+  [
+    "Hvem synger «All I Want for Christmas Is You»?",
+    ["Mariah Carey", "Celine Dion", "Adele", "Whitney Houston"],
+    0
+  ],
+
+  [
+    "Hva heter gutten i «Home Alone»?",
+    ["Kevin", "Harry", "Buddy", "Charlie"],
+    0
+  ],
+
+  [
+    "Hvor mange reinsdyr trekker sleden når Rudolf er med?",
+    ["9", "7", "8", "10"],
+    0
+  ],
+
+  [
+    "Hvilken gruppe ga ut «Last Christmas»?",
+    ["Wham!", "ABBA", "Queen", "A-ha"],
+    0
+  ],
+
+  [
+    "Hvilken dato er julaften i Norge?",
+    ["24. desember", "23. desember", "25. desember", "26. desember"],
+    0
+  ],
+
+  [
+    "I hvilken by foregår mye av «Home Alone 2»?",
+    ["New York", "Chicago", "Boston", "Los Angeles"],
+    0
+  ],
+
+  [
+    "Hva heter figuren som forsøker å stjele julen?",
+    ["Grinchen", "Hulken", "Shrek", "Gollum"],
+    0
+  ],
+
+  [
+    "Hvem synger «Driving Home for Christmas»?",
+    ["Chris Rea", "Bryan Adams", "Elton John", "Rod Stewart"],
+    0
+  ],
+
+  [
+    "Hva plasseres ofte øverst på juletreet?",
+    ["En stjerne", "En gave", "En bjelle", "En sokk"],
+    0
+  ],
+
+  [
+    "Hva heter julenissen på engelsk?",
+    ["Santa Claus", "Father Winter", "Christmas Man", "Snow Father"],
+    0
+  ],
+
+  [
+    "Hva setter mange frem til julenissen i USA?",
+    ["Melk og kjeks", "Kaffe og kake", "Brus og chips", "Te og brød"],
+    0
+  ],
+
+  [
+    "Hvem synger «Mistletoe»?",
+    ["Justin Bieber", "Ed Sheeran", "Bruno Mars", "Shawn Mendes"],
+    0
+  ],
+
+  [
+    "Hvilken farge har bærene på kristtorn?",
+    ["Røde", "Blå", "Gule", "Hvite"],
+    0
+  ],
+
+  [
+    "Hva heter hovedfiguren i filmen «Elf»?",
+    ["Buddy", "Kevin", "Rudolf", "Clark"],
+    0
+  ],
+
+  [
+    "Hvem synger «Rockin' Around the Christmas Tree»?",
+    ["Brenda Lee", "Dolly Parton", "Cher", "Tina Turner"],
+    0
+  ],
+
+  [
+    "Hva sier julenissen tradisjonelt tre ganger?",
+    ["Ho, ho, ho", "Hei, hei, hei", "God, god, jul", "Kom, kom, kom"],
+    0
+  ],
+
+  [
+    "Hva heter snømannen i Disneys «Frost»?",
+    ["Olaf", "Sven", "Kristoff", "Hans"],
+    0
+  ],
+
+  [
+    "Hvilken julemiddag består av tørket fisk som er lutet?",
+    ["Lutefisk", "Pinnekjøtt", "Ribbe", "Rakfisk"],
+    0
+  ]
+
+];
+
+
+function shuffle(array) {
+
+  const copy = array.slice();
+
+  for (
+    let index = copy.length - 1;
+    index > 0;
+    index--
+  ) {
+
+    const random =
+      Math.floor(
+        Math.random() *
+        (index + 1)
+      );
+
+    const temporary =
+      copy[index];
+
+    copy[index] =
+      copy[random];
+
+    copy[random] =
+      temporary;
+
+  }
+
+  return copy;
+
+}
+
+
+function updateQuizAvailability() {
+
+  const open =
+    scoresAreOpen();
+
+  byId("quizLock").style.display =
+    open
+      ? "none"
+      : "block";
+
+  byId("quizStartButton").style.display =
+    open
+      ? "block"
+      : "none";
+
+  if (!open) {
+
+    byId("quizGame").style.display =
+      "none";
+
+    quizQuestions = [];
+
+    quizIndex = 0;
+
+  }
+
+}
+
+
+function startQuiz() {
+
+  if (!scoresAreOpen()) {
+
+    updateQuizAvailability();
+
+    return;
+
+  }
+
+  quizQuestions =
+    shuffle(quizData);
+
+  quizIndex = 0;
+
+  quizAnswered = false;
+
+  byId("quizStartButton").style.display =
+    "none";
+
+  byId("quizGame").style.display =
+    "block";
+
+  showQuizQuestion();
+
+}
+
+
+function showQuizQuestion() {
+
+  if (!scoresAreOpen()) {
+
+    updateQuizAvailability();
+
+    return;
+
+  }
+
+  if (
+    quizIndex >=
+    quizQuestions.length
+  ) {
+
+    finishQuiz();
+
+    return;
+
+  }
+
+  quizAnswered = false;
+
+  currentQuizPerson =
+    people[
+      quizIndex %
+      people.length
+    ];
+
+  const current =
+    quizQuestions[quizIndex];
+
+  const options =
+    shuffle(
+      current[1].map(
+        function (text, index) {
+
+          return {
+            text: text,
+            correct:
+              index === current[2]
+          };
+
+        }
+      )
+    );
+
+  byId("quizProgress").textContent =
+    "Spørsmål " +
+    (quizIndex + 1) +
+    " av " +
+    quizQuestions.length;
+
+  byId("quizPerson").textContent =
+    "Spørsmål til " +
+    currentQuizPerson;
+
+  byId("quizQuestion").textContent =
+    current[0];
+
+  byId("quizOptions").innerHTML =
+    "";
+
+  byId("quizMessage").textContent =
+    "";
+
+  byId("quizNextButton").style.display =
+    "none";
+
+  options.forEach(
+    function (option, index) {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.className =
+        "quiz-option";
+
+      button.textContent =
+        String.fromCharCode(
+          65 + index
+        ) +
+        ". " +
+        option.text;
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          answerQuiz(
+            button,
+            option.correct,
+            current[1][current[2]]
+          );
+
+        }
+      );
+
+      byId("quizOptions")
+        .appendChild(
+          button
+        );
+
+    }
+  );
+
+}
+
+
+async function answerQuiz(
+  selected,
+  correct,
+  correctAnswer
+) {
+
+  if (
+    quizAnswered ||
+    !scoresAreOpen()
+  ) {
+
+    return;
+
+  }
+
+  quizAnswered = true;
+
+  const buttons =
+    document.querySelectorAll(
+      ".quiz-option"
+    );
+
+  buttons.forEach(
+    function (button) {
+
+      button.disabled = true;
+
+      if (
+        button.textContent
+          .endsWith(
+            correctAnswer
+          )
+      ) {
+
+        button.classList.add(
+          "correct"
+        );
+
+      }
+
+    }
+  );
+
+  if (correct) {
+
+    selected.classList.add(
+      "correct"
+    );
+
+    const saved =
+      await changeScore(
+        currentQuizPerson,
+        1
+      );
+
+    byId("quizMessage").textContent =
+      saved
+        ? "✅ Riktig! " +
+          currentQuizPerson +
+          " fikk 1 poeng."
+        : "✅ Riktig, men poenget kunne ikke lagres.";
+
+  } else {
+
+    selected.classList.add(
+      "wrong"
+    );
+
+    byId("quizMessage").textContent =
+      "❌ Feil. Riktig svar er: " +
+      correctAnswer;
+
+  }
+
+  byId("quizNextButton").style.display =
+    "block";
+
+}
+
+
+function nextQuizQuestion() {
+
+  quizIndex++;
+
+  showQuizQuestion();
+
+}
+
+
+function finishQuiz() {
+
+  byId("quizProgress").textContent =
+    "Quizen er ferdig!";
+
+  byId("quizPerson").textContent =
+    "🎉 Godt jobbet!";
+
+  byId("quizQuestion").textContent =
+    "Se sluttstillingen på den felles poengtavlen.";
+
+  byId("quizOptions").innerHTML =
+    "";
+
+  byId("quizMessage").textContent =
+    "";
+
+  byId("quizNextButton").style.display =
+    "none";
+
+  byId("quizStartButton").textContent =
+    "🔄 START QUIZEN PÅ NYTT";
+
+  byId("quizStartButton").style.display =
+    "block";
+
+}
+
+
+/* =========================
+   TA MED
+========================= */
+
+async function loadBringItems() {
+
+  if (!db) {
+    return;
+  }
+
+  const response =
+    await db
+      .from("bring_items")
+      .select("name,item,checked");
+
+  if (response.error) {
+
+    console.error(
+      response.error
+    );
+
+    return;
+
+  }
+
+  bringRows =
+    (response.data || [])
+      .filter(
+        function (item) {
+
+          return item.checked;
+
+        }
+      );
+
+  renderBringItems();
+
+  syncBringCheckboxes();
+
+}
+
+
+function renderBringItems() {
+
+  const summary =
+    byId("bringSummary");
+
+  summary.innerHTML =
+    "";
+
+  Object.keys(
+    bringItems
+  )
+    .forEach(
+      function (key) {
+
+        const names =
+          bringRows
+            .filter(
+              function (item) {
+
+                return (
+                  item.item === key
+                );
+
+              }
+            )
+            .map(
+              function (item) {
+
+                return item.name;
+
+              }
+            );
+
+        const group =
+          document.createElement(
+            "div"
+          );
+
+        group.className =
+          "group";
+
+        const title =
+          document.createElement(
+            "div"
+          );
+
+        title.className =
+          "group-title";
+
+        title.textContent =
+          bringItems[key];
+
+        const list =
+          document.createElement(
+            "div"
+          );
+
+        list.className =
+          "names";
+
+        list.textContent =
+          names.length
+            ? names
+                .map(
+                  function (name) {
+
+                    return (
+                      "✅ " + name
+                    );
+
+                  }
+                )
+                .join(" · ")
+            : "Ingen har krysset av ennå";
+
+        group.appendChild(
+          title
+        );
+
+        group.appendChild(
+          list
+        );
+
+        if (
+          key === "package"
+        ) {
+
+          const progress =
+            document.createElement(
+              "div"
+            );
+
+          progress.className =
+            "progress";
+
+          progress.textContent =
+            names.length +
+            " av 8 har husket pakke";
+
+          group.appendChild(
+            progress
+          );
+
+        }
+
+        summary.appendChild(
+          group
+        );
+
+      }
+    );
+
+}
+
+
+function syncBringCheckboxes() {
+
+  const person =
+    byId("bringPerson").value;
+
+  document
+    .querySelectorAll(
+      "#bringChecks input"
+    )
+    .forEach(
+      function (box) {
+
+        box.disabled =
+          !person;
+
+        box.checked =
+          Boolean(person) &&
+          bringRows.some(
+            function (item) {
+
+              return (
+                item.name === person &&
+                item.item ===
+                  box.dataset.item
+              );
+
+            }
+          );
+
+      }
+    );
+
+}
+
+
+byId("bringPerson")
+  .addEventListener(
+    "change",
+    syncBringCheckboxes
+  );
+
+
+document
+  .querySelectorAll(
+    "#bringChecks input"
+  )
+  .forEach(
+    function (box) {
+
+      box.addEventListener(
+        "change",
+        async function () {
+
+          const person =
+            byId("bringPerson").value;
+
+          const item =
+            box.dataset.item;
+
+          if (
+            !person ||
+            !db
+          ) {
+
+            box.checked =
+              false;
+
+            return;
+
+          }
+
+          byId("bringMessage").textContent =
+            "Lagrer...";
+
+          let response;
+
+          if (
+            box.checked
+          ) {
+
+            response =
+              await db
+                .from("bring_items")
+                .upsert(
+                  {
+                    name: person,
+                    item: item,
+                    checked: true,
+                    updated_at:
+                      new Date()
+                        .toISOString()
+                  },
+                  {
+                    onConflict:
+                      "name,item"
+                  }
+                );
+
+          } else {
+
+            response =
+              await db
+                .from("bring_items")
+                .delete()
+                .eq(
+                  "name",
+                  person
+                )
+                .eq(
+                  "item",
+                  item
+                );
+
+          }
+
+          if (
+            response.error
+          ) {
+
+            box.checked =
+              !box.checked;
+
+            byId("bringMessage").textContent =
+              "❌ Kunne ikke lagre";
+
+            return;
+
+          }
+
+          byId("bringMessage").textContent =
+            "✅ Listen er oppdatert";
+
+          await loadBringItems();
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================
+   PAKKELEK
+========================= */
+
+const diceFaces = {
+  1: "⚀",
+  2: "⚁",
+  3: "⚂",
+  4: "⚃",
+  5: "⚄",
+  6: "⚅"
+};
+
+const diceRules = {
+  1: "Ta en pakke",
+  2: "Bytt med en valgfri person",
+  3: "Send en pakke til venstre",
+  4: "Send en pakke til høyre",
+  5: "Stjel en valgfri pakke",
+  6: "Kast én gang til"
+};
+
+
+function rollDice() {
+
+  byId("diceResult").textContent =
+    "🎲 Terningen ruller...";
+
+  let rolls = 0;
+
+  const animation =
+    setInterval(
+      function () {
+
+        byId("dice").textContent =
+          diceFaces[
+            Math.floor(
+              Math.random() * 6
+            ) + 1
+          ];
+
+        rolls++;
+
+        if (
+          rolls >= 8
+        ) {
+
+          clearInterval(
+            animation
+          );
+
+          const finalRoll =
+            Math.floor(
+              Math.random() * 6
+            ) + 1;
+
+          byId("dice").textContent =
+            diceFaces[finalRoll];
+
+          byId("diceResult").textContent =
+            finalRoll +
+            " – " +
+            diceRules[finalRoll];
+
+        }
+
+      },
+      90
+    );
+
+}
+
+
+function updatePackageTimer() {
+
+  byId("packageTimer").textContent =
+    String(
+      Math.floor(
+        packageTime / 60
+      )
+    ).padStart(
+      2,
+      "0"
+    ) +
+    ":" +
+    String(
+      packageTime % 60
+    ).padStart(
+      2,
+      "0"
+    );
+
+}
+
+
+function startPackageTimer() {
+
+  if (
+    packageInterval
+  ) {
+
+    return;
+
+  }
+
+  packageInterval =
+    setInterval(
+      function () {
+
+        if (
+          packageTime > 0
+        ) {
+
+          packageTime--;
+
+          updatePackageTimer();
+
+        } else {
+
+          clearInterval(
+            packageInterval
+          );
+
+          packageInterval =
+            null;
+
+          byId("packageTimer").textContent =
+            "🎁 FERDIG!";
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+
+function resetPackageTimer() {
+
+  clearInterval(
+    packageInterval
+  );
+
+  packageInterval =
+    null;
+
+  packageTime =
+    600;
+
+  updatePackageTimer();
+
+}
+
+updatePackageTimer();
+
+
+/* =========================
+   FESTBILDER
+========================= */
+
+function updatePhotoAvailability() {
+
+  const now =
+    new Date();
+
+  const open =
+    now >= photoStart &&
+    now < photoEnd;
+
+  byId("photoButton").disabled =
+    !open;
+
+  if (
+    now < photoStart
+  ) {
+
+    byId("photoMessage").textContent =
+      "🔒 Bilder åpner lørdag 📸";
+
+  } else if (
+    now >= photoEnd
+  ) {
+
+    byId("photoMessage").textContent =
+      "📸 Albumet er kun åpent for visning.";
+
+  } else {
+
+    byId("photoMessage").textContent =
+      "📸 Bildeopplasting er åpen.";
+
+  }
+
+}
+
+
+function createFileName(file) {
+
+  const extension =
+    (
+      file.name
+        .split(".")
+        .pop()
+
+      ||
+
+      "jpg"
+    )
+      .replace(
+        /[^a-z0-9]/gi,
+        ""
+      );
+
+  return (
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .slice(2, 8) +
+    "." +
+    extension
+  );
+
+}
+
+
+async function loadPhotos() {
+
+  if (!db) {
+    return;
+  }
+
+  const gallery =
+    byId("gallery");
+
+  gallery.innerHTML =
+    '<div class="empty">Henter bilder...</div>';
+
+  const response =
+    await db
+      .storage
+      .from("festbilder")
+      .list(
+        "",
+        {
+          limit: 100,
+          sortBy: {
+            column:
+              "created_at",
+            order:
+              "desc"
+          }
+        }
+      );
+
+  if (
+    response.error
+  ) {
+
+    gallery.innerHTML =
+      '<div class="empty">Kunne ikke hente bildene.</div>';
+
+    return;
+
+  }
+
+  photos =
+    (response.data || [])
+      .filter(
+        function (item) {
+
+          return (
+            item.name &&
+            !item.name.startsWith(".")
+          );
+
+        }
+      );
+
+  byId("photoCount").textContent =
+    photos.length +
+    " / 75 bilder";
+
+  gallery.innerHTML =
+    photos.length
+      ? ""
+      : '<div class="empty">Ingen bilder ennå.</div>';
+
+  photos.forEach(
+    function (file) {
+
+      const url =
+        db
+          .storage
+          .from("festbilder")
+          .getPublicUrl(
+            file.name
+          )
+          .data
+          .publicUrl;
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+      item.className =
+        "gallery-item";
+
+      const image =
+        document.createElement(
+          "img"
+        );
+
+      image.src =
+        url;
+
+      image.alt =
+        "Festbilde";
+
+      image.loading =
+        "lazy";
+
+      item.appendChild(
+        image
+      );
+
+      item.addEventListener(
+        "click",
+        function () {
+
+          byId("modalImage").src =
+            url;
+
+          byId("photoModal")
+            .classList.add(
+              "open"
+            );
+
+        }
+      );
+
+      gallery.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+byId("photoInput")
+  .addEventListener(
+    "change",
+    async function (event) {
+
+      const input =
+        event.target;
+
+      const file =
+        input.files[0];
+
+      input.value =
+        "";
+
+      if (!file) {
+        return;
+      }
+
+      if (
+        !file.type
+          .startsWith(
+            "image/"
+          )
+      ) {
+
+        byId("photoMessage").textContent =
+          "❌ Kun bilder er tillatt.";
+
+        return;
+
+      }
+
+      if (
+        file.size >
+        6 * 1024 * 1024
+      ) {
+
+        byId("photoMessage").textContent =
+          "❌ Bildet kan være maks 6 MB.";
+
+        return;
+
+      }
+
+      if (
+        photos.length >= 75
+      ) {
+
+        byId("photoMessage").textContent =
+          "❌ Albumet har nådd 75 bilder.";
+
+        return;
+
+      }
+
+      if (!db) {
+        return;
+      }
+
+      byId("photoMessage").textContent =
+        "Laster opp...";
+
+      const response =
+        await db
+          .storage
+          .from("festbilder")
+          .upload(
+            createFileName(file),
+            file,
+            {
+              contentType:
+                file.type,
+              upsert:
+                false
+            }
+          );
+
+      if (
+        response.error
+      ) {
+
+        byId("photoMessage").textContent =
+          "❌ Kunne ikke laste opp.";
+
+        return;
+
+      }
+
+      byId("photoMessage").textContent =
+        "✅ Bildet er lagt til!";
+
+      await loadPhotos();
+
+    }
+  );
+
+
+function closePhoto() {
+
+  byId("photoModal")
+    .classList.remove(
+      "open"
+    );
+
+  byId("modalImage").src =
+    "";
+
+}
+
+
+/* =========================
+   START APPEN
+========================= */
+
+function startApp() {
+
+  renderStatuses();
+
+  renderScores();
+
+  renderBringItems();
+
+  updateStatusAvailability();
+
+  updateSnakeAvailability();
+
+  updateTenAvailability();
+
+  updateQuizAvailability();
+
+  updatePhotoAvailability();
+
+  syncBringCheckboxes();
+
+  if (
+    !window.supabase
+  ) {
+
+    byId("statusMessage").textContent =
+      "⚠️ Supabase kunne ikke lastes.";
+
+    return;
+
+  }
+
+  db =
+    window.supabase
+      .createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+  loadStatuses();
+
+  loadScores();
+
+  loadBringItems();
+
+  loadPhotos();
+
+  db
+    .channel(
+      "status-live"
+    )
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table:
+          "party_status"
+      },
+      loadStatuses
+    )
+    .subscribe();
+
+  db
+    .channel(
+      "scores-live"
+    )
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table:
+          "party_scores"
+      },
+      loadScores
+    )
+    .subscribe();
+
+  db
+    .channel(
+      "bring-live"
+    )
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table:
+          "bring_items"
+      },
+      loadBringItems
+    )
+    .subscribe();
+
+  setInterval(
+    function () {
+
+      updateStatusAvailability();
+
+      updateSnakeAvailability();
+
+      updateTenAvailability();
+
+      updateQuizAvailability();
+
+      updatePhotoAvailability();
+
+      renderScores();
+
+    },
+    60000
+  );
+
+}
+
+
+/* =========================
+   JULE-KONG
+========================= */
+
+function kongIsOpen() {
+
+  return (
+    new Date() >=
+    kongStartDate
+  );
+
+}
+
+
+function updateKongAvailability() {
+
+  const lock =
+    byId("kongLock");
+
+  const game =
+    byId("kongGame");
+
+  if (
+    !lock ||
+    !game
+  ) {
+
+    return;
+
+  }
+
+  if (
+    kongIsOpen()
+  ) {
+
+    lock.style.display =
+      "none";
+
+    game.style.display =
+      "block";
+
+    drawKong();
+
+    updateKongBest();
+
+  } else {
+
+    lock.style.display =
+      "block";
+
+    game.style.display =
+      "none";
+
+  }
+
+}
+
+
+function kongBestKey() {
+
+  const person =
+    byId("kongPerson").value
+
+    ||
+
+    "ukjent";
+
+  return (
+    "julekong-best-" +
+    person
+  );
+
+}
+
+
+function updateKongBest() {
+
+  byId("kongBest").textContent =
+    localStorage.getItem(
+      kongBestKey()
+    )
+
+    ||
+
+    "0";
+
+}
+
+
+byId("kongPerson")
+  .addEventListener(
+    "change",
+    updateKongBest
+  );
+
+
+function startKong() {
+
+  if (
+    !kongIsOpen()
+  ) {
+
+    return;
+
+  }
+
+  if (
+    !byId(
+      "kongPerson"
+    ).value
+  ) {
+
+    byId("kongMessage").textContent =
+      "Velg navnet ditt først 😊";
+
+    return;
+
+  }
+
+  if (
+    kongAnimation
+  ) {
+
+    cancelAnimationFrame(
+      kongAnimation
+    );
+
+  }
+
+  kongRunning =
+    true;
+
+  kongScoreValue =
+    0;
+
+  kongPackages =
+    [];
+
+  kongLeft =
+    false;
+
+  kongRight =
+    false;
+
+  kongSpawn =
+    0;
+
+  kongLevel =
+    0;
+
+  kongPlayer = {
+    x: 25,
+    y: 305,
+    w: 22,
+    h: 28,
+    vx: 0,
+    vy: 0,
+    onGround: false
+  };
+
+  byId("kongScore").textContent =
+    "0";
+
+  byId("kongMessage").textContent =
+    "🎅 Kom deg til toppen!";
+
+  byId("kongStartButton").textContent =
+    "🔄 START PÅ NYTT";
+
+  kongLastTime =
+    performance.now();
+
+  kongAnimation =
+    requestAnimationFrame(
+      kongLoop
+    );
+
+}
+
+
+function kongJump() {
+
+  if (
+    kongRunning &&
+    kongPlayer.onGround
+  ) {
+
+    kongPlayer.vy =
+      -325;
+
+    kongPlayer.onGround =
+      false;
+
+  }
+
+}
+
+
+function kongLoop(time) {
+
+  if (
+    !kongRunning
+  ) {
+
+    return;
+
+  }
+
+  const delta =
+    Math.min(
+      (
+        time -
+        kongLastTime
+      ) /
+      1000,
+      0.035
+    );
+
+  kongLastTime =
+    time;
+
+  updateKong(
+    delta
+  );
+
+  drawKong();
+
+  if (
+    kongRunning
+  ) {
+
+    kongAnimation =
+      requestAnimationFrame(
+        kongLoop
+      );
+
+  }
+
+}
+
+
+function updateKong(delta) {
+
+  kongPlayer.vx =
+    0;
+
+  if (
+    kongLeft
+  ) {
+
+    kongPlayer.vx =
+      -135;
+
+  }
+
+  if (
+    kongRight
+  ) {
+
+    kongPlayer.vx =
+      135;
+
+  }
+
+  kongPlayer.x +=
+    kongPlayer.vx *
+    delta;
+
+  kongPlayer.x =
+    Math.max(
+      0,
+      Math.min(
+        320 -
+        kongPlayer.w,
+        kongPlayer.x
+      )
+    );
+
+  const oldBottom =
+    kongPlayer.y +
+    kongPlayer.h;
+
+  kongPlayer.vy +=
+    760 *
+    delta;
+
+  kongPlayer.y +=
+    kongPlayer.vy *
+    delta;
+
+  kongPlayer.onGround =
+    false;
+
+  kongPlatforms.forEach(
+    function (platform, index) {
+
+      const newBottom =
+        kongPlayer.y +
+        kongPlayer.h;
+
+      const overlaps =
+        kongPlayer.x +
+        kongPlayer.w >
+        platform.x
+
+        &&
+
+        kongPlayer.x <
+        platform.x +
+        platform.w;
+
+      if (
+        overlaps &&
+        kongPlayer.vy >= 0 &&
+        oldBottom <=
+          platform.y + 4 &&
+        newBottom >=
+          platform.y
+      ) {
+
+        kongPlayer.y =
+          platform.y -
+          kongPlayer.h;
+
+        kongPlayer.vy =
+          0;
+
+        kongPlayer.onGround =
+          true;
+
+        kongLevel =
+          Math.max(
+            kongLevel,
+            index
+          );
+
+      }
+
+    }
+  );
+
+  if (
+    kongPlayer.y >
+    370
+  ) {
+
+    endKong(
+      false
+    );
+
+    return;
+
+  }
+
+  kongSpawn +=
+    delta;
+
+  if (
+    kongSpawn >
+    1.25
+  ) {
+
+    kongSpawn =
+      0;
+
+    const level =
+      1 +
+      Math.floor(
+        Math.random() * 4
+      );
+
+    const platform =
+      kongPlatforms[level];
+
+    const fromRight =
+      level % 2 === 1;
+
+    kongPackages.push({
+      x:
+        fromRight
+          ? platform.x +
+            platform.w -
+            20
+          : platform.x + 4,
+      y:
+        platform.y - 20,
+      width: 18,
+      height: 18,
+      vx:
+        fromRight
+          ? -75
+          : 75
+    });
+
+  }
+
+  kongPackages.forEach(
+    function (gift) {
+
+      gift.x +=
+        gift.vx *
+        delta;
+
+      if (
+        gift.x < 5 ||
+        gift.x > 297
+      ) {
+
+        gift.vx *=
+          -1;
+
+      }
+
+      if (
+        kongCollision(
+          kongPlayer,
+          gift
+        )
+      ) {
+
+        endKong(
+          false
+        );
+
+      }
+
+    }
+  );
+
+  const heightScore =
+    kongLevel *
+    25;
+
+  if (
+    heightScore >
+    kongScoreValue
+  ) {
+
+    kongScoreValue =
+      heightScore;
+
+    byId("kongScore").textContent =
+      kongScoreValue;
+
+  }
+
+  if (
+    kongPlayer.y <
+    45
+  ) {
+
+    kongScoreValue +=
+      100;
+
+    byId("kongScore").textContent =
+      kongScoreValue;
+
+    endKong(
+      true
+    );
+
+  }
+
+}
+
+
+function kongCollision(
+  first,
+  second
+) {
+
+  return (
+    first.x <
+      second.x +
+      second.width
+
+    &&
+
+    first.x +
+      first.w >
+      second.x
+
+    &&
+
+    first.y <
+      second.y +
+      second.height
+
+    &&
+
+    first.y +
+      first.h >
+      second.y
+  );
+
+}
+
+
+function drawKong() {
+
+  const canvas =
+    byId("kongCanvas");
+
+  if (!canvas) {
+    return;
+  }
+
+  const context =
+    canvas.getContext(
+      "2d"
+    );
+
+  context.fillStyle =
+    "#071b14";
+
+  context.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  context.font =
+    "24px Segoe UI Emoji";
+
+  context.textAlign =
+    "center";
+
+  context.fillText(
+    "🦍",
+    285,
+    50
+  );
+
+  context.fillText(
+    "⭐",
+    25,
+    48
+  );
+
+  kongPlatforms.forEach(
+    function (
+      platform,
+      index
+    ) {
+
+      context.fillStyle =
+        index % 2
+          ? "#b83d32"
+          : "#d88428";
+
+      context.fillRect(
+        platform.x,
+        platform.y,
+        platform.w,
+        8
+      );
+
+      for (
+        let x =
+          platform.x;
+
+        x <
+          platform.x +
+          platform.w;
+
+        x += 24
+      ) {
+
+        context.fillStyle =
+          "rgba(255,255,255,0.25)";
+
+        context.fillRect(
+          x,
+          platform.y,
+          12,
+          3
+        );
+
+      }
+
+    }
+  );
+
+  context.font =
+    "19px Segoe UI Emoji";
+
+  kongPackages.forEach(
+    function (gift) {
+
+      context.fillText(
+        "🎁",
+        gift.x + 9,
+        gift.y + 14
+      );
+
+    }
+  );
+
+  context.font =
+    "25px Segoe UI Emoji";
+
+  context.fillText(
+    "🎅",
+    kongPlayer.x + 11,
+    kongPlayer.y + 21
+  );
+
+  context.font =
+    "16px Segoe UI Emoji";
+
+  context.fillText(
+    "🎄",
+    20,
+    330
+  );
+
+  context.fillText(
+    "🎄",
+    300,
+    330
+  );
+
+}
+
+
+function endKong(won) {
+
+  if (
+    !kongRunning
+  ) {
+
+    return;
+
+  }
+
+  kongRunning =
+    false;
+
+  if (
+    kongAnimation
+  ) {
+
+    cancelAnimationFrame(
+      kongAnimation
+    );
+
+  }
+
+  kongAnimation =
+    null;
+
+  const oldBest =
+    Number(
+      localStorage.getItem(
+        kongBestKey()
+      ) || 0
+    );
+
+  if (
+    kongScoreValue >
+    oldBest
+  ) {
+
+    localStorage.setItem(
+      kongBestKey(),
+      String(
+        kongScoreValue
+      )
+    );
+
+  }
+
+  updateKongBest();
+
+  if (
+    won
+  ) {
+
+    byId("kongMessage").textContent =
+      "🎉 Du nådde toppen! " +
+      kongScoreValue +
+      " poeng!";
+
+  } else {
+
+    byId("kongMessage").textContent =
+      "💥 Game over! " +
+      kongScoreValue +
+      " poeng.";
+
+  }
+
+}
+
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
+      kongLeft =
+        true;
+
+    }
+
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
+      kongRight =
+        true;
+
+    }
+
+    if (
+      event.key ===
+        "ArrowUp"
+
+      ||
+
+      event.key ===
+        " "
+    ) {
+
+      kongJump();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keyup",
+  function (event) {
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
+      kongLeft =
+        false;
+
+    }
+
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
+      kongRight =
+        false;
+
+    }
+
+  }
+);
+
+
+/* OPPSTART */
+
+updateKongAvailability();
+
+setInterval(
+  updateKongAvailability,
+  30000
+);
+
+startApp();
+
+</script>
+
+</body>
+</html>  
