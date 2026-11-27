@@ -5809,24 +5809,68 @@ function updateKong(delta) {
 
   }
 
-  if (
-    kongPlayer.y <
-    45
-  ) {
+if (
+  kongPlayer.y <
+  45
+) {
 
-    kongScoreValue +=
-      100;
+  /*
+    Spilleren har nådd toppen.
+    Gi 100 poeng og start en ny runde.
+  */
 
-    byId("kongScore").textContent =
-      kongScoreValue;
+  kongScoreValue +=
+    100;
 
-    endKong(
-      true
-    );
+  byId("kongScore").textContent =
+    kongScoreValue;
+
+
+  /*
+    Fjern pakkene fra forrige runde.
+  */
+
+  kongPackages =
+    [];
+
+  kongSpawn =
+    0;
+
+
+  /*
+    Send nissen tilbake til start.
+  */
+
+  kongPlayer.x =
+    25;
+
+  kongPlayer.y =
+    305;
+
+  kongPlayer.vx =
+    0;
+
+  kongPlayer.vy =
+    0;
+
+  kongPlayer.onGround =
+    false;
+
+  kongLevel =
+    0;
+
+
+  /*
+    Vis melding, men ikke avslutt spillet.
+  */
+
+  byId("kongMessage").textContent =
+    "⭐ TOPPEN! +100 poeng – ny runde!";
+
+}
 
   }
 
-}
 
 
 function kongCollision(
