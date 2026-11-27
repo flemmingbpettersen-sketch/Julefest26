@@ -5809,8 +5809,46 @@ function updateKong(delta) {
 
   }
 
-  if (
 if (
+  kongPlayer.y <
+  45
+) {
+
+  // +100 poeng når toppen nås
+  kongScoreValue +=
+    100;
+
+  byId("kongScore").textContent =
+    kongScoreValue;
+
+  // Fjern pakkene og start en ny runde
+  kongPackages =
+    [];
+
+  // Send nissen tilbake til start
+  kongPlayer.x =
+    25;
+
+  kongPlayer.y =
+    305;
+
+  kongPlayer.vx =
+    0;
+
+  kongPlayer.vy =
+    0;
+
+  kongPlayer.onGround =
+    false;
+
+  kongLevel =
+    0;
+
+  byId("kongMessage").textContent =
+    "⭐ TOPPEN! +100 poeng – fortsett!";
+
+}
+
   kongPlayer.y <
   45
 ) {
